@@ -270,4 +270,4 @@ CREATE TABLE NMJ_request
 
 ALTER TABLE NMJ_request COMMENT '요청';
 
-
+commit;
