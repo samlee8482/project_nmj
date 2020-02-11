@@ -125,7 +125,7 @@ CREATE TABLE NMJ_review
     `review_uid`      INT     NOT NULL    AUTO_INCREMENT COMMENT '리뷰_고유번호', 
     `mb_uid`          INT     NOT NULL    COMMENT '회원 고유번호', 
     `store_uid`       INT     NULL        COMMENT '0: 예약이 아닌 경우', 
-    `review_rate`     INT     NOT NULL    COMMENT '리뷰_평점', 
+    `review_rate`     INT     NULL	      COMMENT '리뷰_평점', 
     `review_content`  TEXT    NOT NULL    COMMENT '리뷰_내용', 
     `review_ban`      INT     NOT NULL    DEFAULT 0 COMMENT '0: 정상 1: 신고', 
     PRIMARY KEY (review_uid)
