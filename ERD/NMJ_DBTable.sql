@@ -60,7 +60,7 @@ CREATE TABLE NMJ_store
     `store_type`        INT             NOT NULL    COMMENT '1: 놀자 2: 먹자 3: 자자', 
     `store_dtype`       INT             NOT NULL    COMMENT '매장 상세 종류', 
     `store_regDate`     DATETIME        NOT NULL    DEFAULT now() COMMENT '매장 등록일', 
-    `store_ratings`     DOUBLE          NOT NULL    DEFAULT 0 COMMENT '매장 총평점', 
+    `store_ratings`     INT          NOT NULL    DEFAULT 0 COMMENT '매장 총평점', 
     `store_rateCount`   INT             NOT NULL    DEFAULT 0 COMMENT '매장 평점자수', 
     PRIMARY KEY (store_uid)
 );
