@@ -50,8 +50,8 @@ CREATE TABLE NMJ_store
     `store_tel`         VARCHAR(45)     NOT NULL    COMMENT '매장 연락처', 
     `store_hours`       TEXT            NOT NULL    COMMENT '매장 영업시간', 
     `store_content`     TEXT            NULL        COMMENT '매장 설명', 
-    `store_img_org`     TEXT            NULL        COMMENT '매장 사진원본명', 
-    `store_img_sav`     TEXT            NULL        COMMENT '매장 사진저장명', 
+    `store_img_org`     VARCHAR(200)    NULL        COMMENT '매장 사진원본명', 
+    `store_img_sav`     VARCHAR(200)    NULL        COMMENT '매장 사진저장명', 
     `store_regNum`      VARCHAR(45)     NOT NULL    COMMENT '사업자 등록번호', 
     `store_regImg_org`  VARCHAR(200)    NOT NULL    COMMENT '사업자 등록사진원본명', 
     `store_regImg_sav`  VARCHAR(200)    NOT NULL    COMMENT '사업자 등록사진저장명', 
@@ -60,7 +60,7 @@ CREATE TABLE NMJ_store
     `store_type`        INT             NOT NULL    COMMENT '1: 놀자 2: 먹자 3: 자자', 
     `store_dtype`       INT             NOT NULL    COMMENT '매장 상세 종류', 
     `store_regDate`     DATETIME        NOT NULL    DEFAULT now() COMMENT '매장 등록일', 
-    `store_ratings`     INT          NOT NULL    DEFAULT 0 COMMENT '매장 총평점', 
+    `store_ratings`     INT             NOT NULL    DEFAULT 0 COMMENT '매장 총평점', 
     `store_rateCount`   INT             NOT NULL    DEFAULT 0 COMMENT '매장 평점자수', 
     PRIMARY KEY (store_uid)
 );
@@ -122,12 +122,14 @@ ALTER TABLE NMJ_space
 -- NMJ_member Table Create SQL
 CREATE TABLE NMJ_review
 (
-    `review_uid`      INT     NOT NULL    AUTO_INCREMENT COMMENT '리뷰_고유번호', 
-    `mb_uid`          INT     NOT NULL    COMMENT '회원 고유번호', 
-    `store_uid`       INT     NULL        COMMENT '0: 예약이 아닌 경우', 
-    `review_rate`     INT     NULL	      COMMENT '리뷰_평점', 
-    `review_content`  TEXT    NOT NULL    COMMENT '리뷰_내용', 
-    `review_ban`      INT     NOT NULL    DEFAULT 0 COMMENT '0: 정상 1: 신고', 
+    `review_uid`        INT         NOT NULL    AUTO_INCREMENT COMMENT '리뷰_고유번호', 
+    `mb_uid`            INT         NOT NULL    COMMENT '회원 고유번호', 
+    `store_uid`         INT         NULL        COMMENT '0: 예약이 아닌 경우', 
+    `review_rate`       INT         NULL        COMMENT '리뷰_평점', 
+    `review_content`    TEXT        NOT NULL    COMMENT '리뷰_내용', 
+    `review_ban`        INT         NOT NULL    DEFAULT 0 COMMENT '0: 정상 1: 신고', 
+    `review_viewCount`  INT         NOT NULL    DEFAULT 0 COMMENT '리뷰 조회수', 
+    `review_date`       DATETIME    NOT NULL    DEFAULT now() COMMENT '리뷰 등록일', 
     PRIMARY KEY (review_uid)
 );
 
@@ -205,17 +207,14 @@ CREATE TABLE NMJ_reservation
     `reservation_start`  DATETIME    NOT NULL    COMMENT '예약 시작시간', 
     `reservation_end`    DATETIME    NULL        COMMENT '예약 종료시간', 
     `mb_uid`             INT         NOT NULL    COMMENT '회원 고유번호', 
-    `space_uid`          INT         NOT NULL    COMMENT '매장 공간 고유번호', 
+    `space_uid`          TEXT        NOT NULL    COMMENT '매장 공간 고유번호', 
     `reservation_check`  INT         NOT NULL    DEFAULT 0 COMMENT '0: 대기 1: 승인', 
     `reservation_date`   DATETIME    NOT NULL    DEFAULT now() COMMENT '접수 날짜', 
+    `reservation_count`  INT         NOT NULL    DEFAULT 1 COMMENT '예약 인원', 
     PRIMARY KEY (reservation_uid)
 );
 
 ALTER TABLE NMJ_reservation COMMENT '예약';
-
-ALTER TABLE NMJ_reservation
-    ADD CONSTRAINT FK_NMJ_reservation_space_uid_NMJ_space_space_uid FOREIGN KEY (space_uid)
-        REFERENCES NMJ_space (space_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE NMJ_reservation
     ADD CONSTRAINT FK_NMJ_reservation_mb_uid_NMJ_member_mb_uid FOREIGN KEY (mb_uid)
@@ -232,6 +231,7 @@ CREATE TABLE NMJ_notice
     `notice_endDate`    DATETIME       NULL        COMMENT '공지사항_종료일', 
     `notice_startDate`  DATETIME       NULL        COMMENT '공지사항_시작일', 
     `notice_type`       INT            NOT NULL    DEFAULT 0 COMMENT '0: 공지 1: 이벤트', 
+    `notice_viewCount`  INT            NOT NULL    DEFAULT 0 COMMENT '공지사항 조회수', 
     PRIMARY KEY (notice_uid)
 );
 
@@ -241,13 +241,14 @@ ALTER TABLE NMJ_notice COMMENT '공지사항';
 -- NMJ_member Table Create SQL
 CREATE TABLE NMJ_reply
 (
-    `reply_uid`         INT     NOT NULL    AUTO_INCREMENT COMMENT '댓글_고유번호', 
-    `review_uid`        INT     NOT NULL    COMMENT '리뷰_고유번호', 
-    `reply_level`       INT     NOT NULL    COMMENT '0: 댓글 1: 대댓글', 
-    `reply_parent_uid`  INT     NULL        COMMENT '부모의 reply_uid', 
-    `reply_content`     TEXT    NOT NULL    COMMENT '댓글_내용', 
-    `reply_ban`         INT     NOT NULL    DEFAULT 0 COMMENT '0: 정상 1: 신고', 
-    `mb_uid`            INT     NOT NULL    COMMENT '회원 고유번호', 
+    `reply_uid`         INT         NOT NULL    AUTO_INCREMENT COMMENT '댓글_고유번호', 
+    `review_uid`        INT         NOT NULL    COMMENT '리뷰_고유번호', 
+    `reply_level`       INT         NOT NULL    COMMENT '0: 댓글 1: 대댓글', 
+    `reply_parent_uid`  INT         NULL        COMMENT '부모의 reply_uid', 
+    `reply_content`     TEXT        NOT NULL    COMMENT '댓글_내용', 
+    `reply_ban`         INT         NOT NULL    DEFAULT 0 COMMENT '0: 정상 1: 신고', 
+    `mb_uid`            INT         NOT NULL    COMMENT '회원 고유번호', 
+    `reply_date`        DATETIME    NOT NULL    DEFAULT now() COMMENT '댓글 등록일', 
     PRIMARY KEY (reply_uid)
 );
 
@@ -275,4 +276,3 @@ CREATE TABLE NMJ_request
 ALTER TABLE NMJ_request COMMENT '요청';
 
 
-commit;
