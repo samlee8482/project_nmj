@@ -15,8 +15,8 @@
 	4. store_img_org / store_img_sav
 	 -->
 	 
- <form name="frm" action="storeGeneralSettingOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
- 	<input type="text" name="store_tel" value="">
+ <form name="frm" action="storeGeneralSettingOk.nmj" method="post" onsubmit="return chkUpdate()">
+ 	전화번호: <input type="text" name="store_tel" value="${result.store_tel}">
 	<select name="st_start" id="demo-category">
 		<option value="08:00">08:00</option>
 		<option value="08:30">08:30</option>
@@ -40,8 +40,8 @@
 		<option value="22:00">22:00</option>
 		<option value="22:30">22:30</option>
 	</select>
- 	<textarea name="store_content" cols=""></textarea>
- 	<input type="file" name="store_img" value="">
+ 	매장 설명 : <textarea name="store_content" rows="20" cols="20">${result.store_content}</textarea>
+ 	<img src="${pageContext.servletContext.contextPath}/img/store/${result.store_img_sav}">
  	
  	<button type="submit">매장 정보 수정</button>
  </form>

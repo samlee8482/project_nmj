@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna.project.nmj.beans.dao.StoreTestDAO">
+	<select id="selectStoreByUid" resultType="qna.project.nmj.beans.StoreDTO">
+		SELECT
+			store_tel,
+			store_hours,
+			store_content,
+			store_img_sav
+		FROM
+			nmj_store
+		WHERE
+			store_uid = #{store_uid}
+		;
+	</select>
+</mapper>
