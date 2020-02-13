@@ -1,5 +1,3 @@
-select * from nmj_member nm ;
-
 -- nmj_member (매장 회원)
 INSERT INTO nmj_member
 	(mb_uid, mb_id, mb_pw, mb_name, mb_tel, mb_img_org, mb_img_sav, mb_email, mb_type)
