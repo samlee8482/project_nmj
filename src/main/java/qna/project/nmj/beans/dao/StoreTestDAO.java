@@ -1,5 +1,7 @@
 package qna.project.nmj.beans.dao;
 
-public interface StoreTestDAO {
+import qna.project.nmj.beans.StoreDTO;
 
+public interface StoreTestDAO {
+	public StoreDTO selectStoreByUid(int store_uid);
 }

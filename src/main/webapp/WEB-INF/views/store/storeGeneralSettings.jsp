@@ -9,14 +9,14 @@
 <body>
 <!-- 승인 없이 처리할 매장 정보 페이지
 	1. 매장 전화 번호 2. 매장 영업 시간 3. 매장 설명 4. 매장 사진
-	1. store_tel
-	2. store_hours
+	1. store_tel (정규 표현식 js 검증)
+	2. store_hours (st_start~st_end) = store_hours
 	3. store_content
-	4. store_img_org / store_img_sav
+	4. store_img_org / store_img_sav (업로드시 이미지 확장자로 보이게(html) + 확장자 검증후 db저장(java))
 	 -->
 	 
- <form name="frm" action="storeGeneralSettingOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
- 	<input type="text" name="store_tel" value="">
+ <form name="frm" action="storeGeneralSettingOk.nmj" method="post" onsubmit="return chkUpdate()">
+ 	전화번호: <input type="text" name="store_tel" value="${result.store_tel}">
 	<select name="st_start" id="demo-category">
 		<option value="08:00">08:00</option>
 		<option value="08:30">08:30</option>
@@ -40,8 +40,8 @@
 		<option value="22:00">22:00</option>
 		<option value="22:30">22:30</option>
 	</select>
- 	<textarea name="store_content" cols=""></textarea>
- 	<input type="file" name="store_img" value="">
+ 	매장 설명 : <textarea name="store_content" rows="20" cols="20">${result.store_content}</textarea>
+ 	<img src="${pageContext.servletContext.contextPath}/img/store/${result.store_img_sav}">
  	
  	<button type="submit">매장 정보 수정</button>
  </form>
