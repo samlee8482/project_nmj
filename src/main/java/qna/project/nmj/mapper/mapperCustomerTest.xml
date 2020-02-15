@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="qna.project.nmj.beans.dao.CustomerTestDAO">
+<mapper namespace="qna.project.nmj.beans.dao.CustomerDAO">
 	
 	<!-- 마이페이지 - 회원 정보 수정 -->
 	<select id="selectMemberByUid" resultType="qna.project.nmj.beans.MemberDTO">
@@ -9,8 +9,37 @@
 		WHERE mb_uid = #{mb_uid};
 	</select>
 	
-	<!-- 마이페이지 - 예약/찜 목록보기 -->
-		
-	<!-- 마이페이지 - 내 리뷰보기 -->
+	<!-- 마이페이지 - 예약/찜 목록 보기 -->
+	<!-- 예약 목록 -->
+	<select id="selectReservationByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
+		SELECT n4.store_type, n4.store_name, n2.reservation_start, n2.reservation_end, n2.reservation_count, n2.reservation_seat
+		FROM NMJ_member n1, NMJ_reservation n2, NMJ_space n3, NMJ_store n4
+		WHERE n1.mb_uid = n2.mb_uid
+		AND n2.space_uid = n3.space_uid
+		AND n4.store_uid = n3.store_uid;
+	</select>
+	<!-- 찜 목록 -->
+	<select id="selectLikeByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
+		SELECT n2.store_name, n2.store_type
+		FROM NMJ_member n1, NMJ_store n2, NMJ_like n3
+		WHERE n1.mb_uid = n3.mb_uid
+		AND n2.store_uid = n3.store_uid;
+	</select>
+	
+	<!-- 마이페이지 - 내 리뷰 보기 -->
+	<!-- 리뷰 목록 -->
+	<select id="selectMyReviewByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
+		SELECT n3.store_name, n2.review_content, n2.review_rate, n2.review_viewCount, n2.review_date, n2.review_uid
+		FROM NMJ_member n1, NMJ_review n2, NMJ_store n3
+		WHERE n1.mb_uid = n2.mb_uid
+		AND n2.store_uid = n3.store_uid;
+	</select>
+	<!-- 댓글 목록 -->
+	<select id="selectMyReplyByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
+		SELECT n2.reply_content, n3.review_content, n2.reply_date, n2.reply_uid
+		FROM NMJ_member n1, NMJ_reply n2, NMJ_review n3
+		WHERE n1.mb_uid = n2.mb_uid
+		AND n2.review_uid = n3.review_uid;
+	</select>
 	
 </mapper>

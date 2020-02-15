@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보 수정</title>
+<title>마이페이지 - 회원 정보 수정</title>
 </head>
 <body>
 
