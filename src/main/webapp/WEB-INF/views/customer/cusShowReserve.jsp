@@ -26,19 +26,19 @@ table, th, td{
 		<th>좌석</th>
 	</tr>
 	<tr>
-	<c:if test="${myPageReservation.store_type == 1}">
+	<c:if test="${myPageReservation[0].store_type == 1}">
 		<tr>
 			<c:forEach var="item" items="${myPageReservation}" varStatus="status">
 				<td>${status.index + 1}</td>
-				<td>${item.store_name }</td>
-				<td>${item.store_start }</td>
-				<td>${item.store_end }</td>
-				<td>${item.reservation_count }</td>
-				<td>${item.reservation_seat }</td>
+				<td>${item[0].store_name }</td>
+				<td>${item[0].store_start }</td>
+				<td>${item[0].store_end }</td>
+				<td>${item[0].reservation_count }</td>
+				<td>${item[0].reservation_seat }</td>
 			</c:forEach>
 		</tr> 
 	</c:if>
-	<c:if test="${myPageReservation.store_type == null }">
+	<c:if test="${myPageReservation[0].store_type == null }">
 		<tr>
 			<td colspan="6">예약 기록이 없습니다.</td>
 		</tr>
@@ -55,18 +55,18 @@ table, th, td{
 		<th>좌석</th>
 	</tr>
 	<tr>
-	<c:if test="${myPageReservation.store_type == 2}">
+	<c:if test="${myPageReservation[0].store_type == 2}">
 		<tr>
 			<c:forEach var="item" items="${myPageReservation}" varStatus="status">
 				<td>${status.index + 1}</td>
-				<td>${item.store_name }</td>
-				<td>${item.store_start }</td>
-				<td>${item.reservation_count }</td>
-				<td>${item.reservation_seat }</td>
+				<td>${item[0].store_name }</td>
+				<td>${item[0].store_start }</td>
+				<td>${item[0].reservation_count }</td>
+				<td>${item[0].reservation_seat }</td>
 			</c:forEach>
 		</tr> 
 	</c:if>
-	<c:if test="${myPageReservation.store_type == null }">
+	<c:if test="${myPageReservation[0].store_type == null }">
 		<tr>
 			<td colspan="5">예약 기록이 없습니다.</td>
 		</tr>
@@ -83,19 +83,19 @@ table, th, td{
 		<th>인원수</th>
 		<th>방</th>
 	</tr>
-	<c:if test="${myPageReservation.store_type == 3}">
+	<c:if test="${myPageReservation[0].store_type == 3}">
 		<tr>
 			<c:forEach var="item" items="${myPageReservation}" varStatus="status">
 				<td>${status.index + 1}</td>
-				<td>${item.store_name }</td>
-				<td>${item.store_start }</td>
-				<td>${item.store_end }</td>
-				<td>${item.reservation_count }</td>
-				<td>${item.reservation_seat }</td>
+				<td>${item[0].store_name }</td>
+				<td>${item[0].store_start }</td>
+				<td>${item[0].store_end }</td>
+				<td>${item[0].reservation_count }</td>
+				<td>${item[0].reservation_seat }</td>
 			</c:forEach>
 		</tr> 
 	</c:if>
-	<c:if test="${myPageReservation.store_type == null }">
+	<c:if test="${myPageReservation[0].store_type == null }">
 		<tr>
 			<td colspan="6">예약 기록이 없습니다.</td>
 		</tr>
@@ -113,8 +113,8 @@ table, th, td{
 		<tr>
 			<c:forEach var="item" items="${myPageLike}" varStatus="status">
 				<td>${status.index + 1}</td>
-				<td>${item.store_name }</td>
-				<td>${item.store_type }</td>
+				<td>${item[0].store_name }</td>
+				<td>${item[0].store_type }</td>
 			</c:forEach>
 		</tr> 
 	</c:if>
