@@ -4,6 +4,33 @@
 	<select id="reviewSelect" resultType="qna.project.nmj.beans.ReviewDTO">
 		SELECT review_uid, mb_uid, store_uid, review_rate, review_content, review_ban, review_viewCount, review_date from nmj_review where store_uid = #{store_uid}
 	</select>
-
+	
+	
+	<select id="selectStoreByUid" resultType="qna.project.nmj.beans.StoreDTO">
+		SELECT
+			store_uid,
+			mb_uid,
+			store_name,
+			store_address,
+			store_tel,
+			store_hours,
+			store_content,
+			store_img_org,
+			store_img_sav,
+			store_regNum,
+			store_regImg_org,
+			store_regImg_sav,
+			store_lat,
+			store_long,
+			store_type,
+			store_dtype,
+			store_ratings,
+			store_rateCount
+		FROM
+			nmj_store
+		WHERE
+			store_uid = #{store_uid}
+		;
+	</select>
 
 </mapper>

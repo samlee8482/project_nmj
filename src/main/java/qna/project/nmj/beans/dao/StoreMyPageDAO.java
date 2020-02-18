@@ -17,4 +17,10 @@ public interface StoreMyPageDAO {
 	public int spaceImageUpdate(SpaceImgDTO dto);
 	
 	public int spaceImageDelete(int space_uid);
+	
+	/**
+	 * select a store by store_uid
+	 * @return StoreDTO
+	 */
+	public StoreDTO selectStoreByUid(int store_uid);
 }
