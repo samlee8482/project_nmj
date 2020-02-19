@@ -3,9 +3,13 @@ package qna.project.nmj.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import qna.project.nmj.beans.C;
+import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.command.Command;
 import qna.project.nmj.command.StoreSettingsCommand;
+import qna.project.nmj.command.StoreSettingsOkCommand;
 import qna.project.nmj.command.StoreMyReviewCommand;
 
 @Controller
@@ -32,10 +36,17 @@ public class ControllerStoreMyPage {
 	
 //	2. 매장 정보 수정
 	@RequestMapping("/storeSettings.nmj")
-	public String storeGeneralSettings(int store_uid, Model model) {
+	public String storeSettings(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
 		return "/store/storeSettings";
+	}
+//	2-2. 매정 정보 수정 ok
+	@RequestMapping(value="/storeSettingsOk.nmj", method = RequestMethod.POST)
+	public String storeSettingsOk(StoreDTO dto, Model model) {
+		System.out.println(dto.getStore_tel());
+		new StoreSettingsOkCommand().execute(model);
+		return "/store/storeSettingsOk";
 	}
 	
 	

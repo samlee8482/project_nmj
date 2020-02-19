@@ -15,7 +15,7 @@
 	4. store_img_org / store_img_sav (업로드시 이미지 확장자로 보이게(html) + 확장자 검증후 db저장(java))
 	 -->
 	 
- <form name="frm" action="storeGeneralSettingOk.nmj" method="post" onsubmit="return chkUpdate()">
+ <form name="frm" action="storeSettingsOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
  	전화번호: <input type="text" name="store_tel" value="${result.store_tel}">
  	<br>
  	
@@ -45,7 +45,7 @@
 	</select>
 	<br>
 	
- 	매장 설명 : <textarea name="store_content" rows="20" cols="20">${result.store_content}</textarea>
+ 	매장 설명 : <textarea name="store_content" rows="10" cols="40">${result.store_content}</textarea>
  	<br>
  	
  	매장 사진: 
@@ -54,7 +54,7 @@
  	<input type="file" name="upload" accept="image/*">
  	
  	<br>
- 	<button type="submit">매장 정보 수정</button>
+ 	<button type="submit">수정</button>
  	<button type="button" onclick="history.back()">이전</button>
  </form>
 </body>
