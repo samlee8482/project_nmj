@@ -11,6 +11,4 @@ public interface CustomerDAO {
 	public ArrayList<CusMyPageDTO> selectLikeByUid(int mb_uid);
 	public ArrayList<CusMyPageDTO> selectMyReviewByUid(int mb_uid);
 	public ArrayList<CusMyPageDTO> selectMyReplyByUid(int mb_uid);
-	public MemberDTO selectId(String mb_name, String mb_email);
-	public MemberDTO selectPw(String mb_id, String mb_name, String mb_email);
 }

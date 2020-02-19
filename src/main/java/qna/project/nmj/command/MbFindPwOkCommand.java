@@ -1,6 +1,5 @@
 package qna.project.nmj.command;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 
@@ -16,23 +15,23 @@ import org.springframework.ui.Model;
 
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.MemberDTO;
-import qna.project.nmj.beans.dao.CustomerDAO;
+import qna.project.nmj.beans.dao.MemberDAO;
 
 public class MbFindPwOkCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
 		MemberDTO dto = null;
-		CustomerDAO dao = C.sqlSession.getMapper(CustomerDAO.class);
+		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		
 		Map<String, Object> map = model.asMap();
 		
 		String mb_id = (String)map.get("mb_id");
-		System.out.println("Command " + mb_id);
+		System.out.println("Command mb_id : " + mb_id);
 		String mb_name = (String)map.get("mb_name");
-		System.out.println("Command " + mb_name);
+		System.out.println("Command mb_name : " + mb_name);
 		String mb_email = (String)map.get("mb_email");
-		System.out.println("Command " + mb_email);
+		System.out.println("Command mb_email : " + mb_email);
 //		String mb_id = (String)model.getAttribute("mb_name");
 //		String mb_name = (String)model.getAttribute("mb_name");
 //		String mb_email = (String)model.getAttribute("mb_email");    
@@ -54,30 +53,38 @@ public class MbFindPwOkCommand implements Command {
 		
 		try {
 			dto = dao.selectPw(mb_id, mb_name, mb_email);
-			// 메일 보내기
-			String TO = dto.getMb_email();
-			//String FROM = "itmoa@itmoa.com";
-			
-		   MimeMessage message = new MimeMessage(session);
-		   message.setFrom(new InternetAddress(SMTP_USERNAME));
-		   message.addRecipient(Message.RecipientType.TO, new InternetAddress(TO));
-
-		   
-		   // 메일 제목
-		   message.setSubject("[놀먹자] 비밀번호 안내입니다.");
-		   
-		   // 메일 내용
-		   message.setText("놀먹자를 이용해주셔서 감사합니다.\n" + dto.getMb_name() + " 고객님의 비밀번호는 " + dto.getMb_pw() + "입니다.");
-
-		   System.out.println("Sending...");
-		   
-		   // send the message
-		   Transport.send(message);
-		   System.out.println("message sent successfully...");
-			
-           System.out.println("Email sent!");
+			int result = 0;
+	        if(dto != null) {
+	        	result++;
+	        	
+				// 메일 보내기
+				String TO = dto.getMb_email();
+				//String FROM = "itmoa@itmoa.com";
+				
+			   MimeMessage message = new MimeMessage(session);
+			   message.setFrom(new InternetAddress(SMTP_USERNAME));
+			   message.addRecipient(Message.RecipientType.TO, new InternetAddress(TO));
+	
+			   
+			   // 메일 제목
+			   message.setSubject("[놀먹자] 비밀번호 안내입니다.");
+			   
+			   // 메일 내용
+			   message.setText("놀먹자를 이용해주셔서 감사합니다.\n" + dto.getMb_name() + " 고객님의 비밀번호는 " + dto.getMb_pw() + "입니다.");
+	
+			   System.out.println("Sending...");
+			   
+			   // send the message
+			   Transport.send(message);
+			   System.out.println("message sent successfully...");
+				
+	           System.out.println("Email sent!");
 	       
-           model.addAttribute("findPwOk", dto);
+           } else {
+        	   result = 0;
+           }
+           
+           model.addAttribute("findPwOk", result);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

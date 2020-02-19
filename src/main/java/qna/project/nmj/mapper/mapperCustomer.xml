@@ -42,21 +42,4 @@
 		AND n2.review_uid = n3.review_uid;
 	</select>
 	
-	<!-- 아이디 찾기 -->
-	<select id="selectId" resultType="qna.project.nmj.beans.MemberDTO">
-		SELECT mb_name, mb_email, mb_id
-		FROM NMJ_member
-		WHERE mb_name = #{param1}
-		AND mb_email = #{param2};
-	</select>
-	
-	<!-- 비밀번호 찾기 -->
-	<select id="selectPw" resultType="qna.project.nmj.beans.MemberDTO">
-		SELECT mb_id, mb_name, mb_email, mb_pw
-		FROM NMJ_member
-		WHERE mb_id = #{param1}
-		AND mb_name = #{param2}
-		AND mb_email = #{param3};
-	</select>
-	
 </mapper>
