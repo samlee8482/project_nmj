@@ -2,6 +2,8 @@ package qna.project.nmj.beans.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import qna.project.nmj.beans.*;
 
 public interface StoreMyPageDAO {
@@ -23,4 +25,18 @@ public interface StoreMyPageDAO {
 	 * @return StoreDTO
 	 */
 	public StoreDTO selectStoreByUid(int store_uid);
+	
+	/**
+	 * update a store by store_uid w/o image
+	 * @param dto
+	 * @return success == 1
+	 */
+	public int updateStoreWOImageByUid(@Param("dto") StoreDTO dto);
+	
+	/**
+	 * update a store by store_uid w/ image
+	 * @param dto
+	 * @return success == 1
+	 */
+	public int updateStoreWImageByUid(@Param("dto") StoreDTO dto);
 }

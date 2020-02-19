@@ -6,7 +6,7 @@
 	</select>
 	
 	
-	<select id="selectStoreByUid" resultType="qna.project.nmj.beans.StoreDTO">
+	<select id="selectStoreByUid" resultType="qna.project.nmj.beans.StoreDTO" flushCache="true">
 		SELECT
 			store_uid,
 			mb_uid,
@@ -32,5 +32,30 @@
 			store_uid = #{store_uid}
 		;
 	</select>
-
+	<update id="updateStoreWOImageByUid" flushCache="true">
+		UPDATE
+			nmj_store
+		SET
+			store_tel = #{dto.store_tel},
+			store_hours = #{dto.store_hours},
+			store_content = #{dto.store_content}
+		WHERE
+			store_uid = #{dto.store_uid}
+		;
+	</update>
+	<update id="updateStoreWImageByUid" flushCache="true">
+		UPDATE
+			nmj_store
+		SET
+			store_tel = #{dto.store_tel},
+			store_hours = #{dto.store_hours},
+			store_content = #{dto.store_content},
+			store_img_org = #{dto.store_img_org},
+			store_img_sav = #{dto.store_img_sav}
+		WHERE
+			store_uid = #{dto.store_uid}
+		;
+	</update>
+	
+	
 </mapper>

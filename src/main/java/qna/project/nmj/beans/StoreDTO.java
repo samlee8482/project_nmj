@@ -6,6 +6,20 @@ public class StoreDTO {
 	private String store_name;
 	private String store_address;
 	private String store_tel;
+	private String store_start; // view단에서 만 사용할 매장 오픈 시간
+	public String getStore_start() {
+		return store_start;
+	}
+	public void setStore_start(String store_start) {
+		this.store_start = store_start;
+	}
+	public String getStore_end() {
+		return store_end;
+	}
+	public void setStore_end(String store_end) {
+		this.store_end = store_end;
+	}
+	private String store_end; //view 단에서 만 사용할 매장 마감 시간
 	private String store_hours;
 	private String store_content;
 	private String store_img_org;

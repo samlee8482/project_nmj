@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.StoreDTO;
@@ -43,9 +45,9 @@ public class ControllerStoreMyPage {
 	}
 //	2-2. 매정 정보 수정 ok
 	@RequestMapping(value="/storeSettingsOk.nmj", method = RequestMethod.POST)
-	public String storeSettingsOk(StoreDTO dto, Model model) {
-		System.out.println(dto.getStore_tel());
-		System.out.println(dto.getStore_content());
+	public String storeSettingsOk(@RequestParam("upload") MultipartFile upload, StoreDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		model.addAttribute("upload", upload);
 		new StoreSettingsOkCommand().execute(model);
 		return "/store/storeSettingsOk";
 	}
