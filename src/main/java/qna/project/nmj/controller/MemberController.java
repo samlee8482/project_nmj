@@ -46,7 +46,7 @@ public class MemberController {
 	
 	// 매장 찾기 페이지
 	@RequestMapping("/findStore.nmj")
-	public String findStore(String store_type, Model model) {
+	public String findStore(int store_type, Model model) {
 		model.addAttribute("store_type", store_type);
 		new FindStoreCommand().execute(model);
 		return "/member/findStore";
