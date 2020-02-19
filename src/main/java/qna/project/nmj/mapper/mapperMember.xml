@@ -17,5 +17,11 @@
 		AND mb_name = #{param2}
 		AND mb_email = #{param3};
 	</select>
+
+	<!-- 임시비밀번호로 업데이트 -->
+	<update id="updatePw" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
+		UPDATE NMJ_member SET mb_pw = #{param1}
+		WHERE mb_id = #{param2};
+	</update>
 	
 </mapper>

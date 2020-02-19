@@ -35,7 +35,7 @@ public class MbFindIdOkCommand implements Command {
 		if(dto != null) {
 			if (mb_name.equals(dto.getMb_name())) {	// null 값이 담길 경우 null 값으로 메소드 사용 및 비교를 해야하기 때문에 에러
 				System.out.println("Command result : " + result);
-				result = dto.getMb_id().substring(0, 5) + dto.getMb_id().replace(dto.getMb_id().substring(6), "*");
+				result = dto.getMb_id().substring(0, 5) + dto.getMb_id().substring(5).replace(dto.getMb_id().substring(5), "*****");
 			} 			
 		}
 		model.addAttribute("findIdOk", result);
