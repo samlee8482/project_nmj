@@ -37,7 +37,7 @@ public class StoreSettingsOkCommand implements Command {
 		} else {
 			// 4. 확장자 체크 image/jpg, image/jpeg, image/png, image/gif
 			String contentType = upload.getContentType();
-			if(contentType.equals("image/jpg") || contentType.equals("image/jpeg") || contentType.equals("image/png") || contentType.equals("image/gif") || contentType.equals("")) {
+			if(contentType.equals("image/jpg") || contentType.equals("image/jpeg") || contentType.equals("image/png") || contentType.equals("image/gif")) {
 				// 5. 파일 경로 지정
 				File saveFile = new File(saveDirectory, upload.getOriginalFilename());
 				try {
