@@ -164,7 +164,23 @@ values
 (	59,	"minji99",	"1234",	"김민지",	"010-9068-1004",	"",	"",	"minji99@naver.com",	1	),
 (	60,	"jia1999",	"1234",	"백지아",	"010-5842-7942",	"",	"",	"jia1999@naver.com",	1	);
 
+-- nmj_review
+insert into nmj_review 
+(	review_uid,	mb_uid,	store_uid,	review_rate, review_content	)
+values
+(	1,	51,	1,	4,	"만족합니다");
+
+-- nmj_request
+insert into nmj_request
+(	request_uid, request_type,	request_content)
+values
+(	1,	1,	"가입승인좀"),
+(	2,	2,	"ㅇㅇ"),
+(	3,	3,	"너신고"),
+(	4,	4,	"짜증");
+
 
 select * from nmj_member;
 select * from nmj_storedtype;
 select * from nmj_store;
+select * from nmj_review;
