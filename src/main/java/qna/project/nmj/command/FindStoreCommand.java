@@ -9,7 +9,7 @@ public class FindStoreCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
-		String store_type = (String)model.getAttribute("store_type");
+		int store_type = (Integer)model.getAttribute("store_type");
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		model.addAttribute("list", dao.selectStore(store_type));
 		
