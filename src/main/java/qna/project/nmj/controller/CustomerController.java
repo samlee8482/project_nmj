@@ -3,15 +3,13 @@ package qna.project.nmj.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import qna.project.nmj.command.CusShowLikeCommand;
 import qna.project.nmj.command.CusShowReplyCommand;
 import qna.project.nmj.command.CusShowReserveCommand;
 import qna.project.nmj.command.CusShowReviewCommand;
 import qna.project.nmj.command.CusUpdateInfoCommand;
-import qna.project.nmj.command.MbFindIdOkCommand;
-import qna.project.nmj.command.MbFindPwOkCommand;
+import qna.project.nmj.command.CusUpdateInfoOkCommand;
 
 @Controller
 @RequestMapping("/customer")
@@ -29,12 +27,24 @@ public class CustomerController {
 		
 	}
 	
-	// 마이페이지 - 회원 정보 수정 
+	// 마이페이지 - 회원 정보 수정 불러오기
 	@RequestMapping("/cusUpdateInfo.nmj")
 	public String updateInfo(int mb_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
 		new CusUpdateInfoCommand().execute(model);
 		return "/customer/cusUpdateInfo";
+	}
+	
+	// 마이페이지 - 회원 정보 수정
+	@RequestMapping("/cusUpdateInfoOk.nmj")
+	public String updateInfoOk(String mb_name, String mb_tel, String mb_pw, String mb_email, String mb_img_sav, int mb_uid, Model model) {
+		model.addAttribute("mb_name", mb_name);
+		model.addAttribute("mb_tel", mb_tel);
+		model.addAttribute("mb_pw", mb_pw);
+		model.addAttribute("mb_email", mb_email);
+		model.addAttribute("mb_uid", mb_uid);
+		new CusUpdateInfoOkCommand().execute(model);
+		return "/customer/cusUpdateInfoOk";
 	}
 	
 	// 마이페이지 - 예약/찜 목록 보기

@@ -16,11 +16,12 @@
 	 -->
 	 
  <form name="frm" action="storeSettingsOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
+ 	<input type="hidden" name="store_uid" value="${result.store_uid}">
  	전화번호: <input type="text" name="store_tel" value="${result.store_tel}">
  	<br>
  	
  	영업시간:
-	<select name="st_start" id="demo-category">
+	<select name="store_start" id="demo-category">
 		<option value="08:00">08:00</option>
 		<option value="08:30">08:30</option>
 		<option value="09:00">09:00</option>
@@ -31,7 +32,7 @@
 		<option value="11:30">11:30</option>
 	</select>
 	- 
-	<select name="st_end" id="demo-category">
+	<select name="store_end" id="demo-category">
 		<option value="18:00">18:00</option>
 		<option value="18:30">18:30</option>
 		<option value="19:00">19:00</option>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>일반회원 - 마이페이지</title>
 </head>
 <body>
 

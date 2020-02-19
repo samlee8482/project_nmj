@@ -179,7 +179,15 @@ values
 (	3,	3,	"너신고"),
 (	4,	4,	"짜증");
 
+insert into nmj_review 
+(mb_uid , store_uid , review_rate , review_content)
+values
+(2, 1, 4, "재밌어용"),
+(3, 1, 1, "재미없어용"),
+(4, 1, 3, "모르겠어용");
 
+
+select * from nmj_review nr ;
 select * from nmj_member;
 select * from nmj_storedtype;
 select * from nmj_store;
