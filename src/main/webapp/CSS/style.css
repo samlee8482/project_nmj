@@ -5,6 +5,11 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face{
+  font-family: godic330;
+  src:url("../css/godic330.ttf") format('truetype');
+}
+
 /* =======================================================
 *
 * 	Template Style 
@@ -12,7 +17,7 @@
 *
 * ======================================================= */
 body {
-  font-family: "Roboto", Arial, serif;
+  font-family: godic330;
   line-height: 1.8;
   font-size: 20px;
   font-weight: 300;
@@ -38,7 +43,7 @@ p, span {
   font-size: 20px;
   color: #727272;
   font-weight: 300;
-  font-family: "Roboto", Arial, serif;
+  font-family: godic330;
 }
 
 span {
@@ -48,7 +53,7 @@ span {
 
 h1, h2, h3, h4, h5, h6 {
   color: rgba(0, 0, 0, 0.8);
-  font-family: "Roboto", Arial, serif;
+  font-family: godic330;
   font-weight: 300;
   margin: 0 0 30px 0;
 }
