@@ -62,7 +62,11 @@ public class ControllerStoreMyPage {
 	
 	
 //	5. 매장 공간 관리
-	// TODO
+	@RequestMapping(value="/storeMySpace.nmj")
+	public String storeMySpace(Model model) {
+		
+		return "/store/storeMySpace";
+	}
 	
 	
 //	6. 내 매장 리뷰 보기

@@ -57,8 +57,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>내 매장 리뷰보기</h2>
-					<p>손님들이 내 매장에 쓴 리뷰를 보실 수 있습니다.</p>
+					<h2>매장 공간 관리</h2>
+					<p>매장의 컨탠츠 공간을 관리 하실 수 있습니다.</p>
 				</div>
 			</div>
 		</div>
