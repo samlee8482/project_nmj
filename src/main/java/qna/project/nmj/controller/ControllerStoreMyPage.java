@@ -45,6 +45,7 @@ public class ControllerStoreMyPage {
 	@RequestMapping(value="/storeSettingsOk.nmj", method = RequestMethod.POST)
 	public String storeSettingsOk(StoreDTO dto, Model model) {
 		System.out.println(dto.getStore_tel());
+		System.out.println(dto.getStore_content());
 		new StoreSettingsOkCommand().execute(model);
 		return "/store/storeSettingsOk";
 	}
