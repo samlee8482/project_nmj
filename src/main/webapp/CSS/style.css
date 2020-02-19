@@ -32,6 +32,7 @@ a:focus, a:active {
   outline: none;
 }
 
+
 p, span {
   margin-bottom: 1.5em;
   font-size: 20px;
@@ -126,26 +127,37 @@ header {
 header .fh5co-navbar-brand {
   padding-bottom: 3em;
 }
-header .fh5co-navbar-brand .fh5co-logo {
+
+.headerContainer {
   position: relative;
-  font-size: 50px;
+}
+
+
+/* 로그인 & 회원가입 */
+.line {
+  margin: 0px 5px;
+}
+
+#login, #signup, #logout, #mypage {
+  cursor: pointer;
   color: #000;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 1px;
 }
-header .fh5co-navbar-brand .fh5co-logo:after {
+
+#login:hover, #signup:hover, #logout:hover, #mypage:hover {
+  color: #F03861;
+}
+
+#login_signUp, #logout_mypage {
   position: absolute;
-  bottom: 13px;
-  right: -14px;
-  width: 12px;
-  height: 12px;
-  background: #F03861;
-  content: '';
+  right: 20px;
 }
-header .fh5co-navbar-brand .fh5co-logo:hover {
-  text-decoration: none;
+
+/* 로고 사진 */
+#logo {
+  width: 230px;
+  height: 180px;
 }
+
 header #fh5co-main-nav > ul {
   padding: 0;
   margin: 0;
