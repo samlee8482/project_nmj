@@ -26,7 +26,7 @@
 	
 	
 	<!-- 매장 찾기 페이지(default) -->
-	<select id="selectStore" resultType="qna.project.nmj.beans.StoreDTO">
+	<select id="selectStore" resultType="qna.project.nmj.beans.FindStoreDTO">
 		SELECT
 			store_uid,
 			store_img_sav,
