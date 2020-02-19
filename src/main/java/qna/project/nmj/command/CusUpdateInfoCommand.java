@@ -1,5 +1,6 @@
 package qna.project.nmj.command;
 
+
 import org.springframework.ui.Model;
 
 import qna.project.nmj.beans.C;

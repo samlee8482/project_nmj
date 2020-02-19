@@ -1,5 +1,7 @@
 package qna.project.nmj.command;
 
+import java.util.ArrayList;
+
 import org.springframework.ui.Model;
 
 import qna.project.nmj.beans.C;
@@ -12,7 +14,7 @@ public class CusShowReserveCommand implements Command {
 	public void execute(Model model) {
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		CustomerDAO dao = C.sqlSession.getMapper(CustomerDAO.class);
-		CusMyPageDTO myPageReservation = dao.selectReservationByUid(mb_uid);
+		ArrayList<CusMyPageDTO> myPageReservation = dao.selectReservationByUid(mb_uid);
 		model.addAttribute("myPageReservation", myPageReservation);
 	}
 

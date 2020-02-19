@@ -3,12 +3,15 @@ package qna.project.nmj.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import qna.project.nmj.command.CusShowLikeCommand;
 import qna.project.nmj.command.CusShowReplyCommand;
 import qna.project.nmj.command.CusShowReserveCommand;
 import qna.project.nmj.command.CusShowReviewCommand;
 import qna.project.nmj.command.CusUpdateInfoCommand;
+import qna.project.nmj.command.MbFindIdOkCommand;
+import qna.project.nmj.command.MbFindPwOkCommand;
 
 @Controller
 @RequestMapping("/customer")
@@ -51,6 +54,5 @@ public class CustomerController {
 		new CusShowReplyCommand().execute(model);
 		return "/customer/cusShowReview";
 	}
-	
 	
 }

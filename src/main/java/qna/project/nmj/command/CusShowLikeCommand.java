@@ -1,5 +1,7 @@
 package qna.project.nmj.command;
 
+import java.util.ArrayList;
+
 import org.springframework.ui.Model;
 
 import qna.project.nmj.beans.C;
@@ -12,7 +14,7 @@ public class CusShowLikeCommand implements Command {
 	public void execute(Model model) {
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		CustomerDAO dao = C.sqlSession.getMapper(CustomerDAO.class);
-		CusMyPageDTO myPageLike = dao.selectLikeByUid(mb_uid);
+		ArrayList<CusMyPageDTO> myPageLike = dao.selectLikeByUid(mb_uid);
 		model.addAttribute("myPageLike", myPageLike);
 	}
 
