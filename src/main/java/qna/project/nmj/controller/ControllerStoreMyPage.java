@@ -66,7 +66,7 @@ public class ControllerStoreMyPage {
 	
 	
 //	6. 내 매장 리뷰 보기
-	@RequestMapping(value="/storeMyReview")
+	@RequestMapping(value="/storeMyReview.nmj")
 	public String storeMyReview(Model model, int store_uid) {
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMyReviewCommand();
