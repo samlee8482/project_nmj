@@ -13,20 +13,20 @@
 
 
 <!-- Animate.css -->
-<link rel="stylesheet" href="../../CSS/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/animate.css">
 <!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="../../CSS/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/icomoon.css">
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="../../CSS/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootstrap.css">
 <!-- Owl Carousel -->
-<link rel="stylesheet" href="../../CSS/owl.carousel.min.css">
-<link rel="stylesheet" href="../../CSS/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/owl.theme.default.min.css">
 
-<link rel="stylesheet" href="../../CSS/style.css">
-<link rel="stylesheet" href="../../CSS/bootswatch.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootswatch.css">
 
 <!-- Modernizr JS -->
-<script src="../../js/modernizr-2.6.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
 
 
 </head>
@@ -35,7 +35,7 @@
 		<div class="container text-center">
 			<div class="fh5co-navbar-brand">
 				<a class="fh5co-logo" href="index.html"><img
-					src="C:\Users\user\Desktop\Project_NMJ\neos\neos\images\logo2.png"
+					src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"
 					style="width: 200px; height: 150px;" /></a>
 			</div>
 			<nav id="fh5co-main-nav" role="navigation">
@@ -140,20 +140,20 @@
 	</footer>
 
 	<!-- jQuery -->
-	<script src="../../js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="../../js/jquery.easing.1.3.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="../../js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="../../js/jquery.waypoints.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
 	<!-- Owl carousel -->
-	<script src="../../js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- Stellar -->
-	<script src="../../js/jquery.stellar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
 
 	<!-- Main JS (Do not remove) -->
-	<script src="../../js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
 </html>
