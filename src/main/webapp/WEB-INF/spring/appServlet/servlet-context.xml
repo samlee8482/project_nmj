@@ -15,6 +15,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/img/**" location="/img/" />
+	<resources mapping="/CSS/**" location="/CSS/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,6 +33,7 @@
 		<beans:property name="password" value="1234"/>	
 	</beans:bean>
 	
+	<!-- MyBatis 설정 -->
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
 		<beans:property name="mapperLocations" value="classpath:qna/project/nmj/mapper/*.xml"/>

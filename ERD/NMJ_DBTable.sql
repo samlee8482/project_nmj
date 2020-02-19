@@ -163,6 +163,7 @@ CREATE TABLE NMJ_space
     `space_price`    INT    NOT NULL    DEFAULT 0 COMMENT '공간 가격', 
     `space_empty`    INT    NOT NULL    DEFAULT 1 COMMENT '0:사용불가 1:사용가능', 
     `space_count`    INT    NOT NULL    DEFAULT 1 COMMENT '공간 사용 인원', 
+    `space_name`     INT    NOT NULL    COMMENT '공간 이름', 
     PRIMARY KEY (space_uid)
 );
 
@@ -208,6 +209,7 @@ CREATE TABLE NMJ_reservation
     `reservation_check`  INT         NOT NULL    DEFAULT 0 COMMENT '0: 대기 1: 승인', 
     `reservation_date`   DATETIME    NOT NULL    DEFAULT now() COMMENT '접수 날짜', 
     `reservation_count`  INT         NOT NULL    DEFAULT 1 COMMENT '예약 인원', 
+    `reservation_seat`   TEXT        NOT NULL    COMMENT '예약 좌석', 
     PRIMARY KEY (reservation_uid)
 );
 

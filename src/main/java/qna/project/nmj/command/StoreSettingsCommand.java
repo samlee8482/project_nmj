@@ -4,9 +4,9 @@ import org.springframework.ui.Model;
 
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.StoreDTO;
-import qna.project.nmj.beans.dao.StoreTestDAO;
+import qna.project.nmj.beans.dao.StoreMyPageDAO;
 
-public class CommandStoreTest implements Command {
+public class StoreSettingsCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
@@ -14,7 +14,7 @@ public class CommandStoreTest implements Command {
 		int store_uid = (Integer)model.getAttribute("store_uid");
 		
 		// 2. dao 생성
-		StoreTestDAO dao = C.sqlSession.getMapper(StoreTestDAO.class);
+		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		
 		// 3. dao의  쿼리문 실행
 		// mapper xml 적용
