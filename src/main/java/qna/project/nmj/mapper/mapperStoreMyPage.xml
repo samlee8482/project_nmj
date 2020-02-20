@@ -56,6 +56,12 @@
 			store_uid = #{dto.store_uid}
 		;
 	</update>
-	
+	<select id="selectAllStoreDType">
+		SELECT 
+			*
+		FROM
+			nmj_storedtype
+		;
+	</select>
 	
 </mapper>
