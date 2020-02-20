@@ -61,6 +61,12 @@
 			store_uid = #{dto.store_uid}
 		;
 	</update>
-	
+	<select id="selectAllStoreDType" resultType="qna.project.nmj.beans.StoreTypeDTO">
+		SELECT 
+			*
+		FROM
+			nmj_storedtype
+		;
+	</select>
 	
 </mapper>
