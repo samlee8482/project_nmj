@@ -57,8 +57,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>내 매장 리뷰보기</h2>
-					<p>손님들이 내 매장에 쓴 리뷰를 보실 수 있습니다.</p>
+					<h2>매장 공간 관리</h2>
+					<p>매장의 컨탠츠 공간을 관리 하실 수 있습니다.</p>
 				</div>
 			</div>
 		</div>
@@ -67,43 +67,9 @@
 	<div class="container">
 
 
-		<div class="col-lg-12">
-			<div class="bs-component">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th scope="col">No.</th>
-							<th scope="col">회원 ID</th>
-							<th scope="col">내용</th>
-							<th scope="col">평점</th>
-							<th scope="col">조회수</th>
-							<th scope="col">등록일</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<c:forEach var="list" items="${list }" varStatus="status">
-							<c:choose>
-							<c:when test="${list.review_rate le 2 }">
-								<tr class="table-danger">
-							</c:when>
-							<c:otherwise>
-								<tr>
-							</c:otherwise>							
-							</c:choose>							
-								<td>${status.count }</td>
-								<td>${list.mb_uid }</td>
-								<td><a href="#">${list.review_content }</a></td>
-								<td>${list.review_rate }</td>
-								<td>${list.review_viewCount }</td>
-								<td>${list.review_date }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+		
 			<!-- /example -->
-		</div>
+		
 	</div>
 	<footer>
 		<div id="footer" class="fh5co-border-line">

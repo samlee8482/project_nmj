@@ -8,7 +8,7 @@ import qna.project.nmj.beans.*;
 
 public interface StoreMyPageDAO {
 
-	public ArrayList<ReviewDTO> reviewSelect(int store_uid);
+	public ArrayList<ReviewJoinDTO> reviewSelect(int store_uid);
 	
 	public int spaceInsert(StoreDTO dto);
 	
