@@ -3,11 +3,18 @@
 <mapper namespace="qna.project.nmj.beans.dao.CustomerDAO">
 	
 	<!-- 마이페이지 - 회원 정보 수정 -->
+	<!-- 회원 정보 불러오기-->
 	<select id="selectMemberByUid" resultType="qna.project.nmj.beans.MemberDTO">
 		SELECT mb_img_sav, mb_tel, mb_name, mb_id, mb_pw, mb_email
 		FROM NMJ_member
 		WHERE mb_uid = #{mb_uid};
 	</select>
+	<!-- 회원 정보 수정-->
+	<update id="updateMemberByUid" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
+		UPDATE NMJ_member
+		SET mb_name = #{param1}, mb_tel = #{param2}, mb_pw = #{param3}, mb_email = #{param4}, mb_img_sav = #{param5}
+		WHERE mb_uid = #{param6};
+	</update>
 	
 	<!-- 마이페이지 - 예약/찜 목록 보기 -->
 	<!-- 예약 목록 -->
@@ -40,23 +47,6 @@
 		FROM NMJ_member n1, NMJ_reply n2, NMJ_review n3
 		WHERE #{mb_uid} = n2.mb_uid
 		AND n2.review_uid = n3.review_uid;
-	</select>
-	
-	<!-- 아이디 찾기 -->
-	<select id="selectId" resultType="qna.project.nmj.beans.MemberDTO">
-		SELECT mb_name, mb_email, mb_id
-		FROM NMJ_member
-		WHERE mb_name = #{param1}
-		AND mb_email = #{param2};
-	</select>
-	
-	<!-- 비밀번호 찾기 -->
-	<select id="selectPw" resultType="qna.project.nmj.beans.MemberDTO">
-		SELECT mb_id, mb_name, mb_email, mb_pw
-		FROM NMJ_member
-		WHERE mb_id = #{param1}
-		AND mb_name = #{param2}
-		AND mb_email = #{param3};
 	</select>
 	
 </mapper>

@@ -9,8 +9,7 @@ import qna.project.nmj.command.CusShowReplyCommand;
 import qna.project.nmj.command.CusShowReserveCommand;
 import qna.project.nmj.command.CusShowReviewCommand;
 import qna.project.nmj.command.CusUpdateInfoCommand;
-import qna.project.nmj.command.MbFindIdOkCommand;
-import qna.project.nmj.command.MbFindPwOkCommand;
+import qna.project.nmj.command.CusUpdateInfoOkCommand;
 
 @Controller
 @RequestMapping("/customer")
@@ -28,12 +27,24 @@ public class CustomerController {
 		
 	}
 	
-	// 마이페이지 - 회원 정보 수정 
+	// 마이페이지 - 회원 정보 수정 불러오기
 	@RequestMapping("/cusUpdateInfo.nmj")
 	public String updateInfo(int mb_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
 		new CusUpdateInfoCommand().execute(model);
 		return "/customer/cusUpdateInfo";
+	}
+	
+	// 마이페이지 - 회원 정보 수정
+	@RequestMapping("/cusUpdateInfoOk.nmj")
+	public String updateInfoOk(String mb_name, String mb_tel, String mb_pw, String mb_email, String mb_img_sav, int mb_uid, Model model) {
+		model.addAttribute("mb_name", mb_name);
+		model.addAttribute("mb_tel", mb_tel);
+		model.addAttribute("mb_pw", mb_pw);
+		model.addAttribute("mb_email", mb_email);
+		model.addAttribute("mb_uid", mb_uid);
+		new CusUpdateInfoOkCommand().execute(model);
+		return "/customer/cusUpdateInfoOk";
 	}
 	
 	// 마이페이지 - 예약/찜 목록 보기
@@ -52,36 +63,6 @@ public class CustomerController {
 		new CusShowReviewCommand().execute(model);
 		new CusShowReplyCommand().execute(model);
 		return "/customer/cusShowReview";
-	}
-	
-	// 아이디 비밀번호 찾기
-	@RequestMapping("/findIdPw.nmj")
-	public void findIdPw() {
-		
-	}
-	
-	// 아이디 찾기
-	@RequestMapping("/findIdOk.nmj")
-	public String findIdOk(String mb_name, String mb_email, Model model) {
-		model.addAttribute("mb_name", mb_name);
-		System.out.println("Controller " + mb_name);
-		model.addAttribute("mb_email", mb_email);
-		System.out.println("Controller " + mb_email);
-		new MbFindIdOkCommand().execute(model);
-		return "/customer/findIdOk";
-	}
-	
-	// 비밀번호 찾기
-	@RequestMapping("/findPwOk.nmj")
-	public String findPwOk(String mb_id, String mb_name, String mb_email, Model model) {
-		model.addAttribute("mb_id", mb_id);
-		System.out.println("Controller " + mb_id);
-		model.addAttribute("mb_name", mb_name);
-		System.out.println("Controller " + mb_name);
-		model.addAttribute("mb_email", mb_email);
-		System.out.println("Controller " + mb_email);
-		new MbFindPwOkCommand().execute(model);
-		return "/customer/findPwOk";
 	}
 	
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 비밀번호 찾기</title>
 </head>
 <script>
 // form 검증
@@ -44,12 +44,12 @@ function chkSubmit2(){
 	}
 	if(mb_name == ""){
 		alert("이름을 입력해주세요.");
-		frm1["mb_name"].focus();
+		frm2["mb_name"].focus();
 		return false;
 	}
 	if(mb_email == ""){
 		alert("이메일을 입력해주세요.");
-		frm1["mb_email"].focus();
+		frm2["mb_email"].focus();
 		return false;
 	}
 	
@@ -58,7 +58,7 @@ function chkSubmit2(){
 </script>
 <body>
 <div class="a" id="div-find-id">
-	<form name="frm1" id="find-id-content" method="get" action="findIdOk.nmj" onsubmit="return chkSubmit1()">
+	<form name="frm1" id="find-id-content" method="post" action="findIdOk.nmj" onsubmit="return chkSubmit1()">
        <div class="find-id">
        	<h4>아이디 찾기</h4>
        </div>

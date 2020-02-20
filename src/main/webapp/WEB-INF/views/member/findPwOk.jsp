@@ -4,13 +4,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 
 <c:choose>  
-	<c:when test="${empty findPwOk }">
+	<c:when test="${findPwOk == 0}">
 		<script>
 			alert("비밀번호 찾기 실패");
 			history.back();
 		</script>  
 	</c:when>
-	<c:when test="${not empty findPwOk }">
+	<c:when test="${findPwOk == 1}">
 		<script>
 			alert("비밀번호 찾기 성공");
 		</script>

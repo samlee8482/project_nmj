@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna.project.nmj.beans.dao.MemberDAO">
+	<!-- 아이디 찾기 -->
+	<select id="selectId" resultType="qna.project.nmj.beans.MemberDTO">
+		SELECT mb_name, mb_email, mb_id
+		FROM NMJ_member
+		WHERE mb_name = #{param1}
+		AND mb_email = #{param2};
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectPw" resultType="qna.project.nmj.beans.MemberDTO">
+		SELECT mb_id, mb_name, mb_email, mb_pw
+		FROM NMJ_member
+		WHERE mb_id = #{param1}
+		AND mb_name = #{param2}
+		AND mb_email = #{param3};
+	</select>
+
+	<!-- 임시비밀번호로 업데이트 -->
+	<update id="updatePw" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
+		UPDATE NMJ_member SET mb_pw = #{param1}
+		WHERE mb_id = #{param2};
+	</update>
+	
+	
+	<!-- 매장 찾기 페이지(default) -->
+	<select id="selectStore" resultType="qna.project.nmj.beans.FindStoreDTO">
+		SELECT
+			store_uid,
+			store_img_sav,
+			store_name,
+			store_dname
+		FROM NMJ_store NATURAL JOIN NMJ_storeDType
+		WHERE store_type = #{param1} order by store_uid asc limit 0, 9;
+	</select>
+	
+</mapper>
