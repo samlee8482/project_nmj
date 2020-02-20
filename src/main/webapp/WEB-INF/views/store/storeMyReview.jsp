@@ -73,43 +73,30 @@
 							<th scope="col">No.</th>
 							<th scope="col">회원 ID</th>
 							<th scope="col">내용</th>
-							<th scope="col">조회수</th>
 							<th scope="col">평점</th>
+							<th scope="col">조회수</th>
 							<th scope="col">등록일</th>
 						</tr>
 					</thead>
 					<tbody>
-					<!-- 
+					
 						<c:forEach var="list" items="${list }" varStatus="status">
-							<tr>
+							<c:choose>
+							<c:when test="${list.review_rate le 2 }">
+								<tr class="table-danger">
+							</c:when>
+							<c:otherwise>
+								<tr>
+							</c:otherwise>							
+							</c:choose>							
 								<td>${status.count }</td>
-								<td>${list.mb_id }</td>
-								<td>${list.review_content }</td>
+								<td>${list.mb_uid }</td>
+								<td><a href="#">${list.review_content }</a></td>
 								<td>${list.review_rate }</td>
 								<td>${list.review_viewCount }</td>
 								<td>${list.review_date }</td>
 							</tr>
 						</c:forEach>
-					 -->
-
-						<tr>
-							<th scope="row">1</th>
-							<td>ksi0678</td>
-							<td>정말 재밌어요</td>
-							<td>20</td>
-							<td>20</td>
-							<td>20</td>
-						</tr>
-
-						<tr class="table-danger">
-							<th scope="row">Danger</th>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-
 					</tbody>
 				</table>
 			</div>
@@ -122,10 +109,10 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<p>
-							Copyright 2016 Free Html5 <a href="#">Neos</a>. All Rights
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
 							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> /
-							Demo Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
 							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
 						</p>
 						<p class="fh5co-social-icons">

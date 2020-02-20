@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import qna.project.nmj.command.FindStoreCommand;
 import qna.project.nmj.command.MbFindIdOkCommand;
 import qna.project.nmj.command.MbFindPwOkCommand;
 
@@ -41,5 +42,23 @@ public class MemberController {
 		new MbFindPwOkCommand().execute(model);
 		return "/member/findPwOk";
 	}
+	
+	
+	// 매장 찾기 페이지
+	@RequestMapping("/findStore.nmj")
+	public String findStore(int store_type, Model model) {
+		model.addAttribute("store_type", store_type);
+		new FindStoreCommand().execute(model);
+		return "/member/findStore";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
