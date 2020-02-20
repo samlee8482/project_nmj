@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.div-relative{
+	position:relative;
+	width: 100%;
+}
+
+#myPage_btn_container{
+	position: absolute;
+	width: 1000px;
+	height: 350px;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.myPage_btn{
+	margin-left: 15px;	
+	width: 200px;
+	height: 200px;
+	font-weight: bold;
+	font-size: 15px;
+	color: #555;
+	text-align: center;
+	background-color: white;
+	border: 0.7px solid #aaa;
+	border-radius: 10px;
+	box-shadow: 0.2px 0.2px 0.2px 0.2px gray;
+}
+
+#updateInfo_container{
+	position: absolute;
+	width: 1000px;
+	height: 350px;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+}

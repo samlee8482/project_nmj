@@ -16,7 +16,7 @@ import qna.project.nmj.command.StoreMyReviewCommand;
 
 @Controller
 @RequestMapping(value="/store")
-public class ControllerStoreMyPage {
+public class StoreMyPageController {
 
 	private Command command;
 	
@@ -54,7 +54,12 @@ public class ControllerStoreMyPage {
 	
 	
 //	3. 매장 정보 수정 요청
-	// TODO
+	@RequestMapping(value = "/storeSettingsRequest.nmj")
+	public String storeSettingsRequest(int store_uid, Model model) {
+		model.addAttribute("store_uid", store_uid);
+		new StoreSettingsCommand().execute(model);
+		return "/store/storeSettingsRequest";
+	}
 	
 	
 //	4. 음식 메뉴 관리
@@ -62,7 +67,11 @@ public class ControllerStoreMyPage {
 	
 	
 //	5. 매장 공간 관리
-	// TODO
+	@RequestMapping(value="/storeMySpace.nmj")
+	public String storeMySpace(Model model) {
+		
+		return "/store/storeMySpace";
+	}
 	
 	
 //	6. 내 매장 리뷰 보기

@@ -11,6 +11,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="favicon.ico">
 
+<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
+	<!-- Owl carousel -->
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<!-- Stellar -->
+	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
+
+	<!-- Main JS (Do not remove) -->
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 <!-- Animate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/animate.css">
@@ -27,7 +42,12 @@
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
+<style>
+html{
+	font-family: godic330;
+}
 
+</style>
 
 </head>
 <body>
@@ -90,7 +110,7 @@
 							</c:otherwise>							
 							</c:choose>							
 								<td>${status.count }</td>
-								<td>${list.mb_uid }</td>
+								<td>${list.mb_id }</td>
 								<td><a href="#">${list.review_content }</a></td>
 								<td>${list.review_rate }</td>
 								<td>${list.review_viewCount }</td>
@@ -126,22 +146,7 @@
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
-	<!-- Owl carousel -->
-	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-	<!-- Stellar -->
-	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-
-	<!-- Main JS (Do not remove) -->
-	<script src="${pageContext.request.contextPath}/js/main.js"></script>
-
+	
 </body>
 </html>
 
