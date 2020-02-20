@@ -20,7 +20,6 @@ public class StoreSettingsCommand implements Command {
 		// 3. dao의  쿼리문 실행
 		// mapper xml 적용
 		StoreDTO result = dao.selectStoreByUid(store_uid);
-		StoreTypeDTO dTypeDTO = dao.selectAllStoreDType();
 		
 		String storeType = "";
 		switch (result.getStore_type()) {

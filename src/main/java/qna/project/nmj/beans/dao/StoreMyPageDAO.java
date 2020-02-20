@@ -42,7 +42,7 @@ public interface StoreMyPageDAO {
 	
 	/**
 	 * select all store_dtype
-	 * @return StoreTypeDTO
+	 * @return StoreTypeDTO[]
 	 */
-	public StoreTypeDTO selectAllStoreDType();
+	public ArrayList<StoreTypeDTO> selectAllStoreDType();
 }
