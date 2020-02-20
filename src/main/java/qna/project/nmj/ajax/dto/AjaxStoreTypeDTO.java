@@ -2,44 +2,30 @@ package qna.project.nmj.ajax.dto;
 
 import java.util.ArrayList;
 
-import qna.project.nmj.beans.StoreTypeDTO;
-
 public class AjaxStoreTypeDTO {
-	ArrayList<StoreTypeDTO> storeDTO;
-	int count;
-	String status;
-	
-	public AjaxStoreTypeDTO() {
-	}
-
-	public AjaxStoreTypeDTO(ArrayList<StoreTypeDTO> storeDTO, int count, String status) {
+	int store_type;
+	ArrayList<AjaxStoreDTypeDTO> store_dtypes;
+	public AjaxStoreTypeDTO(int store_type, ArrayList<AjaxStoreDTypeDTO> store_dtypes) {
 		super();
-		this.storeDTO = storeDTO;
-		this.count = count;
-		this.status = status;
+		this.store_type = store_type;
+		this.store_dtypes = store_dtypes;
 	}
-
-	public ArrayList<StoreTypeDTO> getStoreDTO() {
-		return storeDTO;
+	public AjaxStoreTypeDTO(){
+		
 	}
-
-	public int getCount() {
-		return count;
+	public int getStore_type() {
+		return store_type;
 	}
-
-	public String getStatus() {
-		return status;
+	public void setStore_type(int store_type) {
+		this.store_type = store_type;
 	}
-
-	public void setStoreDTO(ArrayList<StoreTypeDTO> storeDTO) {
-		this.storeDTO = storeDTO;
+	public ArrayList<AjaxStoreDTypeDTO> getStore_dtypes() {
+		return store_dtypes;
 	}
-
-	public void setCount(int count) {
-		this.count = count;
+	public void setStore_dtypes(ArrayList<AjaxStoreDTypeDTO> store_dtypes) {
+		this.store_dtypes = store_dtypes;
 	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
+	
+	
 }

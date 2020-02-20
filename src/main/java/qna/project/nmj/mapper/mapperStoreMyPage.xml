@@ -61,6 +61,8 @@
 			*
 		FROM
 			nmj_storedtype
+		ORDER BY
+			store_type ASC, store_dtype ASC
 		;
 	</select>
 	
