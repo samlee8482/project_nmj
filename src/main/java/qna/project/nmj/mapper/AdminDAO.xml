@@ -59,9 +59,14 @@
  		 WHERE review_uid = #{param1}
  	</update>
  	
- 	<select id="select" 
+ 	<select id="searchMemberByName" 
  		resultType="qna.project.nmj.beans.MemberDTO">
- 		SELECT 컬럼명 FROM 테이블 WHERE 컬럼명 LIKE '%A%'
+ 		SELECT * FROM NMJ_member WHERE mb_name LIKE '%'+#{search}+'%' and mb_type = 1
+ 	</select>
+ 	
+ 	<select id="searchMemberById" 
+ 		resultType="qna.project.nmj.beans.MemberDTO">
+ 		SELECT * FROM NMJ_member WHERE mb_id LIKE '%'+#{search}+'%' and mb_type = 1
  	</select>
  	
  	<select id="selectAllRequest" resultType="qna.project.nmj.beans.RequestDTO">

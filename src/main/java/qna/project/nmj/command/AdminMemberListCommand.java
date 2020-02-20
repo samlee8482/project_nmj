@@ -1,5 +1,7 @@
 package qna.project.nmj.command;
 
+import java.util.Map;
+
 import org.springframework.ui.Model;
 
 import qna.project.nmj.beans.C;
@@ -12,6 +14,7 @@ public class AdminMemberListCommand implements Command {
 		
 		AdminDAO dao = C.sqlSession.getMapper(AdminDAO.class);
 		model.addAttribute("list", dao.selectAllMember());
+		
 	}
 
 }

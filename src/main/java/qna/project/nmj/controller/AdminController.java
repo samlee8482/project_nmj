@@ -31,6 +31,15 @@ public class AdminController {
 		return "admin/adminMember";	
 	}
 	
+	@RequestMapping(value = "/adminSearchMember.nmj", method = RequestMethod.POST)
+	public String memberSearchList(int searchOption, String search, Model model) {
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("search", search);
+		command = new AdminMemberSearchListCommand();
+		command.execute(model);
+		return "admin/adminMember";	
+	}
+	
 	@RequestMapping(value = "/deleteMember.nmj")
 	public String deleteMember(int mb_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);

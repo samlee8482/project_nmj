@@ -19,6 +19,16 @@ table, th, td {
 <body>
 <hr>
 <h2>일반회원관리</h2>
+
+<form name="frm" action="adminSearchMember.nmj" method="post">
+<select name="searchOption">
+  <option value="1">이름</option>
+  <option value="2">아이디</option>
+</select>
+<input type="text" name="search"/>
+<button type="submit">검색</button>
+</form>
+<br><br>
             
 	<c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">

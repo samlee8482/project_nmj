@@ -13,6 +13,8 @@ public interface AdminDAO {
 	public ArrayList<RequestDTO> selectAllRequest();
 	public int deleteMember(int mb_uid);
 	public MemberDTO selectMemberByUid(int mb_uid);
+	public MemberDTO searchMemberByName(String search);
+	public MemberDTO searchMemberById(String search);
 	public StoreDTO selectStoreByUid(int mb_uid);
 	public StoreMemberDTO selectStoreMemberByUid(int store_uid);
 	public ReviewJoinDTO selectReviewByUid(int review_uid);
