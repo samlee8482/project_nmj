@@ -25,15 +25,20 @@
 	</update>
 	
 	
+	<!-- 페이지네이션 -->
+	<!-- 글 목록 전체 개수 가져오기 -->
+	<select id="selectStoreCount" resultType="qna.project.nmj.beans.FindStoreDTO">
+		SELECT COUNT(*) FROM NMJ_store NATURAL JOIN NMJ_storeDType
+	</select>
+	
+	
+	<!-- from 부터 row 만큼 SELECT : LIMIT 은 0 부터 시작 주의! -->
 	<!-- 매장 찾기 페이지(default) -->
 	<select id="selectStore" resultType="qna.project.nmj.beans.FindStoreDTO">
 		SELECT
-			store_uid,
-			store_img_sav,
-			store_name,
-			store_dname
+			*
 		FROM NMJ_store NATURAL JOIN NMJ_storeDType
-		WHERE store_type = #{param1} order by store_uid asc limit 0, 9;
+		WHERE store_type = #{param1} order by store_uid asc limit #{param2}, #{param3};
 	</select>
 	
 </mapper>
