@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qna.project.nmj.beans.dao.StoreMyPageDAO">
-	<select id="reviewSelect" resultType="qna.project.nmj.beans.ReviewDTO">
-		SELECT review_uid, mb_uid, store_uid, review_rate, review_content, review_ban, review_viewCount, review_date from nmj_review where store_uid = #{store_uid}
+	<select id="reviewSelect" resultType="qna.project.nmj.beans.ReviewJoinDTO">
+		SELECT a.review_uid, a.mb_uid, a.store_uid, a.review_rate, a.review_content, a.review_ban, a.review_viewCount, a.review_date, b.store_type, b.store_name, c.mb_id
+		FROM NMJ_review a , NMJ_store b, NMJ_member c
+		WHERE a.store_uid = b.store_uid 
+		AND a.mb_uid = c.mb_uid
+		AND a.store_uid = #{store_uid} 
+		ORDER BY review_uid DESC
 	</select>
 	
 	

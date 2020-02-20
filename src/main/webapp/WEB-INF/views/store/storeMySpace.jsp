@@ -67,43 +67,9 @@
 	<div class="container">
 
 
-		<div class="col-lg-12">
-			<div class="bs-component">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th scope="col">No.</th>
-							<th scope="col">회원 ID</th>
-							<th scope="col">내용</th>
-							<th scope="col">평점</th>
-							<th scope="col">조회수</th>
-							<th scope="col">등록일</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<c:forEach var="list" items="${list }" varStatus="status">
-							<c:choose>
-							<c:when test="${list.review_rate le 2 }">
-								<tr class="table-danger">
-							</c:when>
-							<c:otherwise>
-								<tr>
-							</c:otherwise>							
-							</c:choose>							
-								<td>${status.count }</td>
-								<td>${list.mb_uid }</td>
-								<td><a href="#">${list.review_content }</a></td>
-								<td>${list.review_rate }</td>
-								<td>${list.review_viewCount }</td>
-								<td>${list.review_date }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+		
 			<!-- /example -->
-		</div>
+		
 	</div>
 	<footer>
 		<div id="footer" class="fh5co-border-line">
