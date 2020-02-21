@@ -50,7 +50,6 @@ public class AjaxStoreMyPageController {
 				}
 			}
 			type.setStore_dtypes(store_dtypes);
-			System.out.println(store_dtypes.size());
 			store_types.add(type);
 		}
 		
