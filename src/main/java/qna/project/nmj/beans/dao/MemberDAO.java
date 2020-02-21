@@ -11,7 +11,8 @@ public interface MemberDAO {
 	public int updatePw(String mb_pw, String mb_id);
 	
 	// 몇번째 from 부터 몇개 rows 를 SELECT
-	public ArrayList<StoreDTO> selectStore(int store_type, int from, int rows);
+	public ArrayList<StoreDTO> selectStore(int store_type);
+//	public ArrayList<StoreDTO> selectStore(int store_type, int from, int rows);
 	
 	
 }

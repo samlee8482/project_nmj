@@ -38,7 +38,7 @@
 		SELECT
 			*
 		FROM NMJ_store NATURAL JOIN NMJ_storeDType
-		WHERE store_type = #{param1} order by store_uid asc limit #{param2}, #{param3};
+		WHERE store_type = #{param1} order by store_uid asc limit 0, 9;
 	</select>
 	
 </mapper>

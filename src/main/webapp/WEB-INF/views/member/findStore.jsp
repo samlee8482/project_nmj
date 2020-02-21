@@ -80,6 +80,7 @@
 			</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
+					<li><a href="main.nmj">메인</a></li>
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
 					<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
@@ -104,9 +105,24 @@
 			</div>
 		</div>
 	</div><!-- end: fh5co-parallax -->
+
+
+
 	<div id="fh5co-work-section">
 		<div class="container">
 			<div class="row text-center">
+			
+			
+	<form id="search-container" action="#">
+		<select name="searchCategori" class="form1">
+			<option value="address">주소</option>
+			<option value="storeName">매장명</option>
+		</select>
+		<input name="content" type="text" placeholder="내용을 입력해주세요" class="form2"/>
+		<button class="form3" type="submit">검색</button>
+	</form>
+
+
 
 
 			<c:forEach var="dto" items="${list }">

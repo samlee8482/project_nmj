@@ -14,6 +14,7 @@ public class FindStoreCommand implements Command {
 		model.addAttribute("list", dao.selectStore(store_type));
 		
 		
+		/*
 		// 페이징 관련 세팅 값들
 				int page = 1; // 현재 페이지 (디폴트 1 page)
 				int writePages = 10; // 한 [페이징] 에 몇개의 '페이지' 를 표현할 것인가?
@@ -55,7 +56,7 @@ public class FindStoreCommand implements Command {
 					e.printStackTrace();
 				}
 		
-		
+		*/
 		
 	}
 

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#profileImg {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#profileImg > img {
+    height: 400px;
+    width: 90%;
+    outline: 1px solid red;
+}
+
+.reserveSubmit {
+    text-align: center;
+}
+
+.btn-primary {
+    width: 90%;
+}
