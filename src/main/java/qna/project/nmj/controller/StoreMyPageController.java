@@ -1,5 +1,7 @@
 package qna.project.nmj.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +61,10 @@ public class StoreMyPageController {
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
 		return "/store/storeSettingsRequest";
+	}
+	@RequestMapping(value = "/addressPopup.nmj")
+	public String addressPopup(HttpServletRequest request) {
+		return "/store/addressPopup";
 	}
 	
 	
