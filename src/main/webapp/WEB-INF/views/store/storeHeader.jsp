@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html class="no-js">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>놀먹자~!</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="favicon.ico">
 
@@ -28,8 +25,6 @@
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
-
-
 </head>
 <body>
 	<header>
@@ -52,72 +47,6 @@
 			</nav>
 		</div>
 	</header>
-	<div id="fh5co-intro-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<h2>매장 공간 관리</h2>
-					<p>매장의 컨탠츠 공간을 관리 하실 수 있습니다.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end fh5co-intro-section -->
-	<div>
-		<div id="draggArea" class="jumbotron">
-		
-		</div>
-		<div id="boxMake">
-			<div id="">
-				<div>
-					<div></div>
-					<div></div>				
-				</div>
-				<div></div>
-			</div>
-		</div>
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	</div>
-	<footer>
-		<div id="footer" class="fh5co-border-line">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center">
-						<p>
-							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
-							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="#" target="_blank">Korea IT Academy</a> /
-							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
-							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
-						</p>
-						<p class="fh5co-social-icons">
-							<a href="#"><i class="icon-twitter-with-circle"></i></a> <a
-								href="#"><i class="icon-facebook-with-circle"></i></a> <a
-								href="#"><i class="icon-instagram-with-circle"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-
 	<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -133,7 +62,6 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
-
+	
 </body>
 </html>
-

@@ -1,0 +1,13 @@
+@charset "UTF-8";
+#draggArea{
+	width: 700px;
+	padding: 0px 0px 0px 40px;
+	height: 700px;
+	display: inline-block;
+}
+
+#boxMake{
+	height: 700px;
+	width: 300px;
+	display: inline-block;
+}
