@@ -41,7 +41,7 @@
 	
 	<update id="deleteReview" flushCache="true">
 		UPDATE NMJ_review 
-		SET review_content = "관리자에 의해 삭제된 글입니다."
+		SET review_ban = "1
 		WHERE review_uid = #{param1}
 	</update>
 	
@@ -61,16 +61,65 @@
  	
  	<select id="searchMemberByName" 
  		resultType="qna.project.nmj.beans.MemberDTO">
- 		SELECT * FROM NMJ_member WHERE mb_name LIKE '%'+#{search}+'%' and mb_type = 1
+ 		SELECT * FROM NMJ_member 
+ 		WHERE mb_name LIKE CONCAT('%',#{search},'%') and mb_type = 1
  	</select>
  	
  	<select id="searchMemberById" 
  		resultType="qna.project.nmj.beans.MemberDTO">
- 		SELECT * FROM NMJ_member WHERE mb_id LIKE '%'+#{search}+'%' and mb_type = 1
+ 		SELECT * FROM NMJ_member WHERE mb_id LIKE CONCAT('%',#{search},'%') and mb_type = 1
+ 	</select>
+ 	
+ 	<select id="searchStoreByName" 
+ 		resultType="qna.project.nmj.beans.StoreMemberDTO">
+ 		SELECT a.*, b.store_type, b.store_name FROM NMJ_member a INNER JOIN NMJ_store b ON a.mb_uid = b.mb_uid WHERE a.mb_type = 2
+ 		and store_name LIKE CONCAT('%',#{search},'%')
+ 	</select>
+ 	
+ 	<select id="searchStoreById" 
+ 		resultType="qna.project.nmj.beans.StoreMemberDTO">
+ 		SELECT a.*, b.store_type, b.store_name FROM NMJ_member a INNER JOIN NMJ_store b ON a.mb_uid = b.mb_uid WHERE a.mb_type = 2
+ 		and mb_id LIKE CONCAT('%',#{search},'%')
+ 	</select>
+ 	
+ 	<select id="searchReviewByContent" 
+ 		resultType="qna.project.nmj.beans.ReviewJoinDTO">
+ 		SELECT a.*, b.store_type, b.store_name, c.mb_id 
+		FROM NMJ_review a 
+		JOIN NMJ_store b ON a.store_uid = b.store_uid 
+		JOIN NMJ_member c ON a.mb_uid = c.mb_uid
+ 		WHERE review_content LIKE CONCAT('%',#{search},'%')
+ 	</select>
+ 	
+ 	<select id="searchReviewById" 
+ 		resultType="qna.project.nmj.beans.ReviewJoinDTO">
+ 		SELECT a.*, b.store_type, b.store_name, c.mb_id 
+		FROM NMJ_review a 
+		JOIN NMJ_store b ON a.store_uid = b.store_uid 
+		JOIN NMJ_member c ON a.mb_uid = c.mb_uid
+ 		WHERE c.mb_id LIKE CONCAT('%',#{search},'%')
+ 	</select>
+ 	
+ 	<select id="selectNStore" 
+ 		resultType="qna.project.nmj.beans.StoreMemberDTO">
+ 		SELECT a.*, b.store_type, b.store_name FROM NMJ_member a INNER JOIN NMJ_store b ON a.mb_uid = b.mb_uid WHERE a.mb_type = 2
+ 		and store_type = 1
+ 	</select>
+ 	
+ 	<select id="selectMStore" 
+ 		resultType="qna.project.nmj.beans.StoreMemberDTO">
+ 		SELECT a.*, b.store_type, b.store_name FROM NMJ_member a INNER JOIN NMJ_store b ON a.mb_uid = b.mb_uid WHERE a.mb_type = 2
+ 		and store_type = 2
+ 	</select>
+ 	
+ 	<select id="selectJStore" 
+ 		resultType="qna.project.nmj.beans.StoreMemberDTO">
+ 		SELECT a.*, b.store_type, b.store_name FROM NMJ_member a INNER JOIN NMJ_store b ON a.mb_uid = b.mb_uid WHERE a.mb_type = 2
+ 		and store_type = 3
  	</select>
  	
  	<select id="selectAllRequest" resultType="qna.project.nmj.beans.RequestDTO">
-		SELECT * FROM NMJ_request WHERE request_check = 0 ORDER BY request_uid DESC
+		SELECT * FROM NMJ_request WHERE request_check != 2 ORDER BY request_uid DESC
 	</select>
 	
 	<update id="rejectRequest">
