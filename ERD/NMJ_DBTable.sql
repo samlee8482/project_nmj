@@ -61,7 +61,7 @@ CREATE TABLE NMJ_store
     `store_dtype`       INT             NOT NULL    COMMENT '매장 상세 종류', 
     `store_regDate`     DATETIME        NOT NULL    DEFAULT now() COMMENT '매장 등록일', 
     `store_ratings`     INT             NOT NULL    DEFAULT 0 COMMENT '매장 총평점', 
-    `store_rateCount`   INT             NOT NULL    DEFAULT 0 COMMENT '매장 평점자수', 
+    `store_rateCount`   INT             NOT NULL    DEFAULT 0 COMMENT '매장 평점지수', 
     PRIMARY KEY (store_uid)
 );
 
@@ -210,6 +210,7 @@ CREATE TABLE NMJ_reservation
     `reservation_date`   DATETIME    NOT NULL    DEFAULT now() COMMENT '접수 날짜', 
     `reservation_count`  INT         NOT NULL    DEFAULT 1 COMMENT '예약 인원', 
     `reservation_seat`   TEXT        NOT NULL    COMMENT '예약 좌석', 
+    `reservation_price`  INT         NOT NULL    DEFAULT 0 COMMENT '예약 금액', 
     PRIMARY KEY (reservation_uid)
 );
 

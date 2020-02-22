@@ -41,7 +41,7 @@ table, th, td{
 </head>
 <body>
 
-<header>
+	<header>
 		<div class="container text-center headerContainer">
 				<!-- if(Session.getAttribute("mb_uid") == null) { -->
 				<div id="login_signUp">
@@ -77,122 +77,137 @@ table, th, td{
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>예약&찜 목록</h2>
+					<p>"이곳은 당신의 발자취"</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
-
-	<h1>놀자 예약목록</h1>
-	<table>
-		<tr>
-			<th>No.</th>
-			<th>매장</th>
-			<th>시작시간</th>
-			<th>종료시간</th>
-			<th>인원수</th>
-			<th>좌석</th>
-		</tr>
-		<tr>
-		<c:if test="${myPageReservation[0].store_type == 1}">
-			<tr>
-				<c:forEach var="item" items="${myPageReservation}" varStatus="status">
-					<td>${status.index + 1}</td>
-					<td>${item[0].store_name }</td>
-					<td>${item[0].store_start }</td>
-					<td>${item[0].store_end }</td>
-					<td>${item[0].reservation_count }</td>
-					<td>${item[0].reservation_seat }</td>
-				</c:forEach>
-			</tr> 
-		</c:if>
-		<c:if test="${myPageReservation[0].store_type == null }">
-			<tr>
-				<td colspan="6">예약 기록이 없습니다.</td>
-			</tr>
-		</c:if>			
-	</table>
 	
-	<h1>먹자 예약목록</h1>
-	<table>
-		<tr>
-			<th>No.</th>
-			<th>매장</th>
-			<th>예약시간</th>
-			<th>인원수</th>
-			<th>좌석</th>
-		</tr>
-		<tr>
-		<c:if test="${myPageReservation[0].store_type == 2}">
-			<tr>
-				<c:forEach var="item" items="${myPageReservation}" varStatus="status">
-					<td>${status.index + 1}</td>
-					<td>${item[0].store_name }</td>
-					<td>${item[0].store_start }</td>
-					<td>${item[0].reservation_count }</td>
-					<td>${item[0].reservation_seat }</td>
-				</c:forEach>
-			</tr> 
-		</c:if>
-		<c:if test="${myPageReservation[0].store_type == null }">
-			<tr>
-				<td colspan="5">예약 기록이 없습니다.</td>
-			</tr>
-		</c:if>			
-	</table>
+	<div class="div-relative" style="width: 100%; height: 1400px;">
+		<div class="show_list_container">
+			<h1>놀자 예약목록</h1><br><br><br><br>
+			<table>
+				<tr>
+					<th>No.</th>
+					<th>매장</th>
+					<th>시작시간</th>
+					<th>종료시간</th>
+					<th>인원수</th>
+					<th>예약금액</th>
+					<th>좌석</th>
+				</tr>
+				<tr>
+				<c:if test="${myPageReservation[0].store_type == 1}">
+					<tr>
+						<c:forEach var="item" items="${myPageReservation}" varStatus="status">
+							<td>${status.index + 1}</td>
+							<td>${item[0].store_name }</td>
+							<td>${item[0].store_start }</td>
+							<td>${item[0].store_end }</td>
+							<td>${item[0].reservation_count }</td>
+							<td>${item[0].reservation_price }</td>
+							<td>${item[0].reservation_seat }</td>
+						</c:forEach>
+					</tr> 
+				</c:if>
+				<c:if test="${myPageReservation[0].store_type == null }">
+					<tr>
+						<td colspan="7">예약 기록이 없습니다.</td>
+					</tr>
+				</c:if>			
+			</table>
+		
+			<br>
+		
+			<h1>먹자 예약목록</h1><br><br><br><br>
+			<table>
+				<tr>
+					<th>No.</th>
+					<th>매장</th>
+					<th>예약시간</th>
+					<th>인원수</th>
+					<th>좌석</th>
+				</tr>
+				<tr>
+				<c:if test="${myPageReservation[0].store_type == 2}">
+					<tr>
+						<c:forEach var="item" items="${myPageReservation}" varStatus="status">
+							<td>${status.index + 1}</td>
+							<td>${item[0].store_name }</td>
+							<td>${item[0].store_start }</td>
+							<td>${item[0].reservation_count }</td>
+							<td>${item[0].reservation_seat }</td>
+						</c:forEach>
+					</tr> 
+				</c:if>
+				<c:if test="${myPageReservation[0].store_type == null }">
+					<tr>
+						<td colspan="5">예약 기록이 없습니다.</td>
+					</tr>
+				</c:if>			
+			</table>
+		
+			<br>
+		
+			<h1>자자 예약목록</h1><br><br><br><br>
+			<table>
+				<tr>
+					<th>No.</th>
+					<th>매장</th>
+					<th>시작시간</th>
+					<th>종료시간</th>
+					<th>인원수</th>
+					<th>예약금액</th>
+					<th>방</th>
+				</tr>
+				<c:if test="${myPageReservation[0].store_type == 3}">
+					<tr>
+						<c:forEach var="item" items="${myPageReservation}" varStatus="status">
+							<td>${status.index + 1}</td>
+							<td>${item[0].store_name }</td>
+							<td>${item[0].store_start }</td>
+							<td>${item[0].store_end }</td>
+							<td>${item[0].reservation_count }</td>
+							<td>${item[0].reservation_price }</td>
+							<td>${item[0].reservation_seat }</td>
+						</c:forEach>
+					</tr> 
+				</c:if>
+				<c:if test="${myPageReservation[0].store_type == null }">
+					<tr>
+						<td colspan="7">예약 기록이 없습니다.</td>
+					</tr>
+				</c:if>			
+			</table>
+		
+			<br>
+		
+			<h1>찜</h1><br><br><br><br>
+			<table>
+				<tr>
+					<th>No.</th>
+					<th>매장</th>
+					<th>분류</th>
+				</tr>
+				<c:if test="${not empty myPageLike}">
+					<tr>
+						<c:forEach var="item" items="${myPageLike}" varStatus="status">
+							<td>${status.index + 1}</td>
+							<td>${item[0].store_name }</td>
+							<td>${item[0].store_type }</td>
+						</c:forEach>
+					</tr> 
+				</c:if>
+				<c:if test="${empty myPageLike }">
+					<tr>
+						<td colspan="3">찜한 기록이 없습니다.</td>
+					</tr>
+				</c:if>			
+			</table>
+		</div>
+	</div>
 	
-	<h1>자자 예약목록</h1>
-	<table>
-		<tr>
-			<th>No.</th>
-			<th>매장</th>
-			<th>시작시간</th>
-			<th>종료시간</th>
-			<th>인원수</th>
-			<th>방</th>
-		</tr>
-		<c:if test="${myPageReservation[0].store_type == 3}">
-			<tr>
-				<c:forEach var="item" items="${myPageReservation}" varStatus="status">
-					<td>${status.index + 1}</td>
-					<td>${item[0].store_name }</td>
-					<td>${item[0].store_start }</td>
-					<td>${item[0].store_end }</td>
-					<td>${item[0].reservation_count }</td>
-					<td>${item[0].reservation_seat }</td>
-				</c:forEach>
-			</tr> 
-		</c:if>
-		<c:if test="${myPageReservation[0].store_type == null }">
-			<tr>
-				<td colspan="6">예약 기록이 없습니다.</td>
-			</tr>
-		</c:if>			
-	</table>
-	
-	<h1>찜</h1>
-	<table>
-		<tr>
-			<th>No.</th>
-			<th>매장</th>
-			<th>분류</th>
-		</tr>
-		<c:if test="${not empty myPageLike}">
-			<tr>
-				<c:forEach var="item" items="${myPageLike}" varStatus="status">
-					<td>${status.index + 1}</td>
-					<td>${item[0].store_name }</td>
-					<td>${item[0].store_type }</td>
-				</c:forEach>
-			</tr> 
-		</c:if>
-		<c:if test="${empty myPageLike }">
-			<tr>
-				<td colspan="3">찜한 기록이 없습니다.</td>
-			</tr>
-		</c:if>			
-	</table>
-
 	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">
