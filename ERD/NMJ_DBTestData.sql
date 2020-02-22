@@ -217,3 +217,4 @@ select * from nmj_storedtype;
 select * from nmj_store;
 select * from nmj_review;
 select * from nmj_request;
+select * from nmj_food;
