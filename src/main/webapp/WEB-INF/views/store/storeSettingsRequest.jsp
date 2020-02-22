@@ -16,18 +16,22 @@
 	매장 사업자 등록 저장 store_regImg_sav
 	매장 종류 store_type
 	매장 상세 종류 store_dtype
+	매장 위도 store_lat
+	매장 경도 store_long
 	운영자에게 한마디? text
 	 -->
 	 
 	 <form action="storeSettingsRequestOk.nmj" enctype="Multipart/form-data" method="post" onsubmit="return chkUpdate()">
 	 	<input type="hidden" name="store_uid" value="${result.store_uid}">
-	 	<input type="hidden" id="entY" name="st_latitude">
-	 	<input type="hidden" id="entX" name="st_longitude">
+	 	UTM Y<input type="text" id="Y" name="latitude"><br>
+	 	UTM X<input type="text" id="X" name="longitude"><br>
+	 	WGS84 latitude: <input type="text" id="entY" name="entY"><br>
+	 	WGS84 longitude: <input type="text" id="entX" name="entX"><br>
 	 	
 	 	매장 이름 변경: <input type="text" name="store_name" value="${result.store_name}">
 	 	<br>
 	 	
-	 	매장 주소 변경: <input type="text" id="roadFullAddr" name="roadFullAddr" value="${result.store_address}" readonly>
+	 	매장 주소 변경: <input style="width: 300px;" type="text" id="roadFullAddr" name="store_address" value="${result.store_address}" readonly>
 	 	<button type="button" onclick="goPopup();">주소찾기</button>
 	 	<br>
 	 	
@@ -73,7 +77,13 @@ function changeDetails() {
 	l = dtypes.length;
 	var result = "";
 	for(i = 0; i < l; i++){
-		result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
+		
+		if(dtypes[i].store_dtype == ${result.store_dtype}){
+			
+			result += "<option value='" + dtypes[i].store_dtype + "' selected>" + dtypes[i].store_dname + "</option>";
+		}else{
+			result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
+		}
 	}
 	
 	$("select.store_dtype").html(result);
@@ -101,6 +111,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 						, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno
 						, emdNo, entX, entY){
 	document.getElementById("roadFullAddr").value = roadFullAddr;
+	document.getElementById("X").value = entX;
+	document.getElementById("Y").value = entY;
 	convertCall(entX, entY);
 }
 function convertCall(entX, entY){

@@ -192,3 +192,4 @@ select * from nmj_member;
 select * from nmj_storedtype;
 select * from nmj_store;
 select * from nmj_review;
+select * from nmj_request;

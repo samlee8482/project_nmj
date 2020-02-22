@@ -70,5 +70,14 @@
 			store_type ASC, store_dtype ASC
 		;
 	</select>
-	
+	<insert id="insertRequest">
+		INSERT INTO
+			nmj_request
+			(request_type, request_content)
+		VALUES
+			(#{dto.request_type}, #{dto.request_content})
+		;
+		
+		
+	</insert>
 </mapper>

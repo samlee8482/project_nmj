@@ -45,4 +45,11 @@ public interface StoreMyPageDAO {
 	 * @return StoreTypeDTO[]
 	 */
 	public ArrayList<StoreTypeDTO> selectAllStoreDType();
+	
+	/**
+	 * insert a request to change store settings
+	 * @param dto
+	 * @return success == 1
+	 */
+	public int insertRequest(@Param("dto") RequestDTO dto);
 }

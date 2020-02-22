@@ -1,28 +1,25 @@
 package qna.project.nmj.command;
 
 import java.io.File;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 
-import org.apache.taglibs.standard.extra.spath.Path;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.C;
+import qna.project.nmj.beans.RequestDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 
-public class StoreSettingsOkCommand implements Command {
+public class StoreSettingsRequestOkCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
-		// 수정 성공/실패를 위한 변수
 		int cnt = 0;
-		boolean existFile = false; //파일 첨부 여부
+		boolean existFile = false;
 		
-		// 1. parameter 받아오기
 		Map<String, Object> map = model.asMap();
 		StoreDTO dto = (StoreDTO)map.get("dto");
 		MultipartFile upload = (MultipartFile) map.get("upload");
@@ -44,8 +41,8 @@ public class StoreSettingsOkCommand implements Command {
 					// 6. 지정된 경로에 파일 저장
 					upload.transferTo(saveFile);
 					existFile = true; //파일 저장 후 파일 첨부 여부 true로 바꿈
-					dto.setStore_img_org(upload.getOriginalFilename()); //파일 원본명
-					dto.setStore_img_sav(upload.getOriginalFilename()); //파일 저장명
+					dto.setStore_regImg_org(upload.getOriginalFilename()); //파일 원본명
+					dto.setStore_regImg_sav(upload.getOriginalFilename()); //파일 저장명
 				} catch (Exception e) {
 					e.printStackTrace();
 					cnt = 500; // 500 : 파일 저장 실패
@@ -60,21 +57,48 @@ public class StoreSettingsOkCommand implements Command {
 			}
 		}
 		
-		/////////////////////////////////////////////////
-		// 파일 명 및 매장 정보 DB 수정 작업
-		String start = dto.getStore_start();
-		String end = dto.getStore_end();
-		dto.setStore_hours(start + "~" + end); //영업시간 추가
 		
+		
+		///////////////////////////////////////////////
+		// nmj_request 테이블에 저장할 작업
+		/*
+		 * store_uid:
+		 * store_name:
+		 * store_address:
+		 * store_regNum:
+		 * store_regImg_org:
+		 * store_regImg_sav:
+		 * store_type:
+		 * store_dtype:
+		 * store_lat:
+		 * store_long:
+		 */
+		RequestDTO rdto = new RequestDTO();
+		rdto.setRequest_type(2); // 수정 요청
+		String request_content = "";
+		System.out.println(dto.getStore_regImg_org());
+		request_content += makePattern("store_uid", "" + dto.getStore_uid());
+		request_content += makePattern("store_name", "" + dto.getStore_name());
+		request_content += makePattern("store_address", "" + dto.getStore_address());
+		request_content += makePattern("store_regNum", "" + dto.getStore_regNum());
+		request_content += makePattern("store_regImg_org", "" + dto.getStore_regImg_org());
+		request_content += makePattern("store_regImg_sav", "" + dto.getStore_regImg_sav());
+		request_content += makePattern("store_type", "" + dto.getStore_type());
+		request_content += makePattern("store_dtype", "" + dto.getStore_dtype());
+		request_content += makePattern("store_lat", "" + dto.getStore_lat());
+		request_content += makePattern("store_long", "" + dto.getStore_long());
+		rdto.setRequest_content(request_content);
+		System.out.println(rdto.getRequest_content());
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
-		if(existFile) {
-			cnt = dao.updateStoreWImageByUid(dto);
-		} else {
-			cnt = dao.updateStoreWOImageByUid(dto);
-		}
+		cnt = dao.insertRequest(rdto);
 		
 		model.addAttribute("cnt", cnt);
 		
+	} // end execute();
+	
+	private String makePattern(String name, String value) {
+		return name.concat(":" + value + "[s]");
 	}
+	
 
 }

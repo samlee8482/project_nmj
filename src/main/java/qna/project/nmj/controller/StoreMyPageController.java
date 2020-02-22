@@ -14,6 +14,7 @@ import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.command.Command;
 import qna.project.nmj.command.StoreSettingsCommand;
 import qna.project.nmj.command.StoreSettingsOkCommand;
+import qna.project.nmj.command.StoreSettingsRequestOkCommand;
 import qna.project.nmj.command.StoreMyReviewCommand;
 
 @Controller
@@ -66,7 +67,21 @@ public class StoreMyPageController {
 	public String addressPopup(HttpServletRequest request) {
 		return "/store/addressPopup";
 	}
-	
+	@RequestMapping(value = "/storeSettingsRequestOk.nmj", method = RequestMethod.POST)
+	public String storeSettingsRequestOk(@RequestParam("upload") MultipartFile upload, 
+			StoreDTO dto, 
+			String entY,
+			String entX,
+			Model model) {
+		if(entY != null && entX != null && !entY.equals("") && !entX.equals("")) {
+			dto.setStore_lat(Double.parseDouble(entY));
+			dto.setStore_long(Double.parseDouble(entX));
+		}
+		model.addAttribute("upload", upload);
+		model.addAttribute("dto", dto);
+		new StoreSettingsRequestOkCommand().execute(model);
+		return "/store/storeSettingsRequestOk";
+	}
 	
 //	4. 음식 메뉴 관리
 	// TODO
