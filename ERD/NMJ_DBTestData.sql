@@ -164,6 +164,30 @@ values
 (	59,	"minji99",	"1234",	"김민지",	"010-9068-1004",	"",	"",	"minji99@naver.com",	1	),
 (	60,	"jia1999",	"1234",	"백지아",	"010-5842-7942",	"",	"",	"jia1999@naver.com",	1	);
 
+-- nmj_food (음식 테이블)
+insert into nmj_food 
+	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
+values
+	(	1,	1,	"",	"",	1500,	"아이스티"	),
+	(	2,	1,	"",	"",	2000,	"아이스커피"	),
+	(	3,	1,	"",	"",	1500,	"녹차"	),
+	(	4,	1,	"",	"",	1000,	"콜라"	),
+	(	5,	1,	"",	"",	1000,	"사이다"	),
+	(	6,	1,	"",	"",	1000,	"환타"	),
+	(	7,	1,	"",	"",	2500,	"라면"	),
+	(	8,	1,	"",	"",	3500,	"김치볶음밥"	),
+	(	9,	1,	"",	"",	2200,	"생과일쥬스"	),
+	(	10,	1,	"",	"",	500,	"계랸"	),
+	(	11,	1,	"",	"",	500,	"치즈"	),
+	(	12,	1,	"",	"",	3000,	"떡볶이"	),
+	(	13,	1,	"",	"",	2000,	"기본 핫도그"	),
+	(	14,	1,	"",	"",	2500,	"치즈 핫도그"	),
+	(	15,	1,	"",	"",	2500,	"매콤 핫도그"	),
+	(	16,	1,	"",	"",	3500,	"치킨마요덮밥"	),
+	(	17,	1,	"",	"",	2500,	"김치만두"	),
+	(	18,	1,	"",	"",	2500,	"갈비만두"	),
+	(	19,	1,	"",	"",	2000,	"김밥"	),
+	(	20,	1,	"",	"",	2500,	"치즈김밥"	);
 -- nmj_review
 insert into nmj_review 
 (	review_uid,	mb_uid,	store_uid,	review_rate, review_content	)
@@ -186,9 +210,14 @@ values
 (3, 1, 1, "재미없어용"),
 (4, 1, 3, "모르겠어용");
 
+insert into nmj_spacelist 
+(space_type) values ("좌석"),("노래방"), ("당구대"), ("볼링 레일"), ("테이블"), ("방");
 
+select * from nmj_spacelist ns ;
 select * from nmj_review nr ;
 select * from nmj_member;
 select * from nmj_storedtype;
 select * from nmj_store;
 select * from nmj_review;
+select * from nmj_request;
+select * from nmj_food;

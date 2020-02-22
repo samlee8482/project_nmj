@@ -8,11 +8,32 @@ import qna.project.nmj.beans.*;
 
 public interface StoreMyPageDAO {
 
-	public ArrayList<ReviewDTO> reviewSelect(int store_uid);
+	/**
+	 * select review by store_uid
+	 * @return ReviewJoinDTO
+	 */
+	public ArrayList<ReviewJoinDTO> reviewSelect(int store_uid);
 	
+
+	/**
+	 * select *
+	 * @return SpaceListDTO 
+	 */
+	public ArrayList<SpaceListDTO> spaceListSelect();
+
+	/**
+	 * insert space_type to spaceList 
+	 * @return int
+	 */
+	public int spaceListInsert(String space_type);
+
+	/**
+	 * select a store by store_uid
+	 * @return StoreDTO
+	 */
 	public int spaceInsert(StoreDTO dto);
 	
-	public int spaceListInsert(String store_dtype);
+	
 	
 	public int spaceImageInsert(SpaceImgDTO dto);
 	
@@ -39,4 +60,52 @@ public interface StoreMyPageDAO {
 	 * @return success == 1
 	 */
 	public int updateStoreWImageByUid(@Param("dto") StoreDTO dto);
+	
+	/**
+	 * select all store_dtype
+	 * @return StoreTypeDTO[]
+	 */
+	public ArrayList<StoreTypeDTO> selectAllStoreDType();
+	
+	/**
+	 * insert a request to change store settings
+	 * @param dto
+	 * @return success == 1
+	 */
+	public int insertRequest(@Param("dto") RequestDTO dto);
+	
+	/**
+	 * select all food from one store
+	 * @param store_uid
+	 * @return
+	 */
+	public ArrayList<FoodDTO> selectFoodByStoreUid(int store_uid);
+	
+	/**
+	 * select food by food_uid
+	 * @param food_uid
+	 * @return
+	 */
+	public FoodDTO selectFoodByFoodUid(int food_uid);
+	
+	/**
+	 * update food by food_uid
+	 * @param dto
+	 * @return
+	 */
+	public int updateFoodByFoodUid(@Param("dto") FoodDTO dto);
+	
+	/**
+	 * delete food by food _uid
+	 * @param food_uid
+	 * @return
+	 */
+	public int deleteFoodByFoodUid(int food_uid);
+
+	/**
+	 * insert food by store_uid
+	 * @param dto
+	 * @return
+	 */
+	public int insertFoodByStoreUid(@Param("dto") FoodDTO dto);
 }

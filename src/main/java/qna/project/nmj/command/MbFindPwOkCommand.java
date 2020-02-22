@@ -37,7 +37,7 @@ public class MbFindPwOkCommand implements Command {
 //		String mb_email = (String)model.getAttribute("mb_email");    
 
 		final String SMTP_USERNAME = "wkrud94@naver.com";
-		final String SMTP_PASSWORD = "npw794613!";
+		final String SMTP_PASSWORD = "aiu794613~";
 		String HOST = "smtp.naver.com";
 		//int PORT = 587;
 
