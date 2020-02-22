@@ -6,13 +6,13 @@ public class FoodDTO {
 	private String food_img_org;
 	private String food_img_sav;
 	private int food_price;
-	private int food_name;
+	private String food_name;
 	public FoodDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public FoodDTO(int food_uid, int store_uid, String food_img_org, String food_img_sav, int food_price,
-			int food_name) {
+			String food_name) {
 		super();
 		this.food_uid = food_uid;
 		this.store_uid = store_uid;
@@ -51,10 +51,10 @@ public class FoodDTO {
 	public void setFood_price(int food_price) {
 		this.food_price = food_price;
 	}
-	public int getFood_name() {
+	public String getFood_name() {
 		return food_name;
 	}
-	public void setFood_name(int food_name) {
+	public void setFood_name(String food_name) {
 		this.food_name = food_name;
 	}
 	

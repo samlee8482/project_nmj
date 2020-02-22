@@ -81,7 +81,7 @@
 		
 	</insert>
 	
-	<select id="selectFoodByStoreUid">
+	<select id="selectFoodByStoreUid" resultType="qna.project.nmj.beans.FoodDTO">
 		SELECT
 			*
 		FROM
@@ -92,4 +92,41 @@
 			food_name ASC, food_price ASC
 		;
 	</select>
+	
+	<select id="selectFoodByFoodUid" resultType="qna.project.nmj.beans.FoodDTO">
+		SELECT
+			*
+		FROM
+			nmj_food
+		WHERE
+			food_uid = #{food_uid}
+		;
+	</select>
+	
+	<update id="updateFoodByFoodUid" flushCache="true">
+		UPDATE
+			nmj_food
+		SET
+			food_price = #{dto.food_price},
+			food_name = #{dto.food_name}
+		WHERE
+			food_uid = #{dto.food_uid}
+		;
+	</update>
+	
+	<delete id="deleteFoodByFoodUid">
+		DELETE FROM
+			nmj_food
+		WHERE
+			food_uid = #{food_uid}
+		;
+	</delete>
+	<insert id="insertFoodByStoreUid">
+		INSERT INTO
+			nmj_food
+			(store_uid, food_img_org, food_img_sav, food_price, food_name)
+		VALUES
+			(#{dto.store_uid}, #{dto.food_img_org}, #{dto.food_img_sav}, #{dto.food_price}, #{dto.food_name})
+		;
+	</insert>
 </mapper>

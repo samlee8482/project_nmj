@@ -2,8 +2,8 @@ package qna.project.nmj.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import qna.project.nmj.ajax.dto.AjaxStoreDTypeDTO;
@@ -62,7 +62,7 @@ public class AjaxStoreMyPageController {
 	}
 	
 	@RequestMapping(value = "/foodList.ajax/{store_uid}")
-	public ArrayList<FoodDTO> foodList(@RequestParam("store_uid") int store_uid) {
+	public ArrayList<FoodDTO> foodList(@PathVariable("store_uid") int store_uid) {
 		ArrayList<FoodDTO> dto = new ArrayList<FoodDTO>();
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		dto = dao.selectFoodByStoreUid(store_uid);

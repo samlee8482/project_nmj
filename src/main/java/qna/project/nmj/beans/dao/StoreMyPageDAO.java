@@ -53,5 +53,38 @@ public interface StoreMyPageDAO {
 	 */
 	public int insertRequest(@Param("dto") RequestDTO dto);
 	
+	/**
+	 * select all food from one store
+	 * @param store_uid
+	 * @return
+	 */
 	public ArrayList<FoodDTO> selectFoodByStoreUid(int store_uid);
+	
+	/**
+	 * select food by food_uid
+	 * @param food_uid
+	 * @return
+	 */
+	public FoodDTO selectFoodByFoodUid(int food_uid);
+	
+	/**
+	 * update food by food_uid
+	 * @param dto
+	 * @return
+	 */
+	public int updateFoodByFoodUid(@Param("dto") FoodDTO dto);
+	
+	/**
+	 * delete food by food _uid
+	 * @param food_uid
+	 * @return
+	 */
+	public int deleteFoodByFoodUid(int food_uid);
+
+	/**
+	 * insert food by store_uid
+	 * @param dto
+	 * @return
+	 */
+	public int insertFoodByStoreUid(@Param("dto") FoodDTO dto);
 }
