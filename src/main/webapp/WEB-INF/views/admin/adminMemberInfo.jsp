@@ -110,10 +110,10 @@
 
           <c:choose>
              <c:when test="${dto.mb_img_org == null}">
-             <img src="img/member/memberDefault.png">
+             <img src="${pageContext.request.contextPath}/img/member/memberDefault.png">
              </c:when>
              <c:otherwise>
-             <img src="img/member/${dto.mb_img_org }">
+             <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }">
              </c:otherwise>
           </c:choose>
           

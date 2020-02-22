@@ -2,10 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qna.project.nmj.beans.dao.ReviewDAO">
 
-<!-- 리뷰 삽입 -->
-<insert id="insertReview" flushCache="true" parameterType="qna.project.nmj.beans.ReviewJoinDTO">
-	INSERT INTO NMJ_review (mb_uid, review_content, review_rate)
-	VALUES (#{param1}, #{param2}, #{param3}); 
-</insert>
+	<!-- 리뷰 삽입 -->
+	<insert id="insertReview" flushCache="true" parameterType="qna.project.nmj.beans.ReviewJoinDTO">
+		INSERT INTO NMJ_review (mb_uid, review_content, review_rate)
+		VALUES (#{param1}, #{param2}, #{param3}); 
+	</insert>
+	
+	<!-- 리뷰 목록 -->
+	<select id="selectAllReview" resultType="qna.project.nmj.beans.ReviewJoinDTO">
+		SELECT a.*, b.store_type, b.store_name, c.mb_id 
+		FROM NMJ_review a 
+		JOIN NMJ_store b ON a.store_uid = b.store_uid 
+		JOIN NMJ_member c ON a.mb_uid = c.mb_uid 
+		ORDER BY review_uid DESC
+	</select>
+
+	<!-- 리뷰 1개 불러오기 -->
+	<select id="selectReviewByUid" 
+ 		resultType="qna.project.nmj.beans.ReviewJoinDTO">
+ 		SELECT a.*, b.store_type, b.store_name, c.mb_id 
+		FROM NMJ_review a 
+		JOIN NMJ_store b ON a.store_uid = b.store_uid 
+		JOIN NMJ_member c ON a.mb_uid = c.mb_uid 
+		WHERE review_uid = #{param1}
+ 	</select>
+ 	
+	<!-- 조회수 증가 -->
+ 	<update id="increaseViewCount">
+ 		 UPDATE NMJ_review SET review_viewCount = review_viewCount + 1 
+ 		 WHERE review_uid = #{param1}
+ 	</update>
 
 </mapper>
