@@ -170,3 +170,21 @@
     border-bottom: 2px solid white; 
 }
 
+#write_frm_container{
+	position: absolute;
+	width: 1000px;
+	height: 1000px;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+#star_grade a{
+    text-decoration: none;
+    color: gray;
+}
+
+#star_grade a.on{
+    color: red;
+}

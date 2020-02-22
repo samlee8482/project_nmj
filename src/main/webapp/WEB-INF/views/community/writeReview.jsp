@@ -27,6 +27,22 @@
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+function chkSubmit(){
+	frm = document.forms["frm"];
+	
+	var review_content = frm["review_content"].value;
+	
+	if(review_content == ""){
+		alert("내용을 입력하세요");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 </head>
 <body>
 	<header>
@@ -65,13 +81,50 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>리뷰작성</h2>
-					<p>"자 이제 여러분의 후기를 남겨주세요"</p>
+					<p>"자 이제 여러분의 차례입니다"</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
 	
+	<div class="div-relative" style="height: 1000px;">
+		<div id="write_frm_container">
+			<h3>여러분의 리뷰를 남겨주세요</h3><br>
+			<form name="frm" method="get" action="writeReviewOk.nmj" onSubmit="return chkSubmit()">
+				<!-- 
+				<h3 class="main-title">
+					<input name="review_content" placeholder="제목을 입력하세요" value="${review_content }" style="width: 100%; padding: 10px;" />
+				</h3>
+				 -->
+				<div style="margin-left: auto; margin-right: auto; width: 600px; height: 600px;">
+					<textarea name="review_content" id="editor1"></textarea>
+					<script>
+						CKEDITOR.replace('editor1', {
+							allowedContent: true,
+							width: '600px',
+							height: '600px'
+						});
+					</script>
+				</div><br><br><br><br><br><br><br>
+				<div style="display: inline-block;">
+				<h3>나의 평점은?</h2>
+				<p id="star_grade">
+			        <a value="1" href="#">★</a>
+			        <a value="2" href="#">★</a>
+			        <a value="3" href="#">★</a>
+			        <a value="4" href="#">★</a>
+			        <a value="5" href="#">★</a>
+				</p>
+				</div><br><br><br>
+				<input type="hidden" name="mb_uid" value="${mb_uid }" />  <!-- mb_uid -->
+				<input id="review_rate" type="hidden" name="review_rate" value="" />  <!-- mb_uid -->
+				<button class="login_btn" type="submit">작성 완료</button>
+			</form>
+		</div>
+	</div>
+	
+	<br><br>
 	
 	<footer>
 		<div id="footer" class="fh5co-border-line">
@@ -111,6 +164,16 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	
+	<script>
+        $('#star_grade a').click(function(){
+            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
+            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+            var length = $(this).addClass("on").prevAll("a").addClass("on").length;
+            $("#review_rate").attr('value', length+1);
+            return false;
+        });
+	</script>
 	
 </body>
 </html>
