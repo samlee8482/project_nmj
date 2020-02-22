@@ -210,7 +210,10 @@ values
 (3, 1, 1, "재미없어용"),
 (4, 1, 3, "모르겠어용");
 
+insert into nmj_spacelist 
+(space_type) values ("좌석"),("노래방"), ("당구대"), ("볼링 레일"), ("테이블"), ("방");
 
+select * from nmj_spacelist ns ;
 select * from nmj_review nr ;
 select * from nmj_member;
 select * from nmj_storedtype;

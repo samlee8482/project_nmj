@@ -22,7 +22,9 @@ body {
   font-size: 20px;
   font-weight: 300;
 }
-
+.clear{
+	clear:both;
+}
 a {
   color: #F03861;
   -webkit-transition: 0.5s;
