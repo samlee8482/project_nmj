@@ -74,7 +74,7 @@
 	<!-- end fh5co-intro-section -->
 
 	<!-- 아래 버튼들은 현재 세션값 안받아오므로 세션없이 임의로 uid 값 넣어준 버전. 추후 세션값 넣어서 보내주는 걸로 바꿔야함. -->
-	<div class="div-relative" style="width: 100%; height: 350px;">
+	<div class="div-relative" style="width: 100%; height: 500px;">
 		<div id="myPage_btn_container">
 			<button class="myPage_btn" onclick="location.href='cusUpdateInfo.nmj?mb_uid=5'">회원 정보 수정</button>
 			<button class="myPage_btn" onclick="location.href='cusShowReserve.nmj?mb_uid=5'">예약/찜 목록 보기</button>

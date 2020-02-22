@@ -83,6 +83,7 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>비밀번호 찾기</h2>
+					<p>"다음번엔 까먹지 않기!"</p>
 				</div>
 			</div>
 		</div>
@@ -90,17 +91,12 @@
 	<!-- end fh5co-intro-section -->
 
 
-<div class="a" id="div_find-id">
-	<div class="find-id">
-		<h3>비밀번호 찾기</h3>
-	</div>
-	<div id="find-id" class="find-id" style="border: none;">
-		<div id="find_id-info" class="find-id">
-			<div name="mb_name" class="find-id-info" type="text" required="required">고객님의 이메일로<br>비밀번호가 발송되었습니다.</div><br>
+	<div class="div-relative" style="width: 100%; height: 300px;">
+		<div class="findOk_container">
+			<div class="findOk_content">고객님의 이메일로<br>비밀번호가 발송되었습니다.</div><br><br>
+			<button class="login_btn" onclick="location.href='login.nmj'"">로그인</button>
 		</div>
-		<button id="login-btn" onclick="location.href='login.nmj'" style="background: #eb2b63; color: #ffffff;">로그인</button>
 	</div>
-</div>
 
 	<footer>
 		<div id="footer" class="fh5co-border-line">
@@ -115,9 +111,9 @@
 							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
 						</p>
 						<p class="fh5co-social-icons">
-							<a href="#"><i class="icon-twitter-with-circle"></i></a> <a
-								href="#"><i class="icon-facebook-with-circle"></i></a> <a
-								href="#"><i class="icon-instagram-with-circle"></i></a>
+							<a href="#"><i class="icon-twitter-with-circle"></i></a>
+							<a href="#"><i class="icon-facebook-with-circle"></i></a>
+							<a href="#"><i class="icon-instagram-with-circle"></i></a>
 						</p>
 					</div>
 				</div>

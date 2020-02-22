@@ -79,60 +79,64 @@ table, th, td{
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
-	<h1>내가 쓴 리뷰</h1>
-	<table>
-		<tr>
-			<th>No.</th>
-			<th>매장</th>
-			<th>제목</th>
-			<th>조회수</th>
-			<th>등록일</th>
-		</tr>
-		<tr>
-		<c:if test="${not empty myPageReview}">
-			<tr>
-				<c:forEach var="item" items="${myPageReview}" varStatus="status">
-					<td>${status.index + 1}</td>
-					<td>${item[0].store_name }</td>
-					<td><a href="#">${item[0].review_content }</a></td>
-					<td>${item[0].review_viewCount }</td>
-					<td>${item[0].review_date }</td>
-				</c:forEach>
-			</tr> 
-		</c:if>
-		<c:if test="${myPageReview[0] == null }">
-			<tr>
-				<td colspan="5">작성한 기록이 없습니다.</td>
-			</tr>
-		</c:if>			
-	</table>
 	
-	<h1>내가 쓴 댓글</h1>
-	<table>
-		<tr>
-			<th>No.</th>
-			<th>내가 쓴 댓글</th>
-			<th>해당 글</th>
-			<th>등록일</th>
-		</tr>
-		<tr>
-		<c:if test="${not empty myPageReply}">
-			<tr>
-				<c:forEach var="item" items="${myPageReply}" varStatus="status">
-					<td>${status.index + 1}</td>
-					<td>${item[0].reply_content }</td>
-					<td><a href="#">${item[0].review_content }</a></td>
-					<td>${item[0].reply_date }</td>
-				</c:forEach>
-			</tr> 
-		</c:if>
-		<c:if test="${myPageReply[0] == null }">
-			<tr>
-				<td colspan="4">작성한 기록이 없습니다.</td>
-			</tr>
-		</c:if>			
-	</table>
-
+	<div class="div-relative" style="width: 100%; height: 700px;">
+		<div class="show_list_container">
+			<h1>내가 쓴 리뷰</h1><br><br><br><br>
+			<table>
+				<tr>
+					<th>No.</th>
+					<th>매장</th>
+					<th>제목</th>
+					<th>조회수</th>
+					<th>등록일</th>
+				</tr>
+				<tr>
+				<c:if test="${not empty myPageReview}">
+					<tr>
+						<c:forEach var="item" items="${myPageReview}" varStatus="status">
+							<td>${status.index + 1}</td>
+							<td>${item[0].store_name }</td>
+							<td><a href="#">${item[0].review_content }</a></td>
+							<td>${item[0].review_viewCount }</td>
+							<td>${item[0].review_date }</td>
+						</c:forEach>
+					</tr> 
+				</c:if>
+				<c:if test="${myPageReview[0] == null }">
+					<tr>
+						<td colspan="5">작성한 기록이 없습니다.</td>
+					</tr>
+				</c:if>			
+			</table>
+			
+			<h1>내가 쓴 댓글</h1><br><br><br><br>
+			<table>
+				<tr>
+					<th>No.</th>
+					<th>내가 쓴 댓글</th>
+					<th>해당 글</th>
+					<th>등록일</th>
+				</tr>
+				<tr>
+				<c:if test="${not empty myPageReply}">
+					<tr>
+						<c:forEach var="item" items="${myPageReply}" varStatus="status">
+							<td>${status.index + 1}</td>
+							<td>${item[0].reply_content }</td>
+							<td><a href="#">${item[0].review_content }</a></td>
+							<td>${item[0].reply_date }</td>
+						</c:forEach>
+					</tr> 
+				</c:if>
+				<c:if test="${myPageReply[0] == null }">
+					<tr>
+						<td colspan="4">작성한 기록이 없습니다.</td>
+					</tr>
+				</c:if>			
+			</table>
+		</div>
+	</div>
 		<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">

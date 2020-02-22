@@ -115,45 +115,43 @@ function chkSubmit2(){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>아이디 비밀번호 찾기</h2>
-					<p>여러분들의 소중한 정보를 기억해주세요</p>
+					<p class="title">아이디 비밀번호 찾기</h2>
+					<p class="subtitle">"여러분들의 소중한 정보를 기억해주세요"</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
-
-<div class="a" id="div-find-id">
-	<form name="frm1" id="find-id-content" method="post" action="findIdOk.nmj" onsubmit="return chkSubmit1()">
-       <div class="find-id">
-       	<h4>아이디 찾기</h4>
-       </div>
-       <div id="find-id" class="find-id">
-       	<div id="find-id-info" class="find-id">
-       		<input name="mb_name" class="find-id-info" type="text" placeholder="이름" required="required"><br>
-       		<input name="mb_email" class="find-id-info" type="text" placeholder="ex)  *****@example.com" required="required">
-       	</div>
-       	<button type="submit" id="find-id-btn" style="background: #eb2b63; color: #ffffff;">아이디 찾기</button>
-       </div>
-	</form>
-</div>
-   
-<div class="a" id="div-find-pw" style="margin-top: 125px;">
-	<form name="frm2" id="find-pw-content" method="get" action="findPwOk.nmj" onsubmit="return chkSubmit2()" >
-		<div class="find_pw">
-			<h4>비밀번호 찾기</h4>
+	
+	<div class="div-relative" style="width: 100%; height: 750px;">
+		<div id="find_frm_container">
+			<form name="frm1" id="find_id_frm" method="post" action="findIdOk.nmj" onsubmit="return chkSubmit1()">
+		       <div class="find_id">
+		       	<h2>아이디 찾기</h2><br>
+		       </div>
+		       <div class="find_info_container">
+		       		<input name="mb_name" class="find_info" type="text" placeholder="이름" required="required"><br>
+		       		<input name="mb_email" class="find_info" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
+		       		<button type="submit" class="find_btn">아이디 찾기</button>
+		       </div>
+			</form>
+			
+			<form name="frm2" id="find_pw_frm" method="get" action="findPwOk.nmj" onsubmit="return chkSubmit2()" >
+				<div class="find_pw">
+					<h2>비밀번호 찾기</h2><br>
+				</div>
+				<div class="find_info_container">
+					<input name="mb_id" class="find_info" type="text" placeholder="아이디" required="required"><br>
+					<input name="mb_name" class="find_info" type="text" placeholder="이름" required="required"><br>
+					<input name="mb_email" class="find_info" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
+					<button type="submit" class="find_btn">비밀번호 찾기</button>
+				</div>
+			</form>
 		</div>
-		<div id="find-pw" class="find-pw">
-			<div id="find-pw-info" class="find-pw">
-				<input name="mb_id" class="find-pw-info" type="text" placeholder="아이디" required="required"><br>
-				<input name="mb_name" class="find-pw-info" type="text" placeholder="이름" required="required"><br>
-				<input name="mb_email" class="find-pw-info" type="text" placeholder="ex)  *****@example.com" required="required">
-			</div>
-			<button type="submit" id="find-pw-btn" style="background: #eb2b63; color: #ffffff;">비밀번호 찾기</button>
-		</div>
-	</form>
-</div>
-
+	</div>
+	
+	<br><br><br><br>
+	
 	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">

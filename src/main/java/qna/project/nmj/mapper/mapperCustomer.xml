@@ -19,7 +19,7 @@
 	<!-- 마이페이지 - 예약/찜 목록 보기 -->
 	<!-- 예약 목록 -->
 	<select id="selectReservationByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
-		SELECT n4.store_type, n4.store_name, n2.reservation_start, n2.reservation_end, n2.reservation_count, n2.reservation_seat
+		SELECT n4.store_type, n4.store_name, n2.reservation_start, n2.reservation_end, n2.reservation_count, n2.reservation_price, n2.reservation_seat
 		FROM NMJ_member n1, NMJ_reservation n2, NMJ_space n3, NMJ_store n4
 		WHERE #{mb_uid} = n2.mb_uid
 		AND n2.space_uid = n3.space_uid
