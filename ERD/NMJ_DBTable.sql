@@ -129,7 +129,7 @@ CREATE TABLE NMJ_food
     `food_img_org`  VARCHAR(200)    NULL        COMMENT '음식 사진원본명', 
     `food_img_sav`  VARCHAR(200)    NULL        COMMENT '음식 사진저장명', 
     `food_price`    INT             NOT NULL    COMMENT '음식 가격', 
-    `food_name`     INT             NOT NULL    COMMENT '음식 명', 
+    `food_name`     VARCHAR(45)     NOT NULL    COMMENT '음식 명', 
     PRIMARY KEY (food_uid)
 );
 

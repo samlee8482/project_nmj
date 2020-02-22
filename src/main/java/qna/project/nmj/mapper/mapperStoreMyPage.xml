@@ -80,4 +80,16 @@
 		
 		
 	</insert>
+	
+	<select id="selectFoodByStoreUid">
+		SELECT
+			*
+		FROM
+			nmj_food
+		WHERE
+			store_uid = #{store_uid}
+		ORDER BY
+			food_name ASC, food_price ASC
+		;
+	</select>
 </mapper>

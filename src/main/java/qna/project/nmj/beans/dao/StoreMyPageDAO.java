@@ -52,4 +52,6 @@ public interface StoreMyPageDAO {
 	 * @return success == 1
 	 */
 	public int insertRequest(@Param("dto") RequestDTO dto);
+	
+	public ArrayList<FoodDTO> selectFoodByStoreUid(int store_uid);
 }
