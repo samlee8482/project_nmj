@@ -137,5 +137,11 @@
 		(space_type) VALUES(#{space_type});
 	
 	</insert>
+	<insert id="spaceInsert">
+	INSERT INTO NMJ_space
+	(store_uid, spaceList_uid, space_price, space_empty, space_count, space_name, space_xloc, space_yloc)
+	VALUES(#{store_uid}, #{spaceList_uid}, #{space_price}, #{space_empty}, #{space_count}, #{space_name}, #{space_xloc}, #{space_yloc});
+	
+	</insert>
 	
 </mapper>

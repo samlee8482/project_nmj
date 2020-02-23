@@ -3,6 +3,7 @@ package qna.project.nmj.controller;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import qna.project.nmj.ajax.dto.AjaxStoreTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypesDTO;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FoodDTO;
+import qna.project.nmj.beans.SpaceDTO;
 import qna.project.nmj.beans.StoreTypeDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 
@@ -67,5 +69,13 @@ public class AjaxStoreMyPageController {
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		dto = dao.selectFoodByStoreUid(store_uid);
 		return dto;
+	}
+	
+	@PostMapping(value="/space.ajax")
+	public int space(SpaceDTO dto) {
+		StoreMyPageDAO dao  = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		dao.spaceInsert(dto);
+		
+		return 0;
 	}
 }
