@@ -30,6 +30,7 @@ public class StoreDetailDTO {
 	private int space_count;
 	private int space_name;
 	private int count;
+	private double totalAvg;
 	
 	
 }

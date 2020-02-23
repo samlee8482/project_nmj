@@ -60,6 +60,12 @@ public class MemberController {
 		return "/member/findStore";
 	}
 	
+	@RequestMapping("storeDetail.nmj")
+	public String storeDetail(int store_uid, Model model) {
+		model.addAttribute("store_uid", store_uid);
+		new StoreDetailCommand().execute(model);
+		return "/member/storeDetail";
+	}
 	
 	
 	

@@ -49,7 +49,42 @@
 			*
 		FROM NMJ_store NATURAL JOIN NMJ_storeDType
 		WHERE store_type = #{param1} order by store_uid asc limit #{fromRow}, #{writePages};
-		
 	</select>
 	
+	
+	<select id="selectStoreDetail" resultType="qna.project.nmj.beans.StoreDetailDTO">
+	select
+		*,
+		count(space_empty) count
+	from nmj_store natural join nmj_space
+	where space_empty = 1
+	and store_uid = #{param1}
+	group by store_uid;
+	</select>	
+	
+	<select id="StoreDetailRestSeat">
+		select 
+			sp.*
+		from nmj_store st join nmj_space sp
+		on st.store_uid = sp.store_uid
+		and space_empty = 1;
+	</select>
+	
+	
+	<select id="StoreDetailRate" resultType="qna.project.nmj.beans.StoreDetailDTO">
+		select 
+			round((store_ratings / store_rateCount), 1) totalAvg
+		from nmj_store
+		where store_uid = #{param1};	
+	</select>
+	
+	
 </mapper>
+
+
+
+
+
+
+
+

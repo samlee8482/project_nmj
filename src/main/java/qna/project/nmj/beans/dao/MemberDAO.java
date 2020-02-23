@@ -23,5 +23,6 @@ public interface MemberDAO {
 	public int selectStoreCount(int store_type);
 	//	public ArrayList<StoreDTO> selectStore(int store_type, int from, int rows);
 	
+	public ArrayList<StoreDetailDTO> selectStoreDetail(int store_uid);
 	
 }
