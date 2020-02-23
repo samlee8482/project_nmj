@@ -68,6 +68,13 @@ public class AjaxStoreMyPageController {
 		ArrayList<FoodDTO> dto = new ArrayList<FoodDTO>();
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		dto = dao.selectFoodByStoreUid(store_uid);
+		for(int i = 0; i < dto.size(); i++) {
+			String img = dto.get(i).getFood_img_sav();
+			if(img == null || img.equals("")) {
+				dto.get(i).setFood_img_org("foodDefault.png");
+				dto.get(i).setFood_img_sav("foodDefault.png");
+			}
+		}
 		return dto;
 	}
 	

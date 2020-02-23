@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,24 +99,38 @@ table, th, td{
 					<th>좌석</th>
 				</tr>
 				<tr>
-				<c:if test="${myPageReservation[0].store_type == 1}">
 					<tr>
 						<c:forEach var="item" items="${myPageReservation}" varStatus="status">
-							<td>${status.index + 1}</td>
-							<td>${item[0].store_name }</td>
-							<td>${item[0].store_start }</td>
-							<td>${item[0].store_end }</td>
-							<td>${item[0].reservation_count }</td>
-							<td>${item[0].reservation_price }</td>
-							<td>${item[0].reservation_seat }</td>
+							<c:set var = "store_type" value="${item.store_type}"/>
+							<c:choose>
+								<c:when test="${fn:contains(store_type, 3)}">
+									<td>${status.index + 1}</td>
+									<td><a href="writeReview.nmj?mb_uid=${item.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
+									<td>${item.store_start }</td>
+									<td>${item.store_end }</td>
+									<td>${item.reservation_count }</td>
+									<td>${item.reservation_price }</td>
+									<td>${item.reservation_seat }</td>
+								</c:when>
+								<c:otherwise>
+									<td colspan="7">예약 기록이 없습니다.</td>
+								</c:otherwise>
+							</c:choose>
+							
+							<c:if test="${item.store_type == 1}">
+								<td>${status.index + 1}</td>
+								<td><a href="writeReview.nmj?mb_uid=${item.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
+								<td>${item.store_start }</td>
+								<td>${item.store_end }</td>
+								<td>${item.reservation_count }</td>
+								<td>${item.reservation_price }</td>
+								<td>${item.reservation_seat }</td>
+							</c:if>
+							<c:if test="${fn:contains(store_type, 3)}">
+								<td colspan="7">예약 기록이 없습니다.</td>
+							</c:if>			
 						</c:forEach>
 					</tr> 
-				</c:if>
-				<c:if test="${myPageReservation[0].store_type == null }">
-					<tr>
-						<td colspan="7">예약 기록이 없습니다.</td>
-					</tr>
-				</c:if>			
 			</table>
 		
 			<br>
@@ -130,22 +145,19 @@ table, th, td{
 					<th>좌석</th>
 				</tr>
 				<tr>
-				<c:if test="${myPageReservation[0].store_type == 2}">
-					<tr>
-						<c:forEach var="item" items="${myPageReservation}" varStatus="status">
+					<c:forEach var="item" items="${myPageReservation}" varStatus="status">
+						<c:if test="${item.store_type == 2}">
 							<td>${status.index + 1}</td>
-							<td>${item[0].store_name }</td>
-							<td>${item[0].store_start }</td>
-							<td>${item[0].reservation_count }</td>
-							<td>${item[0].reservation_seat }</td>
-						</c:forEach>
-					</tr> 
-				</c:if>
-				<c:if test="${myPageReservation[0].store_type == null }">
-					<tr>
-						<td colspan="5">예약 기록이 없습니다.</td>
-					</tr>
-				</c:if>			
+							<td><a href="writeReview.nmj?mb_uid=${item.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
+							<td>${item.store_start }</td>
+							<td>${item.reservation_count }</td>
+							<td>${item.reservation_seat }</td>
+						</c:if>
+						<c:if test="${item.store_type == null }">
+							<td colspan="5">예약 기록이 없습니다.</td>
+						</c:if>			
+					</c:forEach>
+				</tr> 
 			</table>
 		
 			<br>
@@ -161,24 +173,22 @@ table, th, td{
 					<th>예약금액</th>
 					<th>방</th>
 				</tr>
-				<c:if test="${myPageReservation[0].store_type == 3}">
-					<tr>
-						<c:forEach var="item" items="${myPageReservation}" varStatus="status">
+				<tr>
+					<c:forEach var="item" items="${myPageReservation}" varStatus="status">
+						<c:if test="${item.store_type == 3}">
 							<td>${status.index + 1}</td>
-							<td>${item[0].store_name }</td>
-							<td>${item[0].store_start }</td>
-							<td>${item[0].store_end }</td>
-							<td>${item[0].reservation_count }</td>
-							<td>${item[0].reservation_price }</td>
-							<td>${item[0].reservation_seat }</td>
-						</c:forEach>
-					</tr> 
-				</c:if>
-				<c:if test="${myPageReservation[0].store_type == null }">
-					<tr>
-						<td colspan="7">예약 기록이 없습니다.</td>
-					</tr>
-				</c:if>			
+							<td><a href="writeReview.nmj?mb_uid=${item.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
+							<td>${item.store_start }</td>
+							<td>${item.store_end }</td>
+							<td>${item.reservation_count }</td>
+							<td>${item.reservation_price }</td>
+							<td>${item.reservation_seat }</td>
+						</c:if>
+						<c:if test="${item.store_type == null }">
+							<td colspan="7">예약 기록이 없습니다.</td>
+						</c:if>			
+					</c:forEach>
+				</tr> 
 			</table>
 		
 			<br>
@@ -194,8 +204,8 @@ table, th, td{
 					<tr>
 						<c:forEach var="item" items="${myPageLike}" varStatus="status">
 							<td>${status.index + 1}</td>
-							<td>${item[0].store_name }</td>
-							<td>${item[0].store_type }</td>
+							<td>${item.store_name }</td>
+							<td>${item.store_type }</td>
 						</c:forEach>
 					</tr> 
 				</c:if>
