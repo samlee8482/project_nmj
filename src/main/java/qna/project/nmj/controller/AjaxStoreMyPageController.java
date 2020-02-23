@@ -71,11 +71,5 @@ public class AjaxStoreMyPageController {
 		return dto;
 	}
 	
-	@PostMapping(value="/space.ajax")
-	public int space(SpaceDTO dto) {
-		StoreMyPageDAO dao  = C.sqlSession.getMapper(StoreMyPageDAO.class);
-		dao.spaceInsert(dto);
-		
-		return 0;
-	}
+	
 }

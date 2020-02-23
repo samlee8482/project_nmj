@@ -144,4 +144,8 @@
 	
 	</insert>
 	
+	<select id="spaceSelect" resultType="qna.project.nmj.beans.SpaceDTO">
+	SELECT * FROM NMJ_space WHERE store_uid = #{param1};	
+	</select>
+	
 </mapper>

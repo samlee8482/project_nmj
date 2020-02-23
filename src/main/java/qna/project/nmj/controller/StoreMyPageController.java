@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FoodDTO;
+import qna.project.nmj.beans.SpaceDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 import qna.project.nmj.command.Command;
@@ -156,5 +158,10 @@ public class StoreMyPageController {
 		return "store/storeMyReview";
 	}
 
+	@PostMapping(value="/space.ajax")
+	public void space(SpaceDTO dto) {
+		StoreMyPageDAO dao  = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		dao.spaceInsert(dto);
+	}
 	
 }

@@ -10,3 +10,6 @@ SELECT
 			store_dname
 		FROM NMJ_store NATURAL JOIN NMJ_storeDType
 		WHERE store_type =1 order by store_uid asc limit 0, 6;
+		
+select * from nmj_space ns ;
+truncate table nmj_space ;  
