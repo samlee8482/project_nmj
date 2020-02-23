@@ -2,12 +2,12 @@ package qna.project.nmj.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import qna.project.nmj.command.FindStoreCommand;
-import qna.project.nmj.command.MbFindIdOkCommand;
-import qna.project.nmj.command.MbFindPwOkCommand;
+import qna.project.nmj.command.*;
 
 @Controller
 @RequestMapping("/member")
@@ -44,14 +44,28 @@ public class MemberController {
 	}
 	
 	// 매장 찾기 페이지
-	@RequestMapping("/findStore.nmj")
-	public String findStore(int store_type, Model model) {
+	@GetMapping("/findStore.nmj")
+	public String findStoreGet(int store_type,int page, Model model) {
 		model.addAttribute("store_type", store_type);
-		new FindStoreCommand().execute(model);
+		model.addAttribute("page", page);
+		new FindStoreGetCommand().execute(model);
 		return "/member/findStore";
 	}
 	
 	
+	@PostMapping("/findStore.nmj")
+	public String findStorePost(int store_dtype, int store_type, Model model) {
+		model.addAttribute("store_type", store_type);
+		new FindStorePostCommand().execute(model);
+		return "/member/findStore";
+	}
+	
+	@RequestMapping("storeDetail.nmj")
+	public String storeDetail(int store_uid, Model model) {
+		model.addAttribute("store_uid", store_uid);
+		new StoreDetailCommand().execute(model);
+		return "/member/storeDetail";
+	}
 	
 	
 	

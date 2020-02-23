@@ -41,7 +41,7 @@
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- Stellar -->
 	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-
+<script> var store_uid = ${store_uid};</script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="${pageContext.request.contextPath}/js/mySpace.js"></script>
@@ -85,7 +85,40 @@
 		</div>
 		<div id="boxMake">
 			<div id="">
-				<div id="boxMakingArea"></div>
+				<div id="boxMakingArea">
+					
+					<c:forEach var="list" items="${space }">
+					<div class="
+						<c:set var="space" value="${list.spaceList_uid }"/>						
+						<c:choose>
+							
+							<c:when test="${list.spaceList_uid eq 1 }">
+								pcspace space_count#1 space_price#${list.space_price } spaceName#${list.space_name } spaceList#1" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="pcspaceimg" ></div><div class="pcNum">${list.space_name }</div>
+							</c:when>			
+							<c:when test="${list.spaceList_uid eq 2 }">
+								draggablekar ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#2" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="karspaceimg"></div><div class="karNum">${list.space_name }</div>
+							</c:when>			
+							<c:when test="${list.spaceList_uid eq 3 }">
+								draggablebil ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#3" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="bilspaceimg"></div><div class="bilNum">${list.space_name }</div>
+							</c:when>			
+							<c:when test="${list.spaceList_uid eq 4 }">
+								draggablebowl ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#4" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="bowlspaceimg"></div><div class="bowlNum">${list.space_name }</div>
+							</c:when>			
+							<c:when test="${list.spaceList_uid eq 5 }">
+								draggableTable ui-widget-content space_count#${list.space_count } space_price#${list.space_price }  spaceName#${list.space_name } spaceList#5" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="tablespaceimg"></div><div class="tableNum">${list.space_name }</div>
+							</c:when>			
+							<c:otherwise>
+								draggableRoom ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#${list.spaceList_uid }" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="roomspaceimg"></div><div class="roomNum">${list.space_name }</div>
+							</c:otherwise>	
+						</c:choose>
+							</div>
+					</c:forEach>
+				</div>
+				<div id="boxListArea">
+					<div id="confirmArea">
+						 <button id="confirmbtn" type="button" class="btn btn-info">저장하기</button>
+					</div>
+				</div>
 				<div>
 					<div class="card text-white bg-primary mb-3" style="max-width:300px;">
 						<div class="card-header">공간입력하기</div>
@@ -97,9 +130,13 @@
 									<option value="${list.spaceList_uid }">${list.space_type }</option>
 								</c:forEach>
 							</select>
-							<input id="spaceNum" type="number" style="width:70px;">
-							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
+							<span>인원수</span><input id="spaceNum" type="number" style="width:70px;">
+							<div class="clear"></div>
+							<span>공간 이름</span><input id="spaceName" type="text">
+							<div class="clear"></div>
+							<span>공간 가격</span><input id="spacePrice" type="number">
 							</h4>
+							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
 						</div>
 					</div>					
 				</div>

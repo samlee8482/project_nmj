@@ -12,7 +12,7 @@ public class StoreMySpaceCommand implements Command{
 		int store_uid = (Integer)model.getAttribute("store_uid");
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		model.addAttribute("space_type",dao.spaceListSelect());
-		
+		model.addAttribute("space", dao.spaceSelect(store_uid));
 	}
 
 }

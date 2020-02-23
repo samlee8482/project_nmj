@@ -27,8 +27,8 @@
 	
 	<!-- 페이지네이션 -->
 	<!-- 글 목록 전체 개수 가져오기 -->
-	<select id="selectStoreCount" resultType="qna.project.nmj.beans.FindStoreDTO">
-		SELECT COUNT(*) FROM NMJ_store NATURAL JOIN NMJ_storeDType
+	<select id="selectStoreCount" resultType="int">
+		SELECT COUNT(*) FROM NMJ_store NATURAL JOIN NMJ_storeDType WHERE store_type = #{param1};
 	</select>
 	
 	
@@ -40,5 +40,43 @@
 		FROM NMJ_store NATURAL JOIN NMJ_storeDType
 		WHERE store_type = #{param1} order by store_uid asc limit 0, 9;
 	</select>
+	<select id="selectStoreType" resultType="qna.project.nmj.beans.StoreTypeDTO">
+		SELECT * FROM NMJ_storeDType where store_type = #{param1};
+	</select>
+	
+	<select id="page" resultType="qna.project.nmj.beans.FindStoreDTO">
+		SELECT
+			*
+		FROM NMJ_store NATURAL JOIN NMJ_storeDType
+		WHERE store_type = #{param1} order by store_uid asc limit #{fromRow}, #{writePages};
+	</select>
+	
+	
+	<select id="selectStoreDetail" resultType="qna.project.nmj.beans.StoreDetailDTO">
+		select 
+			*,
+			round((store_ratings / store_rateCount), 1) totalAvg
+		from nmj_store
+		where store_uid = #{param1};
+	</select>	
+	
+	<select id="StoreDetailRestSeat" resultType="qna.project.nmj.beans.StoreDetailDTO">
+		select 
+			count(space_name) count
+		from nmj_space
+		where space_empty = 1 and store_uid = #{param1};
+	</select>
+	
+	
+	
+	
 	
 </mapper>
+
+
+
+
+
+
+
+
