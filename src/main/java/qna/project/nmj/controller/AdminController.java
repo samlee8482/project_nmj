@@ -31,6 +31,15 @@ public class AdminController {
 		return "admin/adminMember";	
 	}
 	
+	@RequestMapping(value = "/adminSearchMember.nmj", method = RequestMethod.POST)
+	public String memberSearchList(int searchOption, String search, Model model) {
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("search", search);
+		command = new AdminMemberSearchListCommand();
+		command.execute(model);
+		return "admin/adminMember";	
+	}
+	
 	@RequestMapping(value = "/deleteMember.nmj")
 	public String deleteMember(int mb_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
@@ -52,6 +61,23 @@ public class AdminController {
 		return "admin/adminStore";	
 	}
 	
+	@RequestMapping("/adminSelectStore.nmj")
+	public String storeTypelist(int store_type, Model model) {
+		model.addAttribute("store_type", store_type);
+		command = new AdminNStoreListCommand();
+		command.execute(model);
+		return "admin/adminStore";	
+	}
+	
+	@RequestMapping(value = "/adminSearchStore.nmj", method = RequestMethod.POST)
+	public String storeMemberSearchList(int searchOption, String search, Model model) {
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("search", search);
+		command = new AdminStoreSearchListCommand();
+		command.execute(model);
+		return "admin/adminStore";	
+	}
+	
 	@RequestMapping(value = "/adminMemberInfo.nmj")
 	public String MemberInfo(int mb_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
@@ -69,6 +95,15 @@ public class AdminController {
 	@RequestMapping("/adminCommunity.nmj")
 	public String communityList(Model model) {
 		command = new AdminCommunityListCommand();
+		command.execute(model);
+		return "admin/adminCommunity";	
+	}
+	
+	@RequestMapping(value = "/adminSearchCommunity.nmj", method = RequestMethod.POST)
+	public String storeReviewSearchList(int searchOption, String search, Model model) {
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("search", search);
+		command = new AdminReviewSearchListCommand();
 		command.execute(model);
 		return "admin/adminCommunity";	
 	}

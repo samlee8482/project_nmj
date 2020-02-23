@@ -129,4 +129,13 @@
 			(#{dto.store_uid}, #{dto.food_img_org}, #{dto.food_img_sav}, #{dto.food_price}, #{dto.food_name})
 		;
 	</insert>
+	<select id="spaceListSelect" resultType="qna.project.nmj.beans.SpaceListDTO">
+		SELECT * FROM NMJ_spaceList
+	</select>
+	<insert id="spaceListInsert">
+		INSERT INTO NMJ_spaceList
+		(space_type) VALUES(#{space_type});
+	
+	</insert>
+	
 </mapper>
