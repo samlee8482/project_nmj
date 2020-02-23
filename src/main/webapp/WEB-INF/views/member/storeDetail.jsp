@@ -18,19 +18,6 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
 
-  <!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FREEHTML5.CO
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -174,7 +161,48 @@
 
 	<div class="mapContainer">
 		<h2>매장 위치</h2>
+		<%--
 		<div id="map" class="fh5co-map animate-box" style="outline: 1px solid red"></div>
+		 --%>
+		
+		<div id="kakaoMap" style="width:100%;height:500px;"></div>
+
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5aad8312e36b6cc723c425856d939c6"></script>
+		
+		
+		 
+		<script>
+		var mapContainer = document.getElementById('kakaoMap'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(${list.store_lat}, ${list.store_long}), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };
+
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	var markerImg = "${pageContext.request.contextPath}/img/Marker.png";
+	
+	var imageSrc = markerImg, // 마커이미지의 주소입니다    
+	    imageSize = new kakao.maps.Size(55, 60), // 마커이미지의 크기입니다
+	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	      
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+	    markerPosition = new kakao.maps.LatLng(${list.store_lat}, ${list.store_long}); // 마커가 표시될 위치입니다
+
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+	    position: markerPosition, 
+	    image: markerImage // 마커이미지 설정 
+	});
+
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker.setMap(map); 
+		</script>
+		
+		
+		
+		
 	</div>
 	<!-- END map -->
 

@@ -52,6 +52,9 @@
 	</select>
 	
 	
+	
+	
+	<!-- 매장 상세페이지 -->
 	<select id="selectStoreDetail" resultType="qna.project.nmj.beans.StoreDetailDTO">
 		select 
 			*,
