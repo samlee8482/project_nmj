@@ -8,12 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>마이페이지 - 내가 쓴 리뷰& 댓글 보기</title>
-<style>
-table, th, td{
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-</style>
 <link rel="shortcut icon" href="favicon.ico">
 
 <!-- Animate.css -->
@@ -80,32 +74,43 @@ table, th, td{
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: 700px;">
+	<div class="div-relative" style="width: 100%; height: 1000px;">
 		<div class="show_list_container">
 			<h1>내가 쓴 리뷰</h1><br><br><br><br>
 			<table>
 				<tr>
 					<th>No.</th>
-					<th>매장</th>
+					<th>매장종류</th>
 					<th>제목</th>
+					<th>평점</th>
 					<th>조회수</th>
 					<th>등록일</th>
 				</tr>
-				<tr>
 				<c:if test="${not empty myPageReview}">
-					<tr>
-						<c:forEach var="item" items="${myPageReview}" varStatus="status">
+					<c:forEach var="item" items="${myPageReview}" varStatus="status">
+						<tr>
 							<td>${status.index + 1}</td>
-							<td>${item[0].store_name }</td>
-							<td><a href="#">${item[0].review_content }</a></td>
-							<td>${item[0].review_viewCount }</td>
-							<td>${item[0].review_date }</td>
-						</c:forEach>
-					</tr> 
+							<c:choose>
+								<c:when test="${item.store_type == 1 }">
+									<td>놀자</td>
+								</c:when>
+								<c:when test="${item.store_type == 2 }">
+									<td>먹자</td>
+								</c:when>
+								<c:otherwise>
+									<td>자자</td>
+								</c:otherwise>
+							</c:choose>
+							<td><a href="/nmj/community/communityView.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
+							<td>${item.review_rate }</td>
+							<td>${item.review_viewCount }</td>
+							<td>${item.review_date }</td>
+						</tr> 
+					</c:forEach>
 				</c:if>
-				<c:if test="${myPageReview[0] == null }">
+				<c:if test="${myPageReview == null }">
 					<tr>
-						<td colspan="5">작성한 기록이 없습니다.</td>
+						<td colspan="6">작성한 기록이 없습니다.</td>
 					</tr>
 				</c:if>			
 			</table>
@@ -123,13 +128,13 @@ table, th, td{
 					<tr>
 						<c:forEach var="item" items="${myPageReply}" varStatus="status">
 							<td>${status.index + 1}</td>
-							<td>${item[0].reply_content }</td>
-							<td><a href="#">${item[0].review_content }</a></td>
-							<td>${item[0].reply_date }</td>
+							<td>${item.reply_content }</td>
+							<td><a href="#">${item.review_content }</a></td>
+							<td>${item.reply_date }</td>
 						</c:forEach>
 					</tr> 
 				</c:if>
-				<c:if test="${myPageReply[0] == null }">
+				<c:if test="${empty myPageReply || fn.length(myPageReply) == 0 }">
 					<tr>
 						<td colspan="4">작성한 기록이 없습니다.</td>
 					</tr>

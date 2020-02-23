@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 // 마이페이지 - 예약/찜 목록 보기, 내 리뷰 보기 페이지에 대한 DTO
 public class CusMyPageDTO {
+	private int store_uid;
 	private int store_type;
 	private String store_name;
 	private Timestamp reservation_start;
@@ -23,11 +24,12 @@ public class CusMyPageDTO {
 		super();
 	}
 
-	public CusMyPageDTO(int store_type, String store_name, Timestamp reservation_start, Timestamp reservation_end,
-			int reservation_count, String reservation_seat, String review_content, int review_rate,
-			int review_viewCount, Timestamp review_date, int review_uid, String reply_content, Timestamp reply_date,
-			int reply_uid) {
+	public CusMyPageDTO(int store_uid, int store_type, String store_name, Timestamp reservation_start,
+			Timestamp reservation_end, int reservation_count, String reservation_seat, String review_content,
+			int review_rate, int review_viewCount, Timestamp review_date, int review_uid, String reply_content,
+			Timestamp reply_date, int reply_uid) {
 		super();
+		this.store_uid = store_uid;
 		this.store_type = store_type;
 		this.store_name = store_name;
 		this.reservation_start = reservation_start;
@@ -42,6 +44,14 @@ public class CusMyPageDTO {
 		this.reply_content = reply_content;
 		this.reply_date = reply_date;
 		this.reply_uid = reply_uid;
+	}
+
+	public int getStore_uid() {
+		return store_uid;
+	}
+
+	public void setStore_uid(int store_uid) {
+		this.store_uid = store_uid;
 	}
 
 	public int getStore_type() {

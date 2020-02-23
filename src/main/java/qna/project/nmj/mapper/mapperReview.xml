@@ -4,9 +4,15 @@
 
 	<!-- 리뷰 삽입 -->
 	<insert id="insertReview" flushCache="true" parameterType="qna.project.nmj.beans.ReviewJoinDTO">
-		INSERT INTO NMJ_review (mb_uid, review_content, review_rate)
-		VALUES (#{param1}, #{param2}, #{param3}); 
+		INSERT INTO NMJ_review (mb_uid, store_uid , review_content, review_rate)
+		VALUES (#{param1}, #{param2}, #{param3}, #{param4}); 
 	</insert>
+	<!-- 리뷰에서 평점 매김과 동시에 매장 평점 업데이트 -->
+	<update id="increaseReviewRate" flushCache="true">
+ 		 UPDATE NMJ_store SET store_ratings = store_ratings + #{param1},
+ 		 store_rateCount = store_rateCount + 1  
+ 		 WHERE store_uid = #{param2};
+ 	</update>
 	
 	<!-- 리뷰 목록 -->
 	<select id="selectAllReview" resultType="qna.project.nmj.beans.ReviewJoinDTO">

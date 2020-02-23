@@ -13,17 +13,23 @@ public class CommunityWriteOkCommand implements Command {
 		
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		System.out.println("Command : " + mb_uid);
+		
+		int store_uid = (Integer)model.getAttribute("store_uid");
+		System.out.println("Command : " + store_uid);
+		
 		String review_content = (String)model.getAttribute("review_content");
 		System.out.println("Command : " + review_content);
+		
 		review_content = review_content.replace("<p>", "").replace("</p>", "");
 		System.out.println("Command : " + review_content);
+		
 		int review_rate = (Integer)model.getAttribute("review_rate");
 		System.out.println("Command : " + review_rate);
 
 		int cnt = 0;
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
-		cnt = dao.insertReview(mb_uid, review_content, review_rate);
+		cnt = dao.insertReview(mb_uid, store_uid, review_content, review_rate);
 		
 		model.addAttribute("result", cnt);
 	}
