@@ -129,7 +129,7 @@ CREATE TABLE NMJ_food
     `food_img_org`  VARCHAR(200)    NULL        COMMENT '음식 사진원본명', 
     `food_img_sav`  VARCHAR(200)    NULL        COMMENT '음식 사진저장명', 
     `food_price`    INT             NOT NULL    COMMENT '음식 가격', 
-    `food_name`     VARCHAR(45)     NOT NULL    COMMENT '음식 명', 
+    `food_name`     TEXT            NOT NULL    COMMENT '음식 명', 
     PRIMARY KEY (food_uid)
 );
 
@@ -157,13 +157,15 @@ ALTER TABLE NMJ_spaceImage COMMENT '공간 사진';
 -- NMJ_member Table Create SQL
 CREATE TABLE NMJ_space
 (
-    `space_uid`      INT    NOT NULL    AUTO_INCREMENT COMMENT '매장 공간 고유번호', 
-    `store_uid`      INT    NOT NULL    COMMENT '매장 고유 번호', 
-    `spaceList_uid`  INT    NOT NULL    COMMENT '공간 고유 번호', 
-    `space_price`    INT    NOT NULL    DEFAULT 0 COMMENT '공간 가격', 
-    `space_empty`    INT    NOT NULL    DEFAULT 1 COMMENT '0:사용불가 1:사용가능', 
-    `space_count`    INT    NOT NULL    DEFAULT 1 COMMENT '공간 사용 인원', 
-    `space_name`     INT    NOT NULL    COMMENT '공간 이름', 
+    `space_uid`      INT            NOT NULL    AUTO_INCREMENT COMMENT '매장 공간 고유번호', 
+    `store_uid`      INT            NOT NULL    COMMENT '매장 고유 번호', 
+    `spaceList_uid`  INT            NOT NULL    COMMENT '공간 고유 번호', 
+    `space_price`    INT            NOT NULL    DEFAULT 0 COMMENT '공간 가격', 
+    `space_empty`    INT            NOT NULL    DEFAULT 1 COMMENT '0:사용불가 1:사용가능', 
+    `space_count`    INT            NOT NULL    DEFAULT 1 COMMENT '공간 사용 인원', 
+    `space_name`     VARCHAR(45)    NOT NULL    COMMENT '공간 이름', 
+    `space_xloc`     DOUBLE         NULL        COMMENT '공간 x좌표', 
+    `space_yloc`     DOUBLE         NULL        COMMENT '공간 y좌표', 
     PRIMARY KEY (space_uid)
 );
 

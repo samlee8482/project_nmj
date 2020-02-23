@@ -86,6 +86,11 @@
 		<div id="boxMake">
 			<div id="">
 				<div id="boxMakingArea"></div>
+				<div id="boxListArea">
+					<div id="confirmArea">
+						 <button id="confirmbtn" type="button" class="btn btn-info">저장하기</button>
+					</div>
+				</div>
 				<div>
 					<div class="card text-white bg-primary mb-3" style="max-width:300px;">
 						<div class="card-header">공간입력하기</div>
@@ -97,9 +102,13 @@
 									<option value="${list.spaceList_uid }">${list.space_type }</option>
 								</c:forEach>
 							</select>
-							<input id="spaceNum" type="number" style="width:70px;">
-							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
+							<span>인원수</span><input id="spaceNum" type="number" style="width:70px;">
+							<div class="clear"></div>
+							<span>공간 이름</span><input id="spaceName" type="text">
+							<div class="clear"></div>
+							<span>공간 가격</span><input id="spacePrice" type="number">
 							</h4>
+							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
 						</div>
 					</div>					
 				</div>
