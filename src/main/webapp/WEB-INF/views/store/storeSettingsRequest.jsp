@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241e9154c601bbf9fb3d6d3a33e4af25&libraries=services"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>매장 정보 수정 요청</title>
@@ -16,19 +18,22 @@
 	매장 사업자 등록 저장 store_regImg_sav
 	매장 종류 store_type
 	매장 상세 종류 store_dtype
+	매장 위도 store_lat
+	매장 경도 store_long
 	운영자에게 한마디? text
 	 -->
 	 
 	 <form action="storeSettingsRequestOk.nmj" enctype="Multipart/form-data" method="post" onsubmit="return chkUpdate()">
 	 	<input type="hidden" name="store_uid" value="${result.store_uid}">
-	 	<input type="hidden" id="entY" name="st_latitude">
-	 	<input type="hidden" id="entX" name="st_longitude">
+	 	<input type="hidden" id="x" name="entX">
+		<input type="hidden" id="y" name="entY">
 	 	
 	 	매장 이름 변경: <input type="text" name="store_name" value="${result.store_name}">
 	 	<br>
 	 	
-	 	매장 주소 변경: <input type="text" id="roadFullAddr" name="roadFullAddr" value="${result.store_address}" readonly>
-	 	<button type="button" onclick="goPopup();">주소찾기</button>
+	 	매장 주소 변경: <input style="width: 300px;" type="text" id="sample5_address" name="store_address" value="${result.store_address}" readonly>
+	 	<button type="button" onclick="sample5_execDaumPostcode()">주소찾기</button>
+	 	<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 	 	<br>
 	 	
 	 	매장 사업자 등록 번호 변경: <input type="text" name="store_regNum" pattern="[0-9]{3}-[0-9]{2}-[0-9]{5}" value="${result.store_regNum}">
@@ -53,12 +58,11 @@
 	 	</select>
 	 	<br>
 	 	
-	 	변경사항에 대한 설명: <textarea maxlength="100" rows="10" cols="30" placeholder="운영자에게 한마디..."></textarea>
-	 	
-	 	<button type="submit">정보 수정 요청하기</button>
+	 	<button type="submit">정보 수정 요청</button>
 	 </form>
 </body>
 <script>
+
 /////////////////////////////////////////////////////////////////////////////////////////////////// 상세 종류 목록 변경
 $(document).ready(function(){
 	
@@ -73,7 +77,13 @@ function changeDetails() {
 	l = dtypes.length;
 	var result = "";
 	for(i = 0; i < l; i++){
-		result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
+		
+		if(dtypes[i].store_dtype == ${result.store_dtype}){
+			
+			result += "<option value='" + dtypes[i].store_dtype + "' selected>" + dtypes[i].store_dname + "</option>";
+		}else{
+			result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
+		}
 	}
 	
 	$("select.store_dtype").html(result);
@@ -94,43 +104,29 @@ function getJackson(){
 	})
 }
 //////////////////////////////////////////////////////////////////////////////////////////////	주소 api
-function goPopup(){
-    var pop = window.open("addressPopup.nmj","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-}
-function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
-						, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno
-						, emdNo, entX, entY){
-	document.getElementById("roadFullAddr").value = roadFullAddr;
-	convertCall(entX, entY);
-}
-function convertCall(entX, entY){
-	var x = entX;
-	var y = entY;
-	var url ="https://dapi.kakao.com/v2/local/geo/transcoord.json?x=" + x + "&y=" + y + "&input_coord=UTM&output_coord=WGS84";
-	$.ajax({
-		url: url,
-		headers: {'Authorization' : 'KakaoAK 241e9154c601bbf9fb3d6d3a33e4af25'},
-		type: "GET",
-		cache: false,
-		dataType: "json",
-		success: function(data, status){
-			if(status == "success"){
-				parseJSON(data);
-			}
-		}
-	});
-}
-function parseJSON(data) {	
-	var list = data.documents
-	
-	var entX = list[0].x;
-	var entY = list[0].y;
-	document.getElementById("entX").value = entX;
-	document.getElementById("entY").value = entY;
-}
-	
-	
-	
+    //주소-좌표 변환 객체를 생성
+    var geocoder = new daum.maps.services.Geocoder();
+
+    function sample5_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample5_address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+                        var result = results[0]; //첫번째 결과의 값을 활용
+		                document.getElementById("x").value = result.x;
+		                document.getElementById("y").value = result.y;
+                    }
+                });
+            }
+        }).open();
+    }
+
 	
 </script>
 </html>

@@ -43,7 +43,6 @@ public class MemberController {
 		return "/member/findPwOk";
 	}
 	
-	
 	// 매장 찾기 페이지
 	@GetMapping("/findStore.nmj")
 	public String findStoreGet(int store_type,int page, Model model) {

@@ -44,6 +44,8 @@ public class StoreSettingsOkCommand implements Command {
 					// 6. 지정된 경로에 파일 저장
 					upload.transferTo(saveFile);
 					existFile = true; //파일 저장 후 파일 첨부 여부 true로 바꿈
+					dto.setStore_img_org(upload.getOriginalFilename()); //파일 원본명
+					dto.setStore_img_sav(upload.getOriginalFilename()); //파일 저장명
 				} catch (Exception e) {
 					e.printStackTrace();
 					cnt = 500; // 500 : 파일 저장 실패
@@ -66,8 +68,6 @@ public class StoreSettingsOkCommand implements Command {
 		
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		if(existFile) {
-			dto.setStore_img_org(upload.getOriginalFilename()); //파일 원본명
-			dto.setStore_img_sav(upload.getOriginalFilename()); //파일 저장명
 			cnt = dao.updateStoreWImageByUid(dto);
 		} else {
 			cnt = dao.updateStoreWOImageByUid(dto);

@@ -1,8 +1,22 @@
 @charset "UTF-8";
 
+<!-- 글씨색 : #333(버튼 글씨색은 #555), 테두리색 : 0.7px #aaa, 배경색 : #eee -->
+
+.clear{
+	clear:both;
+}
+
 .div-relative{
-	position:relative;
+	position: relative;
 	width: 100%;
+}
+
+.title{
+	font-size: 50px;
+}
+
+.subtitle{
+	font-size: 17px;
 }
 
 #myPage_btn_container{
@@ -21,7 +35,7 @@
 	height: 200px;
 	font-weight: bold;
 	font-size: 15px;
-	color: #555;
+	color: #333;
 	text-align: center;
 	background-color: white;
 	border: 0.7px solid #aaa;
@@ -29,12 +43,148 @@
 	box-shadow: 0.2px 0.2px 0.2px 0.2px gray;
 }
 
-#updateInfo_container{
+#update_frm_container{
 	position: absolute;
 	width: 1000px;
-	height: 350px;
+	height: 700px;
 	top: 50%;
 	left: 50%; 
 	transform: translate(-50%, -50%);
 	text-align: center;
+}
+
+
+#update_info_container, #update_info_container1, #update_info_container2, #update_info_container3, #update_info_container4, #update_info_container5, #update_info_container6{
+	width: 700px;
+	font-size: 17px;
+	color: #333;
+	font-weight: 600;
+}
+
+.update_info{
+	width: 250px;
+	color: #333;
+	margin-left: 60px;
+	border-radius: 10px;
+	border: 0.7px solid #aaa;
+}
+
+#update_info_file{
+	display: inline; 
+}
+
+#find_frm_container{
+	position: absolute;
+	width: 1000px;
+	height: 500px;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-weight: 600;
+}
+
+#find_id_frm, #find_pw_frm{
+	overflow: hidden;
+}
+
+.find_info_container{
+	width: 1000px;
+	height: 250px;
+}
+
+.find_info{
+	width: 250px;
+	border-radius: 10px;
+	border: 0.7px solid #aaa;
+}
+
+.find_btn{
+	padding: 10px;
+	font-weight: ;
+	font-size: 15px;
+	color: #555;
+	text-align: center;
+	background-color: white;
+	border: 0.7px solid #aaa;
+	border-radius: 5px;
+	box-shadow: 0.2px 0.2px 0.2px 0.2px gray;
+}
+
+.findOk_container{
+	position: absolute;
+	width: 1000px;
+	height: 250px;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.login_btn{
+	padding: 10px;
+	font-weight: ;
+	font-size: 15px;
+	color: #555;
+	text-align: center;
+	background-color: white;
+	border: 0.7px solid #aaa;
+	border-radius: 5px;
+	box-shadow: 0.2px 0.2px 0.2px 0.2px gray;
+}
+
+.findOk_content{
+	font-size: 17px;
+}	
+
+.show_list_container{
+	position: absolute;
+	width: 1000px;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.show_list_container h1, .show_list_container table{
+	position: relative;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.show_list_container table {
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.show_list_container td, th{
+	font-size: 20px;
+	padding: 10px;
+	color: #555;
+    padding: 1em;
+    background: #eee;
+    border-left: 2px solid white; 
+    border-bottom: 2px solid white; 
+}
+
+#write_frm_container{
+	position: absolute;
+	width: 1000px;
+	height: 1000px;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+#star_grade a{
+    text-decoration: none;
+    color: gray;
+}
+
+#star_grade a.on{
+    color: red;
 }

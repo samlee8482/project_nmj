@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -25,11 +23,28 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/owl.theme.default.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/mySpace.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootswatch.css">
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
+<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
+	<!-- Owl carousel -->
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<!-- Stellar -->
+	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/js/mySpace.js"></script>
 
 </head>
 <body>
@@ -64,13 +79,52 @@
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
-	<div class="container">
-
-
+	<div>
+		<div id="draggArea">
 		
-			<!-- /example -->
+		</div>
+		<div id="boxMake">
+			<div id="">
+				<div id="boxMakingArea"></div>
+				<div>
+					<div class="card text-white bg-primary mb-3" style="max-width:300px;">
+						<div class="card-header">공간입력하기</div>
+						<div class="card-body">
+							<h4 class="card-title">
+							<select name="space_type" id="space_type">
+								<option value="">종류 선택</option>								
+								<c:forEach var="list" items="${space_type}">
+									<option value="${list.spaceList_uid }">${list.space_type }</option>
+								</c:forEach>
+							</select>
+							<input id="spaceNum" type="number" style="width:70px;">
+							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
+							</h4>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
 		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</div>
+	<div class="clear"></div>
 	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">
@@ -94,19 +148,7 @@
 		</div>
 	</footer>
 
-	<!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
-	<!-- Owl carousel -->
-	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-	<!-- Stellar -->
-	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-
+	
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 

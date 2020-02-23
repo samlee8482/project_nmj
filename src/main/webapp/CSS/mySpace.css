@@ -1,0 +1,104 @@
+@charset "UTF-8";
+#draggArea{
+	width: 900px;
+	margin: 0px 30px 0px 40px;
+	height: 900px;
+	display: inline-block;
+	float: left;
+	background-color: #E9ECEF;
+}
+
+
+#boxMake{
+	height: 900px;
+	width: 300px;
+	display: inline-block;
+	float: left;
+}
+
+#boxMakingArea{
+	height: 700px;
+	width: 300px;
+	background-color: gray;
+}
+
+.draggablepc {
+	height: 70px;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+}
+
+.draggablebil {
+	width: 270px;
+	height: 170px;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	border: 1px solid black;
+}
+
+.draggablekar {
+	width: 300px;
+	height: 270px;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	border: 1px solid black;
+}
+
+.draggablebowl {
+	width: 100px;
+	height: 420px;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	border: 1px solid black;
+}
+
+.pcspace{
+	width:50px;
+	height: 70px;
+	padding: 0;
+	margin: 0;
+	float: left;
+}
+.pcspaceimg {
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	margin: 0;
+	
+	background-image: url("../img/space/spacepc.jpeg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.pcNum{
+	width: 50px;
+	height: 20px;
+	font-size: 10px;
+}
+
+.karspaceimg{
+	width: 300px;
+	height: 250px;
+	background-image: url("../img/space/spacekaraoke.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.bilspaceimg{
+	width:270px;
+	height: 150px;
+	background-image: url("../img/space/spacebiliard.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.bowlspaceimg{
+	width: 100px;
+	height: 400px;
+	background-image: url("../img/space/spacebowling.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
