@@ -14,6 +14,7 @@ import qna.project.nmj.beans.FoodDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 import qna.project.nmj.command.Command;
+import qna.project.nmj.command.StoreMyFoodInsertOkCommand;
 import qna.project.nmj.command.StoreSettingsCommand;
 import qna.project.nmj.command.StoreSettingsOkCommand;
 import qna.project.nmj.command.StoreSettingsRequestOkCommand;
@@ -123,6 +124,15 @@ public class StoreMyPageController {
 	public String storeMyFoodInsert(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
 		return "/store/storeMyFoodInsert";
+	}
+//	4-3-1. 매장 음식 추가 Ok
+	@RequestMapping(value =  "/storeMyFoodInsertOk.nmj")
+	public String storeMyFoodInsertOk(@RequestParam("upload") MultipartFile upload, 
+			FoodDTO dto, Model model) {
+		model.addAttribute("upload", upload);
+		model.addAttribute("dto", dto);
+		new StoreMyFoodInsertOkCommand().execute(model);
+		return "/store/storeMyFoodInsertOk";
 	}
 	
 //	5. 매장 공간 관리
