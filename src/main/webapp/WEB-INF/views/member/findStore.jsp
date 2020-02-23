@@ -180,11 +180,31 @@
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
 					<li><a href="main.nmj">메인</a></li>
-					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
-					<li><a href="findStore.nmj?store_type=3">자자</a></li>
+					<c:choose>
+						<c:when test="${list.store_type eq 1 }">
+							<li><a href="findStore.nmj?store_type=1" class="active">놀자</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="findStore.nmj?store_type=1">놀자</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${list.store_type eq 2 }">
+							<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="findStore.nmj?store_type=2">먹자</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${list.store_type eq 3 }">
+							<li><a href="findStore.nmj?store_type=3" class="active">자자</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="findStore.nmj?store_type=3">자자</a></li>
+						</c:otherwise>
+					</c:choose>
 					<li><a href="communityList.nmj">떠들자</a></li>
-
 				</ul>
 			</nav>
 		</div>
@@ -269,9 +289,14 @@
 			<c:if test="${page eq 1 }">
 				<li><button id="leftpage"></button></li>			
 			</c:if>
-			<c:forEach var="">
+
+
+			
 				<li><button class5="pageNum choose" "></button></li>
-			</c:forEach>
+
+
+			
+			
 			<c:if test="${page eq totalPage }">
 				<li><button id="rightpage"></button></li>			
 			</c:if>		

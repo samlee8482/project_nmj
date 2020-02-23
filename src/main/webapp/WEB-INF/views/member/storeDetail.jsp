@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -88,9 +92,30 @@
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
 					<li><a href="main.nmj">메인</a></li>
-					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
-					<li><a href="findStore.nmj?store_type=3">자자</a></li>
+					<c:choose>
+						<c:when test="${list.store_type eq 1 }">
+							<li><a href="findStore.nmj?store_type=1" class="active">놀자</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="findStore.nmj?store_type=1">놀자</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${list.store_type eq 2 }">
+							<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="findStore.nmj?store_type=2">먹자</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${list.store_type eq 3 }">
+							<li><a href="findStore.nmj?store_type=3" class="active">자자</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="findStore.nmj?store_type=3">자자</a></li>
+						</c:otherwise>
+					</c:choose>
 					<li><a href="communityList.nmj">떠들자</a></li>
 				</ul>
 			</nav>
@@ -105,8 +130,8 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
 					<div class="fh5co-intro fh5co-table-cell">
-						<h1 class="text-center">기범호텔</h1>
-						<p>주소주소주소주소주소주소주소주소</p>
+						<h1 class="text-center">${list.store_name }</h1>
+						<p>${list.store_address }</p>
 					</div>
 				</div>
 			</div>
@@ -118,32 +143,39 @@
 				<div class="col-md-4 animate-box">
 					<h3>매장 정보</h3>
 					<ul class="contact-info">
-						<li><i class="icon-table"></i>잔여석 : <b>30</b></li>
-						<li><i class="icon-phone2"></i>010-2876-5568</li>
-						<li><i class="icon-alarm"></i><a href="#">11:00 ~ 21:00</a></li>
-						<li><i class="icon-star-full"></i>5.0</li>
-						<li><i class="icon-file-text2"></i>매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&매장설명&</a></li>
+						<li><i class="icon-table"></i>잔여석 : <b>${restSeat.count }</b></li>
+						<li><i class="icon-phone2"></i>${list.store_tel }</li>
+						<li><i class="icon-alarm"></i>${list.store_hours }</li>
+						<li><i class="icon-star-full"></i>${list.totalAvg }</li>
+						
+						<c:choose>
+							<c:when test="${empty list.store_content }">
+								<li><i class="icon-file-text2"></i>해당 매장의 상세설명이 없습니다.</li>
+							</c:when>
+							<c:otherwise>
+								<li><i class="icon-file-text2"></i>${list.store_content }</li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 				<div class="col-md-8 animate-box">
 					
 						<div id="profileImg" class="col-md-12">
-							<img src="">
+							<img src="${pageContext.request.contextPath}/img/store/${list.store_img_sav }">
 						</div>
 
-
 						<div class="col-md-12 reserveSubmit">
-							<input type="submit" value="RESERVE" class="btn btn-primary">
+							<input type="submit" value="RESERVE" class="btn btn-primary" onclick="location.href = 'cusReserve.nmj?store_uid=${store_uid }'">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+	<div class="mapContainer">
+		<h2>매장 위치</h2>
+		<div id="map" class="fh5co-map animate-box" style="outline: 1px solid red"></div>
 	</div>
-
-
-
-	<div id="map" class="fh5co-map animate-box"></div>
 	<!-- END map -->
 
 
@@ -153,11 +185,17 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
-						<p>Copyright 2016 Free Html5 <a href="#">Neos</a>. All Rights Reserved. <br>Made with <i class="icon-heart3 love"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a> &amp; <a href="http://plmd.me/" target="_blank">PLMD</a> </p>
+						<p>
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
+							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
+						</p>
 						<p class="fh5co-social-icons">
-							<a href="#"><i class="icon-twitter-with-circle"></i></a>
-							<a href="#"><i class="icon-facebook-with-circle"></i></a>
-							<a href="#"><i class="icon-instagram-with-circle"></i></a>
+							<a href="#"><i class="icon-twitter-with-circle"></i></a> <a
+								href="#"><i class="icon-facebook-with-circle"></i></a> <a
+								href="#"><i class="icon-instagram-with-circle"></i></a>
 						</p>
 					</div>
 				</div>
@@ -166,23 +204,23 @@
 	</footer>
 
 	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
 	<!-- Google Map -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
 	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/google_map.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/google_map.js"></script>
 	<!-- Stellar -->
-	<script src="js/jquery.stellar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
 
 	<!-- Main JS (Do not remove) -->
-	<script src="js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 	</body>
 </html>

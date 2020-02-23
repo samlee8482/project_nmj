@@ -12,8 +12,7 @@ public class StoreDetailCommand implements Command{
 		int store_uid = (Integer)model.getAttribute("store_uid");
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		model.addAttribute("list", dao.selectStoreDetail(store_uid));
-		
-		
+		model.addAttribute("restSeat", dao.StoreDetailRestSeat(store_uid));
 		
 		
 	}
