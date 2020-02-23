@@ -33,6 +33,11 @@ public interface StoreMyPageDAO {
 	 */
 	public int spaceInsert(SpaceDTO dto);
 	
+	/**
+	 * select a space by store_uid
+	 * @return SpaceDTO
+	 */
+	public ArrayList<SpaceDTO> spaceSelect(int store_uid);
 	
 	
 	public int spaceImageInsert(SpaceImgDTO dto);

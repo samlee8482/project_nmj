@@ -83,20 +83,6 @@ ALTER TABLE NMJ_store
 
 
 -- NMJ_member Table Create SQL
-CREATE TABLE NMJ_spaceList
-(
-    `spaceList_uid`  INT            NOT NULL    AUTO_INCREMENT COMMENT '공간 고유번호', 
-    `space_type`     VARCHAR(45)    NOT NULL    COMMENT '공간 종류', 
-    PRIMARY KEY (spaceList_uid)
-);
-
-ALTER TABLE NMJ_spaceList COMMENT '공간 종류';
-
-ALTER TABLE NMJ_spaceList
-    ADD CONSTRAINT UC_space_type UNIQUE (space_type);
-
-
--- NMJ_member Table Create SQL
 CREATE TABLE NMJ_review
 (
     `review_uid`        INT         NOT NULL    AUTO_INCREMENT COMMENT '리뷰_고유번호', 
@@ -175,10 +161,6 @@ ALTER TABLE NMJ_space
     ADD CONSTRAINT FK_NMJ_space_store_uid_NMJ_store_store_uid FOREIGN KEY (store_uid)
         REFERENCES NMJ_store (store_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE NMJ_space
-    ADD CONSTRAINT FK_NMJ_space_spaceList_uid_NMJ_spaceList_spaceList_uid FOREIGN KEY (spaceList_uid)
-        REFERENCES NMJ_spaceList (spaceList_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
 
 -- NMJ_member Table Create SQL
 CREATE TABLE NMJ_like
@@ -221,6 +203,20 @@ ALTER TABLE NMJ_reservation COMMENT '예약';
 ALTER TABLE NMJ_reservation
     ADD CONSTRAINT FK_NMJ_reservation_mb_uid_NMJ_member_mb_uid FOREIGN KEY (mb_uid)
         REFERENCES NMJ_member (mb_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- NMJ_member Table Create SQL
+CREATE TABLE NMJ_spaceList
+(
+    `spaceList_uid`  INT            NOT NULL    AUTO_INCREMENT COMMENT '공간 고유번호', 
+    `space_type`     VARCHAR(45)    NOT NULL    COMMENT '공간 종류', 
+    PRIMARY KEY (spaceList_uid)
+);
+
+ALTER TABLE NMJ_spaceList COMMENT '공간 종류';
+
+ALTER TABLE NMJ_spaceList
+    ADD CONSTRAINT UC_space_type UNIQUE (space_type);
 
 
 -- NMJ_member Table Create SQL

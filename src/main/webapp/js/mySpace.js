@@ -25,11 +25,11 @@ var draggcnt = 0;
 		 switch(selectBox){
 		 case '1':
 			 draggString = "#draggablepc";
-			 html += '<div id="draggablepc'+ draggcnt + '" class="draggablepc draggbox ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#1" style="width: ' + 50*spaceNum + 'px">';
+			 html += '<div id="draggablepc'+ draggcnt + '" class="draggablepc ui-widget-content " style="width: ' + 50*spaceNum + 'px">';
 
 			 for(var i = 0; i < spaceNum ; i++){
 				 cntpc++;
-				 html += '<div class="pcspace" style="float:left"><div class="pcspaceimg" ></div><div class="pcNum">'+ cntpc + '번 좌석</div></div>';
+				 html += '<div class="draggbox pcspecial pcspace space_count#' + 1 + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#1" style="float:left"><div class="pcspaceimg" ></div><div class="pcNum">'+ cntpc + '번 좌석</div></div>';
 			 }	
 			 html +=  '</div>';
 			 break;
@@ -41,7 +41,7 @@ var draggcnt = 0;
 		 case '3':
 			 cntbil++;
 			 draggString = "#draggablebil";
-			 html += '<div id="draggablebil'+ draggcnt + '" class="draggablebil  draggbox  ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#3"><div class="bilspaceimg"></div><div class="bilNum">' + cntbil + '번 당구대</div></div>';
+			 html += '<div id="draggablebil'+ draggcnt + '" class="draggablebil draggbox ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#3"><div class="bilspaceimg"></div><div class="bilNum">' + cntbil + '번 당구대</div></div>';
 			 break;
 		 case '4':
 			 cntbowl++;
@@ -89,14 +89,13 @@ var draggcnt = 0;
 				 space_price[i] = elements[4].split("#")[1];
 				 space_name[i] = elements[5].split("#")[1];
 				 spaceList_uid[i] = elements[6].split("#")[1];
-				 space_xloc[i] = positionX;
-				 space_yloc[i] = positionY;				 
+				 space_xloc[i] = positionX.split("px")[0];
+				 space_yloc[i] = positionY.split("px")[0];				 
 				 i++;
 			 });
-			 var store_uid = "${store_uid}";
 			 for(var j = 0; j < i ; j++){
 				 $.ajax({
-					 url : "${pageContext.request.contextPath}/space.ajax",
+					 url : "/nmj/store/space.ajax",
 					 type : "POST",
 					 cache : false,
 					 data : {
@@ -110,7 +109,10 @@ var draggcnt = 0;
 					 },
 					 success : function(data, status){
 						 if(status == "success"){
-							 
+							 alert("성공");
+						 }
+						 else{
+							 alert("실패");
 						 }
 					 }
 				 });					 
