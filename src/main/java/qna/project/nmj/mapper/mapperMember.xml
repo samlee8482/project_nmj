@@ -27,8 +27,8 @@
 	
 	<!-- 페이지네이션 -->
 	<!-- 글 목록 전체 개수 가져오기 -->
-	<select id="selectStoreCount" resultType="qna.project.nmj.beans.FindStoreDTO">
-		SELECT COUNT(*) FROM NMJ_store NATURAL JOIN NMJ_storeDType
+	<select id="selectStoreCount" resultType="int">
+		SELECT COUNT(*) FROM NMJ_store NATURAL JOIN NMJ_storeDType WHERE store_type = #{param1};
 	</select>
 	
 	
@@ -39,6 +39,17 @@
 			*
 		FROM NMJ_store NATURAL JOIN NMJ_storeDType
 		WHERE store_type = #{param1} order by store_uid asc limit 0, 9;
+	</select>
+	<select id="selectStoreType" resultType="qna.project.nmj.beans.StoreTypeDTO">
+		SELECT * FROM NMJ_storeDType where store_type = #{param1};
+	</select>
+	
+	<select id="page" resultType="qna.project.nmj.beans.FindStoreDTO">
+		SELECT
+			*
+		FROM NMJ_store NATURAL JOIN NMJ_storeDType
+		WHERE store_type = #{param1} order by store_uid asc limit #{fromRow}, #{writePages};
+		
 	</select>
 	
 </mapper>
