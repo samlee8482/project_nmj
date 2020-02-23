@@ -19,6 +19,7 @@ import qna.project.nmj.command.StoreSettingsCommand;
 import qna.project.nmj.command.StoreSettingsOkCommand;
 import qna.project.nmj.command.StoreSettingsRequestOkCommand;
 import qna.project.nmj.command.StoreMyReviewCommand;
+import qna.project.nmj.command.*;
 
 @Controller
 @RequestMapping(value="/store")
@@ -137,8 +138,10 @@ public class StoreMyPageController {
 	
 //	5. 매장 공간 관리
 	@RequestMapping(value="/storeMySpace.nmj")
-	public String storeMySpace(Model model) {
-		
+	public String storeMySpace(Model model, int store_uid) {
+		model.addAttribute("store_uid", store_uid);
+		command = new StoreMySpaceCommand();
+		command.execute(model);
 		return "/store/storeMySpace";
 	}
 	
