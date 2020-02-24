@@ -22,7 +22,9 @@
 		JOIN NMJ_member c ON a.mb_uid = c.mb_uid 
 		ORDER BY review_uid DESC
 	</select>
-
+	<!-- 일반글 목록 -->
+	<select id=""></select>
+	
 	<!-- 리뷰 1개 불러오기 -->
 	<select id="selectReviewByUid" 
  		resultType="qna.project.nmj.beans.ReviewJoinDTO">
@@ -31,6 +33,10 @@
 		JOIN NMJ_store b ON a.store_uid = b.store_uid 
 		JOIN NMJ_member c ON a.mb_uid = c.mb_uid 
 		WHERE review_uid = #{param1}
+ 	</select>
+ 	<!-- 일반글 1개 불러오기 -->
+ 	<select id="selectViewByUid" resultType="qna.project.nmj.beans.ReviewDTO">
+ 		SELECT * FROM NMJ_review WHERE review_uid = #{param1};
  	</select>
  	
 	<!-- 조회수 증가 -->

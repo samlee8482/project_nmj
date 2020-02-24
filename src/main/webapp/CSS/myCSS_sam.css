@@ -30,17 +30,21 @@
 }
 
 .myPage_btn{
-	margin-left: 15px;	
-	width: 200px;
-	height: 200px;
+	margin-left: 50px;	
+	width: 250px;
+	height: 250px;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 20px;
 	color: #333;
 	text-align: center;
 	background-color: white;
 	border: 0.7px solid #aaa;
-	border-radius: 10px;
-	box-shadow: 0.2px 0.2px 0.2px 0.2px gray;
+	border-radius: 15px;
+}
+
+.myPage_btn:hover {
+	background-color: red;
+	opacity: 0.6;
 }
 
 #update_frm_container{
@@ -55,18 +59,22 @@
 
 
 #update_info_container, #update_info_container1, #update_info_container2, #update_info_container3, #update_info_container4, #update_info_container5, #update_info_container6{
+	display: inline-block;
 	width: 700px;
+	height: 70px;
 	font-size: 17px;
 	color: #333;
-	font-weight: 600;
+	font-weight: 500;
+	margin-bottom: 5px;
 }
 
 .update_info{
-	width: 250px;
+	width: 300px;
 	color: #333;
 	margin-left: 60px;
 	border-radius: 10px;
 	border: 0.7px solid #aaa;
+	padding: 0px 10px;
 }
 
 #update_info_file{
@@ -138,35 +146,34 @@
 }	
 
 .show_list_container{
-	position: absolute;
-	width: 1000px;
-	top: 50%;
-	left: 50%; 
-	transform: translate(-50%, -50%);
-	text-align: center;
+	width: 70%;
+	margin: 0px auto;
 }
 
-.show_list_container h1, .show_list_container table{
-	position: relative;
-	top: 50%;
-	left: 50%; 
-	transform: translate(-50%, -50%);
-	text-align: center;
-}
 
 .show_list_container table {
   border-collapse: collapse;
   border-radius: 1em;
-  overflow: hidden;
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 20px;
 }
 
+.show_list_container table th{
+	text-align: center;
+}
+
+
 .show_list_container td, th{
-	font-size: 20px;
+	height: 50px;
+	font-size: 14px;
 	padding: 10px;
 	color: #555;
     padding: 1em;
     background: #eee;
     border-left: 2px solid white; 
+    border-right: 2px solid white; 
+    border-top: 2px solid white; 
     border-bottom: 2px solid white; 
 }
 

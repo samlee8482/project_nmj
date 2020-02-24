@@ -9,9 +9,23 @@
 			history.back();
 		</script>
 	</c:when>
-	<c:when test="${result == 1 }">
+	<c:when test="${result == 1}">
+		<c:choose>
+			<c:when test="${rate == 1 }">
+				<script>
+					alert("리뷰 작성 성공");
+				
+				</script>
+			</c:when>
+			<c:otherwise>
+				<script>
+					alert("글 작성 성공");
+				
+				</script>
+			
+			</c:otherwise>
+		</c:choose>
 		<script>
-			alert("작성 성공");
 			location.href = "communityList.nmj";
 		</script>
 	</c:when>

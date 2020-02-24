@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import qna.project.nmj.ajax.dto.AjaxBoardQueryResult;
 import qna.project.nmj.ajax.dto.AjaxStoreDTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypesDTO;
@@ -80,5 +81,25 @@ public class AjaxStoreMyPageController {
 		return dto;
 	}
 	
+	@PostMapping(value="/space.ajax")
+	public void space(SpaceDTO dto) {
+		StoreMyPageDAO dao  = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		dao.spaceInsert(dto);
+	}
+	
+	@PostMapping(value="/spaceempty.ajax")
+	public AjaxBoardQueryResult spaceEmpty(SpaceDTO dto) {
+		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		AjaxBoardQueryResult qr = new AjaxBoardQueryResult();
+		int cnt = dao.spaceEmpty(dto.getSpace_uid(), dto.getSpace_empty());
+		if(cnt != 0) {
+			qr.setCount(cnt);
+			qr.setStatus("OK");
+		}else {
+			qr.setCount(cnt);
+			qr.setStatus("FAIL");
+		}
+		return qr;
+	}
 	
 }

@@ -60,9 +60,12 @@ function changeDetails() {
 		result += "<div class='desc'>";
 		result += "<h3>" + food[i].food_name + "</h3><span>" + food[i].food_price + "원</span>";
 		result += "</div>";
-		
+		result += "<span>";
 		result += "<button class='btn btn-lg btn-primary' type='button' onclick='location.href=\"storeMyFoodUpdate.nmj?food_uid=" + food[i].food_uid + "\"'>수정</button>";
 		result += "<button class='btn btn-lg btn-secondary' type='button' onclick=\"chkDelete('" + food[i].food_name +"', '" + food[i].food_uid + "')\">삭제</button>";
+		result += "</span>";
+		
+		
 		
 		result += "</div>";
 		result += "</div>";

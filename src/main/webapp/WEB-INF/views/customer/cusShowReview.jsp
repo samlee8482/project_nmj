@@ -53,8 +53,9 @@
 				</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
+					<li><a href="main.nmj">메인</a></li>
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
+					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
 					<li><a href="communityList.nmj">떠들자</a></li>
 					
@@ -68,15 +69,16 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>내가 쓴 리뷰와 댓글</h2>
+					<p>"한번 뱉어낸 말은 다시 삼킬 수 없다"</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: 1000px;">
+	<div class="div-relative" style="width: 100%; height: auto;">
 		<div class="show_list_container">
-			<h1>내가 쓴 리뷰</h1><br><br><br><br>
+			<h2>내가 쓴 리뷰</h2>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -114,8 +116,10 @@
 					</tr>
 				</c:if>			
 			</table>
-			
-			<h1>내가 쓴 댓글</h1><br><br><br><br>
+		</div>
+		
+		<div class="show_list_container">
+			<h2>내가 쓴 댓글</h2>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -142,16 +146,17 @@
 			</table>
 		</div>
 	</div>
-		<footer>
+	
+	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<p>
-							Copyright 2016 Free Html5 <a href="#">Neos</a>. All Rights
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
 							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> /
-							Demo Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
 							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
 						</p>
 						<p class="fh5co-social-icons">

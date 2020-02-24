@@ -4,12 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import qna.project.nmj.ajax.dto.AjaxBoardQueryResult;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FoodDTO;
 import qna.project.nmj.beans.SpaceDTO;
@@ -50,6 +52,7 @@ public class StoreMyPageController {
 	public String storeSettings(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
+		model.addAttribute("nav", 6);
 		return "/store/storeSettings";
 	}
 //	2-2. 매정 정보 수정 ok
@@ -67,6 +70,7 @@ public class StoreMyPageController {
 	public String storeSettingsRequest(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
+		model.addAttribute("nav", 7);
 		return "/store/storeSettingsRequest";
 	}
 //	3-1. 매장 주소 찾기
@@ -95,6 +99,7 @@ public class StoreMyPageController {
 	@RequestMapping(value = "/storeMyFood.nmj")
 	public String storeMyFood(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
+		model.addAttribute("nav", 4);
 		
 		return "/store/storeMyFood";
 	}
@@ -104,6 +109,7 @@ public class StoreMyPageController {
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		FoodDTO dto = dao.selectFoodByFoodUid(food_uid);
 		model.addAttribute("dto", dto);
+		model.addAttribute("nav", 4);
 		return "/store/storeMyFoodUpdate";
 	}
 //	4-1-1. 특정 음식 수정 ok
@@ -126,6 +132,7 @@ public class StoreMyPageController {
 	@RequestMapping(value = "/storeMyFoodInsert.nmj")
 	public String storeMyFoodInsert(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
+		model.addAttribute("nav", 4);
 		return "/store/storeMyFoodInsert";
 	}
 //	4-3-1. 매장 음식 추가 Ok
@@ -144,6 +151,7 @@ public class StoreMyPageController {
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMySpaceCommand();
 		command.execute(model);
+		model.addAttribute("nav", 3);
 		return "/store/storeMySpace";
 	}
 	
@@ -154,14 +162,10 @@ public class StoreMyPageController {
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMyReviewCommand();
 		command.execute(model);
-		
+		model.addAttribute("nav", 5);
 		return "store/storeMyReview";
 	}
 
-	@PostMapping(value="/space.ajax")
-	public void space(SpaceDTO dto) {
-		StoreMyPageDAO dao  = C.sqlSession.getMapper(StoreMyPageDAO.class);
-		dao.spaceInsert(dto);
-	}
+	
 	
 }

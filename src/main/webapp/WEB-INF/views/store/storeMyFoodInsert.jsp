@@ -8,23 +8,63 @@
 <title>음식 추가</title>
 </head>
 <body>
-	 
- <form name="frm" action="storeMyFoodInsertOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
- 	<input type="hidden" name="store_uid" value="${store_uid}">
- 	음식 이름: <input type="text" class="food_name" name="food_name" value="">
- 	<br>
- 	
- 	음식 가격 : <input type="text" name="food_price" value="">
- 	<br>
- 	
- 	음식 사진: 
- 	<br>
- 	<input type="file" name="upload" accept="image/*">
- 	
- 	<br>
- 	<button type="submit">음식 추가</button>
- 	<button type="button" onclick="history.back()">이전</button>
- </form>
+<jsp:include page="storeHeader.jsp"></jsp:include>
+
+<div id="fh5co-contact-section">
+	<div class="container">
+		<div class="row">
+			<div class="animate-box fadeInUp animated">
+				<form name="frm" action="storeMyFoodInsertOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
+					<input type="hidden" name="store_uid" value="${store_uid}">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>음식 이름</label>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<input class="form-control" type="text" class="food_name" name="food_name" value="" placeholder="음식 이름" required>
+						</div>
+					</div>
+					
+					
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>음식 가격</label>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<input class="form-control" type="text" name="food_price" value="" pattern="^[1-9][0-9]*" placeholder="ex) 2000" required>
+						</div>
+					</div>
+
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>음식 사진</label>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<input type="file" name="upload" accept="image/*">
+						</div>
+					</div>
+					
+					
+					<div class="col-md-12">
+					 	<div class="form-group">
+						 	<button type="submit" class="btn btn-primary btn-lg">수정</button>
+						 	<button type="button" class="btn btn-lg" onclick="history.back()">이전</button>
+					 	</div>
+				 	</div>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 <script>
 $(document).ready(function(){
