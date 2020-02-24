@@ -148,4 +148,12 @@
 	SELECT * FROM NMJ_space WHERE store_uid = #{param1};	
 	</select>
 	
+	<update id="spaceEmpty">
+		UPDATE
+			NMJ_space
+		SET
+			space_empty = #{param2}
+		WHERE
+			space_uid = #{param1};
+	</update>
 </mapper>
