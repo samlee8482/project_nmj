@@ -109,7 +109,7 @@
             <div class="card-body">
 
           <c:choose>
-             <c:when test="${dto.mb_img_org == null}">
+             <c:when test='${dto.mb_img_org == null || fn:trim(dto.mb_img_org) == ""}'>
              <img src="${pageContext.request.contextPath}/img/member/memberDefault.png">
              </c:when>
              <c:otherwise>

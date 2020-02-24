@@ -108,15 +108,15 @@
 
             <div class="card-body">
             
-             <c:choose>
-                <c:when test="${dto.mb_img_org == null}">
-                <img src="${pageContext.request.contextPath}/img/store/storeDefault.png">
-                </c:when>
-                <c:otherwise>
-                <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }">
-                </c:otherwise>
-             </c:choose>
-             <br><br>
+	         <c:choose>
+	             <c:when test='${dto.mb_img_org == null || fn:trim(dto.mb_img_org) == ""}'>
+	             <img src="${pageContext.request.contextPath}/img/member/memberDefault.png">
+	             </c:when>
+	             <c:otherwise>
+	             <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }">
+	             </c:otherwise>
+	          </c:choose>
+	          <br><br>
 
 			<div style="text-align:left;">
 			<u><strong>이름</strong></u><br> ${dto.mb_name } <br><br>
@@ -124,6 +124,17 @@
 			<u><strong>연락처</strong></u><br> ${dto.mb_tel } <br><br>
 			<u><strong>이메일</strong></u><br> ${dto.mb_email } <br><br>
 			<u><strong>가입날짜</strong></u><br> ${dto.mb_regDate } <br><br>
+			
+             <c:choose>
+                <c:when test='${dto2.store_img_org == null || fn:trim(dto2.store_img_org) == ""}'>
+                <img src="${pageContext.request.contextPath}/img/store/storeDefault.png">
+                </c:when>
+                <c:otherwise>
+                <img src="${pageContext.request.contextPath}/img/store/${dto2.store_img_org }">
+                </c:otherwise>
+             </c:choose>
+             <br><br>
+             
 			<u><strong>매장종류</strong></u><br> 
 				<c:choose>
 					<c:when test="${dto2.store_type == 1 }">
