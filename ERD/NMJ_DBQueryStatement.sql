@@ -13,3 +13,5 @@ SELECT
 		
 select * from nmj_space ns ;
 truncate table nmj_space ;  
+
+SELECT * FROM nmj_review;

@@ -52,6 +52,7 @@ public class StoreMyPageController {
 	public String storeSettings(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
+		model.addAttribute("nav", 6);
 		return "/store/storeSettings";
 	}
 //	2-2. 매정 정보 수정 ok
@@ -69,6 +70,7 @@ public class StoreMyPageController {
 	public String storeSettingsRequest(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
+		model.addAttribute("nav", 7);
 		return "/store/storeSettingsRequest";
 	}
 //	3-1. 매장 주소 찾기
@@ -97,6 +99,7 @@ public class StoreMyPageController {
 	@RequestMapping(value = "/storeMyFood.nmj")
 	public String storeMyFood(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
+		model.addAttribute("nav", 4);
 		
 		return "/store/storeMyFood";
 	}
@@ -106,6 +109,7 @@ public class StoreMyPageController {
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		FoodDTO dto = dao.selectFoodByFoodUid(food_uid);
 		model.addAttribute("dto", dto);
+		model.addAttribute("nav", 4);
 		return "/store/storeMyFoodUpdate";
 	}
 //	4-1-1. 특정 음식 수정 ok
@@ -128,6 +132,7 @@ public class StoreMyPageController {
 	@RequestMapping(value = "/storeMyFoodInsert.nmj")
 	public String storeMyFoodInsert(int store_uid, Model model) {
 		model.addAttribute("store_uid", store_uid);
+		model.addAttribute("nav", 4);
 		return "/store/storeMyFoodInsert";
 	}
 //	4-3-1. 매장 음식 추가 Ok
@@ -146,6 +151,7 @@ public class StoreMyPageController {
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMySpaceCommand();
 		command.execute(model);
+		model.addAttribute("nav", 3);
 		return "/store/storeMySpace";
 	}
 	
@@ -156,7 +162,7 @@ public class StoreMyPageController {
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMyReviewCommand();
 		command.execute(model);
-		
+		model.addAttribute("nav", 5);
 		return "store/storeMyReview";
 	}
 

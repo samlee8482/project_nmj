@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ public class HomeController {
 	SqlSession sqlSession;
 	ServletContext context;
 	
+
 	@Autowired
 	public void setContext(ServletContext context) {
 		this.context = context;

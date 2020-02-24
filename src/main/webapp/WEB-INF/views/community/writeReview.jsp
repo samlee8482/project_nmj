@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,13 +38,12 @@ function chkSubmit(){
 	var review_content = frm["review_content"].value;
 	var review_rate = frm["review_rate"].value;
 	
-	if(review_content == ""){
+	if(review_content.length() == 0){
 		alert("내용을 입력하세요");
 		return false;
 	}
-	if(review_rate == ""){
-		alert("평점을 입력하세요");
-		return false;
+	if(review_rate == null){
+		review_rate = 0;
 	}
 	
 	return true;
@@ -96,7 +97,7 @@ function chkSubmit(){
 	<div class="div-relative" style="height: 1000px;">
 		<div id="write_frm_container">
 			<h3>여러분의 리뷰를 남겨주세요</h3><br>
-			<form name="frm" method="get" action="writeReviewOk.nmj" onSubmit="return chkSubmit()">
+			<form name="frm" method="post" action="writeReviewOk.nmj" onSubmit="return chkSubmit()">
 				<!-- 
 				<h3 class="main-title">
 					<input name="review_content" placeholder="제목을 입력하세요" value="${review_content }" style="width: 100%; padding: 10px;" />
@@ -112,20 +113,38 @@ function chkSubmit(){
 						});
 					</script>
 				</div><br><br><br><br><br><br><br>
-				<div style="display: inline-block;">
-				<h3>나의 평점은?</h2>
-				<p id="star_grade">
-			        <a value="1" href="#">★</a>
-			        <a value="2" href="#">★</a>
-			        <a value="3" href="#">★</a>
-			        <a value="4" href="#">★</a>
-			        <a value="5" href="#">★</a>
-				</p>
-				</div><br><br><br>
+				
+				<c:choose>
+					<c:when test="${store_uid eq 0}">
+						<div style="display: none;">
+							<h3>나의 평점은?</h2>
+							<p id="star_grade">
+						        <a value="1" href="#">★</a>
+						        <a value="2" href="#">★</a>
+						        <a value="3" href="#">★</a>
+						        <a value="4" href="#">★</a>
+						        <a value="5" href="#">★</a>
+							</p>
+						</div><br><br><br>
+					</c:when>
+					<c:otherwise>
+						<div style="display: inline-block;">
+							<h3>나의 평점은?</h2>
+							<p id="star_grade">
+						        <a value="1" href="#">★</a>
+						        <a value="2" href="#">★</a>
+						        <a value="3" href="#">★</a>
+						        <a value="4" href="#">★</a>
+						        <a value="5" href="#">★</a>
+							</p>
+						</div><br><br><br>
+					</c:otherwise>
+				</c:choose>
 				<input type="hidden" name="mb_uid" value="${mb_uid }" />
 				<input type="hidden" name="store_uid" value="${store_uid }" />
-				<input id="review_rate" type="hidden" name="review_rate" value="" />
+				<input id="review_rate" type="hidden" name="review_rate" value="0" />
 				<button class="login_btn" type="submit">작성 완료</button>
+				
 			</form>
 		</div>
 	</div>

@@ -4,11 +4,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import qna.project.nmj.beans.C;
-import qna.project.nmj.command.AdminCommunityInfoCommand;
-import qna.project.nmj.command.AdminCommunityListCommand;
 import qna.project.nmj.command.Command;
 import qna.project.nmj.command.CommunityListCommand;
 import qna.project.nmj.command.CommunityUpdateRateCommand;
@@ -36,7 +35,7 @@ public class CommunityController {
 		return "/community/writeReview";
 	}
 	
-	@RequestMapping("/writeReviewOk.nmj")
+	@PostMapping(value = "/writeReviewOk.nmj")
 	public String insertReviewOk(int mb_uid, int store_uid, String review_content, int review_rate, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
 		System.out.println("Controller mb_uid : " + mb_uid);
@@ -48,7 +47,7 @@ public class CommunityController {
 		System.out.println("Controller review_rate : " + review_rate);
 		new CommunityWriteOkCommand().execute(model);
 		new CommunityUpdateRateCommand().execute(model);
-		return "/community/writeReview";
+		return "/community/writeReviewOk";
 	}
 	
 	@RequestMapping("/communityList.nmj")
