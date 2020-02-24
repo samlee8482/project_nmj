@@ -195,6 +195,7 @@ CREATE TABLE NMJ_reservation
     `reservation_count`  INT         NOT NULL    DEFAULT 1 COMMENT '예약 인원', 
     `reservation_seat`   TEXT        NOT NULL    COMMENT '예약 좌석', 
     `reservation_price`  INT         NOT NULL    DEFAULT 0 COMMENT '예약 금액', 
+    `store_uid`          INT         NOT NULL    COMMENT '매장 고유 번호', 
     PRIMARY KEY (reservation_uid)
 );
 
@@ -203,6 +204,10 @@ ALTER TABLE NMJ_reservation COMMENT '예약';
 ALTER TABLE NMJ_reservation
     ADD CONSTRAINT FK_NMJ_reservation_mb_uid_NMJ_member_mb_uid FOREIGN KEY (mb_uid)
         REFERENCES NMJ_member (mb_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE NMJ_reservation
+    ADD CONSTRAINT FK_NMJ_reservation_store_uid_NMJ_store_store_uid FOREIGN KEY (store_uid)
+        REFERENCES NMJ_store (store_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 -- NMJ_member Table Create SQL

@@ -51,8 +51,9 @@
 				</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
+					<li><a href="main.nmj">메인</a></li>
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
+					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
 					<li><a href="communityList.nmj">떠들자</a></li>
 					
@@ -74,11 +75,11 @@
 	<!-- end fh5co-intro-section -->
 
 	<!-- 아래 버튼들은 현재 세션값 안받아오므로 세션없이 임의로 uid 값 넣어준 버전. 추후 세션값 넣어서 보내주는 걸로 바꿔야함. -->
-	<div class="div-relative" style="width: 100%; height: 500px;">
+	<div class="div-relative" style="width: 80%; height: 500px; margin: 0px auto;">
 		<div id="myPage_btn_container">
-			<button class="myPage_btn" onclick="location.href='cusUpdateInfo.nmj?mb_uid=5'">회원 정보 수정</button>
-			<button class="myPage_btn" onclick="location.href='cusShowReserve.nmj?mb_uid=5'">예약/찜 목록 보기</button>
-			<button class="myPage_btn" onclick="location.href='cusShowReview.nmj?mb_uid=5'">내가 쓴 리뷰&댓글 보기</button>
+			<button class="myPage_btn" onclick="location.href='cusUpdateInfo.nmj?mb_uid=${mb_uid}'">회원 정보 수정</button>
+			<button class="myPage_btn" onclick="location.href='cusShowReserve.nmj?mb_uid=${mb_uid}'">예약/찜 목록 보기</button>
+			<button class="myPage_btn" onclick="location.href='cusShowReview.nmj?mb_uid=${mb_uid}'">내가 쓴 리뷰&댓글 보기</button>
 		</div>
 	</div>
 	
@@ -88,10 +89,10 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<p>
-							Copyright 2016 Free Html5 <a href="#">Neos</a>. All Rights
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
 							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> /
-							Demo Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
 							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
 						</p>
 						<p class="fh5co-social-icons">

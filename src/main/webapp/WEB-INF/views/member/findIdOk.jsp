@@ -68,8 +68,9 @@
 				</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
+					<li><a href="main.nmj">메인</a></li>
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
+					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
 					<li><a href="communityList.nmj">떠들자</a></li>
 					
@@ -103,10 +104,10 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<p>
-							Copyright 2016 Free Html5 <a href="#">Neos</a>. All Rights
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
 							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> /
-							Demo Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
 							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
 						</p>
 						<p class="fh5co-social-icons">
