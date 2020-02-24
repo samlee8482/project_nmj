@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,8 +12,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FoodDTO;
+import qna.project.nmj.beans.SpaceDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
+import qna.project.nmj.command.Command;
+import qna.project.nmj.command.StoreMyFoodInsertOkCommand;
+import qna.project.nmj.command.StoreSettingsCommand;
+import qna.project.nmj.command.StoreSettingsOkCommand;
+import qna.project.nmj.command.StoreSettingsRequestOkCommand;
+import qna.project.nmj.command.StoreMyReviewCommand;
 import qna.project.nmj.command.*;
 
 @Controller
@@ -120,6 +128,15 @@ public class StoreMyPageController {
 		model.addAttribute("store_uid", store_uid);
 		return "/store/storeMyFoodInsert";
 	}
+//	4-3-1. 매장 음식 추가 Ok
+	@RequestMapping(value =  "/storeMyFoodInsertOk.nmj")
+	public String storeMyFoodInsertOk(@RequestParam("upload") MultipartFile upload, 
+			FoodDTO dto, Model model) {
+		model.addAttribute("upload", upload);
+		model.addAttribute("dto", dto);
+		new StoreMyFoodInsertOkCommand().execute(model);
+		return "/store/storeMyFoodInsertOk";
+	}
 	
 //	5. 매장 공간 관리
 	@RequestMapping(value="/storeMySpace.nmj")
@@ -141,5 +158,10 @@ public class StoreMyPageController {
 		return "store/storeMyReview";
 	}
 
+	@PostMapping(value="/space.ajax")
+	public void space(SpaceDTO dto) {
+		StoreMyPageDAO dao  = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		dao.spaceInsert(dto);
+	}
 	
 }

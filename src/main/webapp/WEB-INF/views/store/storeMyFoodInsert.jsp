@@ -9,7 +9,7 @@
 </head>
 <body>
 	 
- <form name="frm" action="storeMyFoodInsertOk.jsp" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
+ <form name="frm" action="storeMyFoodInsertOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
  	<input type="hidden" name="store_uid" value="${store_uid}">
  	음식 이름: <input type="text" class="food_name" name="food_name" value="">
  	<br>

@@ -15,11 +15,26 @@
 	음식 가격 food_price
 	음식 명 food_name
 	 -->
-	 <button type="button" onclick="location.href = 'storeMyFoodInsert.nmj?store_uid=${store_uid}'">음식 추가</button>
-	 <ul class="foodList">
-	 </ul>
-	 
-	 
+<jsp:include page="storeHeader.jsp"></jsp:include>
+
+<div id="fh5co-work-section">
+	<div class="container">
+		<div class="row text-center">
+			<div class="animate-box fadeInUp animated">
+				<div class="foodList">
+				</div>
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-lg" type="button" onclick="location.href = 'storeMyFoodInsert.nmj?store_uid=${store_uid}'">음식 추가</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 <script>
 $(document).ready(function(){
@@ -35,14 +50,25 @@ function changeDetails() {
 	var result = "";
 	for(i = 0; i < l; i++){
 		
-		result += "<li>";
-		result += "" + food[i].food_name + " : " + food[i].food_price + "원";
-		result += "<button type='button' onclick='location.href=\"storeMyFoodUpdate.nmj?food_uid=" + food[i].food_uid + "\"'>수정</button>";
-		result += "<button type='button' onclick=\"chkDelete('" + food[i].food_name +"', '" + food[i].food_uid + "')\">삭제</button>";
-		result += "</li>";
+		result += "<div class='col-md-4'>";
+		result += "<div class='fh5co-grid-work'>";
+		
+		result += "<div class='work-holder'>";
+		result += "<img style='width: 100%; height: 100%;' src='${pageContext.servletContext.contextPath}/img/food/" + food[i].food_img_sav + "'>";
+		result += "</div>";
+		
+		result += "<div class='desc'>";
+		result += "<h3>" + food[i].food_name + "</h3><span>" + food[i].food_price + "원</span>";
+		result += "</div>";
+		
+		result += "<button class='btn btn-lg btn-primary' type='button' onclick='location.href=\"storeMyFoodUpdate.nmj?food_uid=" + food[i].food_uid + "\"'>수정</button>";
+		result += "<button class='btn btn-lg btn-secondary' type='button' onclick=\"chkDelete('" + food[i].food_name +"', '" + food[i].food_uid + "')\">삭제</button>";
+		
+		result += "</div>";
+		result += "</div>";
 	}
 	
-	$("ul.foodList").html(result);
+	$("div.foodList").html(result);
 	
 }
 

@@ -34,9 +34,14 @@ function chkSubmit(){
 	frm = document.forms["frm"];
 	
 	var review_content = frm["review_content"].value;
+	var review_rate = frm["review_rate"].value;
 	
 	if(review_content == ""){
 		alert("내용을 입력하세요");
+		return false;
+	}
+	if(review_rate == ""){
+		alert("평점을 입력하세요");
 		return false;
 	}
 	
@@ -67,9 +72,9 @@ function chkSubmit(){
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
+					<li><a href="findStore.nmj?store_type=2" >먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj">떠들자</a></li>
+					<li><a href="communityList.nmj" class="active">떠들자</a></li>
 					
 				</ul>
 			</nav>
@@ -117,8 +122,9 @@ function chkSubmit(){
 			        <a value="5" href="#">★</a>
 				</p>
 				</div><br><br><br>
-				<input type="hidden" name="mb_uid" value="${mb_uid }" />  <!-- mb_uid -->
-				<input id="review_rate" type="hidden" name="review_rate" value="" />  <!-- mb_uid -->
+				<input type="hidden" name="mb_uid" value="${mb_uid }" />
+				<input type="hidden" name="store_uid" value="${store_uid }" />
+				<input id="review_rate" type="hidden" name="review_rate" value="" />
 				<button class="login_btn" type="submit">작성 완료</button>
 			</form>
 		</div>

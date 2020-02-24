@@ -8,7 +8,10 @@ import qna.project.nmj.beans.ReviewJoinDTO;
 public interface ReviewDAO {
 	
 	// 리뷰 삽입
-	public int insertReview(int mb_uid, String review_content, int review_rate);
+	public int insertReview(int mb_uid, int store_uid, String review_content, int review_rate);
+	
+	// 리뷰에서 평점 매김과 동시에 매장 평점 업데이트
+	public int increaseReviewRate(int review_rate, int store_uid);
 	
 	// 리뷰 목록
 	public ArrayList<ReviewDTO> selectAllReview();

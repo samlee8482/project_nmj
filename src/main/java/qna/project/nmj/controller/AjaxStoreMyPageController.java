@@ -3,6 +3,7 @@ package qna.project.nmj.controller;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import qna.project.nmj.ajax.dto.AjaxStoreTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypesDTO;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FoodDTO;
+import qna.project.nmj.beans.SpaceDTO;
 import qna.project.nmj.beans.StoreTypeDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 
@@ -66,6 +68,15 @@ public class AjaxStoreMyPageController {
 		ArrayList<FoodDTO> dto = new ArrayList<FoodDTO>();
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		dto = dao.selectFoodByStoreUid(store_uid);
+		for(int i = 0; i < dto.size(); i++) {
+			String img = dto.get(i).getFood_img_sav();
+			if(img == null || img.equals("")) {
+				dto.get(i).setFood_img_org("foodDefault.png");
+				dto.get(i).setFood_img_sav("foodDefault.png");
+			}
+		}
 		return dto;
 	}
+	
+	
 }

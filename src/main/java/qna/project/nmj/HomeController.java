@@ -57,4 +57,8 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/daumxy")
+	public String daumxy() {
+		return "/store/daumxy";
+	}
 }
