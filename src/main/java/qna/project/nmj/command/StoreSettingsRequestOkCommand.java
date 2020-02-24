@@ -93,11 +93,68 @@ public class StoreSettingsRequestOkCommand implements Command {
 		cnt = dao.insertRequest(rdto);
 		
 		model.addAttribute("cnt", cnt);
+		///////////////////////////////////////////////////////////////////////////////////////////
+		String[] nameValues = request_content.split("NMJnmj");
+		System.out.println(nameValues.length);
+		StoreDTO sdto = new StoreDTO();
+		for(int i = 0; i < nameValues.length; i++) {
+			String[] nameValue = nameValues[i].split(":");
+
+			String name = nameValue[0];
+			String value = nameValue[1];
+			System.out.println(name + " :" + value);
+			switch (name) {
+			case "store_uid":
+				sdto.setStore_uid(Integer.parseInt(value));
+				break;
+			case "store_name":
+				sdto.setStore_name(value);
+				break;
+			case "store_address":
+				sdto.setStore_address(value);
+				break;
+			case "store_regNum":
+				sdto.setStore_regNum(value);
+				break;
+			case "store_regImg_org":
+				sdto.setStore_regImg_org(value);
+				break;
+			case "store_regImg_sav":
+				sdto.setStore_regImg_sav(value);
+				break;
+			case "store_type":
+				sdto.setStore_type(Integer.parseInt(value));
+				break;
+			case "store_dtype":
+				sdto.setStore_dtype(Integer.parseInt(value));
+				break;
+			case "store_lat":
+				sdto.setStore_lat(Double.parseDouble(value));
+				break;
+			case "store_long":
+				sdto.setStore_long(Double.parseDouble(value));
+				break;
+			default:
+				break;
+			}
+		}
+		/*
+		 * store_uid:
+		 * store_name:
+		 * store_address:
+		 * store_regNum:
+		 * store_regImg_org:
+		 * store_regImg_sav:
+		 * store_type:
+		 * store_dtype:
+		 * store_lat:
+		 * store_long:
+		 */
 		
 	} // end execute();
 	
 	private String makePattern(String name, String value) {
-		return name.concat(":" + value + "[s]");
+		return name.concat(":" + value + "NMJnmj");
 	}
 	
 
