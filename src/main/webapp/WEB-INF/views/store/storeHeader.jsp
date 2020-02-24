@@ -15,7 +15,6 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/mySpace.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootswatch.css">
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
