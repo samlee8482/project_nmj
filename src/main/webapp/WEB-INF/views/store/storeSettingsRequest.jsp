@@ -30,8 +30,8 @@
 			<div class="animate-box fadeInUp animated">
 				<form action="storeSettingsRequestOk.nmj" enctype="Multipart/form-data" method="post" onsubmit="return chkUpdate()">
 				 	<input type="hidden" name="store_uid" value="${result.store_uid}">
-				 	<input type="hidden" id="x" name="entX">
-					<input type="hidden" id="y" name="entY">
+				 	<input type="hidden" id="x" name="entX" value="${result.store_long}">
+					<input type="hidden" id="y" name="entY" value="${result.store_lat}">
 				 	
 				 	<div class="col-md-12">
 					 	<div class="form-group">
@@ -40,7 +40,7 @@
 				 	</div>
 				 	<div class="col-md-12">
 					 	<div class="form-group">
-						 	<input class="form-control" type="text" name="store_name" value="${result.store_name}">
+						 	<input class="form-control" type="text" name="store_name" value="${result.store_name}" placeholder="매장명..." required>
 					 	</div>
 				 	</div>
 
@@ -69,7 +69,7 @@
 				 	
 				 	<div class="col-md-12">
 					 	<div class="form-group">
-				 			<input class="form-control" type="text" name="store_regNum" pattern="[0-9]{3}-[0-9]{2}-[0-9]{5}" value="${result.store_regNum}">
+				 			<input class="form-control" type="text" name="store_regNum" pattern="[0-9]{3}-[0-9]{2}-[0-9]{5}" value="${result.store_regNum}" placeholder="사업자 등록 번호..." required>
 					 	</div>
 				 	</div>
 				 	

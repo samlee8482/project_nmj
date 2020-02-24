@@ -29,7 +29,7 @@ public class StoreSettingsOkCommand implements Command {
 		
 		// 2. 이미지 파일 저장할 경로 만들기
 		ServletContext context = C.context;
-		String saveDirectory = context.getRealPath("img/store");
+		String saveDirectory = context.getRealPath("img/store/");
 		
 		// 3. 파일 있을 때와 없을 때 처리
 		if(upload.getOriginalFilename() == "" || upload.getOriginalFilename() == null) {

@@ -29,34 +29,34 @@ var draggcnt = 0;
 
 			 for(var i = 0; i < spaceNum ; i++){
 				 cntpc++;
-				 html += '<div class="draggbox pcspecial pcspace space_count#' + 1 + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#1" style="float:left"><div class="pcspaceimg" ></div><div class="pcNum">'+ cntpc + '번 좌석</div></div>';
+				 html += '<div class="draggbox pcspecial pcspace infospace_count#' + 1 + ' infospace_price#' + spacePrice + ' infospaceName#' + cntpc + spaceName + ' infospaceList#1info" style="float:left"><div class="pcspaceimg" ></div><div class="pcNum">'+ cntpc + '번 좌석</div></div>';
 			 }	
 			 html +=  '</div>';
 			 break;
 		 case '2':
 			 cntkar++;
 			 draggString = "#draggablekar";
-			 html += '<div id="draggablekar'+ draggcnt + '" class="draggablekar draggbox ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#2"><div class="karspaceimg"></div><div class="karNum">'+ cntkar + '번 방</div></div>';
+			 html += '<div id="draggablekar'+ draggcnt + '" class="draggablekar draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#2info"><div class="karspaceimg"></div><div class="karNum">'+ cntkar + '번 방</div></div>';
 			 break;
 		 case '3':
 			 cntbil++;
 			 draggString = "#draggablebil";
-			 html += '<div id="draggablebil'+ draggcnt + '" class="draggablebil draggbox ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#3"><div class="bilspaceimg"></div><div class="bilNum">' + cntbil + '번 당구대</div></div>';
+			 html += '<div id="draggablebil'+ draggcnt + '" class="draggablebil draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' +  spaceName + ' infospaceList#3info"><div class="bilspaceimg"></div><div class="bilNum">' + cntbil + '번 당구대</div></div>';
 			 break;
 		 case '4':
 			 cntbowl++;
 			 draggString = "#draggablebowl";
-			 html += '<div id="draggablebowl'+ draggcnt + '" class="draggablebowl draggbox ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#4"><div class="bowlspaceimg"></div><div class="bowlNum">' + cntbowl +'번 레일</div></div>';
+			 html += '<div id="draggablebowl'+ draggcnt + '" class="draggablebowl draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#4info"><div class="bowlspaceimg"></div><div class="bowlNum">' + cntbowl +'번 레일</div></div>';
 			 break;
 		 case '5':
 			 cnttable++;
 			 draggString = "#draggableTable";
-			 html += '<div id="draggableTable'+ draggcnt + '" class="draggableTable draggbox ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#5"><div class="tablespaceimg"></div><div class="tableNum">' + cnttable + '번 테이블</div></div>';
+			 html += '<div id="draggableTable'+ draggcnt + '" class="draggableTable draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#5info"><div class="tablespaceimg"></div><div class="tableNum">' + cnttable + '번 테이블</div></div>';
 			 break;
 		 default:
 			 cntroom++;
 			 draggString = "#draggableRoom";
-   		 	 html += '<div id="draggableRoom'+ draggcnt + '" class="draggableRoom draggbox ui-widget-content space_count#' + spaceNum + ' space_price#' + spacePrice + ' spaceName#' + spaceName + ' spaceList#' + selectBox + '"><div class="roomspaceimg"></div><div class="roomNum">' + cntroom + '번 방</div></div>';
+   		 	 html += '<div id="draggableRoom'+ draggcnt + '" class="draggableRoom draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#' + selectBox + 'info"><div class="roomspaceimg"></div><div class="roomNum">' + cntroom + '번 방</div></div>';
 			 break;
 		 }
 		 $("#boxMakingArea").append(html);
@@ -82,20 +82,20 @@ var draggcnt = 0;
 			 var i = 0;
 			 $(".draggbox").each(function(){
 				 var text = $(this).attr('class');
-				 var positionX = $(this).css('left');
-				 var positionY = $(this).css('top');
-				 var elements = text.split(" ");
-				 space_count[i] = elements[3].split("#")[1];
-				 space_price[i] = elements[4].split("#")[1];
-				 space_name[i] = elements[5].split("#")[1];
-				 spaceList_uid[i] = elements[6].split("#")[1];
-				 space_xloc[i] = positionX.split("px")[0];
-				 space_yloc[i] = positionY.split("px")[0];				 
+				 var positionX = $(this).offset().left;
+				 var positionY = $(this).offset().top;
+				 var elements = text.split("info");
+				 space_count[i] = elements[1].split("#")[1];
+				 space_price[i] = elements[2].split("#")[1];
+				 space_name[i] = elements[3].split("#")[1];
+				 spaceList_uid[i] = elements[4].split("#")[1];
+				 space_xloc[i] = positionX;
+				 space_yloc[i] = positionY;				 
 				 i++;
 			 });
 			 for(var j = 0; j < i ; j++){
 				 $.ajax({
-					 url : "/nmj/store/space.ajax",
+					 url : "/nmj/ajax/store/space.ajax",
 					 type : "POST",
 					 cache : false,
 					 data : {
@@ -108,18 +108,110 @@ var draggcnt = 0;
 						 "space_yloc" : space_yloc[j]
 					 },
 					 success : function(data, status){
-						 if(status == "success"){
-							 alert("성공");
-						 }
-						 else{
-							 alert("실패");
-						 }
 					 }
 				 });					 
 			 }
 		 });
 	});
-	  
+	
+	$(".spaceEmpty0").click(function(){
+		var spaceInfo = $(this).attr("class");
+		var dospaceuid = spaceInfo.split("space_uid")[1];
+		var spaceuid = dospaceuid.split("#")[1];
+		$.ajax({
+			 url : "/nmj/ajax/store/spaceempty.ajax",
+			 type : "POST",
+			 cache : false,
+			 data : {
+				 "space_uid" : spaceuid,
+				 "space_empty" : 1
+			 },
+			 success : function(data, status){
+				 if(status == "success"){
+					 alert("변경했습니다.");
+				 }
+				 else{
+					 alert("변경에 실패했습니다.");
+				 }
+			 }
+		 });
+		$(this).addClass("spaceEmpty1");
+		$(this).removeClass("spaceEmpty0");
+		$(this).click(function(){
+			var spaceInfo = $(this).attr("class");
+			var dospaceuid = spaceInfo.split("space_uid")[1];
+			var spaceuid = dospaceuid.split("#")[1];
+			$.ajax({
+				 url : "/nmj/ajax/store/spaceempty.ajax",
+				 type : "POST",
+				 cache : false,
+				 data : {
+					 "space_uid" : spaceuid,
+					 "space_empty" : 0
+				 },
+				 success : function(data, status){
+					 if(status == "success"){
+						 alert("변경했습니다");
+					 }
+					 else{
+						 alert("변경에 실패했습니다");
+					 }
+				 }
+			 });
+			$(this).addClass("spaceEmpty0");
+			$(this).removeClass("spaceEmpty1");
+		});
+	});
+	
+	$(".spaceEmpty1").click(function(){
+		var spaceInfo = $(this).attr("class");
+		var dospaceuid = spaceInfo.split("space_uid")[1];
+		var spaceuid = dospaceuid.split("#")[1];
+		$.ajax({
+			 url : "/nmj/ajax/store/spaceempty.ajax",
+			 type : "POST",
+			 cache : false,
+			 data : {
+				 "space_uid" : spaceuid,
+				 "space_empty" : 0
+			 },
+			 success : function(data, status){
+				 if(status == "success"){
+					 alert("변경했습니다");
+				 }
+				 else{
+					 alert("변경에 실패했습니다");
+				 }
+			 }
+		 });
+		$(this).addClass("spaceEmpty0");
+		$(this).removeClass("spaceEmpty1");
+		$(this).click(function(){
+			var spaceInfo = $(this).attr("class");
+			var dospaceuid = spaceInfo.split("space_uid")[1];
+			var spaceuid = dospaceuid.split("#")[1];
+			$.ajax({
+				 url : "/nmj/ajax/store/spaceempty.ajax",
+				 type : "POST",
+				 cache : false,
+				 data : {
+					 "space_uid" : spaceuid,
+					 "space_empty" : 1
+				 },
+				 success : function(data, status){
+					 if(status == "success"){
+						 alert("변경했습니다");
+					 }
+					 else{
+						 alert("변경에 실패했습니다");
+					 }
+				 }
+			 });
+			$(this).addClass("spaceEmpty1");
+			$(this).removeClass("spaceEmpty0");
+		});
+	});
+	
 });
 	  
      
