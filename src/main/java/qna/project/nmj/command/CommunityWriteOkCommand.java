@@ -32,6 +32,7 @@ public class CommunityWriteOkCommand implements Command {
 		cnt = dao.insertReview(mb_uid, store_uid, review_content, review_rate);
 		
 		model.addAttribute("result", cnt);
+		System.out.println(cnt);
 	}
 
 }

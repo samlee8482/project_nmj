@@ -47,7 +47,7 @@ public class CommunityController {
 		System.out.println("Controller review_rate : " + review_rate);
 		new CommunityWriteOkCommand().execute(model);
 		new CommunityUpdateRateCommand().execute(model);
-		return "/community/writeReview";
+		return "/community/writeReviewOk";
 	}
 	
 	@RequestMapping("/communityList.nmj")
