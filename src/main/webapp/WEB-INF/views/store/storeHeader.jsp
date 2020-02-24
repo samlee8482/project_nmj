@@ -30,7 +30,7 @@
 					<li><a id="1" href="index.html" class="active">홈</a></li>
 					<li><a id="2" href="work.html">회원정보수정</a></li>
 					<li><a id="3" href="storeMySpace.nmj?store_uid=1">매장 공간 관리</a></li>
-					<li><a id="4" href="storeMyFood.nmj?store_uid=1">음식 매뉴 관리</a></li>
+					<li><a id="4" href="storeMyFood.nmj?store_uid=1">음식 메뉴 관리</a></li>
 					<li><a id="5" href="storeMyReview.nmj?store_uid=1">내 매장 리뷰보기</a></li>
 					<li><a id="6" href="storeSettings.nmj?store_uid=1">매장 정보 수정</a></li>
 					<li><a id="7" href="storeSettingsRequest.nmj?store_uid=1">매장 정보 수정 요청</a></li>

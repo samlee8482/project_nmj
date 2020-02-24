@@ -30,8 +30,8 @@
 			<div class="animate-box fadeInUp animated">
 				<form action="storeSettingsRequestOk.nmj" enctype="Multipart/form-data" method="post" onsubmit="return chkUpdate()">
 				 	<input type="hidden" name="store_uid" value="${result.store_uid}">
-				 	<input type="hidden" id="x" name="entX">
-					<input type="hidden" id="y" name="entY">
+				 	<input type="hidden" id="x" name="entX" value="${result.store_long}">
+					<input type="hidden" id="y" name="entY" value="${result.store_lat}">
 				 	
 				 	<div class="col-md-12">
 					 	<div class="form-group">
