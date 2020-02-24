@@ -46,8 +46,8 @@
 <!-- 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="CSS/common.css"/>
-<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
  -->
+<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
  
@@ -59,37 +59,31 @@
 
  $(document).ready(function(){
  	$("input#page").val(1);	// 페이지 최초 로딩되면 1페이지
- 	loadPage(1) // n Page 읽어오기
+ 	// loadPage(1) // n Page 읽어오기
 
+	var html = "<ul>";
+	var curPage = parseInt($("input#page").val());
 
-
- 	// [이전] 버튼 눌렀을때 -> 이전 페이지 게시글목록 로딩
- 	$("button#prev").click(function(){
- 		// 현재페이지 정보 가져오기
- 		var curPage = parseInt($("input#page").val());
- 		
- 		// 첫페이지였다면..
- 		if(curPage == 1) {
- 			return;
- 		}
- 		
- 		// 첫페이지 아니라면 이전페이지 로딩
- 		loadPage(curPage - 1);
- 		
- 	});
- 	
- 	
- 	
- 	// [다음] 버튼 눌렀을때 -> 다음 페이지 게시글목록 로딩
- 	$("button#next").click(function(){
- 		// 현재페이지
- 		var curPage = parseInt($("input#page").val());
- 		loadPage(curPage + 1);	// 다음 페이지 로딩
-
- 	});
-
-
-
+	if(curPage != 1) {
+		html += "<li class='back'><i class='fas fa-angle-double-left'></i></li>";
+	}
+	var calPage = parseInt(curPage / 10); 
+	var pagesize = ${totalPage} - calPage*10;
+	for(var i = 1; i <= pagesize ; i++){
+		html +=	"<li class='eachPage'>"+ (calPage*10 + i) + "</li>";
+		
+	}
+		
+		
+	if(curPage < ${totalPage}){
+		html += "<li class='next'><i class='fas fa-angle-double-right'></i></li>";
+	}
+	$("#pagination").html(html);
+	$(".eachPage").click(function(){	
+		var pagetext = $(this).text();
+		loadPage(pagetext);
+	});
+	
 
  });
 
@@ -125,18 +119,18 @@
  		var i;
  		for(i = 0; i < count; i++) {
  			result +='<div class="col-md-4 col-sm-6"><div class="fh5co-grid-work"><div class="work-holder"><a href="storeDetail.nmj?store_uid=';
- 			result += list[i].store_uid+">";
- 			if(list[i].store_img_sav != null){
- 				result += '<img src="' + list[i].store_img_sav + '">';
+ 			result += items[i].store_uid+">";
+ 			if(items[i].store_img_sav != null){
+ 				result += '<img src="' + items[i].store_img_sav + '">';
  			}else{
  				result += '<img src="">';
  			}
- 			result += '</a><a href="storeDetail.nmj?store_uid=' + list[i].store_uid + '" class="inner-overlay"><iclass="icon-plus"></i></a>';
- 			result += '</div><div class="desc"><h3><a href="storeDetail.nmj?store_uid=' + list[i].store_uid + '">';
- 			result += list[i].store_name + '</a></h3><span>' + list[i].store_dname + '</span></div></div></div>'; 
+ 			result += '</a><a href="storeDetail.nmj?store_uid=' + items[i].store_uid + '" class="inner-overlay"><iclass="icon-plus"></i></a>';
+ 			result += '</div><div class="desc"><h3><a href="storeDetail.nmj?store_uid=' + items[i].store_uid + '">';
+ 			result += items[i].store_name + '</a></h3><span>' + items[i].store_dname + '</span></div></div></div>'; 
  		}
  		
- 		$("#storeList").html(result); // 테이블 내용 업데이트
+ 		$("#storeLists").html(result); // 테이블 내용 업데이트
  		
  		return true;
  	} else {
@@ -181,7 +175,7 @@
 				<ul>
 					<li><a href="main.nmj">메인</a></li>
 					<c:choose>
-						<c:when test="${list.store_type eq 1 }">
+						<c:when test="${store_type eq 1 }">
 							<li><a href="findStore.nmj?store_type=1" class="active">놀자</a></li>
 						</c:when>
 						<c:otherwise>
@@ -189,7 +183,7 @@
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.store_type eq 2 }">
+						<c:when test="${store_type eq 2 }">
 							<li><a href="findStore.nmj?store_type=2" class="active">먹자</a></li>
 						</c:when>
 						<c:otherwise>
@@ -197,7 +191,7 @@
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.store_type eq 3 }">
+						<c:when test="${store_type eq 3 }">
 							<li><a href="findStore.nmj?store_type=3" class="active">자자</a></li>
 						</c:when>
 						<c:otherwise>
@@ -232,76 +226,34 @@
 			<div class="row text-center">
 			
 			
-	<form id="search-container" action="#">
-		<input type="hidden" id="page" >
-		<select name="searchCategori" class="form1">
-			<option value="address">주소</option>
-			<option value="storeName">매장명</option>
-		</select>
-		<input name="content" type="text" placeholder="내용을 입력해주세요" class="form2"/>
-		<button class="form3" type="submit">검색</button>
-	</form>
-
-	<div>
-		<button class="storeCategori storeDTypeDefualt">전체</button>
-		<c:forEach var="dto" items="${storeType }">
-			<button class="storeCategori storeDType${dto.store_dtype} }">${dto.store_dname}</button>
-		</c:forEach>
-	</div>
-
-		<div id="storeLists">
-			<c:forEach var="dto" items="${list }">
-				<div class="col-md-4 col-sm-6">
-					<div class="fh5co-grid-work">
-						<div class="work-holder">
-							<a href="storeDetail.nmj?store_uid=${dto.store_uid}">
-					<c:choose>
-						<c:when test="${empty dto.store_img_sav }">	
-							<img src = "">
-						</c:when>
-						<c:otherwise>
-							<img src="${dto.store_img_sav }">
-						</c:otherwise>
-					</c:choose>
-							</a>
-							<a href="storeDetail.nmj?store_uid=${dto.store_uid}" class="inner-overlay"><i
-									class="icon-plus"></i></a>
-						</div>
-						<div class="desc">
-							<h3><a href="storeDetail.nmj?store_uid=${dto.store_uid}">
-							${dto.store_name }</a></h3>
-							<span>${dto.store_dname }</span>
-						</div>
-					</div>
+				<form id="search-container" action="#">
+					<input type="hidden" id="page" >
+					<select name="searchCategori" class="form1">
+						<option value="address">주소</option>
+						<option value="storeName">매장명</option>
+					</select>
+					<input name="content" type="text" placeholder="내용을 입력해주세요" class="form2"/>
+					<button class="form3" type="submit">검색</button>
+				</form>
+			
+				<div class="btnContainer">
+					<button class="storeCategori storeDTypeDefualt" type="button" onclick="changeDetails()">전체</button>
+					<c:forEach var="dto" items="${storeType }">
+						<button class="storeCategori storeDType${dto.store_dtype} }" onclick="changeDetailsOnClick('${dto.store_dtype}')">${dto.store_dname}</button>
+					</c:forEach>
 				</div>
-			</c:forEach>
+			
 				
-		</div>
-
+				<div id="storeLists"></div>
 
 
 			</div>
 		</div>
 	</div>
 	
-	<div class="center">
-		<ul class="pagination">
-			<c:if test="${page eq 1 }">
-				<li><button id="leftpage"></button></li>			
-			</c:if>
-
-
-			
-				<li><button class5="pageNum choose" "></button></li>
-
-
-			
-			
-			<c:if test="${page eq totalPage }">
-				<li><button id="rightpage"></button></li>			
-			</c:if>		
-		</ul>
-	</div>
+	
+	
+	<div id="pagination"></div>
 	
 	
 	
@@ -353,5 +305,91 @@
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
+<script>
+$(document).ready(function(){
+	getJackson(); //json
+});
+var jsonObj = "";
+var l;
+	
+function changeDetails() {
+	var types = jsonObj.store_types[${store_type} - 1];
+	var dtypes = types.store_dtypes;
+	l = dtypes.length;
+	var ll;
+	var result = "";
+	for(i = 0; i < l; i++){
+		var dname = dtypes[i].store_dname;
+		ll = dtypes[i].stores.length;
+		for(j = 0; j < ll; j++){
+			
+			// result += "<c:forEach var='dto' items='${list }'>";
+			result += "<div class='col-md-4 col-sm-6'>";
+			result += "<div class='fh5co-grid-work'>";
+			result += "<div class='work-holder'>";
+				var uidUrl = "storeDetail.nmj?store_uid=" + dtypes[i].stores[j].store_uid;
+			result += "<a href='" + uidUrl;
+			result += "'>";
+		
+		if(dtypes[i].stores[j].store_img_sav == null) {
+			result += "<img src = '${pageContext.request.contextPath}/img/store/storeDefault.jpeg'>";
+		} else {
+			result += "<img src='${pageContext.request.contextPath}/img/store/" + dtypes[i].stores[j].store_img_sav + "'>";			}
+			
+			result += "</a>";
+			result += "<a href='storeDetail.nmj?store_uid=" + dtypes[i].stores[j].store_uid + "' class='inner-overlay'>";
+			result += "<i class='icon-plus'></i></a>";
+			result += "</div>";
+			result += "<div class='desc'>";
+			result += "<h3>";
+			result += "<a href='storeDetail.nmj?store_uid=" + dtypes[i].stores[j].store_uid + "'>";
+			result += dtypes[i].stores[j].store_name;
+			result += "</a></h3>";
+			result += "<span>" + dname + "</span>";
+			result += "</div></div></div>";
+		//	result += "</c:forEach>";
+			
+		}
+	}
+	$("div#storeLists").html(result);
+}
 
+function changeDetailsOnClick(DTYPE){
+	//TODO
+	var types = jsonObj.store_types[${store_type} - 1];
+	var dtypes = types.store_dtypes;
+	l = dtypes.length;
+	var ll;
+	var result = "";
+	for(i = 0; i < l; i++){
+		var dname = dtypes[i].store_dname;
+		ll = dtypes[i].stores.length;
+		//ajax의 dtype과 버튼의 dtype이 일치할때
+		if(dtypes[i].store_dtype == DTYPE){
+			for(j = 0; j < ll; j++){
+				//TODO
+				result += "<div>";
+				result += "" + dname + ": " + dtypes[i].stores[j].store_name + ":" + dtypes[i].stores[j].store_img_sav;
+				result += "</div>";
+				
+			}
+			$("div#test").html(result);
+			return;
+		}
+	}
+}
+function getJackson(){
+	$.ajax({
+		url : "${pageContext.servletContext.contextPath}/memberAjax/dtypeList.ajax",
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				jsonObj = data;
+				changeDetails();
+			}
+		}
+	})
+}
+</script>
 </html>

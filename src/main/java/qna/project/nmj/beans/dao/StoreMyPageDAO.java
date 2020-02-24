@@ -113,4 +113,7 @@ public interface StoreMyPageDAO {
 	 * @return
 	 */
 	public int insertFoodByStoreUid(@Param("dto") FoodDTO dto);
+	
+	public ArrayList<StoreDTO> selectAllStores();
+	
 }
