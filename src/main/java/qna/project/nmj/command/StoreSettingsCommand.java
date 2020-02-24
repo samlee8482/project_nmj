@@ -20,7 +20,13 @@ public class StoreSettingsCommand implements Command {
 		// 3. dao의  쿼리문 실행
 		// mapper xml 적용
 		StoreDTO result = dao.selectStoreByUid(store_uid);
-		
+		String hours = result.getStore_hours();
+		String[] start_end = hours.split("~");
+		System.out.println(start_end.length);
+		System.out.println(start_end[0]);
+		System.out.println(start_end[1]);
+		result.setStore_start(start_end[0]);
+		result.setStore_end(start_end[1]);
 		String storeType = "";
 		switch (result.getStore_type()) {
 		case 1://놀자

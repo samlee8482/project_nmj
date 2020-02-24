@@ -10,13 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>커뮤니티 - 리뷰목록</title>
 
-<style>
-table, th, td{
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-</style>
-
 <link rel="shortcut icon" href="favicon.ico">
 
 <!-- Animate.css -->

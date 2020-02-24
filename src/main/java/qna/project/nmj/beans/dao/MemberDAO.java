@@ -2,8 +2,9 @@ package qna.project.nmj.beans.dao;
 
 import java.util.ArrayList;
 
-import qna.project.nmj.beans.MemberDTO;
-import qna.project.nmj.beans.StoreDTO;
+import org.apache.ibatis.annotations.Param;
+
+import qna.project.nmj.beans.*;
 
 public interface MemberDAO {
 	
@@ -15,9 +16,16 @@ public interface MemberDAO {
 	// 비밀번호 수정
 	public int updatePw(String mb_pw, String mb_id);
 	
+	// 매장 찾기 페이지
 	// 몇번째 from 부터 몇개 rows 를 SELECT
 	public ArrayList<StoreDTO> selectStore(int store_type);
-//	public ArrayList<StoreDTO> selectStore(int store_type, int from, int rows);
+	public ArrayList<StoreTypeDTO> selectStoreType(int store_type);
+	public ArrayList<FindStoreDTO> page(int store_type, @Param("fromRow") int fromRow, @Param("writePages") int writePages);
+	public int selectStoreCount(int store_type);
+	//	public ArrayList<StoreDTO> selectStore(int store_type, int from, int rows);
 	
+	// 매장 상세 페이지
+	public StoreDetailDTO selectStoreDetail(int store_uid);
+	public StoreDetailDTO StoreDetailRestSeat(int store_uid);
 	
 }

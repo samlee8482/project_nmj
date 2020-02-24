@@ -3,7 +3,11 @@ package qna.project.nmj.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.command.CusShowLikeCommand;
 import qna.project.nmj.command.CusShowReplyCommand;
 import qna.project.nmj.command.CusShowReserveCommand;
@@ -36,13 +40,10 @@ public class CustomerController {
 	}
 	
 	// 마이페이지 - 회원 정보 수정
-	@RequestMapping("/cusUpdateInfoOk.nmj")
-	public String updateInfoOk(String mb_name, String mb_tel, String mb_pw, String mb_email, String mb_img_sav, int mb_uid, Model model) {
-		model.addAttribute("mb_name", mb_name);
-		model.addAttribute("mb_tel", mb_tel);
-		model.addAttribute("mb_pw", mb_pw);
-		model.addAttribute("mb_email", mb_email);
-		model.addAttribute("mb_uid", mb_uid);
+	@RequestMapping(value="/cusUpdateInfoOk.nmj", method = RequestMethod.POST)
+	public String updateInfoOk(@RequestParam("upload") MultipartFile upload, MemberDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		model.addAttribute("upload", upload);
 		new CusUpdateInfoOkCommand().execute(model);
 		return "/customer/cusUpdateInfoOk";
 	}

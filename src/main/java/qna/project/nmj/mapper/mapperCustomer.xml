@@ -12,8 +12,9 @@
 	<!-- 회원 정보 수정-->
 	<update id="updateMemberByUid" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
 		UPDATE NMJ_member
-		SET mb_name = #{param1}, mb_tel = #{param2}, mb_pw = #{param3}, mb_email = #{param4}, mb_img_sav = #{param5}
-		WHERE mb_uid = #{param6};
+		SET mb_name = #{dto.mb_name}, mb_tel = #{dto.mb_tel}, mb_pw = #{dto.mb_pw},
+		mb_email = #{dto.mb_email}, mb_img_sav = #{dto.mb_img_sav}
+		WHERE mb_uid = #{dto.mb_uid};
 	</update>
 	
 	<!-- 마이페이지 - 예약/찜 목록 보기 -->
@@ -36,9 +37,14 @@
 	<!-- 마이페이지 - 내 리뷰 보기 -->
 	<!-- 리뷰 목록 -->
 	<select id="selectMyReviewByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
-		SELECT n3.store_uid, n3.store_name, n2.review_content, n2.review_rate, n2.review_viewCount, n2.review_date, n2.review_uid
+		<!--SELECT review_content, review_rate, review_viewCount, review_date, review_uid
+		FROM NMJ_review
+		WHERE mb_uid = #{param1};
+		-->
+		SELECT n3.store_type, n3.store_name, n2.review_content, n2.review_rate, n2.review_viewCount, n2.review_date, n2.review_uid
 		FROM NMJ_member n1, NMJ_review n2, NMJ_store n3
-		WHERE #{mb_uid} = n2.mb_uid
+		WHERE n2.mb_uid = #{param1}
+		AND n1.mb_uid = n2.mb_uid
 		AND n2.store_uid = n3.store_uid;
 	</select>
 	<!-- 댓글 목록 -->
