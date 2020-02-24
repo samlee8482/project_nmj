@@ -148,6 +148,14 @@
 	SELECT * FROM NMJ_space WHERE store_uid = #{param1};	
 	</select>
 	
+	
+	
+	<select id="selectAllStores" resultType="qna.project.nmj.beans.StoreDTO">
+	SELECT *
+	FROM nmj_store;
+	</select>
+
+
 	<update id="spaceEmpty">
 		UPDATE
 			NMJ_space
@@ -160,4 +168,7 @@
 	<select id="reservSelect" resultType="qna.project.nmj.beans.ReservationDTO">
 		SELECT * FROM NMJ_reservation WHERE store_uid = #{param1};
 	</select>
+	
+	
+	
 </mapper>

@@ -1,8 +1,13 @@
 package qna.project.nmj.ajax.dto;
 
+import java.util.ArrayList;
+
+import qna.project.nmj.beans.StoreDTO;
+
 public class AjaxStoreDTypeDTO {
 	int store_dtype;
 	String store_dname;
+	ArrayList<StoreDTO> stores;
 	public AjaxStoreDTypeDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -22,6 +27,12 @@ public class AjaxStoreDTypeDTO {
 	}
 	public void setStore_dname(String store_dname) {
 		this.store_dname = store_dname;
+	}
+	public ArrayList<StoreDTO> getStores() {
+		return stores;
+	}
+	public void setStores(ArrayList<StoreDTO> stores) {
+		this.stores = stores;
 	}
 	
 }

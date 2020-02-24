@@ -14,7 +14,9 @@ import qna.project.nmj.ajax.dto.AjaxStoreTypesDTO;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FoodDTO;
 import qna.project.nmj.beans.SpaceDTO;
+import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.StoreTypeDTO;
+import qna.project.nmj.beans.dao.MemberDAO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 
 @RestController
@@ -23,6 +25,7 @@ public class AjaxStoreMyPageController {
 	
 	// 매장 회원 정보 수정 요청 페이지 (storeSettingsRequest)
 	// 매장 상세 종류 불러오기
+	
 	@RequestMapping("/dtypeList.ajax")
 	public AjaxStoreTypesDTO dtypeList() {
 		AjaxStoreTypesDTO ajaxDTO = new AjaxStoreTypesDTO();
@@ -63,7 +66,6 @@ public class AjaxStoreMyPageController {
 		
 		return ajaxDTO;
 	}
-	
 	@RequestMapping(value = "/foodList.ajax/{store_uid}")
 	public ArrayList<FoodDTO> foodList(@PathVariable("store_uid") int store_uid) {
 		ArrayList<FoodDTO> dto = new ArrayList<FoodDTO>();
