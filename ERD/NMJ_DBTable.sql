@@ -99,10 +99,6 @@ CREATE TABLE NMJ_review
 ALTER TABLE NMJ_review COMMENT '리뷰';
 
 ALTER TABLE NMJ_review
-    ADD CONSTRAINT FK_NMJ_review_store_uid_NMJ_store_store_uid FOREIGN KEY (store_uid)
-        REFERENCES NMJ_store (store_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE NMJ_review
     ADD CONSTRAINT FK_NMJ_review_mb_uid_NMJ_member_mb_uid FOREIGN KEY (mb_uid)
         REFERENCES NMJ_member (mb_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
