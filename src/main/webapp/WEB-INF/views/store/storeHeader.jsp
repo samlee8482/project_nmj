@@ -27,13 +27,13 @@
 			</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
-					<li><a href="index.html" class="active">홈</a></li>
-					<li><a href="work.html">회원정보수정</a></li>
-					<li><a href="services.html">내 매장 리뷰보기</a></li>
-					<li><a href="about.html">매장 정보 수정</a></li>
-					<li><a href="contact.html">음식 매뉴 관리</a></li>
-					<li><a href="contact.html">매장 공간 관리</a></li>
-					<li><a href="contact.html">매장 정보 수정 요청</a></li>
+					<li><a id="1" href="index.html" class="active">홈</a></li>
+					<li><a id="2" href="work.html">회원정보수정</a></li>
+					<li><a id="3" href="storeMySpace.nmj?store_uid=1">매장 공간 관리</a></li>
+					<li><a id="4" href="storeMyFood.nmj?store_uid=1">음식 매뉴 관리</a></li>
+					<li><a id="5" href="storeMyReview.nmj?store_uid=1">내 매장 리뷰보기</a></li>
+					<li><a id="6" href="storeSettings.nmj?store_uid=1">매장 정보 수정</a></li>
+					<li><a id="7" href="storeSettingsRequest.nmj?store_uid=1">매장 정보 수정 요청</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -50,7 +50,21 @@
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- Stellar -->
 	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-
+	
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	
+	<script src="${pageContext.request.contextPath}/js/storeHeader.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#1").removeClass("active");
+	$("#2").removeClass("active");
+	$("#3").removeClass("active");
+	$("#4").removeClass("active");
+	$("#5").removeClass("active");
+	$("#6").removeClass("active");
+	$("#7").removeClass("active");
+	$("#" + ${nav}).addClass("active");
+});
+</script>
