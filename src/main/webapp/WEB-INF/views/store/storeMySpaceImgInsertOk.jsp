@@ -10,6 +10,6 @@
 <c:if test="${cnt == 1 }">
 	<script>
 		alert("사진 추가 성공");
-		// location.href = "";
+		window.close();
 	</script>
 </c:if>

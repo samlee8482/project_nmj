@@ -177,7 +177,7 @@ public class StoreMyPageController {
 	}
 	
 	@RequestMapping(value="/storeMySpaceImgInsert.nmj")
-	public String StoreMySpaceImgInsert(Model model, int[] space_uid) {
+	public String StoreMySpaceImgInsert(Model model, String space_uid) {
 		model.addAttribute("space_uid", space_uid);	
 		return "store/storeMySpaceImgInsert";
 	}
@@ -189,5 +189,14 @@ public class StoreMyPageController {
 		command = new storeMySpaceImgInsertCommand();
 		command.execute(model);
 		return "store/storeMySpaceImgInsertOk";
+	}
+	
+	@RequestMapping(value="/storeMySpaceImgDelete.nmj")
+	public String storeMySpaceImgDelete(Model model, int space_img_uid, int space_uid ) {
+		model.addAttribute("space_img_uid", space_img_uid);
+		model.addAttribute("space_uid", space_uid);
+		command = new StoreMySpaceImgDeleteCommand();
+		command.execute(model);
+		return "store/storeMySpaceImgDelete";
 	}
 }

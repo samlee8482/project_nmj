@@ -48,9 +48,8 @@ public interface StoreMyPageDAO {
 	public ArrayList<SpaceImgDTO> spaceSelectByUid(int space_uid);
 	
 	public int spaceImageInsert(int space_uid, String space_img_org, String space_img_sav);
-	public int spaceImageUpdate(SpaceImgDTO dto);
 	
-	public int spaceImageDelete(int space_uid);
+	public int spaceImageDelete(int space_img_uid);
 	
 	/**
 	 * select a store by store_uid
