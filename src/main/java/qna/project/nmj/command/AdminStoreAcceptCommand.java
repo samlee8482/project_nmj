@@ -20,26 +20,12 @@ public class AdminStoreAcceptCommand implements Command {
 		
 		String request_content = request.getRequest_content();
 		int store_uid = 0;
-		
-		String[] nameValues = request_content.split("NMJnmj");
-		System.out.println(nameValues.length);
 
-		for(int i = 0; i < nameValues.length; i++) {
-			String[] nameValue = nameValues[i].split(":");
+		String[] nameValue = request_content.split(":");
 
-			String name = nameValue[0];
-			String value = nameValue[1];
-			System.out.println(name + " :" + value);
-			switch (name) {
-			case "store_uid":
-				store_uid = Integer.parseInt(value);
-				break;
-			default:
-				break;
-			}
-		}
+		store_uid = Integer.parseInt(nameValue[1]);	
 
-		StoreDTO store = dao.selectStoreBySUid(store_uid);
+		StoreMemberDTO store = dao.selectStoreBySUid(store_uid);
 		model.addAttribute("dto", store);
 		model.addAttribute("request_uid", request_uid);
 	}

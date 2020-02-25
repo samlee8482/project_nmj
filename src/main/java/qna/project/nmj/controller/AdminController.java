@@ -1,5 +1,6 @@
 package qna.project.nmj.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -207,15 +208,15 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/adminAccept.nmj")
-	public String acceptStoreOk(int mb_uid, int request_uid, Model model) {
-		model.addAttribute("mb_uid", mb_uid);
+	public String acceptStoreOk(int store_uid, int request_uid, Model model) {
+		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("request_uid", request_uid);
 		new AdminStoreAcceptOkCommand().execute(model);
 		return "admin/acceptStore";
 	}
 	
 	@RequestMapping(value = "/adminAcceptStoreUpdate.nmj")
-	public String acceptStoreUpdateOk(int store_uid, int request_uid, String store_name, String store_address, String store_regNum, String store_regImg_org, String store_regImg_sav, int store_type, int store_dtype, double store_lat, double store_long, Model model) {
+	public String acceptStoreUpdateOk(@Param("store_uid") int store_uid, @Param("request_uid") int request_uid, @Param("store_name") String store_name, @Param("store_address") String store_address, @Param("store_regNum") String store_regNum, @Param("store_regImg_org") String store_regImg_org, @Param("store_regImg_sav") String store_regImg_sav, @Param("store_type") int store_type, @Param("store_dtype") int store_dtype, @Param("store_lat") double store_lat, @Param("store_long") double store_long, Model model) {
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("request_uid", request_uid);
 		model.addAttribute("store_name", store_name);
