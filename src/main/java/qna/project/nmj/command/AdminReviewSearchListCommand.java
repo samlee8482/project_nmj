@@ -22,6 +22,10 @@ public class AdminReviewSearchListCommand implements Command {
 			model.addAttribute("list", dao.searchReviewByContent(search));
 		} else if(searchOption == 2) {
 			model.addAttribute("list", dao.searchReviewById(search));
+		} else if(searchOption == 3) {
+			model.addAttribute("list", dao.searchReplyByContent(search));
+		} else if(searchOption == 4) {
+			model.addAttribute("list", dao.searchReplyById(search));
 		}
 		
 	}

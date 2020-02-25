@@ -110,10 +110,10 @@
 
           <c:choose>
              <c:when test='${dto.mb_img_org == null || fn:trim(dto.mb_img_org) == ""}'>
-             <img src="${pageContext.request.contextPath}/img/member/memberDefault.png">
+             <img src="${pageContext.request.contextPath}/img/member/memberDefault.png" style="width:200px">
              </c:when>
              <c:otherwise>
-             <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }">
+             <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }" style="width:200px">
              </c:otherwise>
           </c:choose>
           

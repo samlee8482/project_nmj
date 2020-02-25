@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import qna.project.nmj.beans.*;
 import qna.project.nmj.beans.dao.AdminDAO;
 
-public class AdminStoreAcceptCommand implements Command {
+public class AdminStoreAcceptUpdateCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
@@ -19,11 +19,10 @@ public class AdminStoreAcceptCommand implements Command {
 		RequestDTO request = dao.selectRequestByUid(request_uid);
 		
 		String request_content = request.getRequest_content();
-		int store_uid = 0;
 		
 		String[] nameValues = request_content.split("NMJnmj");
-		System.out.println(nameValues.length);
 
+		StoreDTO sdto = new StoreDTO();
 		for(int i = 0; i < nameValues.length; i++) {
 			String[] nameValue = nameValues[i].split(":");
 
@@ -32,15 +31,41 @@ public class AdminStoreAcceptCommand implements Command {
 			System.out.println(name + " :" + value);
 			switch (name) {
 			case "store_uid":
-				store_uid = Integer.parseInt(value);
+				sdto.setStore_uid(Integer.parseInt(value));
+				break;
+			case "store_name":
+				sdto.setStore_name(value);
+				break;
+			case "store_address":
+				sdto.setStore_address(value);
+				break;
+			case "store_regNum":
+				sdto.setStore_regNum(value);
+				break;
+			case "store_regImg_org":
+				sdto.setStore_regImg_org(value);
+				break;
+			case "store_regImg_sav":
+				sdto.setStore_regImg_sav(value);
+				break;
+			case "store_type":
+				sdto.setStore_type(Integer.parseInt(value));
+				break;
+			case "store_dtype":
+				sdto.setStore_dtype(Integer.parseInt(value));
+				break;
+			case "store_lat":
+				sdto.setStore_lat(Double.parseDouble(value));
+				break;
+			case "store_long":
+				sdto.setStore_long(Double.parseDouble(value));
 				break;
 			default:
 				break;
 			}
 		}
 
-		StoreDTO store = dao.selectStoreBySUid(store_uid);
-		model.addAttribute("dto", store);
+		model.addAttribute("dto", sdto);
 		model.addAttribute("request_uid", request_uid);
 	}
 

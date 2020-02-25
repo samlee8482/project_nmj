@@ -13,17 +13,15 @@
 	<c:otherwise>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="ko">
 <head>
-
-  <meta charset="utf-8">
+<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>매장회원 상세보기</title>
+  <title>매장가입 승인</title>
 
     <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -102,45 +100,20 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">매장회원 상세보기</h1>
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">리뷰 상세 보기</h1>
             
           <div class="card shadow mb-4">
 
             <div class="card-body">
-            
-	         <c:choose>
-	             <c:when test='${dto.mb_img_org == null || fn:trim(dto.mb_img_org) == ""}'>
-	             <img src="${pageContext.request.contextPath}/img/member/memberDefault.png" style="width:200px">
-	             </c:when>
-	             <c:otherwise>
-	             <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }" style="width:200px">
-	             </c:otherwise>
-	          </c:choose>
-	          <br><br>
-
-			<div style="text-align:left;">
-			<u><strong>이름</strong></u><br> ${dto.mb_name } <br><br>
-			<u><strong>아이디</strong></u><br> ${dto.mb_id } <br><br>
-			<u><strong>연락처</strong></u><br> ${dto.mb_tel } <br><br>
-			<u><strong>이메일</strong></u><br> ${dto.mb_email } <br><br>
-			<u><strong>가입날짜</strong></u><br> ${dto.mb_regDate } <br><br>
-			
-             <c:choose>
-                <c:when test='${dto2.store_img_org == null || fn:trim(dto2.store_img_org) == ""}'>
-                <img src="${pageContext.request.contextPath}/img/store/storeDefault.png" style="width:300px">
-                </c:when>
-                <c:otherwise>
-                <img src="${pageContext.request.contextPath}/img/store/${dto2.store_img_org }" style="width:300px">
-                </c:otherwise>
-             </c:choose>
-             <br><br>
+              
+            <div style="text-align:left;">
              
 			<u><strong>매장종류</strong></u><br> 
 				<c:choose>
-					<c:when test="${dto2.store_type == 1 }">
+					<c:when test="${dto.store_type == 1 }">
 						놀자
 					</c:when>
-					<c:when test="${dto2.store_type == 2 }">
+					<c:when test="${dto.store_type == 2 }">
 						먹자
 					</c:when>
 					<c:otherwise>
@@ -148,17 +121,25 @@
 					</c:otherwise>
 				</c:choose>
 			<br><br>
-			<u><strong>매장이름</strong></u><br> ${dto2.store_name }  <br><br>
-			<u><strong>매장주소</strong></u><br> ${dto2.store_address } <br><br>
-			<u><strong>매장연락처</strong></u><br> ${dto2.store_tel }<br><br>
-			<u><strong>매장영업시간</strong></u><br> ${dto2.store_hours }<br><br>
-			<u><strong>매장설명</strong></u><br> ${dto2.store_content }<br><br>
-			<u><strong>매장사업자번호</strong></u><br> ${dto2.store_regNum }<br><br>
-			<u><strong>매장평점</strong></u><br> ${dto2.store_ratings }<br><br>
+			<u><strong>매장이름</strong></u><br> ${dto.store_name }  <br><br>
+			<u><strong>매장주소</strong></u><br> ${dto.store_address } <br><br>
+			<u><strong>매장사업자번호</strong></u><br> ${dto.store_regNum }<br><br>
+			<c:choose>
+	             <c:when test='${dto.store_regImg_org == null || dto.store_regImg_org == "null" || fn:trim(dto.store_regImg_org) == ""}'>
+	             <img src="${pageContext.request.contextPath}/img/store_regNum/store_regNumDefault.png" style="width:300px">
+	             </c:when>
+	             <c:otherwise>
+	             <img src="${pageContext.request.contextPath}/img/store_regNum/${dto.store_regImg_org }" style="width:300px">
+	             </c:otherwise>
+	           </c:choose>
+	           <br><br>
 			<br>
 			</div>
 
-        <button class="contact100-form-btn" onclick="location.href='adminStore.nmj'">목록보기</button>
+	
+	<button class="contact100-form-btn" onclick="location.href='adminAcceptStoreUpdate.nmj?request_uid=${request_uid }&store_uid=${dto.store_uid }&store_name=${dto.store_name}&store_address=${dto.store_address}&store_regNum=${dto.store_regNum}&store_regImg_org=${dto.store_regImg_org}&store_regImg_sav=${dto.store_regImg_sav}&store_type=${dto.store_type}&store_dtype=${dto.store_dtype}&store_lat=${dto.store_lat}&store_long=${dto.store_long}'">승인하기</button>
+	<br>
+	<button class="contact100-form-btn" onclick="location.href='adminCS.nmj'">목록보기</button>
 </div>
 </div>
 
@@ -191,7 +172,7 @@
   </a>
 
 
-<!-- Bootstrap core JavaScript-->
+  <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/admin/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -211,7 +192,6 @@
 </body>
 
 </html>
-
 
 	</c:otherwise>
 </c:choose>
