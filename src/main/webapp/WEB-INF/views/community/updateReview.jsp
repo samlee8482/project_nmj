@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>커뮤니티 - 리뷰 상세보기</title>
-
-<link rel="shortcut icon" href="favicon.ico">
+<title>커뮤니티 - 리뷰수정</title><link rel="shortcut icon" href="favicon.ico">
 
 <!-- Animate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/animate.css">
@@ -30,11 +28,32 @@
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
-
-
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+function chkSubmit(){
+	frm = document.forms["frm"];
+	
+	var review_content = frm["review_content"].value.trim();
+	var review_rate = frm["review_rate"].value.trim();
+	var store_uid = frm["store_uid"].value;
+	
+	if(review_content == 0){
+		alert("내용을 입력하세요");
+		return false;
+	}
+	if(review_rate == 0 && store_uid != 0){
+		alert("평점을 입력하세요");
+		return false;
+	} else {
+		return true;
+	}
+	
+	return true;
+}
+</script>
 </head>
 <body>
-
 	<header>
 		<div class="container text-center headerContainer">
 				<!-- if(Session.getAttribute("mb_uid") == null) { -->
@@ -56,9 +75,8 @@
 				</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
-					<li><a href="main.nmj">메인</a></li>
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
+					<li><a href="findStore.nmj?store_type=2" >먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
 					<li><a href="communityList.nmj" class="active">떠들자</a></li>
 					
@@ -66,48 +84,72 @@
 			</nav>
 		</div>
 	</header>
-	
+
 	<div id="fh5co-intro-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>리뷰 상세보기</h2>
+					<h2>리뷰수정</h2>
+					<p>"다 쓴 글도 다시보자"</p>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: 700px;">
-	<div class="show_list_container">
-			
-	<div style="text-align:left;">
-	<u><strong>매장종류</strong></u><br> 
-		<c:choose>
-			<c:when test="${dto.store_type == 1 }">
-				놀자
-			</c:when>
-			<c:when test="${dto.store_type == 2 }">
-				먹자
-			</c:when>
-			<c:otherwise>
-				자자
-			</c:otherwise>
-		</c:choose>
-		<br><br>
-	<u><strong>매장명</strong></u><br> ${dto.store_name }  <br><br>
-	<u><strong>작성자</strong></u><br> ${dto.mb_id } <br><br>
-	<u><strong>내용</strong></u><br> ${dto.review_content }<br><br>
-	<u><strong>평점</strong></u><br> ${dto.review_rate }<br><br>
-	<u><strong>조회수</strong></u><br> ${dto.review_viewCount }<br><br>
-	<u><strong>작성일</strong></u><br> ${dto.review_date }<br>
-	<br>
-	</div>
-
-    <button onclick="location.href='communityList.nmj'">목록보기</button>
-    <button onclick="location.href='updateReview.nmj?review_uid=${review_uid}'">수정하기</button>
-    <button onclick="location.href='deleteReview.nmj'">삭제하기</button>
-    <button onclick="location.href='writeReview.nmj'">작성하기</button>
-	</div>
+	<div class="div-relative" style="height: 1000px;">
+		<div id="write_frm_container">
+			<h3>여러분의 리뷰를 남겨주세요</h3><br>
+			<form name="frm" method="get" action="updateReviewOk.nmj" onSubmit="return chkSubmit()">
+				<!-- 
+				<h3 class="main-title">
+					<input name="review_content" placeholder="제목을 입력하세요" value="${review_content }" style="width: 100%; padding: 10px;" />
+				</h3>
+				 -->
+				<div style="margin-left: auto; margin-right: auto; width: 600px; height: 600px;">
+					<textarea name="review_content" id="editor1" value="${dto.review_content }"></textarea>
+					<script>
+						CKEDITOR.replace('editor1', {
+							allowedContent: true,
+							width: '600px',
+							height: '600px'
+						});
+					</script>
+				</div><br><br><br><br><br><br><br>
+				
+				<c:choose>
+					<c:when test="${store_uid eq 0}">
+						<div style="display: none;">
+							<h3>나의 평점은?</h2>
+							<p id="star_grade">
+						        <a value="1" href="#">★</a>
+						        <a value="2" href="#">★</a>
+						        <a value="3" href="#">★</a>
+						        <a value="4" href="#">★</a>
+						        <a value="5" href="#">★</a>
+							</p>
+						</div><br><br><br>
+					</c:when>
+					<c:otherwise>
+						<div style="display: inline-block;">
+							<h3>나의 평점은?</h2>
+							<p id="star_grade">
+						        <a value="1" href="#">★</a>
+						        <a value="2" href="#">★</a>
+						        <a value="3" href="#">★</a>
+						        <a value="4" href="#">★</a>
+						        <a value="5" href="#">★</a>
+							</p>
+						</div><br><br><br>
+					</c:otherwise>
+				</c:choose>
+				<input type="hidden" name="mb_uid" value="${mb_uid }" />
+				<input type="hidden" name="store_uid" value="${store_uid }" />
+				<input id="review_rate" type="hidden" name="review_rate" value="0" />
+				<button class="login_btn" type="submit">수정 완료</button>
+				
+			</form>
+		</div>
 	</div>
 	
 	<br><br>
@@ -150,6 +192,16 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
-
+	
+	<script>
+        $('#star_grade a').click(function(){
+            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
+            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+            var length = $(this).addClass("on").prevAll("a").addClass("on").length;
+            $("#review_rate").attr('value', length+1);
+            return false;
+        });
+	</script>
+	
 </body>
 </html>

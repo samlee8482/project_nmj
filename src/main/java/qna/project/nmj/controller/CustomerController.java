@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
+import qna.project.nmj.beans.ReservationDTO;
 import qna.project.nmj.command.CusShowLikeCommand;
 import qna.project.nmj.command.CusShowReplyCommand;
 import qna.project.nmj.command.CusShowReserveCommand;
@@ -27,8 +28,8 @@ public class CustomerController {
 	
 	// 손님회원 - 마이페이지(새힘)
 	@RequestMapping("/cusMyPage.nmj")
-	public void myPage() {
-		
+	public String myPage(int mb_uid) {
+		return "customer/cusMyPage";
 	}
 	
 	// 마이페이지 - 회원 정보 수정 불러오기
@@ -73,6 +74,12 @@ public class CustomerController {
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("store_type", store_type);
 		return "/customer/cusReserve";
+	}
+	
+	@RequestMapping("/cusReserveOk.nmj")
+	public String reserve(ReservationDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		return "/customer/cusReserveOk";
 	}
 	
 }

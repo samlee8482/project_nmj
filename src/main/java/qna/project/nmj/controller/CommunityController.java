@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import qna.project.nmj.beans.C;
+import qna.project.nmj.beans.ReviewDTO;
 import qna.project.nmj.command.Command;
 import qna.project.nmj.command.CommunityListCommand;
 import qna.project.nmj.command.CommunityUpdateRateCommand;
+import qna.project.nmj.command.CommunityUpdateReviewOkCommand;
 import qna.project.nmj.command.CommunityViewCommand;
 import qna.project.nmj.command.CommunityWriteOkCommand;
 
@@ -29,7 +31,7 @@ public class CommunityController {
 	private Command command;
 
 	@RequestMapping("/writeReview.nmj")
-	public String insertReview(int mb_uid, int store_uid, Model model) {
+	public String writeReview(int mb_uid, int store_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("store_uid", store_uid);
 		return "/community/writeReview";
@@ -63,5 +65,22 @@ public class CommunityController {
 		new CommunityViewCommand().execute(model);
 		return "community/communityView";
 	}
+	
+	@RequestMapping("/updateReview.nmj")
+	public String updateReview(int review_uid, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		new CommunityViewCommand().execute(model);
+		return "/community/updateReview";
+	}
+	
+	@RequestMapping("/updateReviewOk.nmj")
+	public String updateReviewOk(int mb_uid, String review_content, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_content", review_content);
+		command = new CommunityUpdateReviewOkCommand();
+		command.execute(model);
+		return "/community/updateReviewOk";
+	}
+	
 	
 }

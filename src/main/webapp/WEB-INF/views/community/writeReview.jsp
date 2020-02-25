@@ -35,15 +35,19 @@
 function chkSubmit(){
 	frm = document.forms["frm"];
 	
-	var review_content = frm["review_content"].value;
-	var review_rate = frm["review_rate"].value;
+	var review_content = frm["review_content"].value.trim();
+	var review_rate = frm["review_rate"].value.trim();
+	var store_uid = frm["store_uid"].value;
 	
-	if(review_content.length() == 0){
+	if(review_content == 0){
 		alert("내용을 입력하세요");
 		return false;
 	}
-	if(review_rate == null){
-		review_rate = 0;
+	if(review_rate == 0 && store_uid != 0){
+		alert("평점을 입력하세요");
+		return false;
+	} else {
+		return true;
 	}
 	
 	return true;
@@ -157,10 +161,10 @@ function chkSubmit(){
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<p>
-							Copyright 2016 Free Html5 <a href="#">Neos</a>. All Rights
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
 							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> /
-							Demo Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
 							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
 						</p>
 						<p class="fh5co-social-icons">

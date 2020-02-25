@@ -2,6 +2,8 @@ package qna.project.nmj.beans.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import qna.project.nmj.beans.ReviewDTO;
 import qna.project.nmj.beans.ReviewJoinDTO;
 
@@ -21,4 +23,7 @@ public interface ReviewDAO {
 	
 	// 리뷰 조회수 증가
 	public int increaseViewCount(int review_uid);
+	
+	// 리뷰 수정
+	public int updateReview(int mb_uid, String review_content);
 }

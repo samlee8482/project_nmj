@@ -28,7 +28,7 @@
 	<!-- 리뷰 1개 불러오기 -->
 	<select id="selectReviewByUid" 
  		resultType="qna.project.nmj.beans.ReviewJoinDTO">
- 		SELECT a.*, b.store_type, b.store_name, c.mb_id 
+ 		SELECT a.*, b.store_type, b.store_name, c.mb_id, c.mb_uid 
 		FROM NMJ_review a 
 		JOIN NMJ_store b ON a.store_uid = b.store_uid 
 		JOIN NMJ_member c ON a.mb_uid = c.mb_uid 
@@ -44,5 +44,23 @@
  		 UPDATE NMJ_review SET review_viewCount = review_viewCount + 1 
  		 WHERE review_uid = #{param1}
  	</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 리뷰 수정 -->
+	<update id="updateReview" flushCache="true" parameterType="qna.project.nmj.beans.ReviewDTO">
+		UPDATE NMJ_review SET review_content = #{param2}
+		WHERE mb_uid = #{param1};
+	</update>
 
 </mapper>

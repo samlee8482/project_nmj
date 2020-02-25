@@ -55,4 +55,12 @@
 		AND n2.review_uid = n3.review_uid;
 	</select>
 	
+	<!-- 예약페이지 -->
+	<!-- 예약 정보 예약테이블에 삽입 -->
+	<insert id="insertReserve" flushCache="true" parameterType="qna.project.nmj.beans.ReservationDTO">
+		INSERT INTO NMJ_reservation 
+		reservation_start, reservation_end, reservation_count, reservation_price, reservation_seat, mb_uid
+		VALUES (?, ?, ?, ?, ?, ?);
+	</insert>
+	
 </mapper>

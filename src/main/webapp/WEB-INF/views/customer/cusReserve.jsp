@@ -59,11 +59,11 @@ function chkSubmit(){
 	res_year *= 1;	// 비교하기 위해 number 타입으로 형변환
 	cur_year *= 1;	// 비교하기 위해 number 타입으로 형변환
 	
-	var res_month = reservation_date.substring(6,8);
+	var res_month = reservation_date.substring(5,7);
 	res_month *= 1;	// 비교하기 위해 number 타입으로 형변환
 	cur_month *= 1;	// 비교하기 위해 number 타입으로 형변환
 	
-	var res_date = reservation_date.substring(10,12);
+	var res_date = reservation_date.substring(8,10);
 	res_date *= 1; // 비교하기 위해 number 타입으로 형변환
 	cur_date *= 1; // 비교하기 위해 number 타입으로 형변환
 	
@@ -102,7 +102,7 @@ function chkSubmit(){
 		frm["reservation_end"].focus();
 		return false;
 	}
-	if(reservation_count == ""){
+	if(reservation_count == "" || (typeof(reservation_count) != "number")){
 		alert("인원을 입력해주세요.");
 		frm["reservation_count"].focus();
 		return false;
@@ -254,7 +254,7 @@ function chkSubmit(){
 					</tr>
 					<tr>
 						<td>
-							<input type="text" placeholder="인원을 입력하세요" name="reservation_count" id="reserve_count" class="reserve_info form-control myInput"/>
+							<input type="text" placeholder="인원을 입력하세요" name="reservation_count" id="reserve_count" class="reserve_info form-control myInput"/ required>
 						</td>
 						<td>
 							<div>성일형님 좌석선택 부탁드립니다</div>
@@ -271,15 +271,32 @@ function chkSubmit(){
 						</th>
 					</tr>
 					<tr>
-						<td>
-							<input type="text" placeholder="금액" name="reservation_price" id="reserve_price" class="reserve_info form-control myInput"/>
-						</td>
-						<td>
-							<input type="hidden" name="${mb_uid }">
-							<input type="hidden" name="${store_uid }">
-							<input type="hidden" name="${store_type }">
-							<button class="btn btn-primary myBtn">예약하기</button>
-						</td>
+						<c:choose>
+							<c:when test="${store_type eq 2}">
+								<td>
+									※먹자 매장은 현장 결제를 해주셔야 합니다.
+								</td>
+								<td>
+									<input type="hidden" name="${mb_uid }">
+									<input type="hidden" name="${store_uid }">
+									<input type="hidden" name="${store_type }">
+									<input type="hidden" name="${space_price }">
+									<button class="btn btn-primary myBtn">예약하기</button>
+								</td>
+							</c:when>
+							<c:otherwise>
+								<td>
+									<input type="text" placeholder="금액" name="reservation_price" id="reserve_price" class="reserve_info form-control myInput"/ readonly>
+								</td>
+								<td>
+									<input type="hidden" name="${mb_uid }">
+									<input type="hidden" name="${store_uid }">
+									<input type="hidden" name="${store_type }">
+									<input type="hidden" name="${space_price }">
+									<button class="btn btn-primary myBtn">예약하기</button>
+								</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</table>
 			</form>
