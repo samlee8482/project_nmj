@@ -66,4 +66,9 @@ public class CustomerController {
 		return "/customer/cusShowReview";
 	}
 	
+	// 예약페이지
+	@RequestMapping("/cusReserve.nmj")
+	public void reserve() {
+	}
+	
 }

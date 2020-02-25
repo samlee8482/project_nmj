@@ -127,6 +127,8 @@
 	</div>
 	</div>
 	
+	<button class="login_btn" onclick="location.href='writeReview.nmj?mb_uid=${mb_uid}&store_uid=0'">등록</button>
+	
 	<br><br>
 	
 <footer>

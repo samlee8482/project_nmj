@@ -32,7 +32,7 @@
 				 	</div>
 			 		<div class="col-md-12">
 					 	<div class="form-group">
-					 		<input class="form-control" type="text" name="store_tel" value="${result.store_tel}">
+					 		<input class="form-control" type="text" name="store_tel" value="${result.store_tel}" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})" placeholder="ex) 010-1234-1234" required>
 					 	</div>
 				 	</div>
 				 	

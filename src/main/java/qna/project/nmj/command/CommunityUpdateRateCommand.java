@@ -19,8 +19,8 @@ public class CommunityUpdateRateCommand implements Command {
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
 		cnt = dao.increaseReviewRate(review_rate, store_uid);
-		
-		model.addAttribute("result", cnt);
+		System.out.println(cnt);
+		model.addAttribute("rate", cnt);
 	}
 
 }

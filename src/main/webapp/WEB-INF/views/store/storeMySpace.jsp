@@ -93,22 +93,22 @@
 						<c:choose>
 							
 							<c:when test="${list.spaceList_uid eq 1 }">
-								pcspace space_count#1 space_price#${list.space_price } spaceName#${list.space_name } spaceList#1" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="pcspaceimg" ></div><div class="pcNum">${list.space_name }</div>
+								pcspace space_uid#${list.space_uid }# space_count#1 space_price#${list.space_price } spaceName#${list.space_name } spaceList#1 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="pcspaceimg" ></div><div class="pcNum">${list.space_name }</div>
 							</c:when>			
 							<c:when test="${list.spaceList_uid eq 2 }">
-								draggablekar ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#2" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="karspaceimg"></div><div class="karNum">${list.space_name }</div>
+								draggablekar ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#2 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="karspaceimg"></div><div class="karNum">${list.space_name }</div>
 							</c:when>			
 							<c:when test="${list.spaceList_uid eq 3 }">
-								draggablebil ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#3" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="bilspaceimg"></div><div class="bilNum">${list.space_name }</div>
+								draggablebil ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#3 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="bilspaceimg"></div><div class="bilNum">${list.space_name }</div>
 							</c:when>			
 							<c:when test="${list.spaceList_uid eq 4 }">
-								draggablebowl ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#4" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="bowlspaceimg"></div><div class="bowlNum">${list.space_name }</div>
+								draggablebowl ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#4 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="bowlspaceimg"></div><div class="bowlNum">${list.space_name }</div>
 							</c:when>			
 							<c:when test="${list.spaceList_uid eq 5 }">
-								draggableTable ui-widget-content space_count#${list.space_count } space_price#${list.space_price }  spaceName#${list.space_name } spaceList#5" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="tablespaceimg"></div><div class="tableNum">${list.space_name }</div>
+								draggableTable ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }  spaceName#${list.space_name } spaceList#5 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="tablespaceimg"></div><div class="tableNum">${list.space_name }</div>
 							</c:when>			
 							<c:otherwise>
-								draggableRoom ui-widget-content space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#${list.spaceList_uid }" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="roomspaceimg"></div><div class="roomNum">${list.space_name }</div>
+								draggableRoom ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price } spaceName#${list.space_name } spaceList#${list.spaceList_uid } spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc}px; top:${list.space_yloc}px"><div class="roomspaceimg"></div><div class="roomNum">${list.space_name }</div>
 							</c:otherwise>	
 						</c:choose>
 							</div>
@@ -131,18 +131,52 @@
 								</c:forEach>
 							</select>
 							<span>인원수</span><input id="spaceNum" type="number" style="width:70px;">
-							<div class="clear"></div>
+							<div class="clear"/>
 							<span>공간 이름</span><input id="spaceName" type="text">
-							<div class="clear"></div>
+							<div class="clear"/>
 							<span>공간 가격</span><input id="spacePrice" type="number">
 							</h4>
 							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
 						</div>
-					</div>					
+					</div>
+					<button type="button" class="btn btn-primary btn-lg btn-block bigbutton" onclick="location.href='storeMySpace.nmj?store_uid=${store_uid}'">공간 이미지 관리</button>
+										
 				</div>
 			</div>
 		</div>
+		<div id="reservationArea">
+			
+			<div>
+				<table>
+					<tr>
+						<th>공간이름</th>
+						<th>손님 아이디</th>
+						<th>시작시간</th>
+						<th>종료시간</th>
+						<th>예약 인원</th>
+						<th>금액</th>
+						<th>승인</th>
+						<th>거절</th>
+					</tr>					
+					<c:forEach var="reserv" items="reservation">
+						<tr>
+							<td>${reserv.reservation_seat }</td>
+							<td>${reserv.mb_uid }</td>
+							<td>${reserv.reservation_start}</td>
+							<td>${reserv.reservation_end }</td>
+							<td>${reserv.reservation_count }</td>
+							<td>${reserv.reservation_price }</td>
+							<td><button>승인</button></td>
+							<td><button>거절</button></td>
+						</tr>				
+					</c:forEach>
+				</table>
+			</div>
 		
+		
+		
+		
+		</div>
 	
 	
 	
@@ -161,7 +195,7 @@
 	
 	
 	</div>
-	<div class="clear"></div>
+	<div class="clear"></div><br><br><br>
 	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">
