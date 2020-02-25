@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:choose>
 	<c:when test="${empty dto }">
@@ -11,7 +11,7 @@
 	</script>
 	</c:when>
 	<c:otherwise>
-
+	 
 <!DOCTYPE html>
 <html>
 
@@ -23,9 +23,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>매장회원 상세보기</title>
+  <title>리뷰 상세 보기</title>
 
-    <!-- Custom fonts for this template -->
+  <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -102,63 +102,40 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">매장회원 상세보기</h1>
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">리뷰 상세 보기</h1>
             
           <div class="card shadow mb-4">
 
             <div class="card-body">
-            
-	         <c:choose>
-	             <c:when test='${dto.mb_img_org == null || fn:trim(dto.mb_img_org) == ""}'>
-	             <img src="${pageContext.request.contextPath}/img/member/memberDefault.png" style="width:200px">
-	             </c:when>
-	             <c:otherwise>
-	             <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }" style="width:200px">
-	             </c:otherwise>
-	          </c:choose>
-	          <br><br>
+              
+            <div style="text-align:left;">
+	<u><strong>매장종류</strong></u><br> 
+		<c:choose>
+			<c:when test="${dto.store_type == 1 }">
+				놀자
+			</c:when>
+			<c:when test="${dto.store_type == 2 }">
+				먹자
+			</c:when>
+			<c:otherwise>
+				자자
+			</c:otherwise>
+		</c:choose>
+		<br><br>
+	<u><strong>매장명</strong></u><br> ${dto.store_name }  <br><br>
+	<u><strong>작성자</strong></u><br> ${dto.mb_id } <br><br>
+	<u><strong>내용</strong></u><br> ${dto.review_content }<br><br>
+	<u><strong>평점</strong></u><br> ${dto.review_rate }<br><br>
+	<u><strong>조회수</strong></u><br> ${dto.review_viewCount }<br><br>
+	<u><strong>작성일</strong></u><br> ${dto.review_date }<br>
+	<br>
+	</div>
 
-			<div style="text-align:left;">
-			<u><strong>이름</strong></u><br> ${dto.mb_name } <br><br>
-			<u><strong>아이디</strong></u><br> ${dto.mb_id } <br><br>
-			<u><strong>연락처</strong></u><br> ${dto.mb_tel } <br><br>
-			<u><strong>이메일</strong></u><br> ${dto.mb_email } <br><br>
-			<u><strong>가입날짜</strong></u><br> ${dto.mb_regDate } <br><br>
-			
-             <c:choose>
-                <c:when test='${dto2.store_img_org == null || fn:trim(dto2.store_img_org) == ""}'>
-                <img src="${pageContext.request.contextPath}/img/store/storeDefault.png" style="width:300px">
-                </c:when>
-                <c:otherwise>
-                <img src="${pageContext.request.contextPath}/img/store/${dto2.store_img_org }" style="width:300px">
-                </c:otherwise>
-             </c:choose>
-             <br><br>
-             
-			<u><strong>매장종류</strong></u><br> 
-				<c:choose>
-					<c:when test="${dto2.store_type == 1 }">
-						놀자
-					</c:when>
-					<c:when test="${dto2.store_type == 2 }">
-						먹자
-					</c:when>
-					<c:otherwise>
-						자자
-					</c:otherwise>
-				</c:choose>
-			<br><br>
-			<u><strong>매장이름</strong></u><br> ${dto2.store_name }  <br><br>
-			<u><strong>매장주소</strong></u><br> ${dto2.store_address } <br><br>
-			<u><strong>매장연락처</strong></u><br> ${dto2.store_tel }<br><br>
-			<u><strong>매장영업시간</strong></u><br> ${dto2.store_hours }<br><br>
-			<u><strong>매장설명</strong></u><br> ${dto2.store_content }<br><br>
-			<u><strong>매장사업자번호</strong></u><br> ${dto2.store_regNum }<br><br>
-			<u><strong>매장평점</strong></u><br> ${dto2.store_ratings }<br><br>
-			<br>
-			</div>
-
-        <button class="contact100-form-btn" onclick="location.href='adminStore.nmj'">목록보기</button>
+    <button class="contact100-form-btn" onclick="location.href='deleteReview2.nmj?review_uid=${dto.review_uid}&request_uid=${request_uid }'">삭제하기</button>
+    <br>
+    <button class="contact100-form-btn" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }'">거절하기</button>
+	<br>
+	<button class="contact100-form-btn" onclick="location.href='adminCS.nmj'">목록보기</button>
 </div>
 </div>
 
@@ -191,7 +168,7 @@
   </a>
 
 
-<!-- Bootstrap core JavaScript-->
+  <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/admin/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -211,7 +188,6 @@
 </body>
 
 </html>
-
 
 	</c:otherwise>
 </c:choose>

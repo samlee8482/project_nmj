@@ -149,6 +149,14 @@
 	SELECT * FROM NMJ_space WHERE store_uid = #{param1} ORDER BY space_uid asc;	 
 	</select>
 	
+	
+	
+	<select id="selectAllStores" resultType="qna.project.nmj.beans.StoreDTO">
+	SELECT *
+	FROM nmj_store;
+	</select>
+
+
 	<update id="spaceEmpty">
 		UPDATE
 			NMJ_space
@@ -161,6 +169,7 @@
 	<select id="reservSelect" resultType="qna.project.nmj.beans.StoreMyReviewDTO">
 		SELECT * FROM NMJ_reservation re, NMJ_member mem WHERE store_uid = #{param1} and re.mb_uid = mem.mb_uid ORDER BY re.reservation_uid asc;
 	</select>
+
 	<select id="spaceImgSelect" resultType="qna.project.nmj.beans.StoreSpaceImgDTO">
 		SELECT * FROM NMJ_spaceimage si, NMJ_space sp WHERE sp.space_uid = si.space_uid and sp.store_uid = #{param1} ORDER BY sp.space_uid; 
 	</select>

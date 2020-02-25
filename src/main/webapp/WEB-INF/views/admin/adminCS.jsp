@@ -105,7 +105,6 @@
           <tr>
             <th>no.</th>
             <th>유형</th>
-            <th>내용</th>
             <th>해결여부</th>
             <th>링크</th>
           </tr>
@@ -121,14 +120,13 @@
 				<c:when test="${dto.request_type == 2 }">
 					<td>수정요청</td>
 				</c:when>
-				<c:when test="${dto.request_type == 2 }">
+				<c:when test="${dto.request_type == 3 }">
 					<td>게시글신고</td>
 				</c:when>
 				<c:otherwise>
 					<td>댓글신고</td>
 				</c:otherwise>
 			</c:choose>
-			<td>${dto.request_content }</td>
 			<td>
 			<c:choose>
 				<c:when test="${dto.request_check== 0 }">
@@ -136,20 +134,21 @@
 			<button onclick="location.href='adminCSsolve.nmj?request_uid=${dto.request_uid }'">해결</button>
 				</c:when>
 				<c:when test="${dto.request_check== 1 }">해결완료</c:when>
+				<c:when test="${dto.request_check== 2 }">거절완료</c:when>
 				</c:choose>
 			</td>
 			<c:choose>
 				<c:when test="${dto.request_type == 1 }">
-					<td><button onclick="location.href='adminstoreRQ.nmj?store_uid=#'">가입요청링크</button></td>
+					<td><button onclick="location.href='adminStoreRQ.nmj?request_uid=${dto.request_uid }'">가입요청링크</button></td>
 				</c:when>
 				<c:when test="${dto.request_type == 2 }">
-					<td><button onclick="location.href='#'">수정요청링크</button></td>
+					<td><button onclick="location.href='adminStoreRQ2.nmj?request_uid=${dto.request_uid}'">수정요청링크</button></td>
 				</c:when>
-				<c:when test="${dto.request_type == 2 }">
-					<td><button onclick="location.href='#'">게시글신고링크</button></td>
+				<c:when test="${dto.request_type == 3 }">
+					<td><button onclick="location.href='adminCommunityRQ.nmj?request_uid=${dto.request_uid}'">게시글신고링크</button></td>
 				</c:when>
 				<c:otherwise>
-					<td><button onclick="location.href='#'">댓글신고링크</button></td>
+					<td><button onclick="location.href='adminReplyRQ.nmj?request_uid=${dto.request_uid}'">댓글신고링크</button></td>
 				</c:otherwise>
 			</c:choose>
 		</tr>					
