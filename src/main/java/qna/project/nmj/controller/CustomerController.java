@@ -68,7 +68,11 @@ public class CustomerController {
 	
 	// 예약페이지
 	@RequestMapping("/cusReserve.nmj")
-	public void reserve() {
+	public String reserve(int mb_uid, int store_uid, int store_type, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("store_uid", store_uid);
+		model.addAttribute("store_type", store_type);
+		return "/customer/cusReserve";
 	}
 	
 }

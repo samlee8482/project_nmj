@@ -78,8 +78,8 @@
 	<div class="div-relative" style="width: 80%; height: 500px; margin: 0px auto;">
 		<div id="myPage_btn_container">
 			<button class="myPage_btn" onclick="location.href='cusUpdateInfo.nmj?mb_uid=${mb_uid}'">회원 정보 수정</button>
-			<button class="myPage_btn" onclick="location.href='cusShowReserve.nmj?mb_uid=${mb_uid}'">예약/찜 목록 보기</button>
-			<button class="myPage_btn" onclick="location.href='cusShowReview.nmj?mb_uid=${mb_uid}'">내가 쓴 리뷰&댓글 보기</button>
+			<button class="myPage_btn" onclick="location.href='cusShowReserve.nmj?mb_uid=${mb_uid}'" style="margin-left: 50px;">예약/찜 목록 보기</button>
+			<button class="myPage_btn" onclick="location.href='cusShowReview.nmj?mb_uid=${mb_uid}'" style="margin-left: 50px;">내가 쓴 리뷰&댓글 보기</button>
 		</div>
 	</div>
 	

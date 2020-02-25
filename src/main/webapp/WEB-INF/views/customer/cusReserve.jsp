@@ -25,16 +25,102 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootswatch.css">
 
+<!-- 새힘 CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/myCSS_sam.css">
+
 <!-- DatePicker -->
-<!-- 1 -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<!-- 2 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/datepicker.min.css">
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
 
 </head>
+<script>
+// form 검증
+function chkSubmit(){
+	
+	frm = document.forms["frm"];
+	
+	// 현재 날짜와 시간을 가지는 객체를 리턴
+	var today = new Date();
+	
+	var cur_year = today.getFullYear(); // 년도
+	var cur_month = today.getMonth() + 1;  // 월
+	var cur_date = today.getDate();  // 날짜
+	var cur_day = today.getDay();  // 요일
+	
+	var reservation_date = frm["reservation_date"].value.trim();
+	var reservation_start = frm["reservation_start"].value.trim();
+	var reservation_end = frm["reservation_end"].value.trim();
+	var reservation_count = frm["reservation_count"].value.trim();
+	var reservation_price = frm["reservation_price"].value.trim();
+	
+	var res_year = reservation_date.substring(0,4);
+	res_year *= 1;	// 비교하기 위해 number 타입으로 형변환
+	cur_year *= 1;	// 비교하기 위해 number 타입으로 형변환
+	
+	var res_month = reservation_date.substring(6,8);
+	res_month *= 1;	// 비교하기 위해 number 타입으로 형변환
+	cur_month *= 1;	// 비교하기 위해 number 타입으로 형변환
+	
+	var res_date = reservation_date.substring(10,12);
+	res_date *= 1; // 비교하기 위해 number 타입으로 형변환
+	cur_date *= 1; // 비교하기 위해 number 타입으로 형변환
+	
+	// 예약날짜가 과거일 경우 return false
+	if(cur_year > res_year ||
+			(cur_year == res_year && cur_month > res_month) ||
+			(cur_year == res_year && cur_month == res_month && cur_date > res_date)){
+		alert("예약가능한 날짜가 아닙니다.")
+		return false;
+	}
+	
+	// 예약시간이 과거일 경우 return false
+	var res_start = reservation_start.replace(":","");
+	var res_end = reservation_end.replace(":","");
+	res_start *= 1;
+	res_end *= 1;
+	
+	if(res_start > res_end || res_start == res_end){
+		alert("예약가능한 시간이 아닙니다.")
+		return false;
+	}
+	
+	// 공백문자일 경우 return false
+	if(reservation_date == ""){
+		alert("날짜를 입력해주세요.");
+		frm["reservation_date"].focus();
+		return false;
+	}
+	if(reservation_start == "" || reservation_start == "시작 시간"){
+		alert("시작 시간을 입력해주세요.");
+		frm["reservation_start"].focus();
+		return false;
+	}
+	if(reservation_end == "" || reservation_end == "종료 시간"){
+		alert("종료 시간을 입력해주세요.");
+		frm["reservation_end"].focus();
+		return false;
+	}
+	if(reservation_count == ""){
+		alert("인원을 입력해주세요.");
+		frm["reservation_count"].focus();
+		return false;
+	}
+	if(reservation_price == ""){
+		alert("금액이 0원입니다.");
+		frm["reservation_date"].focus();
+		return false;
+	}
+	if((reservation_end - reservation_start) < 0){
+		alert("종료시간이 시작시간보다 앞설 수 없습니다.")
+		frm["reservation_end"].focus();
+		return false;
+	}
+	
+	return true;
+}
+</script>
 <body>
 
 	<header>
@@ -81,9 +167,125 @@
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<input type="text" id="datepicker1">
-	<input type='text' id="my-element" class='datepicker-here' data-language='en' />
-
+	<div class="div-relative" style="width: 100%; height: 1000px;">
+		<div id="reserve_frm_container">
+			<form name="frm" id="reserve_frm" onsubmit="return chkSubmit();">
+				<table>
+					<tr>
+						<th>
+							<div>날짜 선택</div>
+						</th>
+						<th>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
+						</td>
+						<td>
+							<select name="reservation_start" class="custom-select" style="width: 200px; height: 50px; font-size: 17px;">
+								<option selected>시작 시간</option>
+								<option value="00:00">00:00</option>
+								<option value="01:00">01:00</option>
+								<option value="02:00">02:00</option>
+								<option value="03:00">03:00</option>
+								<option value="04:00">04:00</option>
+								<option value="05:00">05:00</option>
+								<option value="06:00">06:00</option>
+								<option value="07:00">07:00</option>
+								<option value="08:00">08:00</option>
+								<option value="09:00">09:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+								<option value="19:00">19:00</option>
+								<option value="20:00">20:00</option>
+								<option value="21:00">21:00</option>
+								<option value="22:00">22:00</option>
+								<option value="23:00">23:00</option>
+								<option value="24:00">24:00</option>
+							</select>
+							~
+							<select name="reservation_end" class="custom-select" style="width: 200px; height: 50px; font-size: 17px;">
+								<option selected>종료 시간</option>
+								<option value="00:00">00:00</option>
+								<option value="01:00">01:00</option>
+								<option value="02:00">02:00</option>
+								<option value="03:00">03:00</option>
+								<option value="04:00">04:00</option>
+								<option value="05:00">05:00</option>
+								<option value="06:00">06:00</option>
+								<option value="07:00">07:00</option>
+								<option value="08:00">08:00</option>
+								<option value="09:00">09:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+								<option value="19:00">19:00</option>
+								<option value="20:00">20:00</option>
+								<option value="21:00">21:00</option>
+								<option value="22:00">22:00</option>
+								<option value="23:00">23:00</option>
+								<option value="24:00">24:00</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<hr width="100%" align="center" size="0.7px">
+				<table>
+					<tr>
+						<th>
+							<div>인원 및 좌석선택</div>
+						</th>
+						<th>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" placeholder="인원을 입력하세요" name="reservation_count" id="reserve_count" class="reserve_info form-control myInput"/>
+						</td>
+						<td>
+							<div>성일형님 좌석선택 부탁드립니다</div>
+						</td>
+					</tr>
+				</table>
+				<hr width="100%" align="center" size="0.7px">
+				<table>
+					<tr>
+						<th>
+							<div>금액</div>
+						</th>
+						<th>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" placeholder="금액" name="reservation_price" id="reserve_price" class="reserve_info form-control myInput"/>
+						</td>
+						<td>
+							<input type="hidden" name="${mb_uid }">
+							<input type="hidden" name="${store_uid }">
+							<input type="hidden" name="${store_type }">
+							<button class="btn btn-primary myBtn">예약하기</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	
 	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">
@@ -124,43 +326,9 @@
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	
 	<!-- DatePicker -->
-	<!-- 1 -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-	
-	<script>
-	$(function() {
-	  $( "#datepicker1" ).datepicker({
-	    dateFormat: 'yy.mm.dd',
-	    prevText: '이전 달',
-	    nextText: '다음 달',
-	    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	    dayNames: ['일','월','화','수','목','금','토'],
-	    dayNamesShort: ['일','월','화','수','목','금','토'],
-	    dayNamesMin: ['일','월','화','수','목','금','토'],
-	    showMonthAfterYear: true,
-	    changeMonth: true,
-	    changeYear: true,
-	    yearSuffix: '년'
-	  });
-	});
-	</script>
-	
-	<!-- 2 -->
 	<script src="${pageContext.request.contextPath}/js/datepicker.min.js"></script>
-
 	<!-- Include English language -->
 	<script src="${pageContext.request.contextPath}/js/datepicker.en.js"></script>
-	
-	<script>
-	$(function(){ 
-		// Initialization
-		$('#my-element').datepicker([options]);
-		// Access instance of plugin
-		$('#my-element').data('datepicker');
-	});
-	</script>
 	
 </body>
 </html>
