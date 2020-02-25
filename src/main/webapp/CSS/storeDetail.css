@@ -23,3 +23,15 @@
 	margin: auto;
 	margin-bottom: 80px;
 }
+
+#menu {
+	color: red;
+	cursor: pointer;
+}
+
+.menuPic {
+	width : 80%;
+	height: 200px;
+	margin: 0px auto;
+}
+

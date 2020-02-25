@@ -134,6 +134,7 @@
 						<li><i class="icon-phone2"></i>${list.store_tel }</li>
 						<li><i class="icon-alarm"></i>${list.store_hours }</li>
 						<li><i class="icon-star-full"></i>${list.totalAvg }</li>
+						<li><i class="icon-map3"></i><b id="menu">메뉴판 보기</b></li>
 						
 						<c:choose>
 							<c:when test="${empty list.store_content }">
@@ -206,7 +207,38 @@
 	</div>
 	<!-- END map -->
 
-
+	
+	<div class="modalContainer">
+	
+		<c:forEach var="menu" items="${foodMenu }">
+			
+			<div class="menuPic">
+				<c:choose>
+					<c:when test="${empty menu.food_img_sav }">
+						<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+					</c:when>
+					<c:otherwise>
+						<img src="${pageContext.request.contextPath}/img/food/${menu.food_img_sav}">
+					</c:otherwise>
+				</c:choose>
+			</div>
+			
+			<div class="menuName">
+				<p>${menu.food_name }</p>
+			</div>
+			
+			<div class="menuPrice">
+				<p>${menu.food_price }</p>
+			</div>
+			
+		</c:forEach>
+		
+	</div>
+	
+	
+	
+	
+	
 	
 	<footer>
 		<div id="footer" class="fh5co-border-line">

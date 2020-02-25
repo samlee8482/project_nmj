@@ -52,102 +52,6 @@
  
  
  
- 
- 
- <script>
-//페이지 최초 로딩되면 게시글 목록 첫페이지분 로딩
-
- $(document).ready(function(){
- 	$("input#page").val(1);	// 페이지 최초 로딩되면 1페이지
- 	// loadPage(1) // n Page 읽어오기
-
-	var html = "<ul>";
-	var curPage = parseInt($("input#page").val());
-
-	if(curPage != 1) {
-		html += "<li class='back'><i class='fas fa-angle-double-left'></i></li>";
-	}
-	var calPage = parseInt(curPage / 10); 
-	var pagesize = ${totalPage} - calPage*10;
-	for(var i = 1; i <= pagesize ; i++){
-		html +=	"<li class='eachPage'>"+ (calPage*10 + i) + "</li>";
-		
-	}
-		
-		
-	if(curPage < ${totalPage}){
-		html += "<li class='next'><i class='fas fa-angle-double-right'></i></li>";
-	}
-	$("#pagination").html(html);
-	$(".eachPage").click(function(){	
-		var pagetext = $(this).text();
-		loadPage(pagetext);
-	});
-	
-
- });
-
- // page번째 페이지 목록 로딩
- function loadPage(page) {
- 	
- 	$.ajax({
- 		url : "${pageContext.request.contextPath}/memberAjax/findStore.nmj/<%= writePages%>/" + page + "?store_type=" + 1,
- 		type : "GET",
- 		cache : false,
- 		success : function(data, status) {
- 			if(status == "success") {
- 				
- 				if(updateList(data)) { // 페이지 업데이트
- 					// 페이지 로딩이 성공한 후에야 현재 페이지 정보 업데이트
- 					$("input#page").val(page);
- 				}
- 			}
- 		}
- 		
- 	});
- } // end loadPage()
-
-
- function updateList(jsonObj) {
- 	result = "";
- 	
- 	if(jsonObj.status == "OK") {
- 		
- 		var count = jsonObj.count; // 글 개수
- 		var items = jsonObj.list; // 글 목록
- 		
- 		var i;
- 		for(i = 0; i < count; i++) {
- 			result +='<div class="col-md-4 col-sm-6"><div class="fh5co-grid-work"><div class="work-holder"><a href="storeDetail.nmj?store_uid=';
- 			result += items[i].store_uid+">";
- 			if(items[i].store_img_sav != null){
- 				result += '<img src="' + items[i].store_img_sav + '">';
- 			}else{
- 				result += '<img src="">';
- 			}
- 			result += '</a><a href="storeDetail.nmj?store_uid=' + items[i].store_uid + '" class="inner-overlay"><iclass="icon-plus"></i></a>';
- 			result += '</div><div class="desc"><h3><a href="storeDetail.nmj?store_uid=' + items[i].store_uid + '">';
- 			result += items[i].store_name + '</a></h3><span>' + items[i].store_dname + '</span></div></div></div>'; 
- 		}
- 		
- 		$("#storeLists").html(result); // 테이블 내용 업데이트
- 		
- 		return true;
- 	} else {
- 		return false;
- 	}
- 	
- 	return false;
- }
-
-
- 
-
- </script>
- 
- 
- 
- 
 </head>
 
 <body>
@@ -226,15 +130,10 @@
 			<div class="row text-center">
 			
 			
-				<form id="search-container" action="#">
-					<input type="hidden" id="page" >
-					<select name="searchCategori" class="form1">
-						<option value="address">주소</option>
-						<option value="storeName">매장명</option>
-					</select>
-					<input name="content" type="text" placeholder="내용을 입력해주세요" class="form2"/>
-					<button class="form3" type="submit">검색</button>
-				</form>
+				<div id="search-container">
+					<input name="content" type="text" placeholder="찾으시는 매장명을 입력해주세요" class="form1"/>
+					<button class="form2">검색</button>
+				</div>
 			
 				<div class="btnContainer">
 					<button class="storeCategori storeDTypeDefualt" type="button" onclick="changeDetails()">전체</button>
@@ -250,13 +149,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	<div id="pagination"></div>
-	
-	
-	
 	
 	
 	
@@ -303,15 +195,40 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/findStoreSearch.js"></script>
 
 </body>
 <script>
+
+var jsonObj = "";
+var l;
+
+
 $(document).ready(function(){
 	getJackson(); //json
 });
-var jsonObj = "";
-var l;
-	
+
+
+function getJackson(){
+	$.ajax({
+		url : "${pageContext.servletContext.contextPath}/memberAjax/dtypeList.ajax",
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				
+				jsonObj = data;
+				
+				changeDetails();
+				
+			}
+		}
+	})
+}
+
+
+
+// 디폴트(전체)
 function changeDetails() {
 	var types = jsonObj.store_types[${store_type} - 1];
 	var dtypes = types.store_dtypes;
@@ -323,7 +240,6 @@ function changeDetails() {
 		ll = dtypes[i].stores.length;
 		for(j = 0; j < ll; j++){
 			
-			// result += "<c:forEach var='dto' items='${list }'>";
 			result += "<div class='col-md-4 col-sm-6'>";
 			result += "<div class='fh5co-grid-work'>";
 			result += "<div class='work-holder'>";
@@ -334,7 +250,8 @@ function changeDetails() {
 		if(dtypes[i].stores[j].store_img_sav == null) {
 			result += "<img src = '${pageContext.request.contextPath}/img/store/storeDefault.jpeg'>";
 		} else {
-			result += "<img src='${pageContext.request.contextPath}/img/store/" + dtypes[i].stores[j].store_img_sav + "'>";			}
+			result += "<img src='${pageContext.request.contextPath}/img/store/" + dtypes[i].stores[j].store_img_sav + "'>";	
+		}
 			
 			result += "</a>";
 			result += "<a href='storeDetail.nmj?store_uid=" + dtypes[i].stores[j].store_uid + "' class='inner-overlay'>";
@@ -347,15 +264,69 @@ function changeDetails() {
 			result += "</a></h3>";
 			result += "<span>" + dname + "</span>";
 			result += "</div></div></div>";
-		//	result += "</c:forEach>";
+			
 			
 		}
 	}
 	$("div#storeLists").html(result);
 }
 
+
+// 카테고리 버튼 클릭
 function changeDetailsOnClick(DTYPE){
-	//TODO
+	
+	var result = "";
+	
+	var store_types = jsonObj.store_types[${store_type} - 1];
+	for(var i = 0; i < store_types.store_dtypes.length; i++){
+		if(store_types.store_dtypes[i].store_dtype==DTYPE){
+			store_dtypes = store_types.store_dtypes[i];
+			i = store_types.store_dtypes.length;
+		}
+	}
+	
+	var store_dname = store_dtypes.store_dname;
+	
+	var stores = store_dtypes.stores;
+	
+	for(var i = 0; i < stores.length; i++) {
+		
+		result += "<div class='col-md-4 col-sm-6'>";
+		result += "<div class='fh5co-grid-work'>";
+		result += "<div class='work-holder'>";
+		
+		result += "<a href='storeDetail.nmj?store_uid=" + stores[i].store_uid + "'>";
+		
+		if(stores[i].store_regImg_sav == null) {
+			result += "<img src = '${pageContext.request.contextPath}/img/store/storeDefault.jpeg'>";
+		} else {
+			result += "<img src='${pageContext.request.contextPath}/img/store/" + stores[i].store_img_sav + "'>";
+		}
+		
+		
+		result += "</a>";
+		result += "<a href='storeDetail.nmj?store_uid=" + stores[i].store_uid + "' class='inner-overlay'>";
+		result += "<i class='icon-plus'></i></a>";
+		result += "</div>";
+		result += "<div class='desc'>";
+		result += "<h3>";
+		result += "<a href='storeDetail.nmj?store_uid=" + stores[i].store_uid + "'>";
+		result += stores[i].store_name;
+		result += "</a></h3>";
+		result += "<span>" + store_dname + "</span>";
+		result += "</div></div></div>";
+	}
+		
+	$("div#storeLists").html(result);
+		
+}
+	
+	
+	
+// 매장명 검색
+function searchStoreName(storeName) {
+	
+			
 	var types = jsonObj.store_types[${store_type} - 1];
 	var dtypes = types.store_dtypes;
 	l = dtypes.length;
@@ -364,32 +335,49 @@ function changeDetailsOnClick(DTYPE){
 	for(i = 0; i < l; i++){
 		var dname = dtypes[i].store_dname;
 		ll = dtypes[i].stores.length;
-		//ajax의 dtype과 버튼의 dtype이 일치할때
-		if(dtypes[i].store_dtype == DTYPE){
-			for(j = 0; j < ll; j++){
-				//TODO
-				result += "<div>";
-				result += "" + dname + ": " + dtypes[i].stores[j].store_name + ":" + dtypes[i].stores[j].store_img_sav;
-				result += "</div>";
-				
+		for(j = 0; j < ll; j++){
+			
+			if(dtypes[i].stores[j].store_name.indexOf(storeName) != -1) {
+			
+			result += "<div class='col-md-4 col-sm-6'>";
+			result += "<div class='fh5co-grid-work'>";
+			result += "<div class='work-holder'>";
+				var uidUrl = "storeDetail.nmj?store_uid=" + dtypes[i].stores[j].store_uid;
+			result += "<a href='" + uidUrl;
+			result += "'>";
+		
+		if(dtypes[i].stores[j].store_img_sav == null) {
+			result += "<img src = '${pageContext.request.contextPath}/img/store/storeDefault.jpeg'>";
+		} else {
+			result += "<img src='${pageContext.request.contextPath}/img/store/" + dtypes[i].stores[j].store_img_sav + "'>";	
+		}
+			
+			result += "</a>";
+			result += "<a href='storeDetail.nmj?store_uid=" + dtypes[i].stores[j].store_uid + "' class='inner-overlay'>";
+			result += "<i class='icon-plus'></i></a>";
+			result += "</div>";
+			result += "<div class='desc'>";
+			result += "<h3>";
+			result += "<a href='storeDetail.nmj?store_uid=" + dtypes[i].stores[j].store_uid + "'>";
+			result += dtypes[i].stores[j].store_name;
+			result += "</a></h3>";
+			result += "<span>" + dname + "</span>";
+			result += "</div></div></div>";
+			
 			}
-			$("div#test").html(result);
-			return;
 		}
 	}
+	$("div#storeLists").html(result);	
+	
+			
+		
+		
+	
 }
-function getJackson(){
-	$.ajax({
-		url : "${pageContext.servletContext.contextPath}/memberAjax/dtypeList.ajax",
-		type : "GET",
-		cache : false,
-		success : function(data, status){
-			if(status == "success"){
-				jsonObj = data;
-				changeDetails();
-			}
-		}
-	})
-}
+
+	
+
+
+
 </script>
 </html>

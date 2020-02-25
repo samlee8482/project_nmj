@@ -20,12 +20,13 @@ public interface MemberDAO {
 	// 몇번째 from 부터 몇개 rows 를 SELECT
 	public ArrayList<StoreDTO> selectStore(int store_type);
 	public ArrayList<StoreTypeDTO> selectStoreType(int store_type);
-	public ArrayList<FindStoreDTO> page(int store_type, @Param("fromRow") int fromRow, @Param("writePages") int writePages);
+	// public ArrayList<FindStoreDTO> page(int store_type, @Param("fromRow") int fromRow, @Param("writePages") int writePages);
 	public int selectStoreCount(int store_type);
 	//	public ArrayList<StoreDTO> selectStore(int store_type, int from, int rows);
 	
 	// 매장 상세 페이지
 	public StoreDetailDTO selectStoreDetail(int store_uid);
 	public StoreDetailDTO StoreDetailRestSeat(int store_uid);
+	public ArrayList<StoreDetailDTO> selectFood(int store_uid);
 	
 }
