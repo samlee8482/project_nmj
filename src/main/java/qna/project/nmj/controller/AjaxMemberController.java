@@ -28,8 +28,8 @@ public class AjaxMemberController {
 		AjaxStoreFindDTO ajax = new AjaxStoreFindDTO();
 		ArrayList<FindStoreDTO> list = null;
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
-		list = dao.page(store_type, writePages*(page-1), writePages);
-		ajax.setList(list);
+		//list = dao.page(store_type, writePages*(page-1), writePages);
+		//ajax.setList(list);
 		
 		if(list.size() > 0 && list != null) {
 			ajax.setStatus("OK");
@@ -49,7 +49,7 @@ public class AjaxMemberController {
 		AjaxStoreFindDTO ajax = new AjaxStoreFindDTO();
 		ArrayList<FindStoreDTO> list = null;
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
-		list = dao.page(store_dtype, writePages*(page-1), writePages);
+		//list = dao.page(store_dtype, writePages*(page-1), writePages);
 		ajax.setList(list);
 		
 		if(list.size() > 0 && list != null) {
@@ -59,7 +59,7 @@ public class AjaxMemberController {
 			ajax.setStatus("FAIL");
 			ajax.setCount(0);
 		}
-				
+
 		return ajax;
 	}
 	
