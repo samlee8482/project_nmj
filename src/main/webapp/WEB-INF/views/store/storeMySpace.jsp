@@ -139,29 +139,35 @@
 							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
 						</div>
 					</div>
-					<button type="button" class="btn btn-primary btn-lg btn-block bigbutton" onclick="location.href='storeMySpace.nmj?store_uid=${store_uid}'">공간 이미지 관리</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block bigbutton" onclick="location.href='storeMySpaceImg.nmj?store_uid=${store_uid}'">공간 이미지 관리</button>
 										
 				</div>
 			</div>
 		</div>
-		<div id="reservationArea">
-			
+		<div class="clear"></div>
+		<div id="reservationArea">			
 			<div>
-				<table>
-					<tr>
-						<th>공간이름</th>
-						<th>손님 아이디</th>
-						<th>시작시간</th>
-						<th>종료시간</th>
-						<th>예약 인원</th>
-						<th>금액</th>
-						<th>승인</th>
-						<th>거절</th>
-					</tr>					
-					<c:forEach var="reserv" items="reservation">
-						<tr>
+					<c:if test="${fn:length(reservation) eq 0 }">
+						<div>예약신청이 없습니다.</div>
+					</c:if>
+					<c:if test="${fn:length(reservation) gt 0 }">
+						<table id="reservationtb">
+							<tr class="table-primary">
+								<th>No.</th>
+								<th>공간이름</th>
+								<th>손님 아이디</th>
+								<th>시작시간</th>
+								<th>종료시간</th>
+								<th>예약 인원</th>
+								<th>금액</th>
+								<th>승인</th>
+								<th>거절</th>
+							</tr>		
+					<c:forEach var="reserv" items="${reservation}" varStatus="status">
+						<tr class="table-light">
+							<td>${status.count }</td>
 							<td>${reserv.reservation_seat }</td>
-							<td>${reserv.mb_uid }</td>
+							<td>${reserv.mb_id }</td>
 							<td>${reserv.reservation_start}</td>
 							<td>${reserv.reservation_end }</td>
 							<td>${reserv.reservation_count }</td>
@@ -170,30 +176,10 @@
 							<td><button>거절</button></td>
 						</tr>				
 					</c:forEach>
-				</table>
-			</div>
-		
-		
-		
-		
+						</table>
+					</c:if>			
+			</div>		
 		</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	</div>
 	<div class="clear"></div><br><br><br>
 	<footer>

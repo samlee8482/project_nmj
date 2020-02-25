@@ -130,7 +130,8 @@
 		;
 	</insert>
 	<select id="spaceListSelect" resultType="qna.project.nmj.beans.SpaceListDTO">
-		SELECT * FROM NMJ_spaceList
+		SELECT * FROM NMJ_spaceList ORDER BY spaceList_uid asc;
+			
 	</select>
 	<insert id="spaceListInsert">
 		INSERT INTO NMJ_spaceList
@@ -145,7 +146,7 @@
 	</insert>
 	
 	<select id="spaceSelect" resultType="qna.project.nmj.beans.SpaceDTO">
-	SELECT * FROM NMJ_space WHERE store_uid = #{param1};	
+	SELECT * FROM NMJ_space WHERE store_uid = #{param1} ORDER BY space_uid asc;	 
 	</select>
 	
 	<update id="spaceEmpty">
@@ -157,7 +158,21 @@
 			space_uid = #{param1};
 	</update>
 	
-	<select id="reservSelect" resultType="qna.project.nmj.beans.ReservationDTO">
-		SELECT * FROM NMJ_reservation WHERE store_uid = #{param1};
+	<select id="reservSelect" resultType="qna.project.nmj.beans.StoreMyReviewDTO">
+		SELECT * FROM NMJ_reservation re, NMJ_member mem WHERE store_uid = #{param1} and re.mb_uid = mem.mb_uid ORDER BY re.reservation_uid asc;
 	</select>
+	<select id="spaceImgSelect" resultType="qna.project.nmj.beans.StoreSpaceImgDTO">
+		SELECT * FROM NMJ_spaceimage si, NMJ_space sp WHERE sp.space_uid = si.space_uid and sp.store_uid = #{param1} ORDER BY sp.space_uid; 
+	</select>
+	<select id="spaceSelectByUid" resultType="qna.project.nmj.beans.SpaceImgDTO">
+		SELECT * FROM NMJ_spaceimage WHERE space_uid = #{param1};
+	</select>
+	
+	<insert id="spaceImageInsert">
+		INSERT INTO NMJ_spaceimage (space_uid, space_img_org, space_img_sav) VALUES(#{param1}, #{param2}, #{param3});
+	</insert>
+	
+	<delete id="spaceImageDelete">
+		DELETE * FROM NMJ_spaceimage WHERE space_img_uid = #{param1};
+	</delete>
 </mapper>

@@ -129,7 +129,6 @@ CREATE TABLE NMJ_spaceImage
     `space_uid`      INT     NOT NULL    COMMENT '매장 공간 고유번호', 
     `space_img_org`  TEXT    NOT NULL    COMMENT '방 사진원본명', 
     `space_img_sav`  TEXT    NOT NULL    COMMENT '방 사진저장명', 
-    `spaceList_uid`  INT     NOT NULL    COMMENT '공간 고유 번호', 
     PRIMARY KEY (space_img_uid)
 );
 

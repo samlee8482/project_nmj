@@ -17,12 +17,6 @@ import qna.project.nmj.beans.FoodDTO;
 import qna.project.nmj.beans.SpaceDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
-import qna.project.nmj.command.Command;
-import qna.project.nmj.command.StoreMyFoodInsertOkCommand;
-import qna.project.nmj.command.StoreSettingsCommand;
-import qna.project.nmj.command.StoreSettingsOkCommand;
-import qna.project.nmj.command.StoreSettingsRequestOkCommand;
-import qna.project.nmj.command.StoreMyReviewCommand;
 import qna.project.nmj.command.*;
 
 @Controller
@@ -166,6 +160,34 @@ public class StoreMyPageController {
 		return "store/storeMyReview";
 	}
 
+	@RequestMapping(value="/storeMySpaceImg.nmj")
+	public String storeMySpaceImg(Model model, int store_uid) {
+		model.addAttribute("store_uid", store_uid);
+		command = new StoreMySpaceImgCommand();
+		command.execute(model);		
+		return "store/storeMySpaceImg";
+	}
 	
+	@RequestMapping(value="/storeImgDetail.nmj")
+	public String storeImgDetail(Model model, int space_uid) {
+		model.addAttribute("space_uid", space_uid);
+		command = new StoreImgDetailCommand(); 
+		command.execute(model);
+		return "store/storeImgDetail";
+	}
 	
+	@RequestMapping(value="/storeMySpaceImgInsert.nmj")
+	public String StoreMySpaceImgInsert(Model model, int[] space_uid) {
+		model.addAttribute("space_uid", space_uid);	
+		return "store/storeMySpaceImgInsert";
+	}
+	
+	@RequestMapping(value="/storeMySpaceImgInsertOk.nmj")
+	public String StoreMySpaceImgInsertOk(Model model, int[] space_uid, @RequestParam("upload") MultipartFile upload) {
+		model.addAttribute("space_uid", space_uid);
+		model.addAttribute("upload", upload);
+		command = new storeMySpaceImgInsertCommand();
+		command.execute(model);
+		return "store/storeMySpaceImgInsertOk";
+	}
 }
