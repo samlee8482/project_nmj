@@ -10,7 +10,7 @@
 </c:if>
 <c:if test="${cnt == 1 }">
 	<script>
-		alert("이미지 추가 성공");
-		location.href = "";
+		alert("이미지 삭제 성공");
+		location.href = "storeImgDetail.nmj?space_uid=" + ${space_uid};
 	</script>
 </c:if>

@@ -22,9 +22,9 @@
 
 <p id="feedback">
 <span>고르신 공간 : </span> <span id="select-result">없음</span>.
-<form id="space_uids" action="storeMySpaceImgInsert.nmj" method="post">
-	<button id="imgAllInsert">이미지 넣기</button>
+<form name ="space_uids"id="space_uids" target="매장 이미지 넣기" method="post">
 </form>
+	<button id="imgAllInsert">이미지 넣기</button>
 
 
 </p>
@@ -33,7 +33,8 @@
 	<ol id="selectable">
 		<c:forEach var="list" items="${space }">
 			<li class="space_uid${list.space_uid } ui-widget-content">
-				<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a> 
+				<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
+				<button onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
 			</li>
 		</c:forEach>
 		</ol>
@@ -47,24 +48,29 @@ $( function() {
       stop: function() {
         var result = $( "#select-result" ).empty();
      
-        var uidsText = "";
+        var uidsText = "<input type='hidden' id='space_uid' name='space_uid' value='";
         $( ".ui-selected", this ).each(function() {
           var index = $( "#selectable li" ).index( this );
           var text = $( "#selectable li" ).get(index).innerText;
+          text = text.split("이미지 상세 페이지")[0];
           var space_uidText = $("#selectable li").get(index).innerHTML;
           space_uid = space_uidText.split("=")[2];
           space_uid = space_uid.split('"')[0];
-          uidsText += "<input type='hidden' name='space_uid' value='" + space_uid + "'>";
+          uidsText +=  space_uid + ","; 
           result.append(text+ " ");
         });
-        uidsText += "<button id='imgAllInsert'>이미지 넣기</button>";
+        uidsText += "'>";
         $("#space_uids").html(uidsText);
       }
     });
   } );
   $(document).ready(function(){
 	 $("#imgAllInsert").click(function(){
-		 location.href="storeMySpaceImgInsert?space_uid="+ space_uids;
+		 var space_uid = $("#space_uid").val();
+		 if(space_uid.length > 0){
+		 window.open("storeMySpaceImgInsert.nmj?space_uid="+ space_uid , "매장 이미지 넣기"	, "width=400, height=200, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		 }
+		 
 	 }); 
   });
   </script>

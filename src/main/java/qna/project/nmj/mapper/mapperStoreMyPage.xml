@@ -182,6 +182,6 @@
 	</insert>
 	
 	<delete id="spaceImageDelete">
-		DELETE * FROM NMJ_spaceimage WHERE space_img_uid = #{param1};
+		DELETE FROM NMJ_spaceimage WHERE space_img_uid = #{param1};
 	</delete>
 </mapper>
