@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import qna.project.nmj.beans.*;
 import qna.project.nmj.beans.dao.AdminDAO;
 
-public class AdminStoreAcceptCommand implements Command {
+public class AdminReplyReportCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
@@ -19,14 +19,10 @@ public class AdminStoreAcceptCommand implements Command {
 		RequestDTO request = dao.selectRequestByUid(request_uid);
 		
 		String request_content = request.getRequest_content();
-		int store_uid = 0;
+		int reply_uid = Integer.parseInt(request_content);
 
-		String[] nameValue = request_content.split(":");
-
-		store_uid = Integer.parseInt(nameValue[1]);	
-
-		StoreMemberDTO store = dao.selectStoreBySUid(store_uid);
-		model.addAttribute("dto", store);
+		ReplyJoinDTO reply = dao.selectReplyByUid(reply_uid);
+		model.addAttribute("dto", reply);
 		model.addAttribute("request_uid", request_uid);
 	}
 

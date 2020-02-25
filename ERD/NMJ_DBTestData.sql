@@ -203,12 +203,31 @@ values
 (	3,	3,	"너신고"),
 (	4,	4,	"짜증");
 
+insert into nmj_request
+(	request_uid, request_type,	request_content)
+values
+(5, 1, "store_uid:1");
+
+insert into nmj_request
+(	request_uid, request_type,	request_content)
+values
+(7, 3, "1"),
+(8, 3, "2"),
+(9, 4, "2");
+
 insert into nmj_review 
 (mb_uid , store_uid , review_rate , review_content)
 values
 (2, 1, 4, "재밌어용"),
 (3, 1, 1, "재미없어용"),
 (4, 1, 3, "모르겠어용");
+
+insert into nmj_reply
+(reply_uid, mb_uid , review_uid , reply_content, reply_level)
+values
+(2, 1, "재밌어용", 1),
+(3, 1, "재미없어용", 1),
+(4, 3, "모르겠어용", 1);
 
 insert into nmj_spacelist 
 (space_type) values ("좌석"),("노래방"), ("당구대"), ("볼링 레일"), ("테이블"), ("방");
@@ -219,5 +238,6 @@ select * from nmj_member;
 select * from nmj_storedtype;
 select * from nmj_store;
 select * from nmj_review;
+select * from nmj_reply;
 select * from nmj_request;
 select * from nmj_food;

@@ -12,6 +12,10 @@ SELECT
 		WHERE store_type =1 order by store_uid asc limit 0, 6;
 		
 select * from nmj_space ns ;
-truncate table nmj_space ;  
 
+SELECT * FROM NMJ_space WHERE store_uid = 1 group by space_name ORDER BY space_uid asc;
+truncate table nmj_space ;  
+select * from nmj_spaceimage ns ;
 SELECT * FROM nmj_review;
+
+SELECT * FROM NMJ_spaceimage si, NMJ_space sp WHERE sp.space_uid = si.space_uid and sp.store_uid = 1;

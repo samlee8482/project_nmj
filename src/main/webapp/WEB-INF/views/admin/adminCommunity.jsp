@@ -95,12 +95,18 @@
         <form name="frm" action="adminSearchCommunity.nmj" method="post">
 		<select name="searchOption">
 		  <option value="1">글내용</option>
-		  <option value="2">아이디</option>
+		  <option value="2">아이디로 글검색</option>
+		  <option value="3">댓글내용</option>
+		  <option value="4">아이디로 댓글검색</option>
 		</select>
 		<input type="text" name="search"/>
 		<button type="submit">검색</button>
 		</form>
 		<br>
+		
+		<button onclick="location.href='adminCommunity.nmj'">게시글</button>
+        <button onclick="location.href='adminReply.nmj'">댓글</button>
+        <br><br>
             
             <div class="table-responsive"> 
             
@@ -116,8 +122,8 @@
             <th>no.</th>
             <th>매장종류</th>
             <th>매장명</th>
-            <th>내용</th>
             <th>아이디</th>
+            <th>내용</th>
             <th>조회수</th>
             <th>작성일</th>
             <th>삭제</th>
@@ -141,8 +147,8 @@
 			</c:choose>
 			
 			<td>${dto.store_name }</td>
-			<td><a href="adminCommunityInfo.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
 			<td>${dto.mb_id }</td>
+			<td><a href="adminCommunityInfo.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
 			<td>${dto.review_viewCount }</td>
 			<td>${dto.review_date }</td>
 			<td><button onclick="location.href='deleteReview.nmj?review_uid=${dto.review_uid}'">삭제</button></td>

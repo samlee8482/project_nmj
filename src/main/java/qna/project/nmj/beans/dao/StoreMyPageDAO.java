@@ -39,12 +39,15 @@ public interface StoreMyPageDAO {
 	 */
 	public ArrayList<SpaceDTO> spaceSelect(int store_uid);
 	
-	public ArrayList<ReservationDTO> reservSelect(int store_uid);
-	 
+	public ArrayList<StoreMyReviewDTO> reservSelect(int store_uid);
+	
 	public int spaceEmpty(int space_uid, int space_empty);
 	
-	public int spaceImageInsert(SpaceImgDTO dto);
+	public ArrayList<StoreSpaceImgDTO> spaceImgSelect(int store_uid);
 	
+	public ArrayList<SpaceImgDTO> spaceSelectByUid(int space_uid);
+	
+	public int spaceImageInsert(int space_uid, String space_img_org, String space_img_sav);
 	public int spaceImageUpdate(SpaceImgDTO dto);
 	
 	public int spaceImageDelete(int space_uid);
@@ -116,7 +119,7 @@ public interface StoreMyPageDAO {
 	 * @return
 	 */
 	public int insertFoodByStoreUid(@Param("dto") FoodDTO dto);
+
 	
 	public ArrayList<StoreDTO> selectAllStores();
-	
 }
