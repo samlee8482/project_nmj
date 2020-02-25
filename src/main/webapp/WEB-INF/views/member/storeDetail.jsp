@@ -134,7 +134,7 @@
 						<li><i class="icon-phone2"></i>${list.store_tel }</li>
 						<li><i class="icon-alarm"></i>${list.store_hours }</li>
 						<li><i class="icon-star-full"></i>${list.totalAvg }</li>
-						<li><i class="icon-map3"></i><b id="menu">메뉴판 보기</b></li>
+						<li><i class="icon-map3"></i><b id="menu">메뉴판 펼치기</b></li>
 						
 						<c:choose>
 							<c:when test="${empty list.store_content }">
@@ -159,6 +159,94 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div class="modalContainer">
+	<!-- 
+		<c:forEach var="menu" items="${foodMenu }">
+			<div class="col-md-4 col-sm-6">
+				<div class="menuPic">
+					<c:choose>
+						<c:when test="${empty menu.food_img_sav }">
+							<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/img/food/${menu.food_img_sav}">
+						</c:otherwise>
+					</c:choose>
+				</div>
+				
+				<div class="menuName">
+					<p>${menu.food_name }</p>
+				</div>
+				
+				<div class="menuPrice">
+					<p>${menu.food_price }원</p>
+				</div>
+			</div>	
+		</c:forEach>
+	 -->
+		 <div class="col-md-4 col-sm-6">
+			 <div class="menuPic">
+			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+			 </div>
+			 <div class="menuName">국물떡볶이</div>
+			 <div class="menuPrice">8000원</div>
+		 </div>
+<!-- ------------------------------------------------------------------------------------------- -->
+		 <div class="col-md-4 col-sm-6">
+			 <div class="menuPic">
+			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+			 </div>
+			 <div class="menuName">국물떡볶이</div>
+			 <div class="menuPrice">8000원</div>
+		 </div>
+		 <div class="col-md-4 col-sm-6">
+			 <div class="menuPic">
+			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+			 </div>
+			 <div class="menuName">국물떡볶이</div>
+			 <div class="menuPrice">8000원</div>
+		 </div>
+		 <div class="col-md-4 col-sm-6">
+			 <div class="menuPic">
+			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+			 </div>
+			 <div class="menuName">국물떡볶이</div>
+			 <div class="menuPrice">8000원</div>
+		 </div>
+		 <div class="col-md-4 col-sm-6">
+			 <div class="menuPic">
+			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+			 </div>
+			 <div class="menuName">국물떡볶이</div>
+			 <div class="menuPrice">8000원</div>
+		 </div>
+		 
+<!-- ------------------------------------------------------------------------------------------- -->
+	 
+	</div>
+		
+		
+		
+		
+	<div class="clear" style="margin-bottom: 50px;"></div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 	<div class="mapContainer">
 		<h2>매장 위치</h2>
@@ -202,38 +290,13 @@
 		</script>
 		
 		
-		
-		
 	</div>
 	<!-- END map -->
 
-	
-	<div class="modalContainer">
-	
-		<c:forEach var="menu" items="${foodMenu }">
-			
-			<div class="menuPic">
-				<c:choose>
-					<c:when test="${empty menu.food_img_sav }">
-						<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
-					</c:when>
-					<c:otherwise>
-						<img src="${pageContext.request.contextPath}/img/food/${menu.food_img_sav}">
-					</c:otherwise>
-				</c:choose>
-			</div>
-			
-			<div class="menuName">
-				<p>${menu.food_name }</p>
-			</div>
-			
-			<div class="menuPrice">
-				<p>${menu.food_price }</p>
-			</div>
-			
-		</c:forEach>
-		
-	</div>
+
+
+
+
 	
 	
 	
@@ -281,6 +344,7 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/storeDetailMenu.js"></script>
 
 	</body>
 </html>
