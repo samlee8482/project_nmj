@@ -45,20 +45,15 @@ public class MemberController {
 	
 	// 매장 찾기 페이지
 	@GetMapping("/findStore.nmj")
-	public String findStoreGet(int store_type,int page, Model model) {
+	public String findStoreGet(int store_type, Model model) {
 		model.addAttribute("store_type", store_type);
-		model.addAttribute("page", page);
+		// model.addAttribute("page", page);
 		new FindStoreGetCommand().execute(model);
+		
 		return "/member/findStore";
 	}
 	
 	
-	@PostMapping("/findStore.nmj")
-	public String findStorePost(int store_dtype, int store_type, Model model) {
-		model.addAttribute("store_type", store_type);
-		new FindStorePostCommand().execute(model);
-		return "/member/findStore";
-	}
 	
 	@RequestMapping("storeDetail.nmj")
 	public String storeDetail(int store_uid, Model model) {

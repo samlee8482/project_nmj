@@ -11,21 +11,17 @@
 	margin-bottom: 100px;
 }
 
-.form1 {
-	width: 15%;
-	height: 30px;
-	border-radius: 7px;
-}
 
-.form2 {
+.form1 {
 	width: 80%;
 	height: 25px;
 	border-radius: 7px;
 	padding: 0px 10px;
+	margin-bottom: 10px;
 }
 
-.form3 {
-	width: 80%;
+.form2 {
+	width: 60%;
 	height: 40px;
 	border-radius: 7px;
 	background-color: #ff7361;
@@ -34,17 +30,39 @@
 	color: white;
 }
 
-.form3:hover {
+.form2:hover {
 	cursor: pointer;
 	background-color: red;
 }
 
+
+
 .btnContainer {
-	margin-bottom: 30px;
+	margin-bottom: 100px;
 }
 
-.work-holder  {
-	
+.btnContainer button {
+	margin: 0px 7px;
+	border-radius: 10px;
+	border-color: 6px white;
+	background-color: #ff7a7a;
+	box-shadow: 1px 1px 4px white;
+	color: white;
+}
+
+.btnContainer button:hover {
+	border: none;
+	background-color: red;
+}
+
+
+
+
+
+
+.work-holder a img {
+	height: 300px;
+	width: 90%;
 }
 
 @media only screen and (min-width: 768px) {
@@ -52,29 +70,42 @@
 		text-align: center;
 		margin-bottom: 50px;
 	}
+	
 	.form1 {
-		display: inline-block;
-		width: 80px;
-		height: 30px;
-		border-radius: 7px;
-	}
-	.form2 {
 		width: 500px;
 		height: 25px;
 		border-radius: 7px;
 		padding: 0px 10px;
+		margin-right: 7px;
 	}
-	.form3 {
+	.form2 {
 		width: 60px;
-		height: 30px;
+		height: 35px;
 		border-radius: 7px;
 		background-color: #ff7361;
 		border: none;
 		box-shadow: 1px 1px 3px red;
 		color: white;
 	}
-	.form3:hover {
+	.form2:hover {
 		cursor: pointer;
 		background-color: red;
+	}
+	
+	.work-holder a img {
+		height: 250px;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.work-holder a img {
+		height: 200px;
+	}
+}
+
+
+@media only screen and (min-width: 1200px) {
+	.work-holder a img {
+		height: 250px;
 	}
 }

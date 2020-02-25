@@ -71,7 +71,9 @@
 	</select>
 	
 	
-	
+	<select id="selectFood" resultType="qna.project.nmj.beans.StoreDetailDTO">
+		select * from NMJ_food where store_uid = #{param1};	
+	</select>
 	
 	
 </mapper>

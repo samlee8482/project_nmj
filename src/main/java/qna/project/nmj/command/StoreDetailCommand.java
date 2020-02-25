@@ -13,7 +13,7 @@ public class StoreDetailCommand implements Command{
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		model.addAttribute("list", dao.selectStoreDetail(store_uid));
 		model.addAttribute("restSeat", dao.StoreDetailRestSeat(store_uid));
-		
+		model.addAttribute("foodMenu", dao.selectFood(store_uid));
 		
 	}
 	
