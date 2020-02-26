@@ -2,10 +2,22 @@ package qna.project.nmj.beans.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 
-import qna.project.nmj.beans.*;
+import qna.project.nmj.beans.MainDTO;
+import qna.project.nmj.beans.MemberDTO;
+import qna.project.nmj.beans.StoreDTO;
+import qna.project.nmj.beans.StoreDetailDTO;
+import qna.project.nmj.beans.StoreTypeDTO;
 
 public interface MemberDAO {
+	
+	// 회원가입
+	// 회원가입 - 아이디 중복체크
+	public int checkOverId(String mb_id);
+	// 회원가입 - 회원정보 입력
+	public int insertMember(@Param("dto") MemberDTO dto);
+	
 	
 	// 아이디 비밀번호 찾기
 	// 아이디 찾기

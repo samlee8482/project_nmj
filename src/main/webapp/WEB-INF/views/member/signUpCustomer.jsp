@@ -31,17 +31,39 @@
 <body>
 <script>
 // form 검증
-function chkSubmit1(){
+function chkSubmit(){
 	frm = document.forms["frm"];
 	
 	var mb_id = frm["mb_id"].value.trim();
 	var mb_pw = frm["mb_pw"].value.trim();
+	var mb_pwOk = frm["mb_pwOk"].value.trim();
 	var mb_name = frm["mb_name"].value.trim();
+	var mb_tel = frm["mb_tel"].value.trim();
 	var mb_email = frm["mb_email"].value.trim();
 	
+	if(mb_id == ""){
+		alert("아이디를 입력해주세요.");
+		frm["mb_id"].focus();
+		return false;
+	}
+	if(mb_pw == ""){
+		alert("비밀번호를 입력해주세요.");
+		frm["mb_pw"].focus();
+		return false;
+	}
+	if(mb_pwOk == ""){
+		alert("비밀번호 재확인을 해주세요.");
+		frm["mb_pwOk"].focus();
+		return false;
+	}
 	if(mb_name == ""){
 		alert("이름을 입력해주세요.");
 		frm["mb_name"].focus();
+		return false;
+	}
+	if(mb_tel == ""){
+		alert("연락처를 입력해주세요.");
+		frm["mb_tel"].focus();
 		return false;
 	}
 	if(mb_email == ""){
@@ -49,8 +71,12 @@ function chkSubmit1(){
 		frm["mb_email"].focus();
 		return false;
 	}
-	
-	return true;
+	if(mb_pw != mb_pwOk){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	} else {
+		return true;
+	}
 }
 </script>
 
@@ -98,15 +124,30 @@ function chkSubmit1(){
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<form name="frm" action="signUpCustomerOk.nmj" onsubmit="return chkSubmit()">
-		<input name="mb_id" class="form-control myInput" placeholder="아이디">
-		<input name="mb_pw" class="form-control myInput" placeholder="비밀번호">
-		<input name="mb_pwOk" class="form-control myInput" placeholder="비밀번호 재확인">
-		<input name="mb_name" class="form-control myInput" placeholder="이름">
-		<input name="mb_email" class="form-control myInput" placeholder="이메일">
-		<input name="mb_tel" class="form-control myInput" placeholder="전화번호">
-		<button class="btn btn-primary myBtn">가입하기</button>
-	</form>
+	<div class=" div-relative" style="height: 500px;">
+		<div id="signUp_frm_container" class="jumbotron">
+			<form name="frm" id="signUp_frm" action="signUpCustomerOk.nmj" onsubmit="return chkSubmit()">
+				<div class="signUp_input_container">
+					<div class="form-group">
+					<input name="mb_id" id="mb_id" class="form-control" placeholder="아이디" required>
+					<div class="check_font" id="id_check"></div>
+					</div>
+					<input name="mb_pw" class="form-control" placeholder="비밀번호" required>
+					<input name="mb_pwOk" class="form-control" placeholder="비밀번호 재확인" required>
+				</div>
+				<div class="signUp_input_container">
+					<input name="mb_name" class="form-control" placeholder="이름" required>
+					<input name="mb_email" class="form-control" placeholder="이메일" required>
+					<input name="mb_tel" class="form-control" placeholder="전화번호" required>
+					<input name="mb_type" type="hidden" value="1">
+				</div>
+				<br>
+				<button id="reg_submit" class="btn btn-primary myBtn">가입하기</button>
+			</form>
+		</div>
+	</div>
+	
+	<br><br><br><br><br><br><br><br><br><br>
 	
 	<footer>
 		<div id="footer" class="fh5co-border-line">
@@ -146,6 +187,51 @@ function chkSubmit1(){
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+
+	<script>
+	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#mb_id").blur(function() {
+		// id = "id_reg" / name = "userId"
+		var mb_id = $('#mb_id').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/user/idCheck?mb_id='+ mb_id,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+						// 1 : 아이디가 중복되는 문구
+						$("#id_check").text("사용중인 아이디입니다 :p");
+						$("#id_check").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+					} else {
+						
+						if(idJ.test(mb_id)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#id_check").text("");
+							$("#reg_submit").attr("disabled", false);
+				
+						} else if(mb_id == ""){
+							
+							$('#id_check').text('아이디를 입력해주세요 :)');
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} else {
+							
+							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);
+						}
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+	</script>
+	
 
 </body>
 </html>

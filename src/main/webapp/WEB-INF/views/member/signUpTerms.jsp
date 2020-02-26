@@ -47,7 +47,6 @@ function chk(){
 		return false;
 	} else {
 		alert(checked+"개선택");
-		return;
 	}
 }
 
@@ -102,7 +101,7 @@ function chk(){
 	
 	<div class=" div-relative" style="height: 1000px;">
 		<div id="terms_container" class="jumbotron">
-			<form onsubmit="chk()">
+			<form action="signUpCustomer.nmj"onsubmit="chk()">
 				<h2>회원가입약관</h2>
 				<textarea class="form-control temrs_textarea" id="exampleTextarea" rows="15">
 				제 1 장 총칙
@@ -404,7 +403,8 @@ function chk(){
 				</label> 
 				
 				<div id="temrs_btn_container">
-				<button class="btn btn-primary terms_btn" onsubmit="chk" onclick="location.href='signUpCustomer.nmj'">동의</button><button id="terms_btn_right" class="btn btn-primary terms_btn" onclick="history.back()">비동의</button>
+					<button class="btn btn-primary terms_btn">동의</button><button id="terms_btn_right" class="btn btn-primary terms_btn" onclick="history.back()">비동의</button>
+				</div>
 			</form>
 		</div>
 	</div>
