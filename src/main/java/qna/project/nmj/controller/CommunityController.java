@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.command.Command;
 import qna.project.nmj.command.CommunityListCommand;
+import qna.project.nmj.command.CommunitySelectViewCommand;
 import qna.project.nmj.command.CommunityUpdateRateCommand;
+import qna.project.nmj.command.CommunityUpdateReviewOkCommand;
 import qna.project.nmj.command.CommunityViewCommand;
 import qna.project.nmj.command.CommunityWriteOkCommand;
+import qna.project.nmj.command.*;
 
 @Controller
 @RequestMapping("/community")
@@ -29,7 +32,7 @@ public class CommunityController {
 	private Command command;
 
 	@RequestMapping("/writeReview.nmj")
-	public String insertReview(int mb_uid, int store_uid, Model model) {
+	public String writeReview(int mb_uid, int store_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("store_uid", store_uid);
 		return "/community/writeReview";
@@ -57,11 +60,47 @@ public class CommunityController {
 		return "community/communityList";
 	}
 	
+	@RequestMapping("/communityList2.nmj")
+	public String selectAllReview2( Model model) {
+		command = new CommunityListCommand2();
+		command.execute(model);
+		return "community/communityList2";
+	}
+	
 	@RequestMapping(value = "/communityView.nmj")
 	public String communityView(int review_uid, Model model) {
 		model.addAttribute("review_uid", review_uid);
 		new CommunityViewCommand().execute(model);
 		return "community/communityView";
 	}
+	
+	// 리뷰 수정 불러오기
+	@RequestMapping("/updateReview.nmj")
+	public String updateReview(int mb_uid, int review_uid, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		System.out.println("Controller mb_uid : " + mb_uid);
+		model.addAttribute("review_uid", review_uid);
+		System.out.println("Controller review_uid : " + review_uid);
+		new CommunitySelectViewCommand().execute(model);
+		return "/community/updateReview";
+	}
+	
+	// 리뷰 수정
+	@RequestMapping("/updateReviewOk.nmj")
+	public String updateReviewOk(int mb_uid, String review_content, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_content", review_content);
+		command = new CommunityUpdateReviewOkCommand();
+		command.execute(model);
+		return "/community/updateReviewOk";
+	}
+	
+	@RequestMapping("/reportReview.nmj")
+	public String reportReview(int review_uid, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		new CommunityReportReviewCommand().execute(model);
+		return "/community/reportReview";
+	}
+	
 	
 }

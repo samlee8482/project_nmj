@@ -14,20 +14,16 @@
 			<c:when test="${rate == 1 }">
 				<script>
 					alert("리뷰 작성 성공");
-				
+					location.href = "communityList.nmj?mb_uid=${mb_uid }";
 				</script>
 			</c:when>
 			<c:otherwise>
 				<script>
 					alert("글 작성 성공");
-				
+					location.href = "communityList.nmj?mb_uid=${mb_uid }";
 				</script>
-			
 			</c:otherwise>
 		</c:choose>
-		<script>
-			location.href = "communityList.nmj";
-		</script>
 	</c:when>
 	<c:when test="${result == 2 }">
 		<script>

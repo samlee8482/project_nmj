@@ -8,8 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>커뮤니티 - 리뷰작성</title>
-<link rel="shortcut icon" href="favicon.ico">
+<title>커뮤니티 - 리뷰수정</title><link rel="shortcut icon" href="favicon.ico">
 
 <!-- Animate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/animate.css">
@@ -90,8 +89,8 @@ function chkSubmit(){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>리뷰작성</h2>
-					<p>"자 이제 여러분의 차례입니다"</p>
+					<h2>리뷰수정</h2>
+					<p>"다 쓴 글도 다시보자"</p>
 				</div>
 			</div>
 		</div>
@@ -101,14 +100,14 @@ function chkSubmit(){
 	<div class="div-relative" style="height: 1000px;">
 		<div id="write_frm_container">
 			<h3>여러분의 리뷰를 남겨주세요</h3><br>
-			<form name="frm" method="post" action="writeReviewOk.nmj" onSubmit="return chkSubmit()">
+			<form name="frm" method="get" action="updateReviewOk.nmj" onSubmit="return chkSubmit()">
 				<!-- 
 				<h3 class="main-title">
 					<input name="review_content" placeholder="제목을 입력하세요" value="${review_content }" style="width: 100%; padding: 10px;" />
 				</h3>
 				 -->
 				<div style="margin-left: auto; margin-right: auto; width: 600px; height: 600px;">
-					<textarea name="review_content" id="editor1"></textarea>
+					<textarea name="review_content" id="editor1">${dto.review_content }</textarea>
 					<script>
 						CKEDITOR.replace('editor1', {
 							allowedContent: true,
@@ -119,8 +118,12 @@ function chkSubmit(){
 				</div><br><br><br><br><br><br><br>
 				
 				<c:choose>
-					<c:when test="${store_uid eq 0}">
+					<c:when test="${dto.store_uid eq 0}">
 						<div style="display: none;">
+						</div><br><br><br>
+					</c:when>
+					<c:when test="${dto.store_uid ne 0}">
+						<div style="display: inline-block;">
 							<h3>나의 평점은?</h2>
 							<p id="star_grade">
 						        <a value="1" href="#">★</a>
@@ -132,22 +135,14 @@ function chkSubmit(){
 						</div><br><br><br>
 					</c:when>
 					<c:otherwise>
-						<div style="display: inline-block;">
-							<h3>나의 평점은?</h2>
-							<p id="star_grade">
-						        <a value="1" href="#">★</a>
-						        <a value="2" href="#">★</a>
-						        <a value="3" href="#">★</a>
-						        <a value="4" href="#">★</a>
-						        <a value="5" href="#">★</a>
-							</p>
+						<div style="display: none;">
 						</div><br><br><br>
 					</c:otherwise>
 				</c:choose>
-				<input type="hidden" name="mb_uid" value="${mb_uid }" />
-				<input type="hidden" name="store_uid" value="${store_uid }" />
+				<input type="hidden" name="mb_uid" value="${dto.mb_uid }" />
+				<input type="hidden" name="store_uid" value="${dto.store_uid }" />
 				<input id="review_rate" type="hidden" name="review_rate" value="0" />
-				<button class="login_btn" type="submit">작성 완료</button>
+				<button class="login_btn" type="submit">수정 완료</button>
 				
 			</form>
 		</div>

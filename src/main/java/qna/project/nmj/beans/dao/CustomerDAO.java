@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import qna.project.nmj.beans.CusMyPageDTO;
 import qna.project.nmj.beans.MemberDTO;
+import qna.project.nmj.beans.ReservationDTO;
 
 public interface CustomerDAO {
 	public MemberDTO selectMemberByUid(int mb_uid);
@@ -14,4 +15,7 @@ public interface CustomerDAO {
 	public ArrayList<CusMyPageDTO> selectLikeByUid(int mb_uid);
 	public ArrayList<CusMyPageDTO> selectMyReviewByUid(int mb_uid);
 	public ArrayList<CusMyPageDTO> selectMyReplyByUid(int mb_uid);
+	
+	// 예약페이지
+	public int insertReservation(@Param("dto") ReservationDTO dto);
 }
