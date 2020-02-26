@@ -63,4 +63,9 @@ public class HomeController {
 	public String daumxy() {
 		return "/store/daumxy";
 	}
+	
+	@RequestMapping(value = "/map")
+	public String map() {
+		return "/mainPageMap";
+	}
 }

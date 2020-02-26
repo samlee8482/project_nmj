@@ -37,7 +37,7 @@
 	<!-- 리뷰 1개 불러오기 -->
 	<select id="selectReviewByUid" 
  		resultType="qna.project.nmj.beans.ReviewJoinDTO">
- 		SELECT a.*, b.store_type, b.store_name, c.mb_id, c.mb_uid 
+ 		SELECT a.*, b.store_type, b.store_name, c.mb_id
 		FROM NMJ_review a 
 		JOIN NMJ_store b ON a.store_uid = b.store_uid 
 		JOIN NMJ_member c ON a.mb_uid = c.mb_uid 
@@ -85,7 +85,12 @@
 
 
 
-
+	<!-- 리뷰 수정을 위해 1개 불러오기 (조회수 증가x) -->
+	<select id="selectReviewByUid2" resultType="qna.project.nmj.beans.ReviewDTO">
+		SELECT * FROM NMJ_review
+		WHERE mb_uid = #{param1}
+		AND review_uid = #{param2};
+	</select>
 
 	<!-- 리뷰 수정 -->
 	<update id="updateReview" flushCache="true" parameterType="qna.project.nmj.beans.ReviewDTO">

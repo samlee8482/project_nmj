@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.ReservationDTO;
+import qna.project.nmj.command.CusReserveOkCommand;
 import qna.project.nmj.command.CusShowLikeCommand;
 import qna.project.nmj.command.CusShowReplyCommand;
 import qna.project.nmj.command.CusShowReserveCommand;
@@ -79,6 +80,7 @@ public class CustomerController {
 	@RequestMapping("/cusReserveOk.nmj")
 	public String reserve(ReservationDTO dto, Model model) {
 		model.addAttribute("dto", dto);
+		new CusReserveOkCommand().execute(model);
 		return "/customer/cusReserveOk";
 	}
 	
