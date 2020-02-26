@@ -199,26 +199,14 @@ values
 	(	19,	1,	"",	"",	2000,	"김밥"	),
 	(	20,	1,	"",	"",	2500,	"치즈김밥"	);
 
--- nmj_request
-insert into nmj_request
-(	request_uid, request_type,	request_content)
-values
-(	1,	1,	"가입승인좀"),
-(	2,	2,	"ㅇㅇ"),
-(	3,	3,	"너신고"),
-(	4,	4,	"짜증");
 
 insert into nmj_request
-(	request_uid, request_type,	request_content)
+(request_type,	request_content)
 values
-(5, 1, "store_uid:1");
-
-insert into nmj_request
-(	request_uid, request_type,	request_content)
-values
-(7, 3, "1"),
-(8, 3, "2"),
-(9, 4, "2");
+(1, "store_uid:1"),
+(3, "1"),
+(3, "2"),
+(4, "2");
 
 insert into nmj_review 
 (mb_uid , store_uid , review_rate , review_content)
@@ -266,6 +254,16 @@ values
 
 insert into nmj_spacelist 
 (space_type) values ("좌석"),("노래방"), ("당구대"), ("볼링 레일"), ("테이블"), ("방");
+
+insert into nmj_review 
+(mb_uid , store_uid , review_rate , review_content, review_viewCount)
+values 
+(41, 0, 0, "코로나", 40),
+(42, 0, 0, "19", 30),
+(43, 0, 0, "심각단계", 20),
+(44, 0, 0, "어쩌지?", 10),
+(45, 0, 0, "ㅈ댔넹", 5)
+;
 
 select * from nmj_spacelist ns ;
 select * from nmj_review nr ;
