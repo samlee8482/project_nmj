@@ -102,5 +102,12 @@ public class CommunityController {
 		return "/community/reportReview";
 	}
 	
+	@PostMapping(value = "/writeReply.nmj")
+	public String insertReply(int mb_uid, String reply_content, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("reply_content", reply_content);
+		new CommunityWriteReplyCommand().execute(model);
+		return "/community/writeReply";
+	}
 	
 }

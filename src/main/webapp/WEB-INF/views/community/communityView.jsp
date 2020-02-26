@@ -138,6 +138,13 @@
     <br><br><br><br><br>
 
 	<h3>댓글 목록</h3>
+	
+	<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" method="post">
+		<!-- 나중에 바꾸기 -->
+		<input type="hidden" name="mb_uid" value="${dto.mb_uid }"/> 
+		<input class="form-control mr-sm-2" type="text" name="reply_content"/>
+		<button class="btn btn-secondary btn-lg" type="submit">등록</button>
+	</form>
 
     <c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">
