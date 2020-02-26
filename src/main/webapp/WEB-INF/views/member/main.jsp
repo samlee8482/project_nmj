@@ -44,7 +44,7 @@
 <br><br><br><br>
 <table>
 	<tr>
-		<th>회원이름</th>
+		<th>회원아이디</th>
 		<th>내용</th>
 		<th>작성일</th>
 		<th>조회수</th>
@@ -85,50 +85,6 @@
 
 </table>
 
-
-<br><br><br><br>
-<table>
-	<tr>
-		<th>회원이름</th>
-		<th>내용</th>
-		<th>작성일</th>
-		<th>조회수</th>
-	</tr>
-	
-	<tr>
-		<td>${community[0].mb_name }</td>
-		<td>${community[0].review_content }</td>
-		<td>${community[0].review_date }</td>
-		<td>${community[0].review_viewCount }</td>
-	</tr>
-	<tr>
-		<td>${community[1].mb_name }</td>
-		<td>${community[1].review_content }</td>
-		<td>${community[1].review_date }</td>
-		<td>${community[1].review_viewCount }</td>
-	</tr>
-	<tr>
-		<td>${community[2].mb_name }</td>
-		<td>${community[2].review_content }</td>
-		<td>${community[2].review_date }</td>
-		<td>${community[2].review_viewCount }</td>
-	</tr>
-	<tr>
-		<td>${community[3].mb_name }</td>
-		<td>${community[3].review_content }</td>
-		<td>${community[3].review_date }</td>
-		<td>${community[3].review_viewCount }</td>
-	</tr>
-	<tr>
-		<td>${community[4].mb_name }</td>
-		<td>${community[4].review_content }</td>
-		<td>${community[4].review_date }</td>
-		<td>${community[4].review_viewCount }</td>
-	</tr>
-	
-
-
-</table>
 
 
 
