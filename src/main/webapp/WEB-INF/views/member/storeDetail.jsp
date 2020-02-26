@@ -103,7 +103,7 @@
 							<li><a href="findStore.nmj?store_type=3">자자</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li><a href="communityList.nmj">떠들자</a></li>
+					<li><a href="${pageContext.request.contextPath}/community/communityList.nmj">떠들자</a></li>
 				</ul>
 			</nav>
 		</div>
