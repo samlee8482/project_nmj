@@ -265,6 +265,17 @@ values
 (45, 0, 0, "ㅈ댔넹", 5)
 ;
 
+insert into nmj_reply 
+(mb_uid , review_uid , reply_content, reply_level)
+values
+(2, 1, "오", 0),
+(3, 1, "와우", 0),
+(4, 1, "대박", 0),
+(4, 2, "좋아요", 0),
+(5, 2, "짱", 0),
+(5, 3, "싫어요", 0),
+(6, 3, "굳굳", 0);
+
 select * from nmj_spacelist ns ;
 select * from nmj_review nr ;
 select * from nmj_member;
