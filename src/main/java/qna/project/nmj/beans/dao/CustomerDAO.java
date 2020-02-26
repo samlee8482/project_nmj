@@ -18,4 +18,7 @@ public interface CustomerDAO {
 	
 	// 예약페이지
 	public int insertReservation(@Param("dto") ReservationDTO dto);
+	
+	// 회원가입
+	public int insertSignUpCustomer(@Param("dto") MemberDTO dto);
 }

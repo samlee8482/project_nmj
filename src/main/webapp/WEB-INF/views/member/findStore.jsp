@@ -102,13 +102,13 @@
 							<li><a href="findStore.nmj?store_type=3">자자</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li><a href="communityList.nmj">떠들자</a></li>
+					<li><a href="${pageContext.request.contextPath}/community/communityList.nmj">떠들자</a></li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 
-	<div class="fh5co-parallax" style="background-image: url(images/hero-1.jpg);" data-stellar-background-ratio="0.5">
+	<div class="fh5co-parallax" style="background-image: url(${pageContext.request.contextPath}/img/findStore.jpg);" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">

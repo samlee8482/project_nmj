@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.command.*;
 
 @Controller
@@ -63,10 +64,37 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping("main.nmj")
+	public String main(Model model) {
+		new MainCommand().execute(model);
+		return "/member/main";
+	}
 	
 	
 	
 	
 	
+	
+	
+	
+	// 회원가입
+	// 약관동의 양식
+	@RequestMapping("/signUpTerms.nmj")
+	public void signUpTerms() {
+		
+	}
+	
+	// 회원가입 양식
+	@RequestMapping("/signUpCustomer.nmj")
+	public void signUpCustomer() {
+		
+	}
+	
+	@RequestMapping("/signUpCustomerOk.nmj")
+	public String signUpCustomerOk(MemberDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		new SignUpCustomerOkCommand().execute(model);
+		return "/member/signUpCustomerOk";
+	}
 	
 }

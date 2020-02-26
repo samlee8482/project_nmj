@@ -57,10 +57,17 @@
 	
 	<!-- 예약페이지 -->
 	<!-- 예약 정보 예약테이블에 삽입 -->
-	<insert id="insertReserve" flushCache="true" parameterType="qna.project.nmj.beans.ReservationDTO">
+	<insert id="insertReservation" flushCache="true" parameterType="qna.project.nmj.beans.ReservationDTO">
 		INSERT INTO NMJ_reservation 
-		reservation_start, reservation_end, reservation_count, reservation_price, reservation_seat, mb_uid
-		VALUES (?, ?, ?, ?, ?, ?);
+		(reservation_start, reservation_end, reservation_count, reservation_price, reservation_seat, mb_uid, store_uid, space_uid )
+		VALUES (#{dto.reservation_start} , #{dto.reservation_end}, #{dto.reservation_count}, #{dto.reservation_price}, #{dto.reservation_seat}, #{dto.mb_uid}, #{dto.store_uid}, #{dto.space_uid});
+	</insert>
+	
+	<!-- 회원가입 페이지 -->
+	<insert id="insertSignUpCustomer" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
+		INSERT INTO NMJ_member
+		(mb_id, mb_pw, mb_name, mb_tel, mb_email)
+		VALUES (#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_tel}, #{mb_email});
 	</insert>
 	
 </mapper>

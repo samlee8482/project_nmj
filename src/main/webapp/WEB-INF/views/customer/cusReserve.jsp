@@ -11,7 +11,7 @@
 <title>예약페이지</title>
 
 <link rel="shortcut icon" href="favicon.ico">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/mySpace.css">
 <!-- Animate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/animate.css">
 <!-- Icomoon Icon Fonts-->
@@ -30,10 +30,10 @@
 
 <!-- DatePicker -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/datepicker.min.css">
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
-
 </head>
 <script>
 // form 검증
@@ -120,6 +120,41 @@ function chkSubmit(){
 	
 	return true;
 }
+$(document).ready(function(){
+	$(".spaceEmpty0").click(function(){
+		var info = $(this).attr("class");
+		
+		var uid = info.split("#")[1];
+		var name = info.split("#")[6];
+		var price = info.split("#")[4];
+		var seats = $("#space_uid").val();
+		if(!seats){
+			seats = uid;
+		}else{
+			seats = seats + "," + uid;		
+		}
+		$("#space_uid").val(seats);
+		
+		var selectedSeats = $("#selectedSeat").text();
+		if(!selectedSeats){
+			selectedSeats = name;
+		}else{
+			selectedSeats = selectedSeats + ", " + name;
+		}
+		
+		$("#selectedSeat").text(selectedSeats);
+		$("#reservation_seat").val(selectedSeats);
+		var seatPrice = $("#reserve_price").val()*1;
+		if(!seatPrice){
+			seatPrice = price*1;
+		}else{
+			seatPrice = seatPrice*1 + price*1;
+		}
+		$("#reserve_price").val(seatPrice);
+		$(this).addClass("selectingSeat");
+	});	
+});
+
 </script>
 <body>
 
@@ -167,22 +202,15 @@ function chkSubmit(){
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: 1000px;">
+	<div class="div-relative">
 		<div id="reserve_frm_container">
-			<form name="frm" id="reserve_frm" onsubmit="return chkSubmit();">
-				<table>
-					<tr>
-						<th>
-							<div>날짜 선택</div>
-						</th>
-						<th>
-						</th>
-					</tr>
-					<tr>
-						<td>
+			<form name="frm" id="reserve_frm" onsubmit="return chkSubmit();" action="cusReserveOk.nmj" method="post">
+				<div>
+					<div>날짜 선택</div>
+						<div>
+							<c:choose>
+							<c:when test="${store_type eq 1}">
 							<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
-						</td>
-						<td>
 							<select name="reservation_start" class="custom-select" style="width: 200px; height: 50px; font-size: 17px;">
 								<option selected>시작 시간</option>
 								<option value="00:00">00:00</option>
@@ -240,68 +268,119 @@ function chkSubmit(){
 								<option value="23:00">23:00</option>
 								<option value="24:00">24:00</option>
 							</select>
-						</td>
-					</tr>
-				</table>
+							</c:when>
+							<c:when test="${store_type eq 2}">
+								<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
+							<select name="reservation_start" class="custom-select" style="width: 200px; height: 50px; font-size: 17px;">
+								<option selected>시작 시간</option>
+								<option value="00:00">00:00</option>
+								<option value="01:00">01:00</option>
+								<option value="02:00">02:00</option>
+								<option value="03:00">03:00</option>
+								<option value="04:00">04:00</option>
+								<option value="05:00">05:00</option>
+								<option value="06:00">06:00</option>
+								<option value="07:00">07:00</option>
+								<option value="08:00">08:00</option>
+								<option value="09:00">09:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+								<option value="19:00">19:00</option>
+								<option value="20:00">20:00</option>
+								<option value="21:00">21:00</option>
+								<option value="22:00">22:00</option>
+								<option value="23:00">23:00</option>
+								<option value="24:00">24:00</option>
+							</select>
+							</c:when>
+							<c:when test="${store_type eq 3}">
+								<input type="text" name="reservation_start" data-range="true" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here"/>
+							</c:when>
+							</c:choose>
+						</div>
+					</div>
 				<hr width="100%" align="center" size="0.7px">
-				<table>
-					<tr>
-						<th>
-							<div>인원 및 좌석선택</div>
-						</th>
-						<th>
-						</th>
-					</tr>
-					<tr>
-						<td>
+				<div>
+					<div>인원 및 좌석선택</div>
+							<div id="spaceArea">
+								<c:forEach var="list" items="${space }">
+									<div class="
+									<c:set var="space" value="${list.spaceList_uid }"/>						
+									<c:choose>
+										
+										<c:when test="${list.spaceList_uid eq 1 }">
+											pcspace space_uid#${list.space_uid }# space_count#1 space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#1 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="pcspaceimg spaceIsEmpty${list.space_empty}" ></div><div class="pcNum">${list.space_name }</div>
+										</c:when>			
+										<c:when test="${list.spaceList_uid eq 2 }">
+											draggablekar ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#2 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="karspaceimg spaceIsEmpty${list.space_empty}"></div><div class="karNum">${list.space_name }</div>
+										</c:when>			
+										<c:when test="${list.spaceList_uid eq 3 }">
+											draggablebil ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#3 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="bilspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bilNum">${list.space_name }</div>
+										</c:when>			
+										<c:when test="${list.spaceList_uid eq 4 }">
+											draggablebowl ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#4 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc+ 100}px; top:${list.space_yloc -400}px"><div class="bowlspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bowlNum">${list.space_name }</div>
+										</c:when>			
+										<c:when test="${list.spaceList_uid eq 5 }">
+											draggableTable ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }#  spaceName#${list.space_name }# spaceList#5 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="tablespaceimg spaceIsEmpty${list.space_empty}"></div><div class="tableNum">${list.space_name }</div>
+										</c:when>			
+										<c:otherwise>
+											draggableRoom ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#${list.spaceList_uid } spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="roomspaceimg spaceIsEmpty${list.space_empty}"></div><div class="roomNum">${list.space_name }</div>
+										</c:otherwise>	
+									</c:choose>
+										</div>
+								</c:forEach>
+							</div>
+						</div>
+				<div id="resultBox">
+							
 							<input type="text" placeholder="인원을 입력하세요" name="reservation_count" id="reserve_count" class="reserve_info form-control myInput"/ required>
-						</td>
-						<td>
-							<div>성일형님 좌석선택 부탁드립니다</div>
-						</td>
-					</tr>
-				</table>
 				<hr width="100%" align="center" size="0.7px">
-				<table>
-					<tr>
-						<th>
 							<div>금액</div>
-						</th>
-						<th>
-						</th>
-					</tr>
-					<tr>
+							
+						
 						<c:choose>
 							<c:when test="${store_type eq 2}">
-								<td>
+								<div>
 									※ 먹자 매장은 현장 결제를 해주셔야 합니다.
-								</td>
-								<td>
-									<input type="hidden" name="${mb_uid }">
-									<input type="hidden" name="${store_uid }">
-									<input type="hidden" name="${store_type }">
-									<input type="hidden" name="${space_price }">
+								</div>
+								<div>
+									<input type="hidden" name="mb_uid" value="${mb_uid }">
+									<input type="hidden" name="store_uid" value="${store_uid }">
+									<input type="hidden" name="store_type" value="${store_type }">
+									<input type="hidden" name="reservation_price" value="0">
 									<button class="btn btn-primary myBtn">예약하기</button>
-								</td>
+								</div>
 							</c:when>
 							<c:otherwise>
-								<td>
-									<input type="text" placeholder="금액" name="reservation_price" id="reserve_price" class="reserve_info form-control myInput"/ readonly>
-								</td>
-								<td>
-									<input type="hidden" name="${mb_uid }">
-									<input type="hidden" name="${store_uid }">
-									<input type="hidden" name="${store_type }">
-									<input type="hidden" name="${space_price }">
+								<div>
+									<input type="text" placeholder="금액" name="reservation_price" id="reserve_price" class="reserve_info form-control myInput" value="0">
+								</div>
+								<div>
+									<input type="hidden" name="mb_uid" value="${mb_uid }">
+									<input type="hidden" name="store_uid" value="${store_uid }">
+									<input type="hidden" name="store_type" value="${store_type }">
 									<button class="btn btn-primary myBtn">예약하기</button>
-								</td>
+								</div>
 							</c:otherwise>
 						</c:choose>
-					</tr>
-				</table>
+						<div>
+							선택하신 좌석 : <span id="selectedSeat"></span>
+						</div>
+							<input type="hidden" id="space_uid" name = "space_uid">
+							<input type="hidden" id="reservation_seat" name="reservation_seat" value="">
+				</div>
 			</form>
 		</div>
 	</div>
+	
+	<div class="clear"></div>
 	
 	<footer>
 		<div id="footer" class="fh5co-border-line">

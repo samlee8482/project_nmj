@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.ReservationDTO;
+import qna.project.nmj.command.CusReserveCommand;
 import qna.project.nmj.command.CusReserveOkCommand;
 import qna.project.nmj.command.CusShowLikeCommand;
 import qna.project.nmj.command.CusShowReplyCommand;
@@ -16,6 +17,7 @@ import qna.project.nmj.command.CusShowReserveCommand;
 import qna.project.nmj.command.CusShowReviewCommand;
 import qna.project.nmj.command.CusUpdateInfoCommand;
 import qna.project.nmj.command.CusUpdateInfoOkCommand;
+import qna.project.nmj.command.SignUpCustomerOkCommand;
 
 @Controller
 @RequestMapping("/customer")
@@ -74,11 +76,12 @@ public class CustomerController {
 		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("store_type", store_type);
+		new CusReserveCommand().execute(model);
 		return "/customer/cusReserve";
 	}
 	
 	@RequestMapping("/cusReserveOk.nmj")
-	public String reserve(ReservationDTO dto, Model model) {
+	public String reserveOk(ReservationDTO dto, Model model) {
 		model.addAttribute("dto", dto);
 		new CusReserveOkCommand().execute(model);
 		return "/customer/cusReserveOk";
