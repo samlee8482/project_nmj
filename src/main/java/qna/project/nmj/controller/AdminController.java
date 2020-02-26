@@ -100,7 +100,7 @@ public class AdminController {
 		return "admin/adminCommunity";	
 	}
 	
-	@RequestMapping(value = "/adminCommunity.nmj", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminSearchCommunity.nmj", method = RequestMethod.POST)
 	public String reviewSearchList(int searchOption, String search, Model model) {
 		model.addAttribute("searchOption", searchOption);
 		model.addAttribute("search", search);

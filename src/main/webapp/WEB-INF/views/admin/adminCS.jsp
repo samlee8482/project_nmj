@@ -130,8 +130,8 @@
 			<td>
 			<c:choose>
 				<c:when test="${dto.request_check== 0 }">
-			<button onclick="location.href='adminCSreject.nmj?request_uid=${dto.request_uid }'">거절</button>
-			<button onclick="location.href='adminCSsolve.nmj?request_uid=${dto.request_uid }'">해결</button>
+			<button class="btn btn-outline-primary" onclick="location.href='adminCSreject.nmj?request_uid=${dto.request_uid }'">거절</button>
+			<button class="btn btn-outline-success" onclick="location.href='adminCSsolve.nmj?request_uid=${dto.request_uid }'">해결</button>
 				</c:when>
 				<c:when test="${dto.request_check== 1 }">해결완료</c:when>
 				<c:when test="${dto.request_check== 2 }">거절완료</c:when>
@@ -139,16 +139,16 @@
 			</td>
 			<c:choose>
 				<c:when test="${dto.request_type == 1 }">
-					<td><button onclick="location.href='adminStoreRQ.nmj?request_uid=${dto.request_uid }'">가입요청링크</button></td>
+					<td><button class="btn btn-outline-secondary" onclick="location.href='adminStoreRQ.nmj?request_uid=${dto.request_uid }'">가입요청링크</button></td>
 				</c:when>
 				<c:when test="${dto.request_type == 2 }">
-					<td><button onclick="location.href='adminStoreRQ2.nmj?request_uid=${dto.request_uid}'">수정요청링크</button></td>
+					<td><button class="btn btn-outline-secondary" onclick="location.href='adminStoreRQ2.nmj?request_uid=${dto.request_uid}'">수정요청링크</button></td>
 				</c:when>
 				<c:when test="${dto.request_type == 3 }">
-					<td><button onclick="location.href='adminCommunityRQ.nmj?request_uid=${dto.request_uid}'">게시글신고링크</button></td>
+					<td><button class="btn btn-outline-secondary" onclick="location.href='adminCommunityRQ.nmj?request_uid=${dto.request_uid}'">게시글신고링크</button></td>
 				</c:when>
 				<c:otherwise>
-					<td><button onclick="location.href='adminReplyRQ.nmj?request_uid=${dto.request_uid}'">댓글신고링크</button></td>
+					<td><button class="btn btn-outline-secondary" onclick="location.href='adminReplyRQ.nmj?request_uid=${dto.request_uid}'">댓글신고링크</button></td>
 				</c:otherwise>
 			</c:choose>
 		</tr>					

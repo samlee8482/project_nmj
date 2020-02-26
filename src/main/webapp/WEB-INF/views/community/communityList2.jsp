@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>커뮤니티 - 리뷰 상세보기</title>
+<title>커뮤니티 - 일반글목록</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 
@@ -71,7 +71,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>리뷰 상세보기</h2>
+					<h2>일반글 목록</h2>
 				</div>
 			</div>
 		</div>
@@ -79,93 +79,49 @@
 	
 	<div class="div-relative" style="width: 100%; height: 700px;">
 	<div class="show_list_container">
+	
+	<button class="btn btn-secondary btn-lg" onclick="location.href='communityList.nmj'">후기글</button>
+    <button class="btn btn-secondary active btn-lg" onclick="location.href='communityList2.nmj'">일반글</button>
+        <br><br>
 			
-	<div style="text-align:left;">
-	<table>
-	<tr>
-	<td>매장종류</td>
-		<c:choose>
-			<c:when test="${dto.store_type == 1 }">
-				<td>놀자</td>
-			</c:when>
-			<c:when test="${dto.store_type == 2 }">
-				<td>먹자</td>
-			</c:when>
-			<c:otherwise>
-				<td>자자</td>
-			</c:otherwise>
-		</c:choose>
-	</tr>
-	<tr>
-		<td>매장명</td>
-		<td>${dto.store_name }</td>
-	</tr>
-	<tr>
-		<td>작성자</td>
-		<td>${dto.mb_id }</td>
-	</tr>
-	<tr>
-		<td>내용</td>
-		<td>${dto.review_content }</td>
-	</tr>
-	<tr>
-		<td>평점</td>
-		<td>
-		<c:forEach begin="1" end="${dto.review_rate}" step="1">
-			★ 
-		</c:forEach>
-		</td>
-	</tr>
-	<tr>
-		<td>조회수</td>
-		<td>${dto.review_viewCount }</td>
-	</tr>
-	<tr>
-		<td>작성일</td>
-		<td>${dto.review_date }</td>
-	</tr>
-	</table>
-
-	<br>
-	</div>
-
-    <button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
-    <button class="btn btn-outline-warning btn-lg" onclick="location.href='communityList.nmj'">목록보기</button>
-    <button class="btn btn-outline-success btn-lg" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}'">수정하기</button>
-    <button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReview.nmj'">삭제하기</button>
-    <button class="btn btn-outline-secondary btn-lg" onclick="location.href='writeReview.nmj'">작성하기</button>
-    
-    <br><br><br><br><br>
-
-	<h3>댓글 목록</h3>
-
-    <c:choose>
+	<c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">
-		댓글이 없습니다<br>
+		데이터가 없습니다<br>
 	</c:when>
 	
 	<c:otherwise>
-	    <table>
-			<c:forEach var="reply" items="${list}">
-			<tr>
-				<td>${reply.mb_id }</td>
-				<td>${reply.reply_content }<br>
-				${reply.reply_date }</td>
-				<td><button class="btn btn-secondary btn-lg" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}'">신고하기</button></td>
-			</tr>
+      <table>
+          <tr>
+            <th>no.</th>
+            <th>아이디</th>
+            <th>내용</th>
+            <th>조회수</th>
+            <th>작성일</th>
+          </tr>
+		
+		<c:forEach var="dto" items="${list}">
+		<tr>
+			<td>${dto.review_uid }</td>
+			<td>${dto.mb_id }</td>
+			<td><a href="communityView2.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
+			<td>${dto.review_viewCount }</td>
+			<td>${dto.review_date }</td>
+		</tr>					
 			</c:forEach>
-		</table>
-	</c:otherwise>
-	</c:choose>
-    
 
-    
+		      </table>
+		</c:otherwise>
+		</c:choose>
+
 	</div>
 	</div>
 	
+	<!--
+	<button class="login_btn" onclick="location.href='writeReview.nmj?mb_uid=${mb_uid}&store_uid=0'">등록</button>
+	!-->
 	<br><br>
 	
-	<footer>
+<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">
 				<div class="row">

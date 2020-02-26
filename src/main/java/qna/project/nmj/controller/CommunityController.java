@@ -15,6 +15,7 @@ import qna.project.nmj.command.CommunityUpdateRateCommand;
 import qna.project.nmj.command.CommunityUpdateReviewOkCommand;
 import qna.project.nmj.command.CommunityViewCommand;
 import qna.project.nmj.command.CommunityWriteOkCommand;
+import qna.project.nmj.command.*;
 
 @Controller
 @RequestMapping("/community")
@@ -59,6 +60,13 @@ public class CommunityController {
 		return "community/communityList";
 	}
 	
+	@RequestMapping("/communityList2.nmj")
+	public String selectAllReview2( Model model) {
+		command = new CommunityListCommand2();
+		command.execute(model);
+		return "community/communityList2";
+	}
+	
 	@RequestMapping(value = "/communityView.nmj")
 	public String communityView(int review_uid, Model model) {
 		model.addAttribute("review_uid", review_uid);
@@ -85,6 +93,13 @@ public class CommunityController {
 		command = new CommunityUpdateReviewOkCommand();
 		command.execute(model);
 		return "/community/updateReviewOk";
+	}
+	
+	@RequestMapping("/reportReview.nmj")
+	public String reportReview(int review_uid, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		new CommunityReportReviewCommand().execute(model);
+		return "/community/reportReview";
 	}
 	
 	

@@ -137,10 +137,9 @@
 			</div>
 
 	
-	<button class="contact100-form-btn" onclick="location.href='adminAcceptStoreUpdate.nmj?request_uid=${request_uid }&store_uid=${dto.store_uid }&store_name=${dto.store_name}&store_address=${dto.store_address}&store_regNum=${dto.store_regNum}&store_regImg_org=${dto.store_regImg_org}&store_regImg_sav=${dto.store_regImg_sav}&store_type=${dto.store_type}&store_dtype=${dto.store_dtype}&store_lat=${dto.store_lat}&store_long=${dto.store_long}'">승인하기</button>
-	<br>
-	<button class="contact100-form-btn" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }'">거절하기</button>
-	<br>
+	<button class="btn btn-outline-primary" onclick="location.href='adminAcceptStoreUpdate.nmj?request_uid=${request_uid }&store_uid=${dto.store_uid }&store_name=${dto.store_name}&store_address=${dto.store_address}&store_regNum=${dto.store_regNum}&store_regImg_org=${dto.store_regImg_org}&store_regImg_sav=${dto.store_regImg_sav}&store_type=${dto.store_type}&store_dtype=${dto.store_dtype}&store_lat=${dto.store_lat}&store_long=${dto.store_long}'">승인하기</button>
+	<button class="btn btn-outline-success" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }'">거절하기</button>
+	<br><br>
 	<button class="contact100-form-btn" onclick="location.href='adminCS.nmj'">목록보기</button>
 </div>
 </div>
