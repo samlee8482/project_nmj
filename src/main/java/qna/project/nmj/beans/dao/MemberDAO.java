@@ -2,7 +2,6 @@ package qna.project.nmj.beans.dao;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.annotations.Param;
 
 import qna.project.nmj.beans.*;
 
@@ -28,5 +27,13 @@ public interface MemberDAO {
 	public StoreDetailDTO selectStoreDetail(int store_uid);
 	public StoreDetailDTO StoreDetailRestSeat(int store_uid);
 	public ArrayList<StoreDetailDTO> selectFood(int store_uid);
+	
+	// 메인페이지
+	public ArrayList<MainDTO> selectHotPlaceNol();
+	public ArrayList<MainDTO> selectHotPlaceMuk();
+	public ArrayList<MainDTO> selectHotPlaceJa();
+	
+	public ArrayList<MainDTO> selectCommunity();
+	
 	
 }
