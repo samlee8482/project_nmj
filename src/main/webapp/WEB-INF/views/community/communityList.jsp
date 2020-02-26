@@ -79,6 +79,10 @@
 	
 	<div class="div-relative" style="width: 100%; height: 700px;">
 	<div class="show_list_container">
+	
+	<button class="btn btn-secondary active btn-lg" onclick="location.href='communityList.nmj'">후기글</button>
+    <button class="btn btn-secondary btn-lg" onclick="location.href='communityList2.nmj'">일반글</button>
+        <br><br>
 			
 	<c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">
@@ -91,8 +95,8 @@
             <th>no.</th>
             <th>매장종류</th>
             <th>매장명</th>
-            <th>내용</th>
             <th>아이디</th>
+            <th>내용</th>
             <th>조회수</th>
             <th>작성일</th>
           </tr>
@@ -113,8 +117,8 @@
 			</c:choose>
 			
 			<td>${dto.store_name }</td>
-			<td><a href="communityView.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
 			<td>${dto.mb_id }</td>
+			<td><a href="communityView.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
 			<td>${dto.review_viewCount }</td>
 			<td>${dto.review_date }</td>
 		</tr>					
@@ -127,8 +131,9 @@
 	</div>
 	</div>
 	
+	<!--
 	<button class="login_btn" onclick="location.href='writeReview.nmj?mb_uid=${mb_uid}&store_uid=0'">등록</button>
-	
+	!-->
 	<br><br>
 	
 <footer>

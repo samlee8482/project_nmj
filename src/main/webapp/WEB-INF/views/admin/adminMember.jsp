@@ -92,13 +92,13 @@
 
             <div class="card-body">
 		
-		<form name="frm" action="adminSearchMember.nmj" method="post">
-		<select name="searchOption">
+		<form name="frm" class="form-inline my-2 my-lg-0" action="adminSearchMember.nmj" method="post">
+		<select name="searchOption" class="custom-select">
 		  <option value="1">이름</option>
 		  <option value="2">아이디</option>
 		</select>
-		<input type="text" name="search"/>
-		<button type="submit">검색</button>
+		<input class="form-control mr-sm-2" type="text" name="search"/>
+		<button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
 		</form>
 		<br><br>
 		
@@ -130,7 +130,7 @@
 			<td>${dto.mb_tel }</td>
 			<td>${dto.mb_email }</td>
 			<td>${dto.mb_regDate }</td>
-			<td><button onclick="location.href='deleteMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button></td>
+			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button></td>
 		</tr>
 		</tbody>				
 	</c:forEach>

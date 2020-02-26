@@ -92,18 +92,18 @@
 
             <div class="card-body">
             
-            <form name="frm" action="adminSearchStore.nmj" method="post">
-		<select name="searchOption">
+        <form name="frm" class="form-inline my-2 my-lg-0" action="adminSearchStore.nmj" method="post">
+		<select name="searchOption" class="custom-select">
 		  <option value="1">매장이름</option>
 		  <option value="2">아이디</option>
 		</select>
-		<input type="text" name="search"/>
-		<button type="submit">검색</button>
+		<input class="form-control mr-sm-2" type="text" name="search"/>
+		<button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
 		</form>
 		<br>
-            <button onclick="location.href='adminSelectStore.nmj?store_type=1'">놀자</button>
-            <button onclick="location.href='adminSelectStore.nmj?store_type=2'">먹자</button>
-            <button onclick="location.href='adminSelectStore.nmj?store_type=3'">자자</button>
+            <button class="btn btn-secondary" onclick="location.href='adminSelectStore.nmj?store_type=1'">놀자</button>
+            <button class="btn btn-secondary" onclick="location.href='adminSelectStore.nmj?store_type=2'">먹자</button>
+            <button class="btn btn-secondary" onclick="location.href='adminSelectStore.nmj?store_type=3'">자자</button>
             <br><br>
             <div class="table-responsive">
                       
@@ -148,7 +148,7 @@
 			<td>${dto.mb_tel }</td>
 			<td>${dto.mb_email }</td>
 			<td>${dto.mb_regDate }</td>
-			<td><button onclick="location.href='deleteStoreMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button></td>
+			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteStoreMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button></td>
 		</tr>					
 	</c:forEach>
 	</tbody>
