@@ -17,6 +17,7 @@ import qna.project.nmj.command.CusShowReserveCommand;
 import qna.project.nmj.command.CusShowReviewCommand;
 import qna.project.nmj.command.CusUpdateInfoCommand;
 import qna.project.nmj.command.CusUpdateInfoOkCommand;
+import qna.project.nmj.command.SignUpCustomerOkCommand;
 
 @Controller
 @RequestMapping("/customer")
@@ -80,7 +81,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/cusReserveOk.nmj")
-	public String reserve(ReservationDTO dto, Model model) {
+	public String reserveOk(ReservationDTO dto, Model model) {
 		model.addAttribute("dto", dto);
 		new CusReserveOkCommand().execute(model);
 		return "/customer/cusReserveOk";

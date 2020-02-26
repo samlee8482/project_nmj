@@ -63,4 +63,11 @@
 		VALUES (#{dto.reservation_start} , #{dto.reservation_end}, #{dto.reservation_count}, #{dto.reservation_price}, #{dto.reservation_seat}, #{dto.mb_uid}, #{dto.store_uid}, #{dto.space_uid});
 	</insert>
 	
+	<!-- 회원가입 페이지 -->
+	<insert id="insertSignUpCustomer" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
+		INSERT INTO NMJ_member
+		(mb_id, mb_pw, mb_name, mb_tel, mb_email)
+		VALUES (#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_tel}, #{mb_email});
+	</insert>
+	
 </mapper>
