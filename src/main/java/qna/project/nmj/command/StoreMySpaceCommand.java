@@ -14,6 +14,8 @@ public class StoreMySpaceCommand implements Command{
 		model.addAttribute("space_type",dao.spaceListSelect());
 		model.addAttribute("space", dao.spaceSelect(store_uid));
 		model.addAttribute("reservation", dao.reservSelect(store_uid));
+		model.addAttribute("spaceImg", dao.spaceImgSelect(store_uid));
+		model.addAttribute("space2", dao.spaceSelect(store_uid));
 	}
 
 }

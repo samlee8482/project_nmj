@@ -1,10 +1,20 @@
 @charset "UTF-8";
-#draggArea{
+#leftArea{
 	width: 900px;
 	margin: 0px 30px 0px 40px;
+	float: left;
+}
+
+#rightArea{
+	width: 300px;
+	float: left;
+}
+#draggArea{
+	width: 900px;
+	
 	height: 970px;
 	display: inline-block;
-	float: left;
+	
 	background-color: #E9ECEF;
 }
 
@@ -140,7 +150,6 @@
 	width: 900px;
 	background-color: #17A2B8;
 	padding: 10px;
-	margin: 30px 50px 50px 40px;
 }
 
 #reservationtb{
@@ -151,4 +160,30 @@
 #spaceImgArea{
 	width: 300px;
 	background-color: #732850;
+}
+
+#mySpaceImg{
+	width: 300px;
+	
+}
+
+#selectable .ui-selecting {
+	background: #FECA40;
+}
+
+#selectable .ui-selected {
+	background: #F39814;
+	color: white;
+}
+
+#selectable {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#selectable li {
+	margin: 3px;
+	font-size: 10px;
+	height: 18px;
 }
