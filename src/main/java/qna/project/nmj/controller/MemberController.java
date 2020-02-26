@@ -64,6 +64,12 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping("main.nmj")
+	public String main(Model model) {
+		new MainCommand().execute(model);
+		return "/member/main";
+	}
+	
 	
 	
 	
