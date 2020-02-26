@@ -104,7 +104,7 @@
 	</div>
 
     <button onclick="location.href='communityList.nmj'">목록보기</button>
-    <button onclick="location.href='updateReview.nmj?review_uid=${review_uid}'">수정하기</button>
+    <button onclick="location.href='updateReview.nmj?review_uid=${review_uid }'">수정하기</button>
     <button onclick="location.href='deleteReview.nmj'">삭제하기</button>
     <button onclick="location.href='writeReview.nmj'">작성하기</button>
 	</div>

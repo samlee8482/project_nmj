@@ -24,6 +24,9 @@ public interface ReviewDAO {
 	// 리뷰 조회수 증가
 	public int increaseViewCount(int review_uid);
 	
+	// 리뷰 수정을 위해 1개 불러오기 (조회수 증가x)
+	public ReviewDTO selectReviewByUid2(int mb_uid, int review_uid);
+	
 	// 리뷰 수정
 	public int updateReview(int mb_uid, String review_content);
 }

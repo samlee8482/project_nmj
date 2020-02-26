@@ -39,7 +39,7 @@ function chkSubmit(){
 	var review_rate = frm["review_rate"].value.trim();
 	var store_uid = frm["store_uid"].value;
 	
-	if(review_content == 0){
+	if(review_content.length == 0){
 		alert("내용을 입력하세요");
 		return false;
 	}
