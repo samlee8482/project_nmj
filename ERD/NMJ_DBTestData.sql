@@ -222,13 +222,6 @@ values
 (3, 1, 1, "재미없어용"),
 (4, 1, 3, "모르겠어용");
 
-insert into nmj_reply
-(reply_uid, mb_uid , review_uid , reply_content, reply_level)
-values
-(2, 1, "재밌어용", 1),
-(3, 1, "재미없어용", 1),
-(4, 3, "모르겠어용", 1);
-
 insert into nmj_spacelist 
 (space_type) values ("좌석"),("노래방"), ("당구대"), ("볼링 레일"), ("테이블"), ("방");
 
