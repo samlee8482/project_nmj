@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.ReservationDTO;
+import qna.project.nmj.command.CusReserveCommand;
 import qna.project.nmj.command.CusReserveOkCommand;
 import qna.project.nmj.command.CusShowLikeCommand;
 import qna.project.nmj.command.CusShowReplyCommand;
@@ -74,6 +75,7 @@ public class CustomerController {
 		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("store_type", store_type);
+		new CusReserveCommand().execute(model);
 		return "/customer/cusReserve";
 	}
 	

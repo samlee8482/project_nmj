@@ -265,6 +265,17 @@ values
 (70, 0, 0, "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세", 5)
 ;
 
+insert into nmj_reply 
+(mb_uid , review_uid , reply_content, reply_level)
+values
+(2, 1, "오", 0),
+(3, 1, "와우", 0),
+(4, 1, "대박", 0),
+(4, 2, "좋아요", 0),
+(5, 2, "짱", 0),
+(5, 3, "싫어요", 0),
+(6, 3, "굳굳", 0);
+
 select * from nmj_spacelist ns ;
 select * from nmj_review nr ;
 select * from nmj_member;

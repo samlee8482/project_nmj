@@ -205,7 +205,7 @@
 }
 
 #reserve_frm_container{
-	width: 75%;
+	width: 80%;
 	margin: 50px auto;
 }
 
@@ -228,4 +228,37 @@
 .reserve_info{
 	width: 200px;
 	padding: 0px 10px;
+}
+
+#spaceArea{
+	width: 900px;
+	height: 970px;
+	background-color: #E9ECEF;
+	float: left;
+	margin : 0;
+}
+
+.spaceEmpty0{
+	opacity: 1;
+}
+
+.spaceEmpty1{
+	opacity: 0.2;
+	background-color: red;
+}
+
+.spaceIsEmpty1{
+	opacity:0.2;
+}
+#resultBox{
+	width: 250px;
+	height: 970px;
+	background-color: #EEEEEE;
+	float:left;
+	margin : 0;
+}
+
+.selectingSeat{
+	opacity: 0.5;
+	background-color: yellow;
 }

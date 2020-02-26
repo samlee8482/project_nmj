@@ -7,8 +7,8 @@ public class StoreMyReviewDTO {
 	private int mb_uid;
 	private String space_uid;
 	private int reservation_check;
-	private int reservation_date;
-	private int reservation_court;
+	private String reservation_date;
+	private int reservation_count;
 	private String reservation_seat;
 	private int reservation_price;
 	private int store_uid;
@@ -26,7 +26,7 @@ public class StoreMyReviewDTO {
 		// TODO Auto-generated constructor stub
 	}
 	public StoreMyReviewDTO(int reservation_uid, String reservation_start, String reservation_end, int mb_uid,
-			String space_uid, int reservation_check, int reservation_date, int reservation_court,
+			String space_uid, int reservation_check, String reservation_date, int reservation_count,
 			String reservation_seat, int reservation_price, int store_uid, String mb_id, String mb_pw, String mb_name,
 			String mb_img_org, String mb_img_sav, String mb_tel, String mb_email, String mb_regDate, int mb_type) {
 		super();
@@ -37,7 +37,7 @@ public class StoreMyReviewDTO {
 		this.space_uid = space_uid;
 		this.reservation_check = reservation_check;
 		this.reservation_date = reservation_date;
-		this.reservation_court = reservation_court;
+		this.reservation_count = reservation_count;
 		this.reservation_seat = reservation_seat;
 		this.reservation_price = reservation_price;
 		this.store_uid = store_uid;
@@ -87,17 +87,17 @@ public class StoreMyReviewDTO {
 	public void setReservation_check(int reservation_check) {
 		this.reservation_check = reservation_check;
 	}
-	public int getReservation_date() {
+	public String getReservation_date() {
 		return reservation_date;
 	}
-	public void setReservation_date(int reservation_date) {
+	public void setReservation_date(String reservation_date) {
 		this.reservation_date = reservation_date;
 	}
-	public int getReservation_court() {
-		return reservation_court;
+	public int getReservation_count() {
+		return reservation_count;
 	}
-	public void setReservation_court(int reservation_court) {
-		this.reservation_court = reservation_court;
+	public void setReservation_count(int reservation_count) {
+		this.reservation_count = reservation_count;
 	}
 	public String getReservation_seat() {
 		return reservation_seat;
