@@ -15,7 +15,7 @@
 	<c:forEach var="list" items="${spaceImg }">
 	<div>
 		<div>
-			<img style='width: 100%; height: 100%;' src='${pageContext.servletContext.contextPath}/img/store/${list.space_img_sav }'>
+			<img style='width: 100%; height: 100%;' src='${pageContext.servletContext.contextPath}/img/space/${list.space_img_sav }'>
 		</div>
 		<div>
 			<div>${list.space_img_sav }</div>

@@ -38,7 +38,7 @@ function chkSubmit(){
 	var review_rate = frm["review_rate"].value.trim();
 	var store_uid = frm["store_uid"].value;
 	
-	if(review_content == 0){
+	if(review_content.length == 0){
 		alert("내용을 입력하세요");
 		return false;
 	}
@@ -107,7 +107,7 @@ function chkSubmit(){
 				</h3>
 				 -->
 				<div style="margin-left: auto; margin-right: auto; width: 600px; height: 600px;">
-					<textarea name="review_content" id="editor1" value="${dto.review_content }"></textarea>
+					<textarea name="review_content" id="editor1">${dto.review_content }</textarea>
 					<script>
 						CKEDITOR.replace('editor1', {
 							allowedContent: true,
@@ -118,8 +118,12 @@ function chkSubmit(){
 				</div><br><br><br><br><br><br><br>
 				
 				<c:choose>
-					<c:when test="${store_uid eq 0}">
+					<c:when test="${dto.store_uid eq 0}">
 						<div style="display: none;">
+						</div><br><br><br>
+					</c:when>
+					<c:when test="${dto.store_uid ne 0}">
+						<div style="display: inline-block;">
 							<h3>나의 평점은?</h2>
 							<p id="star_grade">
 						        <a value="1" href="#">★</a>
@@ -131,20 +135,12 @@ function chkSubmit(){
 						</div><br><br><br>
 					</c:when>
 					<c:otherwise>
-						<div style="display: inline-block;">
-							<h3>나의 평점은?</h2>
-							<p id="star_grade">
-						        <a value="1" href="#">★</a>
-						        <a value="2" href="#">★</a>
-						        <a value="3" href="#">★</a>
-						        <a value="4" href="#">★</a>
-						        <a value="5" href="#">★</a>
-							</p>
+						<div style="display: none;">
 						</div><br><br><br>
 					</c:otherwise>
 				</c:choose>
-				<input type="hidden" name="mb_uid" value="${mb_uid }" />
-				<input type="hidden" name="store_uid" value="${store_uid }" />
+				<input type="hidden" name="mb_uid" value="${dto.mb_uid }" />
+				<input type="hidden" name="store_uid" value="${dto.store_uid }" />
 				<input id="review_rate" type="hidden" name="review_rate" value="0" />
 				<button class="login_btn" type="submit">수정 완료</button>
 				

@@ -274,7 +274,7 @@ function chkSubmit(){
 						<c:choose>
 							<c:when test="${store_type eq 2}">
 								<td>
-									※먹자 매장은 현장 결제를 해주셔야 합니다.
+									※ 먹자 매장은 현장 결제를 해주셔야 합니다.
 								</td>
 								<td>
 									<input type="hidden" name="${mb_uid }">

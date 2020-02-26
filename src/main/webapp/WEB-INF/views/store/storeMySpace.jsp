@@ -79,10 +79,46 @@
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
-	<div>
-		<div id="draggArea">
-		
+	
+		<div id="leftArea">
+		<div id="draggArea">		
 		</div>
+		<div id="reservationArea">			
+					<c:if test="${fn:length(reservation) eq 0 }">
+						<div>예약신청이 없습니다.</div>
+					</c:if>
+					<c:if test="${fn:length(reservation) gt 0 }">
+						<table id="reservationtb">
+							<tr class="table-primary">
+								<th>No.</th>
+								<th>공간이름</th>
+								<th>손님 아이디</th>
+								<th>시작시간</th>
+								<th>종료시간</th>
+								<th>예약 인원</th>
+								<th>금액</th>
+								<th>승인</th>
+								<th>거절</th>
+							</tr>		
+					<c:forEach var="reserv" items="${reservation}" varStatus="status">
+						<tr class="table-light">
+							<td>${status.count }</td>
+							<td>${reserv.reservation_seat }</td>
+							<td>${reserv.mb_id }</td>
+							<td>${reserv.reservation_start}</td>
+							<td>${reserv.reservation_end }</td>
+							<td>${reserv.reservation_count }</td>
+							<td>${reserv.reservation_price }</td>
+							<td><button>승인</button></td>
+							<td><button>거절</button></td>
+						</tr>				
+					</c:forEach>
+						</table>
+					</c:if>			
+			</div>
+			</div>
+		
+		<div id="rightArea">
 		<div id="boxMake">
 			<div id="">
 				<div id="boxMakingArea">
@@ -139,48 +175,39 @@
 							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
 						</div>
 					</div>
-					<button type="button" class="btn btn-primary btn-lg btn-block bigbutton" onclick="location.href='storeMySpaceImg.nmj?store_uid=${store_uid}'">공간 이미지 관리</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block bigbutton">공간 이미지 관리</button>
 										
 				</div>
 			</div>
-		</div>
-		<div class="clear"></div>
-		<div id="reservationArea">			
-			<div>
-					<c:if test="${fn:length(reservation) eq 0 }">
-						<div>예약신청이 없습니다.</div>
-					</c:if>
-					<c:if test="${fn:length(reservation) gt 0 }">
-						<table id="reservationtb">
-							<tr class="table-primary">
-								<th>No.</th>
-								<th>공간이름</th>
-								<th>손님 아이디</th>
-								<th>시작시간</th>
-								<th>종료시간</th>
-								<th>예약 인원</th>
-								<th>금액</th>
-								<th>승인</th>
-								<th>거절</th>
-							</tr>		
-					<c:forEach var="reserv" items="${reservation}" varStatus="status">
-						<tr class="table-light">
-							<td>${status.count }</td>
-							<td>${reserv.reservation_seat }</td>
-							<td>${reserv.mb_id }</td>
-							<td>${reserv.reservation_start}</td>
-							<td>${reserv.reservation_end }</td>
-							<td>${reserv.reservation_count }</td>
-							<td>${reserv.reservation_price }</td>
-							<td><button>승인</button></td>
-							<td><button>거절</button></td>
-						</tr>				
-					</c:forEach>
-						</table>
-					</c:if>			
+			<div id="mySpaceImg">								
+				<div id="feedback">
+				<span>고르신 공간 : </span> <span id="select-result">없음</span>.
+				<form name ="space_uids"id="space_uids" target="매장 이미지 넣기" method="post">
+				</form>
+					<button id="imgAllInsert">이미지 넣기</button>
+				
+				
+				</div>
+				<div>
+					<div>
+					<ol id="selectable">
+						<c:forEach var="list" items="${space2 }">
+							<li class="space_uid${list.space_uid } ui-widget-content">
+								<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
+								<button onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
+							</li>
+						</c:forEach>
+						</ol>
+					</div>
+				</div>
 			</div>		
 		</div>
-	</div>
+		</div>
+		<div class="clear"></div>
+		
+			
+		
+	
 	<div class="clear"></div><br><br><br>
 	<footer>
 		<div id="footer" class="fh5co-border-line">
@@ -207,8 +234,40 @@
 
 	
 	<!-- Main JS (Do not remove) -->
-	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
+<script>
+$( function() {
+    $( "#selectable" ).selectable({
+      stop: function() {
+        var result = $( "#select-result" ).empty();
+     
+        var uidsText = "<input type='hidden' id='space_uid' name='space_uid' value='";
+        $( ".ui-selected", this ).each(function() {
+          var index = $( "#selectable li" ).index( this );
+          var text = $( "#selectable li" ).get(index).innerText;
+          text = text.split("이미지 상세 페이지")[0];
+          var space_uidText = $("#selectable li").get(index).innerHTML;
+          space_uid = space_uidText.split("=")[2];
+          space_uid = space_uid.split('"')[0];
+          uidsText +=  space_uid + ","; 
+          result.append(text+ " ");
+        });
+        uidsText += "'>";
+        $("#space_uids").html(uidsText);
+      }
+    });
+  } );
+  $(document).ready(function(){
+	 $("#imgAllInsert").click(function(){
+		 var space_uid = $("#space_uid").val();
+		 if(space_uid.length > 0){
+		 window.open("storeMySpaceImgInsert.nmj?space_uid="+ space_uid , "매장 이미지 넣기"	, "width=400, height=200, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		 }
+		 
+	 }); 
+  });
+  </script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 </html>
 
