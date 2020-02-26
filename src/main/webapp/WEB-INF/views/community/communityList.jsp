@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,28 +64,25 @@
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
 					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj" class="active">떠들자</a></li>
+					<li><a href="communityList.nmj?mb_uid=<%=mb_uid%>" class="active">떠들자</a></li>
 					
 				</ul>
 			</nav>
 		</div>
 	</header>
-	
-	<div id="fh5co-intro-section">
-		<div class="container">
+		<div id="fh5co-intro-section">
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>리뷰 목록</h2>
 				</div>
 			</div>
 		</div>
-	</div>
 	
-	<div class="div-relative" style="width: 100%; height: 700px;">
+	<div class="div-relative">
 	<div class="show_list_container">
 	
-	<button class="btn btn-secondary active btn-lg" onclick="location.href='communityList.nmj'">후기글</button>
-    <button class="btn btn-secondary btn-lg" onclick="location.href='communityList2.nmj'">일반글</button>
+	<button class="btn btn-secondary active btn-lg" onclick="location.href='communityList.nmj?mb_uid=<%=mb_uid%>'">후기글</button>
+    <button class="btn btn-secondary btn-lg" onclick="location.href='communityList2.nmj?mb_uid=<%=mb_uid%>'">자유글</button>
         <br><br>
 			
 	<c:choose>
@@ -118,7 +119,14 @@
 			
 			<td>${dto.store_name }</td>
 			<td>${dto.mb_id }</td>
-			<td><a href="communityView.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
+			<c:choose>
+				<c:when test="${dto.review_ban == 0 }">
+					<td><a href="communityView.nmj?review_uid=${dto.review_uid }&mb_uid=<%=mb_uid%>">${dto.review_content }</a></td>
+				</c:when>
+				<c:otherwise>
+					<td>관리자에 의해 삭제된 글입니다.</td>
+				</c:otherwise>
+			</c:choose>	
 			<td>${dto.review_viewCount }</td>
 			<td>${dto.review_date }</td>
 		</tr>					
@@ -128,14 +136,10 @@
 		</c:otherwise>
 		</c:choose>
 
+	<button class="btn btn-primary btn-lg" onclick="location.href='writeReview.nmj?mb_uid=<%=mb_uid%>'">리뷰 작성</button>
+	
 	</div>
 	</div>
-	
-	<button class="login_btn" onclick="location.href='writeReview.nmj'">등록</button>
-	
-	<!--
-	<button class="login_btn" onclick="location.href='writeReview.nmj?mb_uid=${mb_uid}&store_uid=0'">등록</button>
-	!-->
 	<br><br>
 	
 <footer>

@@ -154,7 +154,7 @@
 			<u><strong>매장영업시간</strong></u><br> ${dto2.store_hours }<br><br>
 			<u><strong>매장설명</strong></u><br> ${dto2.store_content }<br><br>
 			<u><strong>매장사업자번호</strong></u><br> ${dto2.store_regNum }<br><br>
-			<u><strong>매장평점</strong></u><br> ${dto2.store_ratings }<br><br>
+			<u><strong>매장평점</strong></u><br> ${rate }<br><br>
 			<br>
 			</div>
 

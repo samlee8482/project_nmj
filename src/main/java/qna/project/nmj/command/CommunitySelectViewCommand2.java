@@ -13,7 +13,7 @@ import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.AdminDAO;
 import qna.project.nmj.beans.dao.ReviewDAO;
 
-public class CommunitySelectViewCommand implements Command {
+public class CommunitySelectViewCommand2 implements Command {
 
 	@Override
 	public void execute(Model model) {
@@ -22,15 +22,13 @@ public class CommunitySelectViewCommand implements Command {
 		int review_uid = (Integer)map.get("review_uid");
 		
 		ReviewDAO rdao = C.sqlSession.getMapper(ReviewDAO.class);
-		model.addAttribute("dto", rdao.selectReviewByUid(review_uid));
+		model.addAttribute("dto", rdao.selectReviewByUid2(review_uid));
 		
 		AdminDAO dao = C.sqlSession.getMapper(AdminDAO.class);
 		
 		MemberDTO member = dao.selectMemberByUid(mb_uid);
-		ArrayList<StoreDTO> stores = dao.selectAllStore();
-		
 		model.addAttribute("member", member);
-		model.addAttribute("stores", stores);
+
 	}
 
 }
