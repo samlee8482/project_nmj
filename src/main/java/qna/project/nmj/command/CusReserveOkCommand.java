@@ -16,6 +16,14 @@ public class CusReserveOkCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		ReservationDTO dto = (ReservationDTO)map.get("dto");
 		CustomerDAO dao = C.sqlSession.getMapper(CustomerDAO.class);
+		if(dto.getReservation_start().split("-").length > 1) {
+			String date = dto.getReservation_start();
+			dto.setReservation_start(date.split("-")[0].trim());
+			System.out.println(dto.getReservation_start());
+			dto.setReservation_end(date.split("-")[1].trim());
+			System.out.println(dto.getReservation_end());
+		}
+			
 		cnt = dao.insertReservation(dto);
 		
 		model.addAttribute("result", cnt);
