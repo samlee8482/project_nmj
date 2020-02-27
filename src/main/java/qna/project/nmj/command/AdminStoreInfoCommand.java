@@ -21,6 +21,12 @@ public class AdminStoreInfoCommand implements Command {
 		
 		StoreDTO dto2 = dao.selectStoreByUid(mb_uid);
 		model.addAttribute("dto2", dto2);
+		
+		int ratings = dto2.getStore_ratings();
+		int rateCount = dto2.getStore_rateCount();
+		
+		double rate = (double)ratings/rateCount;
+		model.addAttribute("rate", rate);
 	}
 
 }

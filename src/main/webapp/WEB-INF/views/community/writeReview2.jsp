@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
 %>
-
+  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>커뮤니티 - 자유글목록</title>
-
+<title>커뮤니티 - 리뷰작성</title>
 <link rel="shortcut icon" href="favicon.ico">
 
 <!-- Animate.css -->
@@ -35,11 +34,24 @@
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
-
-
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+function chkSubmit(){
+	frm = document.forms["frm"];
+	
+	var review_content = frm["review_content"].value.trim();
+	
+	if(review_content.length == 0){
+		alert("내용을 입력하세요");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 </head>
 <body>
-
 	<header>
 		<div class="container text-center headerContainer">
 				<!-- if(Session.getAttribute("mb_uid") == null) { -->
@@ -61,9 +73,8 @@
 				</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
-					<li><a href="main.nmj">메인</a></li>
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
+					<li><a href="findStore.nmj?store_type=2" >먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
 					<li><a href="communityList.nmj?mb_uid=<%=mb_uid%>" class="active">떠들자</a></li>
 					
@@ -71,68 +82,47 @@
 			</nav>
 		</div>
 	</header>
-	
+
 		<div id="fh5co-intro-section">
-    		<div class="row">
+			<div class="row">
 				<div class="col-md-12 text-center">
-					<h2>자유글 목록</h2>
+					<h2>자유글 작성</h2>
 				</div>
 			</div>
 		</div>
+	<!-- end fh5co-intro-section -->
 	
 	<div class="div-relative">
 	<div class="show_list_container">
-	
-	<button class="btn btn-secondary btn-lg" onclick="location.href='communityList.nmj?mb_uid=<%=mb_uid%>'">후기글</button>
-    <button class="btn btn-secondary active btn-lg" onclick="location.href='communityList2.nmj?mb_uid=<%=mb_uid%>'">자유글</button>
-        <br><br>
-			
-	<c:choose>
-	<c:when test="${empty list || fn.length(list) == 0 }">
-		데이터가 없습니다<br>
-	</c:when>
-	
-	<c:otherwise>
-      <table>
-          <tr>
-            <th>no.</th>
-            <th>아이디</th>
-            <th>내용</th>
-            <th>조회수</th>
-            <th>작성일</th>
-          </tr>
-		
-		<c:forEach var="dto" items="${list}">
-		<tr>
-			<td>${dto.review_uid }</td>
-			<td>${dto.mb_id }</td>
-			<c:choose>
-				<c:when test="${dto.review_ban == 0 }">
-					<td><a href="communityView2.nmj?review_uid=${dto.review_uid }&mb_uid=<%=mb_uid%>">${dto.review_content }</a></td>
-				</c:when>
-				<c:otherwise>
-					<td>관리자에 의해 삭제된 글입니다.</td>
-				</c:otherwise>
-			</c:choose>
-			<td>${dto.review_viewCount }</td>
-			<td>${dto.review_date }</td>
-		</tr>					
-			</c:forEach>
+			<h3>자유롭게 글을 남겨주세요</h3><br>
+			<form name="frm" method="post" action="writeReviewOk2.nmj" onSubmit="return chkSubmit()">
 
-		      </table>
-		</c:otherwise>
-		</c:choose>
-		
+				<b>작성자</b> ${member.mb_id }
+				<input type="hidden" name="mb_uid" value="${member.mb_uid }" />
+				
 				<br><br>
-		
-		<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=<%=mb_uid%>'">리뷰작성</button>
 
-	</div>
+				<textarea name="review_content" id="editor1"></textarea>
+				<script>
+					CKEDITOR.replace('editor1', {
+						allowedContent: true,
+						width: '600px',
+						height: '600px'
+					});
+				</script>
+				<br><br>
+
+				<button class="btn btn-primary btn-lg" type="submit">작성 완료</button>
+				
+			</form>
+			<br><br>
+			<button class="btn btn-secondary btn-lg" onclick="history.back()">뒤로가기</button>
+		</div>
 	</div>
 	
 	<br><br>
 	
-<footer>
+	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">
 				<div class="row">
@@ -170,6 +160,16 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
-
+	
+	<script>
+        $('#star_grade a').click(function(){
+            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
+            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+            var length = $(this).addClass("on").prevAll("a").addClass("on").length;
+            $("#review_rate").attr('value', length+1);
+            return false;
+        });
+	</script>
+	
 </body>
 </html>

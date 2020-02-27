@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+
+<%
+	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,17 +41,15 @@ function chkSubmit(){
 	
 	var review_content = frm["review_content"].value.trim();
 	var review_rate = frm["review_rate"].value.trim();
-	var store_uid = frm["store_uid"].value;
 	
 	if(review_content.length == 0){
 		alert("내용을 입력하세요");
 		return false;
 	}
-	if(review_rate == 0 && store_uid != 0){
+	
+	if(review_rate == 0){
 		alert("평점을 입력하세요");
 		return false;
-	} else {
-		return true;
 	}
 	
 	return true;
@@ -78,7 +81,7 @@ function chkSubmit(){
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
 					<li><a href="findStore.nmj?store_type=2" >먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj" class="active">떠들자</a></li>
+					<li><a href="communityList.nmj?mb_uid=<%=mb_uid%>" class="active">떠들자</a></li>
 					
 				</ul>
 			</nav>
@@ -86,65 +89,61 @@ function chkSubmit(){
 	</header>
 
 	<div id="fh5co-intro-section">
-		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>리뷰수정</h2>
-					<p>"다 쓴 글도 다시보자"</p>
 				</div>
 			</div>
-		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="height: 1000px;">
-		<div id="write_frm_container">
-			<h3>여러분의 리뷰를 남겨주세요</h3><br>
-			<form name="frm" method="get" action="updateReviewOk.nmj" onSubmit="return chkSubmit()">
-				<!-- 
-				<h3 class="main-title">
-					<input name="review_content" placeholder="제목을 입력하세요" value="${review_content }" style="width: 100%; padding: 10px;" />
-				</h3>
-				 -->
-				<div style="margin-left: auto; margin-right: auto; width: 600px; height: 600px;">
-					<textarea name="review_content" id="editor1">${dto.review_content }</textarea>
-					<script>
-						CKEDITOR.replace('editor1', {
-							allowedContent: true,
-							width: '600px',
-							height: '600px'
-						});
-					</script>
-				</div><br><br><br><br><br><br><br>
+	<div class="div-relative">
+		<div class="show_list_container">
+			<form name="frm" method="post" action="updateReviewOk.nmj" onSubmit="return chkSubmit()">
 				
-				<c:choose>
-					<c:when test="${dto.store_uid eq 0}">
-						<div style="display: none;">
-						</div><br><br><br>
-					</c:when>
-					<c:when test="${dto.store_uid ne 0}">
-						<div style="display: inline-block;">
-							<h3>나의 평점은?</h2>
-							<p id="star_grade">
-						        <a value="1" href="#">★</a>
-						        <a value="2" href="#">★</a>
-						        <a value="3" href="#">★</a>
-						        <a value="4" href="#">★</a>
-						        <a value="5" href="#">★</a>
-							</p>
-						</div><br><br><br>
-					</c:when>
-					<c:otherwise>
-						<div style="display: none;">
-						</div><br><br><br>
-					</c:otherwise>
-				</c:choose>
-				<input type="hidden" name="mb_uid" value="${dto.mb_uid }" />
-				<input type="hidden" name="store_uid" value="${dto.store_uid }" />
+				<input id="review_uid" type="hidden" name="review_uid" value="${dto.review_uid }" />
+				
+				<b>작성자</b> ${member.mb_id }
+				<input id="mb_uid" type="hidden" name="mb_uid" value="${member.mb_uid }" />
+				
+				<br><br>
+				
+				<b>리뷰할 매장</b>
+				<select name="store_uid" class="custom-select" style="width: 300px;">
+					<c:forEach var="store" items="${stores}">
+			  		<option value="${store.store_uid }">${store.store_name }</option>
+			  		</c:forEach>
+		  		</select>
+		  		
+		  		<br><br>
+				
+				<textarea name="review_content" id="editor1">${dto.review_content }</textarea>
+				<script>
+					CKEDITOR.replace('editor1', {
+						allowedContent: true,
+						width: '600px',
+						height: '600px'
+					});
+				</script>
+				<br><br>
+				
+				<div>
+					<b>나의 평점은?</b>
+					<p id="star_grade">
+				        <a value="1">★</a>
+				        <a value="2">★</a>
+				        <a value="3">★</a>
+				        <a value="4">★</a>
+				        <a value="5">★</a>
+					</p>
+				</div><br><br>
+				
 				<input id="review_rate" type="hidden" name="review_rate" value="0" />
-				<button class="login_btn" type="submit">수정 완료</button>
+				<button class="btn btn-primary btn-lg" type="submit">수정 완료</button>
 				
 			</form>
+			<br><br>
+			<button class="btn btn-secondary btn-lg" onclick="history.back()">뒤로가기</button>
 		</div>
 	</div>
 	

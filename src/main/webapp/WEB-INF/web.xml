@@ -7,7 +7,6 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml
-			/WEB-INF/spring/appServlet/security-context.xml
 		</param-value>
 		
 	</context-param>
@@ -33,6 +32,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	
 <!-- 반드시 시큐리티 필터 앞에 위치 해야함. -->
     <filter>
         <display-name>springMultipartFilter</display-name>

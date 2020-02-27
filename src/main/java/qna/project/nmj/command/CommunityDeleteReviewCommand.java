@@ -8,7 +8,7 @@ import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.ReviewDTO;
 import qna.project.nmj.beans.dao.ReviewDAO;
 
-public class CommunityReportReviewCommand implements Command {
+public class CommunityDeleteReviewCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
@@ -18,9 +18,8 @@ public class CommunityReportReviewCommand implements Command {
 
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
-		int cnt = dao.reportReview(review_uid);
+		int cnt = dao.deleteReview(review_uid);
 		model.addAttribute("result", cnt);
-		model.addAttribute("review_uid", review_uid);
 		model.addAttribute("mb_uid", mb_uid);
 	}
 

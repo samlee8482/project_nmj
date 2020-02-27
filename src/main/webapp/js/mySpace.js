@@ -12,6 +12,13 @@ var draggcnt = 0;
  var space_name = new Array();
  var space_xloc = new Array();
  var space_yloc = new Array();
+ var token = $("meta[name='_csrf']").attr("content");
+ var header = $("meta[name='_csrf_header']").attr("content");
+ $(function() {
+     $(document).ajaxSend(function(e, xhr, options) {
+         xhr.setRequestHeader(header, token);
+     });
+ });
  $(window).load(function(){
 	  $("#addButton").click(function(){
 		 var html = "";

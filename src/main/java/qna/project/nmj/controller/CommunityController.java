@@ -1,5 +1,8 @@
 package qna.project.nmj.controller;
 
+import java.util.HashMap;
+
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,13 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import qna.project.nmj.beans.C;
-import qna.project.nmj.command.Command;
-import qna.project.nmj.command.CommunityListCommand;
-import qna.project.nmj.command.CommunitySelectViewCommand;
-import qna.project.nmj.command.CommunityUpdateRateCommand;
-import qna.project.nmj.command.CommunityUpdateReviewOkCommand;
-import qna.project.nmj.command.CommunityViewCommand;
-import qna.project.nmj.command.CommunityWriteOkCommand;
 import qna.project.nmj.command.*;
 
 @Controller
@@ -32,25 +28,35 @@ public class CommunityController {
 	private Command command;
 
 	@RequestMapping("/writeReview.nmj")
-	public String writeReview(int mb_uid, int store_uid, Model model) {
+	public String writeReview(int mb_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
-		model.addAttribute("store_uid", store_uid);
-		return "/community/writeReview";
+		new CommunityWriteCommand().execute(model);
+		return "community/writeReview";
+	}
+	
+	@RequestMapping("/writeReview2.nmj")
+	public String writeReview2(int mb_uid, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityWriteCommand().execute(model);
+		return "community/writeReview2";
 	}
 	
 	@PostMapping(value = "/writeReviewOk.nmj")
 	public String insertReviewOk(int mb_uid, int store_uid, String review_content, int review_rate, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
-		System.out.println("Controller mb_uid : " + mb_uid);
 		model.addAttribute("store_uid", store_uid);
-		System.out.println("Controller store_uid : " + store_uid);
 		model.addAttribute("review_content", review_content);
-		System.out.println("Controller review_content : " + review_content);
 		model.addAttribute("review_rate", review_rate);
-		System.out.println("Controller review_rate : " + review_rate);
 		new CommunityWriteOkCommand().execute(model);
-		new CommunityUpdateRateCommand().execute(model);
-		return "/community/writeReviewOk";
+		return "community/writeReviewOk";
+	}
+	
+	@PostMapping(value = "/writeReviewOk2.nmj")
+	public String insertReviewOk2(int mb_uid, String review_content, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_content", review_content);
+		new CommunityWriteOkCommand2().execute(model);
+		return "community/writeReviewOk2";
 	}
 	
 	@RequestMapping("/communityList.nmj")
@@ -74,40 +80,139 @@ public class CommunityController {
 		return "community/communityView";
 	}
 	
+	@RequestMapping(value = "/communityView2.nmj")
+	public String communityView2(int review_uid, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		new CommunityViewCommand2().execute(model);
+		return "community/communityView2";
+	}
+	
 	// 리뷰 수정 불러오기
 	@RequestMapping("/updateReview.nmj")
 	public String updateReview(int mb_uid, int review_uid, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
-		System.out.println("Controller mb_uid : " + mb_uid);
 		model.addAttribute("review_uid", review_uid);
-		System.out.println("Controller review_uid : " + review_uid);
 		new CommunitySelectViewCommand().execute(model);
-		return "/community/updateReview";
+		return "community/updateReview";
+	}
+	
+	// 일반글 수정 불러오기
+	@RequestMapping("/updateReview2.nmj")
+	public String updateReview2(int mb_uid, int review_uid, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_uid", review_uid);
+		new CommunitySelectViewCommand2().execute(model);
+		return "community/updateReview2";
 	}
 	
 	// 리뷰 수정
 	@RequestMapping("/updateReviewOk.nmj")
-	public String updateReviewOk(int mb_uid, String review_content, Model model) {
+	public String updateReviewOk(int mb_uid, @Param("review_uid") int review_uid, @Param("review_content") String review_content, @Param("store_uid") int store_uid, @Param("review_rate") int review_rate, Model model) {
+		model.addAttribute("review_uid", review_uid);
 		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("review_content", review_content);
+		model.addAttribute("review_rate", review_rate);
 		command = new CommunityUpdateReviewOkCommand();
 		command.execute(model);
-		return "/community/updateReviewOk";
+		return "community/updateReviewOk";
+	}
+	
+	// 리뷰 수정
+	@RequestMapping("/updateReviewOk2.nmj")
+	public String updateReviewOk2(int mb_uid, @Param("review_uid") int review_uid, @Param("review_content") String review_content, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_content", review_content);
+		command = new CommunityUpdateReviewOkCommand2();
+		command.execute(model);
+		return "community/updateReviewOk2";
 	}
 	
 	@RequestMapping("/reportReview.nmj")
-	public String reportReview(int review_uid, Model model) {
+	public String reportReview(int review_uid, int mb_uid, Model model) {
 		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
 		new CommunityReportReviewCommand().execute(model);
-		return "/community/reportReview";
+		return "community/reportReview";
+	}
+	
+	@RequestMapping("/reportReply.nmj")
+	public String reportReply(int reply_uid, int review_uid, int mb_uid, Model model) {
+		model.addAttribute("reply_uid", reply_uid);
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityReportReplyCommand().execute(model);
+		return "community/reportReview";
+	}
+	
+	@RequestMapping("/reportReview2.nmj")
+	public String reportReview2(int review_uid, int mb_uid, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityReportReviewCommand().execute(model);
+		return "community/reportReview2";
+	}
+	
+	@RequestMapping("/reportReply2.nmj")
+	public String reportReply2(int reply_uid, int review_uid, int mb_uid, Model model) {
+		model.addAttribute("reply_uid", reply_uid);
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityReportReplyCommand().execute(model);
+		return "community/reportReview2";
+	}
+	
+	@RequestMapping("/deleteReview.nmj")
+	public String deleteReview(int review_uid, int mb_uid, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityDeleteReviewCommand().execute(model);
+		return "community/deleteReview";
+	}
+	
+	@RequestMapping("/deleteReview2.nmj")
+	public String deleteReview2(int review_uid, int mb_uid, Model model) {
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityDeleteReviewCommand().execute(model);
+		return "community/deleteReview2";
 	}
 	
 	@PostMapping(value = "/writeReply.nmj")
-	public String insertReply(int mb_uid, String reply_content, Model model) {
+	public String insertReply(int mb_uid, int review_uid, String reply_content, Model model) {
 		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_uid", review_uid);
 		model.addAttribute("reply_content", reply_content);
 		new CommunityWriteReplyCommand().execute(model);
-		return "/community/writeReply";
+		return "community/writeReply";
+	}
+	
+	@PostMapping(value = "/writeReply2.nmj")
+	public String insertReply2(int mb_uid, int review_uid, String reply_content, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("reply_content", reply_content);
+		new CommunityWriteReplyCommand().execute(model);
+		return "community/writeReply2";
+	}
+	
+	@RequestMapping("/deleteReply.nmj")
+	public String deleteReply(int reply_uid, int review_uid, int mb_uid, Model model) {
+		model.addAttribute("reply_uid", reply_uid);
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityDeleteReplyCommand().execute(model);
+		return "community/deleteReply";
+	}
+	
+	@RequestMapping("/deleteReply2.nmj")
+	public String deleteReply2(int reply_uid, int review_uid, int mb_uid, Model model) {
+		model.addAttribute("reply_uid", reply_uid);
+		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityDeleteReplyCommand().execute(model);
+		return "community/deleteReply2";
 	}
 	
 }

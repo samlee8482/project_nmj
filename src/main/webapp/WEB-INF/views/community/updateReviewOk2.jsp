@@ -5,16 +5,14 @@
 <c:choose>
 	<c:when test="${empty result || result == 0 }">
 	<script>
-		alert("작성 실패");
+		alert("수정 실패");
 		history.back();
 	</script>
 	</c:when>
 	<c:otherwise>
 	<script>
-		alert("작성 성공");
-		location.href = "communityList.nmj?mb_uid=${mb_uid}";
+		alert("수정 성공");
+		location.href = "communityView2.nmj?review_uid=${review_uid}&mb_uid=${mb_uid}";
 	</script>
 	</c:otherwise>
 </c:choose>
-
-
