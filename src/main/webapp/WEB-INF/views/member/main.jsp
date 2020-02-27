@@ -109,6 +109,47 @@
 					
 					<!-------- 지도 들어갈 공간 --------->
 					
+					<div>
+						<div class="map_wrap">
+						<!-- 지도를 표시할 div-->
+					    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
+						
+						<!-- 사용자 위치 설정 + 그 위치 중앙으로 표시 -->
+						<div class="custom_gps radius_border">
+							<span onclick="findGPS()"><img src="${pageContext.servletContext.contextPath}/img/mapIcons/gps.png" alt="현재위치"></span>  
+						</div>
+					</div>
+					
+					<!-- 매장 종류 -->
+					<div class="category">
+				        <ul>
+				            <li id="coffeeMenu" onclick="changeDtype('1')">
+				                <span class="ico_comm ico_coffee"></span>
+								놀자
+				            </li>
+				            <li id="storeMenu" onclick="changeDtype('2')">
+				                <span class="ico_comm ico_store"></span>
+				             	먹자
+				            </li>
+				            <li id="carparkMenu" onclick="changeDtype('3')">
+				                <span class="ico_comm ico_carpark"></span>
+				              	자자
+				            </li>
+				        </ul>
+				    </div>
+				    
+				    <!--  매장 상세 종류  -->
+				    <div class="sub-category">
+				    
+				    </div>
+					
+					
+					</div>
+					
+					<jsp:include page="mapScript.jsp"></jsp:include>
+					
+					
+					
 				</div>
 			</div>
 		</div>
