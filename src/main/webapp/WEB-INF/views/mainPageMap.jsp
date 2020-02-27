@@ -62,12 +62,6 @@
 		</div>
 	</div>
 	
-	<!-- 중심좌표/GPS현재 위치로 이동할 버튼 -->
-	<p>
-	    <button onclick="setCenter()">지도 중심좌표 이동시키기</button> 
-	    <button onclick="panTo()">지도 중심좌표 부드럽게 이동시키기</button> 
-	</p>
-	
 	<!-- 매장 종류 -->
 	<div class="category">
         <ul>

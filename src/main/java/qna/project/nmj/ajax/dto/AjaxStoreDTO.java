@@ -1,12 +1,24 @@
-package qna.project.nmj.beans;
+package qna.project.nmj.ajax.dto;
 
-public class StoreDTO {
+public class AjaxStoreDTO {
 	private int store_uid;
 	private int mb_uid;
 	private String store_name;
 	private String store_address;
 	private String store_tel;
 	private String store_start; // view단에서 만 사용할 매장 오픈 시간
+	public String getStore_start() {
+		return store_start;
+	}
+	public void setStore_start(String store_start) {
+		this.store_start = store_start;
+	}
+	public String getStore_end() {
+		return store_end;
+	}
+	public void setStore_end(String store_end) {
+		this.store_end = store_end;
+	}
 	private String store_end; //view 단에서 만 사용할 매장 마감 시간
 	private String store_hours;
 	private String store_content;
@@ -22,15 +34,28 @@ public class StoreDTO {
 	private String store_regDate;
 	private int store_ratings;
 	private int store_rateCount;
-	
-	public StoreDTO() {
+	private double store_rate;
+	private String icon;
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	public double getStore_rate() {
+		return store_rate;
+	}
+	public void setStore_rate(double store_rate) {
+		this.store_rate = store_rate;
+	}
+	public AjaxStoreDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StoreDTO(int store_uid, int mb_uid, String store_name, String store_address, String store_tel,
+	public AjaxStoreDTO(int store_uid, int mb_uid, String store_name, String store_address, String store_tel,
 			String store_hours, String store_content, String store_img_org, String store_img_sav, String store_regNum,
 			String store_regImg_org, String store_regImg_sav, double store_lat, double store_long, int store_type,
-			int store_dtype, String store_regDate, int store_ratings, int store_rateCount) {
+			int store_dtype, String store_regDate, int store_ratings, int store_rateCount, double dist) {
 		super();
 		this.store_uid = store_uid;
 		this.mb_uid = mb_uid;
@@ -51,6 +76,10 @@ public class StoreDTO {
 		this.store_regDate = store_regDate;
 		this.store_ratings = store_ratings;
 		this.store_rateCount = store_rateCount;
+		this.dist = dist;
+		if(store_rateCount != 0) {
+			this.store_rate = (double)store_ratings / store_rateCount;
+		}
 	}
 	public int getStore_uid() {
 		return store_uid;
@@ -165,18 +194,15 @@ public class StoreDTO {
 	}
 	public void setStore_rateCount(int store_rateCount) {
 		this.store_rateCount = store_rateCount;
+		if(store_rateCount != 0) {
+			this.store_rate = (double)store_ratings / store_rateCount;
+		}
 	}
-	public String getStore_start() {
-		return store_start;
+	private double dist;
+	public double getDist() {
+		return dist;
 	}
-	public void setStore_start(String store_start) {
-		this.store_start = store_start;
+	public void setDist(double dist) {
+		this.dist = dist;
 	}
-	public String getStore_end() {
-		return store_end;
-	}
-	public void setStore_end(String store_end) {
-		this.store_end = store_end;
-	}
-	
 }
