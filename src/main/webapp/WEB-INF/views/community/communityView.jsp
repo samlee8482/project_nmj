@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +38,31 @@
 
 
 </head>
+
+<script>
+function chkDelete(uid){
+
+	var r = confirm("삭제하시겠습니까?");
+	
+	if(r){
+		location.href = 'deleteReview.nmj?review_uid=' + uid + '&mb_uid=<%=mb_uid%>';
+	}
+}
+
+function chkSubmit(){
+	frm = document.forms["frm"];
+	
+	var reply_content = frm["reply_content"].value.trim();
+
+	if(reply_content == ""){
+		alert("내용을 입력하세요");
+		return false;
+	}
+
+	return true;
+}
+</script>
+
 <body>
 
 	<header>
@@ -60,7 +90,7 @@
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
 					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj" class="active">떠들자</a></li>
+					<li><a href="communityList.nmj?mb_uid=<%=mb_uid%>" class="active">떠들자</a></li>
 					
 				</ul>
 			</nav>
@@ -77,13 +107,13 @@
 		</div>
 	</div>
 	
-	<div class="div-relative" style="width: 100%; height: 700px;">
+	<div class="div-relative">
 	<div class="show_list_container">
 			
 	<div style="text-align:left;">
 	<table>
 	<tr>
-	<td>매장종류</td>
+	<td style="width:20%"><b>매장종류</b></td>
 		<c:choose>
 			<c:when test="${dto.store_type == 1 }">
 				<td>놀자</td>
@@ -97,19 +127,19 @@
 		</c:choose>
 	</tr>
 	<tr>
-		<td>매장명</td>
+		<td style="width:20%"><b>매장명</b></td>
 		<td>${dto.store_name }</td>
 	</tr>
 	<tr>
-		<td>작성자</td>
+		<td style="width:20%"><b>작성자</b></td>
 		<td>${dto.mb_id }</td>
 	</tr>
 	<tr>
-		<td>내용</td>
+		<td style="width:20%"><b>내용</b></td>
 		<td>${dto.review_content }</td>
 	</tr>
 	<tr>
-		<td>평점</td>
+		<td style="width:20%"><b>평점</b></td>
 		<td>
 		<c:forEach begin="1" end="${dto.review_rate}" step="1">
 			★ 
@@ -117,11 +147,11 @@
 		</td>
 	</tr>
 	<tr>
-		<td>조회수</td>
+		<td style="width:20%"><b>조회수</b></td>
 		<td>${dto.review_viewCount }</td>
 	</tr>
 	<tr>
-		<td>작성일</td>
+		<td style="width:20%"><b>작성일</b></td>
 		<td>${dto.review_date }</td>
 	</tr>
 	</table>
@@ -129,22 +159,33 @@
 	<br>
 	</div>
 
-    <button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
-    <button class="btn btn-outline-warning btn-lg" onclick="location.href='communityList.nmj'">목록보기</button>
-    <button class="btn btn-outline-success btn-lg" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}'">수정하기</button>
-    <button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReview.nmj'">삭제하기</button>
-    <button class="btn btn-outline-secondary btn-lg" onclick="location.href='writeReview.nmj'">작성하기</button>
+    <button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">신고하기</button>
+    <button class="btn btn-outline-warning btn-lg" onclick="location.href='communityList.nmj?mb_uid=<%=mb_uid%>'">목록보기</button>
+    
+<%--     <c:choose>
+    <c:when test="${mb_uid == dto.mb_uid }"> --%>
+	    <button class="btn btn-outline-success btn-lg" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">수정하기</button>
+	    <button class="btn btn-outline-info btn-lg" onclick="chkDelete(${dto.review_uid })">삭제하기</button>
+<%--     </c:when>
+    </c:choose> --%>
+    
+    <button class="btn btn-outline-secondary btn-lg" onclick="location.href='writeReview.nmj?mb_uid=<%=mb_uid%>'">작성하기</button>
     
     <br><br><br><br><br>
 
 	<h3>댓글 목록</h3>
 	
-	<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" method="post">
+	<br><br>
+	
+	<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" onSubmit="return chkSubmit()" method="post">
 		<!-- 나중에 바꾸기 -->
-		<input type="hidden" name="mb_uid" value="${dto.mb_uid }"/> 
-		<input class="form-control mr-sm-2" type="text" name="reply_content"/>
+		<input type="hidden" name="mb_uid" value="<%= mb_uid%>"/> 
+		<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
+		<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
 		<button class="btn btn-secondary btn-lg" type="submit">등록</button>
 	</form>
+	
+	<br><br>
 
     <c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">
@@ -155,10 +196,20 @@
 	    <table>
 			<c:forEach var="reply" items="${list}">
 			<tr>
-				<td>${reply.mb_id }</td>
+				<td style="width:20%">${reply.mb_id }</td>
+				<c:choose>
+				<c:when test="${reply.reply_ban == 0 }">
 				<td>${reply.reply_content }<br>
-				${reply.reply_date }</td>
-				<td><button class="btn btn-secondary btn-lg" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}'">신고하기</button></td>
+				<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p></td>
+				</c:when>
+				<c:otherwise>
+				<td>관리자에 의해 삭제된 댓글입니다.</td>
+				</c:otherwise>
+				</c:choose>
+				<td style="width:10%">
+				<button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">신고하기</button><br>
+				<button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">삭제하기</button>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>

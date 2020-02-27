@@ -12,14 +12,21 @@ public class CommunityUpdateReviewOkCommand implements Command {
 
 	@Override
 	public void execute(Model model) {
-		Map<String, Object> map = model.asMap();
-		int mb_uid = (Integer)map.get("mb_uid");
-		String review_content = (String)map.get("review_content");
+		int mb_uid = (Integer)model.getAttribute("mb_uid");	
+		int review_uid = (Integer)model.getAttribute("review_uid");	
+		int store_uid = (Integer)model.getAttribute("store_uid");
+		String review_content = (String)model.getAttribute("review_content");
+		review_content = review_content.replace("<p>", "").replace("</p>", "");		
+		int review_rate = (Integer)model.getAttribute("review_rate");
 
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
-		int cnt = dao.updateReview(mb_uid, review_content);
+		int cnt = dao.updateReview(review_uid, review_content, store_uid, review_rate);
+		dao.increaseReviewRate(review_rate, store_uid);
+		
 		model.addAttribute("result", cnt);
+		model.addAttribute("mb_uid", mb_uid);
+		model.addAttribute("review_uid", review_uid);
 	}
 
 }

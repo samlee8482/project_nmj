@@ -103,15 +103,24 @@
 							<li><a href="findStore.nmj?store_type=3">자자</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li><a href="communityList.nmj">떠들자</a></li>
+					<li><a href="${pageContext.request.contextPath}/community/communityList.nmj">떠들자</a></li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 
 
-
-	<div class="fh5co-parallax" style="background-image: url(images/hero-1.jpg);" data-stellar-background-ratio="0.5">
+	<c:choose>
+		<c:when test="${list.store_type eq 1 }">
+			<div class="fh5co-parallax" style="background-image: url(${pageContext.request.contextPath}/img/nol.jpg);" data-stellar-background-ratio="0.5">
+		</c:when>
+		<c:when test="${list.store_type eq 2 }">
+			<div class="fh5co-parallax" style="background-image: url(${pageContext.request.contextPath}/img/muk.jpg);" data-stellar-background-ratio="0.5">
+		</c:when>
+		<c:when test="${list.store_type eq 3 }">
+			<div class="fh5co-parallax" style="background-image: url(${pageContext.request.contextPath}/img/ja.jpg);" data-stellar-background-ratio="0.5">
+		</c:when>
+	</c:choose>
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -134,8 +143,11 @@
 						<li><i class="icon-phone2"></i>${list.store_tel }</li>
 						<li><i class="icon-alarm"></i>${list.store_hours }</li>
 						<li><i class="icon-star-full"></i>${list.totalAvg }</li>
-						<li><i class="icon-map3"></i><b id="menu">메뉴판 펼치기</b></li>
-						
+						<c:choose>
+							<c:when test="${list.store_type ne 3 }">
+								<li><i class="icon-map3"></i><b id="menu">메뉴판 펼치기</b></li>
+							</c:when>
+						</c:choose>
 						<c:choose>
 							<c:when test="${empty list.store_content }">
 								<li><i class="icon-file-text2"></i>해당 매장의 상세설명이 없습니다.</li>
@@ -169,7 +181,6 @@
 		
 		
 		<div class="modalContainer">
-	<!-- 
 		<c:forEach var="menu" items="${foodMenu }">
 			<div class="col-md-4 col-sm-6">
 				<div class="menuPic">
@@ -192,45 +203,7 @@
 				</div>
 			</div>	
 		</c:forEach>
-	 -->
-		 <div class="col-md-4 col-sm-6">
-			 <div class="menuPic">
-			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
-			 </div>
-			 <div class="menuName">국물떡볶이</div>
-			 <div class="menuPrice">8000원</div>
-		 </div>
-<!-- ------------------------------------------------------------------------------------------- -->
-		 <div class="col-md-4 col-sm-6">
-			 <div class="menuPic">
-			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
-			 </div>
-			 <div class="menuName">국물떡볶이</div>
-			 <div class="menuPrice">8000원</div>
-		 </div>
-		 <div class="col-md-4 col-sm-6">
-			 <div class="menuPic">
-			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
-			 </div>
-			 <div class="menuName">국물떡볶이</div>
-			 <div class="menuPrice">8000원</div>
-		 </div>
-		 <div class="col-md-4 col-sm-6">
-			 <div class="menuPic">
-			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
-			 </div>
-			 <div class="menuName">국물떡볶이</div>
-			 <div class="menuPrice">8000원</div>
-		 </div>
-		 <div class="col-md-4 col-sm-6">
-			 <div class="menuPic">
-			 	<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
-			 </div>
-			 <div class="menuName">국물떡볶이</div>
-			 <div class="menuPrice">8000원</div>
-		 </div>
-		 
-<!-- ------------------------------------------------------------------------------------------- -->
+	
 	 
 	</div>
 		

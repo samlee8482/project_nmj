@@ -14,12 +14,14 @@ public class CommunityReportReviewCommand implements Command {
 	public void execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		int review_uid = (Integer)map.get("review_uid");
+		int mb_uid = (Integer)map.get("mb_uid");
 
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
 		int cnt = dao.reportReview(review_uid);
 		model.addAttribute("result", cnt);
 		model.addAttribute("review_uid", review_uid);
+		model.addAttribute("mb_uid", mb_uid);
 	}
 
 }

@@ -8,7 +8,8 @@ import qna.project.nmj.beans.*;
 
 public interface AdminDAO {
 	public ArrayList<MemberDTO> selectAllMember();
-	public ArrayList<MemberDTO> selectAllStoreMember();
+	public ArrayList<StoreMemberDTO> selectAllStoreMember();
+	public ArrayList<StoreDTO> selectAllStore();
 	public ArrayList<ReviewDTO> selectAllReview();
 	public ArrayList<RequestDTO> selectAllRequest();
 	public ArrayList<ReplyDTO> selectAllReply();

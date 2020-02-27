@@ -9,6 +9,10 @@
 		SELECT * FROM NMJ_member WHERE mb_type = 1 ORDER BY mb_uid DESC
 	</select>
 	
+	<select id="selectAllStore" resultType="qna.project.nmj.beans.StoreDTO">
+		SELECT * FROM NMJ_store
+	</select>
+	
 	<update id="deleteMember" flushCache="true">
 		UPDATE NMJ_member 
 		SET mb_type = -1 
