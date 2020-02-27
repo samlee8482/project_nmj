@@ -53,6 +53,11 @@
 //////////////////////////////
 //////////////////////////////
 ////////////////////////////// 현재위치로 이동
+	var myLocation = null;
+	var myLocationImage = "${pageContext.servletContext.contextPath}/img/mapIcons/mylocation.png";
+	var myLocationImageSize = new kakao.maps.Size(30, 30); // (넓이, 길이)
+	var myLocationImageOption = {offset: new kakao.maps.Point(15, 30)};
+	var jsonObjDistance = null;
 	function findGPS() {
 		if (navigator.geolocation) {
 		    
@@ -61,54 +66,81 @@
 		        
 		        var lat = position.coords.latitude, // 위도
 		            lon = position.coords.longitude; // 경도
+		        var myPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		        var image = new kakao.maps.MarkerImage(myLocationImage, myLocationImageSize, myLocationImageOption);
 		        
-		        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		            message = ''; // 인포윈도우에 표시될 내용입니다
+		        // 내위치 받아왓을 때 매장정보 가져오기
+//		        getJacksonForDistance(lat, lon)
+		        getJacksonForDistance(37.500464, 127.036709)
 		        
 		        // 마커와 인포윈도우를 표시합니다
-		        displayMarker(locPosition, message);
+		        displayMyLocation(myPosition, image);
 		            
 		      });
 		    
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-		    
-		    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-		        message = 'geolocation을 사용할수 없어요..'
-		        
-		    displayMarker(locPosition, message);
+		    alert("현재 위치 표시할 수 없습니다. GPS사용 허가를 해주세요");
 		}
 
 	}
 	
 	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-	function displayMarker(locPosition, message) {
+	function displayMyLocation(locPosition, image) {
 
 	    // 마커를 생성합니다
 	    var marker = new kakao.maps.Marker({  
 	        map: map, 
-	        position: locPosition
+	        position: new kakao.maps.LatLng(37.500464, 127.036709),
+	        image: image
 	    }); 
 	    
 	    // 지도 중심좌표를 접속위치로 변경합니다
-	    map.setCenter(locPosition);      
+	    map.setCenter(new kakao.maps.LatLng(37.500464, 127.036709));  
+	 // 지도에 표시할 원을 생성합니다
+	    var circle = new kakao.maps.Circle({
+	        center : new kakao.maps.LatLng(37.500464, 127.036709),  // 원의 중심좌표 입니다 
+	        radius: 1000, // 미터 단위의 원의 반지름입니다 
+	        strokeWeight: 5, // 선의 두께입니다 
+	        strokeColor: '#75B8FA', // 선의 색깔입니다
+	        strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	        strokeStyle: 'dashed', // 선의 스타일 입니다
+	        fillColor: '#CFE7FF', // 채우기 색깔입니다
+	        fillOpacity: 0.7  // 채우기 불투명도 입니다   
+	    }); 
+
+	    // 지도에 원을 표시합니다 
+	    circle.setMap(map);
 	}    
 	
+	function getJacksonForDistance(lat, lon){
+		$.ajax({
+			url : "${pageContext.servletContext.contextPath}/ajax/map/stores.ajax/" + lat + "/" + lon,
+			type : "GET",
+			cache : false,
+			success : function(data, status){
+				if(status == "success"){
+					jsonObjDistance = data;
+					return data;
+				}
+			}
+		})
+	}
 	
 //////////////////////////////
 //////////////////////////////
 ////////////////////////////// 마커 표시
 	$(document).ready(function(){
 		getJackson(); //json
+		findGPS();
 	});
 	var jsonObj = "";
 	var l;
 	var t;
-	var points;
 	var markers = null;
 	// 모든 매장 정보 받아오는 함수
 	function getJackson(){
 		$.ajax({
-			url : "${pageContext.servletContext.contextPath}/memberAjax/dtypeList.ajax",
+			url : "${pageContext.servletContext.contextPath}/ajax/store/dtypeList.ajax",
 			type : "GET",
 			cache : false,
 			success : function(data, status){
@@ -137,22 +169,19 @@
 		$("div.sub-category").html(result);
 	}
 	
+	/////////////////////////////
 	// 특정 상세 종류 클릭시 매장 위도 경도 points변수에 담기
 	function changeMarkers(dtype){
-		dtypes = jsonObj.store_types[t - 1].store_dtypes;
-		l = dtypes.length;
-		
+		l = jsonObjDistance.length;
 		// 선택한 매장 상세 종류에 있는 모든 매장 stores에 담기.
-		var stores;
+		var stores = [];
 		for(i = 0; i < l; i++){
-			if(dtypes[i].store_dtype == dtype){
-				stores = dtypes[i].stores;
-				break;
+			if(jsonObjDistance[i].store_dtype == dtype && jsonObjDistance[i].dist < 1000){
+				stores.push(i);
 			}
 		}
 		
 		// 마커 초기화 및 새로 불러오기
-		points = [];
 		if (markers == null){
 			markers = [];
 		} else {
@@ -161,14 +190,16 @@
 		}
 		l = stores.length;
 		for(i = 0; i < l; i++){
-			points[i] = new kakao.maps.LatLng(stores[i].store_lat, stores[i].store_long);
+			var j = stores[i];
 			markers[i] = new kakao.maps.Marker({
-				position: points[i]
+				position: new kakao.maps.LatLng(jsonObjDistance[j].store_lat, jsonObjDistance[j].store_long),
+				image: new kakao.maps.MarkerImage("${pageContext.servletContext.contextPath}/img/mapIcons/" + jsonObjDistance[j].icon , new kakao.maps.Size(22, 26), {offset: new kakao.maps.Point(0, 30)})
 			});
 			markers[i].setMap(map);
+			bounds.extend(new kakao.maps.LatLng(jsonObjDistance[j].store_lat, jsonObjDistance[j].store_long));
 		}
 		
-		
+		map.setBounds(bounds);
 	}
 	
 	function setNull(markers){
@@ -178,7 +209,8 @@
 	}
 //////////////////////////////
 //////////////////////////////
-//////////////////////////////
+////////////////////////////// 지도 영역  모든 마커 표시하게 바꾸기
+	var bounds = new kakao.maps.LatLngBounds();    
 //////////////////////////////
 //////////////////////////////
 //////////////////////////////
