@@ -176,15 +176,38 @@
 			var j = stores[i];
 			markers[i] = new kakao.maps.Marker({
 				position: new kakao.maps.LatLng(jsonObjDistance[j].store_lat, jsonObjDistance[j].store_long),
+				clickable: true,
+				map: map,
 				image: new kakao.maps.MarkerImage("${pageContext.servletContext.contextPath}/img/mapIcons/" + jsonObjDistance[j].icon , new kakao.maps.Size(22, 26), {offset: new kakao.maps.Point(0, 30)})
 			});
+			//마커 지도에 표시
 			markers[i].setMap(map);
+			
+			var content = "";
+			content += "<div style='height: 100px;' onclick=\"location.href = 'storeDetail.nmj?store_uid=" + jsonObjDistance[j].store_uid +"'\">";
+			content += "<div> 매장 명: " + jsonObjDistance[j].store_name +"</div>";
+			content += "<div> 매장 영업시간: " + jsonObjDistance[j].store_hours +"</div>";
+			content += "</div>";
+			
+			var infowindow = new kakao.maps.InfoWindow({
+			    content : content,
+			    removable : true
+			});
+			
+			kakao.maps.event.addListener(markers[i], 'click', clickListener(map, markers[i], infowindow));
+			// 지도 영역에 마커 포함시키기
 			bounds.extend(new kakao.maps.LatLng(jsonObjDistance[j].store_lat, jsonObjDistance[j].store_long));
 		}
 		bounds.extend(myLocation);
 		map.setBounds(bounds);
 	}
 	
+	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+	function clickListener(map, marker, infowindow) {
+	    return function() {
+	        infowindow.open(map, marker);
+	    };
+	}
 	function setNull(markers){
 		for (i = 0; i < markers.length; i++){
 			markers[i].setMap(null);
@@ -194,9 +217,13 @@
 //////////////////////////////
 ////////////////////////////// 지도 영역  모든 마커 표시하게 바꾸기
 	var bounds = new kakao.maps.LatLngBounds();
+	
+	
 //////////////////////////////
 //////////////////////////////
 //////////////////////////////
+
+
 //////////////////////////////
 //////////////////////////////
 //////////////////////////////
