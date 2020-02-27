@@ -125,7 +125,7 @@
 	<!-- 커뮤니티 --> <!-- 회원이름, 내용, 작성일, 조회수 (조회수 순으로 5개 출력) -->
 	<select id="selectCommunity" resultType="qna.project.nmj.beans.MainDTO">
 		SELECT * from nmj_review NATURAL JOIN nmj_member
-		ORDER BY review_viewCount DESC limit 5;
+		ORDER BY review_viewCount DESC limit 10;
 	</select>
 	
 	

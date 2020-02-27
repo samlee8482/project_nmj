@@ -21,38 +21,41 @@
 }
 
 .form2 {
-	width: 60%;
+	width: 60px;
 	height: 40px;
 	border-radius: 7px;
-	background-color: #ff7361;
-	border: none;
-	box-shadow: 1px 1px 3px red;
+	background-color: #F03861;
+	border:1px solid #F03861;
 	color: white;
 }
 
 .form2:hover {
 	cursor: pointer;
-	background-color: red;
+	background-color: white;
+	color:#F03861;
 }
 
-
+.fh5co-grid-work .work-holder .inner-overlay{
+	background: rgba(0,0,0,.6)
+}
 
 .btnContainer {
 	margin-bottom: 100px;
 }
 
 .btnContainer button {
+	width:100px;
+	padding:5px;
 	margin: 0px 7px;
 	border-radius: 10px;
-	border-color: 6px white;
-	background-color: #ff7a7a;
-	box-shadow: 1px 1px 4px white;
-	color: white;
+	border: 1px solid #F03861;
+	color: #F03861;
+	background: white;
 }
 
 .btnContainer button:hover {
-	border: none;
-	background-color: red;
+	background-color: #F03861;
+	color:white;
 }
 
 
@@ -65,6 +68,11 @@
 	width: 90%;
 }
 
+@media screen and (min-width: 200px) and (max-width: 635px) {
+	.btnContainer button{
+		margin:15px !important;
+}
+	
 @media only screen and (min-width: 768px) {
 	#search-container {
 		text-align: center;
@@ -80,16 +88,16 @@
 	}
 	.form2 {
 		width: 60px;
-		height: 35px;
+		height: 40px;
 		border-radius: 7px;
-		background-color: #ff7361;
-		border: none;
-		box-shadow: 1px 1px 3px red;
+		background-color: #F03861;
+		border: 1px solid #F03861;
 		color: white;
 	}
 	.form2:hover {
 		cursor: pointer;
-		background-color: red;
+		background-color: white;
+		color:#F03861;
 	}
 	
 	.work-holder a img {
@@ -107,5 +115,5 @@
 @media only screen and (min-width: 1200px) {
 	.work-holder a img {
 		height: 250px;
-	}
+	}	
 }
