@@ -137,4 +137,19 @@ public class MemberController {
 		new SignUpStoreRegOkCommand().execute(model);
 		return "/member/signUpStoreRegOk";
 	}
+	
+	// 로그인
+	@RequestMapping("/login.nmj")
+	public String login() {
+		return "/member/login";
+	}
+	
+	// 로그인 ok
+	@RequestMapping("/loginOk.nmj")
+	public String loginOk(String mb_id, String mb_pw) {
+		System.out.println("아이디: " + mb_id);
+		System.out.println("pw: " + mb_pw);
+		// TODO
+		return "/member/loginOk";
+	}
 }

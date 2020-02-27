@@ -74,13 +74,14 @@
 	    }); 
 	    
 	    // 지도 중심좌표를 접속위치로 변경합니다
-	    map.setCenter(locPosition);  
+	    map.setCenter(locPosition);
+	    
 	 // 지도에 표시할 원을 생성합니다
-	 	if(!circleExist){
+	 	if(!circleExist){ // 원 없을시 생성
 	 		circleExist = true;
 		    var circle = new kakao.maps.Circle({
 		        center : locPosition,  // 원의 중심좌표 입니다 
-		        radius: 1000, // 미터 단위의 원의 반지름입니다 
+		        radius: 500, // 미터 단위의 원의 반지름입니다 
 		        strokeWeight: 5, // 선의 두께입니다 
 		        strokeColor: '#75B8FA', // 선의 색깔입니다
 		        strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
@@ -158,7 +159,7 @@
 		// 선택한 매장 상세 종류에 있는 모든 매장 stores에 담기.
 		var stores = [];
 		for(i = 0; i < l; i++){
-			if(jsonObjDistance[i].store_dtype == dtype && jsonObjDistance[i].dist < 1000){
+			if(jsonObjDistance[i].store_dtype == dtype && jsonObjDistance[i].dist < 500){
 				stores.push(i);
 			}
 		}
