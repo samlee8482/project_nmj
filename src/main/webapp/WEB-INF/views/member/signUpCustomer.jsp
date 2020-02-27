@@ -132,8 +132,8 @@ function chkSubmit(){
 					<input name="mb_id" id="mb_id" class="form-control" placeholder="아이디" required>
 					<div class="check_font" id="id_check"></div>
 					</div>
-					<input name="mb_pw" class="form-control" placeholder="비밀번호" required>
-					<input name="mb_pwOk" class="form-control" placeholder="비밀번호 재확인" required>
+					<input type="password" name="mb_pw" class="form-control" placeholder="비밀번호" required>
+					<input type="password" name="mb_pwOk" class="form-control" placeholder="비밀번호 재확인" required>
 				</div>
 				<div class="signUp_input_container">
 					<input name="mb_name" class="form-control" placeholder="이름" required>
@@ -206,7 +206,7 @@ function chkSubmit(){
 						$("#reg_submit").attr("disabled", true);
 					} else {
 						
-						if(idJ.test(mb_id)){
+						if(mb_id.trim().length >= 4 && mb_id.trim().length <= 12 ){
 							// 0 : 아이디 길이 / 문자열 검사
 							$("#id_check").text("");
 							$("#reg_submit").attr("disabled", false);
