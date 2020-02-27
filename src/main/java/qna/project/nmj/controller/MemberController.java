@@ -78,9 +78,21 @@ public class MemberController {
 	
 	
 	// 회원가입
-	// 약관동의 양식
+	// 회원타입 선택
+	@RequestMapping("/signUpType.nmj")
+	public void signUpType() {
+		
+	}
+	
+	// 일반회원 약관동의 양식
 	@RequestMapping("/signUpTerms.nmj")
 	public void signUpTerms() {
+		
+	}
+	
+	// 매장회원 약관동의 양식
+	@RequestMapping("/signUpTerms2.nmj")
+	public void signUpTerms2() {
 		
 	}
 	
@@ -90,6 +102,13 @@ public class MemberController {
 		
 	}
 	
+	// 회원가입 양식
+	@RequestMapping("/signUpStore.nmj")
+	public void signUpStore() {
+		
+	}
+	
+	// 일반회원가입
 	@RequestMapping("/signUpCustomerOk.nmj")
 	public String signUpCustomerOk(MemberDTO dto, Model model) {
 		model.addAttribute("dto", dto);
@@ -97,4 +116,25 @@ public class MemberController {
 		return "/member/signUpCustomerOk";
 	}
 	
+	// 매장회원가입
+	@RequestMapping("/signUpStoreOk.nmj")
+	public String signUpStoreOk(MemberDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		new SignUpCustomerOkCommand().execute(model);
+		return "/member/signUpStoreOk";
+	}
+	
+	// 매장회원 매장정보 양식
+	@RequestMapping("/signUpStoreReg.nmj")
+	public void signUpStoreReg() {
+		
+	}
+	
+	// 매장회원 매장정보 요청
+	@RequestMapping("/signUpStoreRegOk.nmj")
+	public String signUpStoreRegOk(MemberDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		new SignUpStoreRegOkCommand().execute(model);
+		return "/member/signUpStoreRegOk";
+	}
 }
