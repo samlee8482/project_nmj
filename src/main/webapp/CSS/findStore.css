@@ -21,7 +21,7 @@
 }
 
 .form2 {
-	width: 60%;
+	width: 60px;
 	height: 40px;
 	border-radius: 7px;
 	background-color: #F03861;
@@ -35,7 +35,9 @@
 	color:#F03861;
 }
 
-
+.fh5co-grid-work .work-holder .inner-overlay{
+	background: rgba(0,0,0,.6)
+}
 
 .btnContainer {
 	margin-bottom: 100px;
