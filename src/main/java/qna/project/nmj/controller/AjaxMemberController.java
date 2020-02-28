@@ -10,11 +10,14 @@ import qna.project.nmj.ajax.dto.AjaxStoreDTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreFindDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypesDTO;
+import qna.project.nmj.beans.AjaxBoardList;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FindStoreDTO;
+import qna.project.nmj.beans.ReviewJoinDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.StoreTypeDTO;
 import qna.project.nmj.beans.dao.MemberDAO;
+import qna.project.nmj.beans.dao.ReviewDAO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 
 @RestController
@@ -114,8 +117,48 @@ public class AjaxMemberController {
 		return ajaxDTO;
 	}
 	
+	@RequestMapping("/communityList.nmj/{writePages}/{page}")
+	public AjaxBoardList list(@PathVariable("writePages") int writePages,
+			@PathVariable("page") int page ) {
+		AjaxBoardList result = new AjaxBoardList();
+		ArrayList<ReviewJoinDTO> list = null;
+		
+		// 페이징 처리 결과 --> list
+		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
+		list = dao.selectByRow((page - 1) * writePages, writePages);
+		result.setList(list);
+		
+		// 읽어들인 글 내용이 있는 경우와 없는 경우 나누어 처리
+		if(list != null && list.size() > 0) {
+			result.setStatus("OK");
+			result.setCount(list.size());
+		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
 	
-	
-	
+	@RequestMapping("/communityList2.nmj/{writePages}/{page}")
+	public AjaxBoardList list2(@PathVariable("writePages") int writePages,
+			@PathVariable("page") int page ) {
+		AjaxBoardList result = new AjaxBoardList();
+		ArrayList<ReviewJoinDTO> list = null;
+		
+		// 페이징 처리 결과 --> list
+		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
+		list = dao.selectByRow2((page - 1) * writePages, writePages);
+		result.setList(list);
+		
+		// 읽어들인 글 내용이 있는 경우와 없는 경우 나누어 처리
+		if(list != null && list.size() > 0) {
+			result.setStatus("OK");
+			result.setCount(list.size());
+		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
 	
 }
