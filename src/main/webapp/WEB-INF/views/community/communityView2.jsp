@@ -164,7 +164,7 @@ function chkSubmit(){
 
     <c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">
-		댓글이 없습니다<br>
+		첫번째 댓글을 남겨보세요!<br>
 	</c:when>
 	
 	<c:otherwise>

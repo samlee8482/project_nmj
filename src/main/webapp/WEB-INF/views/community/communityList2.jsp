@@ -54,7 +54,7 @@
    var curPage = parseInt($("input#page").val());
 
    if(curPage != 1) {
-      html += "<li class='back'><i class='fas fa-angle-double-left'></i></li>";
+      html += "<li class='back'><a class='fas fa-angle-double-left'></a></li>";
    }
    var calPage = parseInt(curPage / 10); 
    var pagesize = 0;
@@ -66,13 +66,13 @@
    }
    
    for(var i = 1; i <=  pagesize; i++){
-      html +=   "<li class='page-item'>"+ (calPage*10 + i) + "</li>";
+      html +=   "<li class='page-item'><a class='page-link'>"+ (calPage*10 + i) + "</a></li>";
       
    }
       
       
    if(curPage < ${totalPage}){
-      html += "<li class='next'><i class='fas fa-angle-double-right'></i></li>";
+      html += "<li class='next'><a class='fas fa-angle-double-right'></a></li>";
    }
    $("#pagination").html(html);
    $(".page-item").click(function(){   
@@ -80,6 +80,13 @@
       loadPage(pagetext);
    });
    
+   $(".next").click(function(){   
+	  loadPage(pagesize);
+   });
+   
+   $(".back").click(function(){   
+      loadPage(1);
+   });
 
  });
 
@@ -119,7 +126,7 @@
        var items = jsonObj.list; // 글 목록
        
        if(count == 0){
-    	   result += '데이터가 없습니다<br>';
+    	   result += '첫번째 게시글을 남겨보세요!<br>';
        }
        
        var i;
@@ -210,7 +217,7 @@
 	<ul class="pagination" id="pagination"></ul>
 
 	
-	<button class="btn btn-primary btn-lg" onclick="location.href='writeReview.nmj?mb_uid=<%=mb_uid%>'">리뷰 작성</button>
+	<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=<%=mb_uid%>'">자유글 작성</button>
 	
 
 	</div>
