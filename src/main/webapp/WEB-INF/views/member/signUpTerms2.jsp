@@ -66,7 +66,7 @@ $(document).ready(function(){
 			checked ++;
 		}	
 		if(checked == 2){
-			location.href="signUpCustomer.nmj";
+			location.href="signUpStore.nmj";
 		}else{
 			alert("약관에 모두 동의해주세요.");
 		}

@@ -27,7 +27,7 @@
 				 	
 			 		<div class="col-md-12">
 					 	<div class="form-group">
-				 			<label>전화화번호</label>
+				 			<label>전화번호</label>
 					 	</div>
 				 	</div>
 			 		<div class="col-md-12">

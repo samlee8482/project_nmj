@@ -2,9 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qna.project.nmj.beans.dao.MemberDAO">
 	<!-- 회원가입 -->
+	<!-- 회원공통 -->
 	<insert id="insertMember" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
 		INSERT INTO NMJ_member (mb_id, mb_pw, mb_name, mb_tel, mb_email, mb_type)
 		VALUES (#{dto.mb_id}, #{dto.mb_pw}, #{dto.mb_name}, #{dto.mb_tel}, #{dto.mb_email}, #{dto.mb_type});
+	</insert>
+	<!-- 매장회원 정보등록 -->
+	<insert id="insertStore" flushCache="true" parameterType="qna.project.nmj.beans.StoreDTO">
+		INSERT INTO
+		(store_name, store_address, store_regNum, store_type, store_dtype, store_tel, store_start, store_end, store_content)
+		VALUES
+		(#{dto.store_name}, #{dto.store_address}, #{dto.store_regNum}, #{dto.store_type}, #{dto.store_dtype}, #{dto.store_tel}, #{dto.store_start}, #{dto.store_end}, #{dto.store_content});
 	</insert>
 	
 	<!-- 아이디 중복검사 -->
@@ -117,7 +125,7 @@
 	<!-- 커뮤니티 --> <!-- 회원이름, 내용, 작성일, 조회수 (조회수 순으로 5개 출력) -->
 	<select id="selectCommunity" resultType="qna.project.nmj.beans.MainDTO">
 		SELECT * from nmj_review NATURAL JOIN nmj_member
-		ORDER BY review_viewCount DESC limit 5;
+		ORDER BY review_viewCount DESC limit 10;
 	</select>
 	
 	

@@ -47,10 +47,9 @@
 		            lon = position.coords.longitude; // 경도
 		        var myPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 		        var image = new kakao.maps.MarkerImage(myLocationImage, myLocationImageSize, myLocationImageOption);
-		        
+		        myLocation = myPosition;
 		        // 내위치 받아왓을 때 매장정보 가져오기
-//		        getJacksonForDistance(lat, lon)
-		        getJacksonForDistance(37.500464, 127.036709)
+		        getJacksonForDistance(lat, lon)
 		        
 		        // 마커와 인포윈도우를 표시합니다
 		        displayMyLocation(myPosition, image);
@@ -64,28 +63,33 @@
 	}
 	
 	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+	var circleExist = false;
 	function displayMyLocation(locPosition, image) {
 
 	    // 마커를 생성합니다
 	    var marker = new kakao.maps.Marker({  
 	        map: map, 
-	        position: new kakao.maps.LatLng(37.500464, 127.036709),
+	        position: locPosition,
 	        image: image
 	    }); 
 	    
 	    // 지도 중심좌표를 접속위치로 변경합니다
-	    map.setCenter(new kakao.maps.LatLng(37.500464, 127.036709));  
+	    map.setCenter(locPosition);
+	    
 	 // 지도에 표시할 원을 생성합니다
-	    var circle = new kakao.maps.Circle({
-	        center : new kakao.maps.LatLng(37.500464, 127.036709),  // 원의 중심좌표 입니다 
-	        radius: 1000, // 미터 단위의 원의 반지름입니다 
-	        strokeWeight: 5, // 선의 두께입니다 
-	        strokeColor: '#75B8FA', // 선의 색깔입니다
-	        strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	        strokeStyle: 'dashed', // 선의 스타일 입니다
-	        fillColor: '#CFE7FF', // 채우기 색깔입니다
-	        fillOpacity: 0.7  // 채우기 불투명도 입니다   
-	    }); 
+	 	if(!circleExist){ // 원 없을시 생성
+	 		circleExist = true;
+		    var circle = new kakao.maps.Circle({
+		        center : locPosition,  // 원의 중심좌표 입니다 
+		        radius: 500, // 미터 단위의 원의 반지름입니다 
+		        strokeWeight: 5, // 선의 두께입니다 
+		        strokeColor: '#75B8FA', // 선의 색깔입니다
+		        strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		        strokeStyle: 'dashed', // 선의 스타일 입니다
+		        fillColor: '#CFE7FF', // 채우기 색깔입니다
+		        fillOpacity: 0.7  // 채우기 불투명도 입니다   
+		    }); 
+	 	}
 
 	    // 지도에 원을 표시합니다 
 	    circle.setMap(map);
@@ -155,7 +159,7 @@
 		// 선택한 매장 상세 종류에 있는 모든 매장 stores에 담기.
 		var stores = [];
 		for(i = 0; i < l; i++){
-			if(jsonObjDistance[i].store_dtype == dtype && jsonObjDistance[i].dist < 1000){
+			if(jsonObjDistance[i].store_dtype == dtype && jsonObjDistance[i].dist < 500){
 				stores.push(i);
 			}
 		}
@@ -172,15 +176,38 @@
 			var j = stores[i];
 			markers[i] = new kakao.maps.Marker({
 				position: new kakao.maps.LatLng(jsonObjDistance[j].store_lat, jsonObjDistance[j].store_long),
+				clickable: true,
+				map: map,
 				image: new kakao.maps.MarkerImage("${pageContext.servletContext.contextPath}/img/mapIcons/" + jsonObjDistance[j].icon , new kakao.maps.Size(22, 26), {offset: new kakao.maps.Point(0, 30)})
 			});
+			//마커 지도에 표시
 			markers[i].setMap(map);
+			
+			var content = "";
+			content += "<div style='height: 100px;' onclick=\"location.href = 'storeDetail.nmj?store_uid=" + jsonObjDistance[j].store_uid +"'\">";
+			content += "<div> 매장 명: " + jsonObjDistance[j].store_name +"</div>";
+			content += "<div> 매장 영업시간: " + jsonObjDistance[j].store_hours +"</div>";
+			content += "</div>";
+			
+			var infowindow = new kakao.maps.InfoWindow({
+			    content : content,
+			    removable : true
+			});
+			
+			kakao.maps.event.addListener(markers[i], 'click', clickListener(map, markers[i], infowindow));
+			// 지도 영역에 마커 포함시키기
 			bounds.extend(new kakao.maps.LatLng(jsonObjDistance[j].store_lat, jsonObjDistance[j].store_long));
 		}
-		
+		bounds.extend(myLocation);
 		map.setBounds(bounds);
 	}
 	
+	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+	function clickListener(map, marker, infowindow) {
+	    return function() {
+	        infowindow.open(map, marker);
+	    };
+	}
 	function setNull(markers){
 		for (i = 0; i < markers.length; i++){
 			markers[i].setMap(null);
@@ -189,10 +216,14 @@
 //////////////////////////////
 //////////////////////////////
 ////////////////////////////// 지도 영역  모든 마커 표시하게 바꾸기
-	var bounds = new kakao.maps.LatLngBounds();    
+	var bounds = new kakao.maps.LatLngBounds();
+	
+	
 //////////////////////////////
 //////////////////////////////
 //////////////////////////////
+
+
 //////////////////////////////
 //////////////////////////////
 //////////////////////////////
