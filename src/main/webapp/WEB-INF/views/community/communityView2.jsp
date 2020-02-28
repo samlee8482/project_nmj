@@ -114,20 +114,20 @@ function chkSubmit(){
 	<table>
 	<tr>
 	<tr>
-		<td style="width:20%"><b>작성자</b></td>
-		<td>${dto.mb_id }</td>
+		<td style="width:10%; background-color: white"><b>작성자</b></td>
+		<td style="background-color: white">${dto.mb_id }</td>
 	</tr>
 	<tr>
-		<td style="width:20%"><b>내용</b></td>
-		<td>${dto.review_content }</td>
+		<td style="width:10%; background-color: white"><b>내용</b></td>
+		<td style="background-color: white">${dto.review_content }</td>
 	</tr>
 	<tr>
-		<td style="width:20%"><b>조회수</b></td>
-		<td>${dto.review_viewCount }</td>
+		<td style="width:10%; background-color: white"><b>조회수</b></td>
+		<td style="background-color: white">${dto.review_viewCount }</td>
 	</tr>
 	<tr>
-		<td style="width:20%"><b>작성일</b></td>
-		<td>${dto.review_date }</td>
+		<td style="width:10%; background-color: white"><b>작성일</b></td>
+		<td style="background-color: white">${dto.review_date }</td>
 	</tr>
 	</table>
 
@@ -171,20 +171,20 @@ function chkSubmit(){
 	    <table>
 			<c:forEach var="reply" items="${list}">
 			<tr>
-				<td style="width:20%">${reply.mb_id }</td>
 				<c:choose>
 				<c:when test="${reply.reply_ban == 0 }">
-				<td>${reply.reply_content }<br>
-				<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p></td>
+				<td style="background-color: white">
+				<b>${reply.mb_id }</b><br>
+				${reply.reply_content }<br>
+				<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p>
+				<button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">신고하기</button>
+				<button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">삭제하기</button>
+				</td>
 				</c:when>
 				<c:otherwise>
-				<td>관리자에 의해 삭제된 댓글입니다.</td>
+				<td style="background-color: white">관리자에 의해 삭제된 댓글입니다.</td>
 				</c:otherwise>
 				</c:choose>
-				<td style="width:10%">
-				<button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReply2.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">신고하기</button><br>
-				<button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReply2.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">삭제하기</button>
-				</td>
 			</tr>
 			</c:forEach>
 		</table>
