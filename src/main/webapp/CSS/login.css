@@ -15,7 +15,7 @@
 	margin: 0px auto;
 }
 
-input {
+.formContainer input {
 	height: 50px;
     padding: 20px;
     margin-bottom: 25px;
@@ -76,6 +76,10 @@ div.findIdPw button:hover {
 	div.findIdPw button {
 		width: 90%;
 		margin: 0px auto;
+	}
+	
+	.formContainer {
+		width: 80%;
 	}
 }
 
