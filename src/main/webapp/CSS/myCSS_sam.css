@@ -31,13 +31,21 @@
 
 #terms_container{
 	width: 50%;
-	height: 800px;
-	margin: 50px auto;
-	position: absolute;
-	top: 50%;
-	left: 50%; 
-	transform: translate(-50%, -50%);
+	height: auto;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
+}
+
+#terms_1{
+	height: auto;
+}
+
+#terms_2{
+	margin-top: 30px;
+	height: auto;
 }
 
 .terms_textarea{
@@ -70,12 +78,11 @@
 
 #signUp_frm_container{
 	width: 35%;
-	height: 490px;
-	margin: 50px auto;
-	position: absolute;
-	top: 50%;
-	left: 50%; 
-	transform: translate(-50%, -50%);
+	height: auto;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 	background-color: #eee;
 }
@@ -143,24 +150,24 @@
 
 .update_info{
 	width: 300px;
-	color: #333;
+	color: #aaa;
+	font-size : 11px;
 	margin-left: 60px;
 	border-radius: 10px;
-	border: 0.7px solid #aaa;
+	border: 1px solid #ced4da;
 	padding: 0px 10px;
 }
 
 #update_info_file{
-	display: inline; 
+	display: inline;
+	padding: 0px;
+	border-left: white;
 }
 
 #find_frm_container{
-	position: absolute;
 	width: 1000px;
-	height: 500px;
-	top: 50%;
-	left: 50%; 
-	transform: translate(-50%, -50%);
+	height: auto;
+	margin: 0px auto;
 	text-align: center;
 	font-weight: 600;
 }
@@ -171,13 +178,15 @@
 
 .find_info_container{
 	width: 1000px;
-	height: 250px;
+	height: auto;
+	margin: 0px auto;
 }
 
 .find_info{
 	width: 250px;
 	border-radius: 10px;
 	border: 0.7px solid #aaa;
+	margin: 0px auto;
 }
 
 .find_btn{
@@ -189,7 +198,6 @@
 	background-color: white;
 	border: 0.7px solid #aaa;
 	border-radius: 5px;
-	box-shadow: 0.2px 0.2px 0.2px 0.2px gray;
 }
 
 .findOk_container{
@@ -211,7 +219,6 @@
 	background-color: white;
 	border: 0.7px solid #aaa;
 	border-radius: 5px;
-	box-shadow: 0.2px 0.2px 0.2px 0.2px gray;
 }
 
 .findOk_content{

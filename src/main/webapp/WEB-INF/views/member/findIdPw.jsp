@@ -124,31 +124,29 @@ function chkSubmit2(){
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: 750px;">
-		<div id="find_frm_container">
-			<form name="frm1" id="find_id_frm" method="post" action="findIdOk.nmj" onsubmit="return chkSubmit1()">
-		       <div class="find_id">
-		       	<h2>아이디 찾기</h2><br>
-		       </div>
-		       <div class="find_info_container">
-		       		<input name="mb_name" class="find_info" type="text" placeholder="이름" required="required"><br>
-		       		<input name="mb_email" class="find_info" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
-		       		<button type="submit" class="find_btn">아이디 찾기</button>
-		       </div>
-			</form>
+	<div class="div-relative" style="width: 100%; height: auto; text-align: center;">
+	       <div class="find_info_container">
+				<form name="frm1" id="find_id_frm" method="post" action="findIdOk.nmj" onsubmit="return chkSubmit1()">
+			       <div class="find_id">
+			       	<h2>아이디 찾기</h2><br>
+			       </div>
+			       		<input name="mb_name" class="find_info form-control" type="text" placeholder="이름" required="required"><br>
+			       		<input name="mb_email" class="find_info form-control" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
+			       		<button type="submit" class="find_btn btn btn-primary">아이디 찾기</button>
+				</form>
+	       </div>
 			
-			<form name="frm2" id="find_pw_frm" method="get" action="findPwOk.nmj" onsubmit="return chkSubmit2()" >
-				<div class="find_pw">
-					<h2>비밀번호 찾기</h2><br>
-				</div>
-				<div class="find_info_container">
-					<input name="mb_id" class="find_info" type="text" placeholder="아이디" required="required"><br>
-					<input name="mb_name" class="find_info" type="text" placeholder="이름" required="required"><br>
-					<input name="mb_email" class="find_info" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
-					<button type="submit" class="find_btn">비밀번호 찾기</button>
-				</div>
-			</form>
-		</div>
+			<div class="find_info_container" style="margin-top: 100px;">
+				<form name="frm2" id="find_pw_frm" method="get" action="findPwOk.nmj" onsubmit="return chkSubmit2()" >
+					<div class="find_pw">
+						<h2>비밀번호 찾기</h2><br>
+					</div>
+						<input name="mb_id" class="find_info form-control" type="text" placeholder="아이디" required="required"><br>
+						<input name="mb_name" class="find_info form-control" type="text" placeholder="이름" required="required"><br>
+						<input name="mb_email" class="find_info form-control" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
+						<button type="submit" class="find_btn btn btn-primary">비밀번호 찾기</button>
+				</form>
+			</div>
 	</div>
 	
 	<br><br><br><br>

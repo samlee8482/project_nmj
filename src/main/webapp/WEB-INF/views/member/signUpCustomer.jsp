@@ -124,21 +124,21 @@ function chkSubmit(){
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class=" div-relative" style="height: 500px;">
+	<div class=" div-relative" style="height: auto;">
 		<div id="signUp_frm_container" class="jumbotron">
 			<form name="frm" id="signUp_frm" action="signUpCustomerOk.nmj" onsubmit="return chkSubmit()">
 				<div class="signUp_input_container">
 					<div class="form-group">
-					<input name="mb_id" id="mb_id" class="form-control" placeholder="아이디" required>
+					<input name="mb_id" id="mb_id" class="form-control" pattern="^[a-zA-Z]{1}[a-zA-Z0-9_]{6,20}$" placeholder="아이디" required>
 					<div class="check_font" id="id_check"></div>
 					</div>
-					<input type="password" name="mb_pw" class="form-control" placeholder="비밀번호" required>
+					<input type="password" name="mb_pw" class="form-control" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$" placeholder="비밀번호" required>
 					<input type="password" name="mb_pwOk" class="form-control" placeholder="비밀번호 재확인" required>
 				</div>
 				<div class="signUp_input_container">
 					<input name="mb_name" class="form-control" placeholder="이름" required>
-					<input name="mb_email" class="form-control" placeholder="이메일" required>
-					<input name="mb_tel" class="form-control" placeholder="전화번호" required>
+					<input name="mb_email" class="form-control" placeholder="이메일" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" required>
+					<input name="mb_tel" class="form-control" placeholder="전화번호 ex) 010-1234-1234" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})" required>
 					<input name="mb_type" type="hidden" value="1">
 				</div>
 				<br>
@@ -146,8 +146,6 @@ function chkSubmit(){
 			</form>
 		</div>
 	</div>
-	
-	<br><br><br><br><br><br><br><br><br><br>
 	
 	<footer>
 		<div id="footer" class="fh5co-border-line">

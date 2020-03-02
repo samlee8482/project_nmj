@@ -77,9 +77,9 @@
 	<!-- 아래 버튼들은 현재 세션값 안받아오므로 세션없이 임의로 uid 값 넣어준 버전. 추후 세션값 넣어서 보내주는 걸로 바꿔야함. -->
 	<div class="div-relative" style="width: 80%; height: 500px; margin: 0px auto;">
 		<div id="myPage_btn_container">
-			<button class="myPage_btn" onclick="location.href='cusUpdateInfo.nmj?mb_uid=${mb_uid}'">회원 정보 수정</button>
-			<button class="myPage_btn" onclick="location.href='cusShowReserve.nmj?mb_uid=${mb_uid}'" style="margin-left: 50px;">예약/찜 목록 보기</button>
-			<button class="myPage_btn" onclick="location.href='cusShowReview.nmj?mb_uid=${mb_uid}'" style="margin-left: 50px;">내가 쓴 리뷰&댓글 보기</button>
+			<button class="myPage_btn" onclick="location.href='cusUpdateInfo.nmj'">회원 정보 수정</button>
+			<button class="myPage_btn" onclick="location.href='cusShowReserve.nmj'" style="margin-left: 50px;">예약/찜 목록 보기</button>
+			<button class="myPage_btn" onclick="location.href='cusShowReview.nmj'" style="margin-left: 50px;">내가 쓴 리뷰&댓글 보기</button>
 		</div>
 	</div>
 	
