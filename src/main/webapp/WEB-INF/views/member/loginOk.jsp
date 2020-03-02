@@ -13,7 +13,7 @@
 	<c:otherwise>
 		<script>
 			alert("로그인 성공");
-			location.href=""
+			location.href="main.nmj";
 		</script>
 	</c:otherwise>
 </c:choose>
