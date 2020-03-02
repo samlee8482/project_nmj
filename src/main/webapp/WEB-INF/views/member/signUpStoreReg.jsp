@@ -393,7 +393,75 @@ $(document).ready(function(){
 	$("#store_end option[value='${result.store_end}']").attr('selected', 'selected');
 });
 </script>
+<script>
+
+/////////////////////////////////////////////////////////////////////////////////////////////////// 상세 종류 목록 변경
+$(document).ready(function(){
+	$("#store_type option[value='${result.store_type}']").attr('selected', 'selected');
+	getJackson(); //json
+});
+var jsonObj = "";
+var l;
 	
+function changeDetails() {
+	var type = $("select.store_type").children("option:selected").val() - 1;
+	var dtypes = jsonObj.store_types[type].store_dtypes;
+	l = dtypes.length;
+	var result = "";
+	for(i = 0; i < l; i++){
+		
+		if(dtypes[i].store_dtype == ${result.store_dtype}){
+			
+			result += "<option value='" + dtypes[i].store_dtype + "' selected>" + dtypes[i].store_dname + "</option>";
+		}else{
+			result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
+		}
+	}
+	
+	$("select.store_dtype").html(result);
+	
+}
+
+function getJackson(){
+	$.ajax({
+		url : "${pageContext.servletContext.contextPath}/ajax/store/dtypeList.ajax",
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				jsonObj = data;
+				changeDetails();
+			}
+		}
+	})
+}
+//////////////////////////////////////////////////////////////////////////////////////////////	주소 api
+    //주소-좌표 변환 객체를 생성
+    var geocoder = new daum.maps.services.Geocoder();
+
+    function sample5_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample5_address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+                        var result = results[0]; //첫번째 결과의 값을 활용
+		                document.getElementById("x").value = result.x;
+		                document.getElementById("y").value = result.y;
+                    }
+                });
+            }
+        }).open();
+    	}
+    }
+
+	
+</script>
 
 </body>
 </html>

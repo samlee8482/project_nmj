@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<%
-	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
-%>
   
 <!DOCTYPE html>
 <html>
@@ -82,7 +78,7 @@ function chkSubmit(){
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
 					<li><a href="findStore.nmj?store_type=2" >먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj?mb_uid=<%=mb_uid%>" class="active">떠들자</a></li>
+					<li><a href="communityList.nmj" class="active">떠들자</a></li>
 					
 				</ul>
 			</nav>

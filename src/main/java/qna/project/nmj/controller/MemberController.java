@@ -5,12 +5,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import qna.project.nmj.beans.MemberDTO;
-import qna.project.nmj.command.*;
+import qna.project.nmj.command.FindStoreGetCommand;
+import qna.project.nmj.command.LoginCommand;
+import qna.project.nmj.command.MainCommand;
+import qna.project.nmj.command.MbFindIdOkCommand;
+import qna.project.nmj.command.MbFindPwOkCommand;
+import qna.project.nmj.command.SignUpCustomerOkCommand;
+import qna.project.nmj.command.SignUpStoreRegOkCommand;
+import qna.project.nmj.command.StoreDetailCommand;
 
 @Controller
 @RequestMapping("/member")
@@ -134,8 +140,16 @@ public class MemberController {
 	
 	// 매장회원 매장정보 요청
 	@RequestMapping("/signUpStoreRegOk.nmj")
-	public String signUpStoreRegOk(MemberDTO dto, Model model) {
-		model.addAttribute("dto", dto);
+	public String signUpStoreRegOk(String store_name, String store_address, String store_regNum, String store_type, String store_dtype, String store_tel, String store_start, String store_end, String store_content, Model model) {
+		model.addAttribute("store_name", store_name);
+		model.addAttribute("store_address", store_address);
+		model.addAttribute("store_regNum", store_regNum);
+		model.addAttribute("store_type", store_type);
+		model.addAttribute("store_dtype", store_dtype);
+		model.addAttribute("store_tel", store_tel);
+		model.addAttribute("store_start", store_start);
+		model.addAttribute("store_end", store_end);
+		model.addAttribute("store_content", store_content);
 		new SignUpStoreRegOkCommand().execute(model);
 		return "/member/signUpStoreRegOk";
 	}
@@ -154,7 +168,13 @@ public class MemberController {
 		new LoginCommand().execute(model);
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		if(mb_uid != 0) {
-			session.setAttribute("mb_uid", mb_uid);			
+			session.setAttribute("mb_uid", mb_uid);
+			System.out.println(mb_uid);
+		}
+		int type = (Integer)model.getAttribute("type");
+		if(type == 2) {
+			int store_uid = (Integer)model.getAttribute("store_uid");
+			session.setAttribute("store_uid", store_uid);
 		}
 		return "/member/loginOk";
 	}

@@ -150,7 +150,6 @@ function changeDetails() {
 	for(i = 0; i < l; i++){
 		
 		if(dtypes[i].store_dtype == ${result.store_dtype}){
-			
 			result += "<option value='" + dtypes[i].store_dtype + "' selected>" + dtypes[i].store_dname + "</option>";
 		}else{
 			result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
