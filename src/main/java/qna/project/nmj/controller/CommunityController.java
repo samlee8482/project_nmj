@@ -34,6 +34,7 @@ public class CommunityController {
 
 	@RequestMapping("/writeReview.nmj")
 	public String writeReview(int mb_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("mb_uid", mb_uid);
 		new CommunityWriteCommand().execute(model);
 		return "community/writeReview";
@@ -41,6 +42,7 @@ public class CommunityController {
 	
 	@RequestMapping("/writeReview2.nmj")
 	public String writeReview2(int mb_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("mb_uid", mb_uid);
 		new CommunityWriteCommand().execute(model);
 		return "community/writeReview2";
@@ -66,18 +68,21 @@ public class CommunityController {
 	
 	@RequestMapping("/communityList.nmj")
 	public String selectAllReview(Model model) {
+		model.addAttribute("nav", 5);
 		new CommunityListCommand().execute(model);
 		return "community/communityList";
 	}
 	
 	@RequestMapping("/communityList2.nmj")
 	public String selectAllReview2(Model model) {
+		model.addAttribute("nav", 5);
 		new CommunityListCommand2().execute(model);
 		return "community/communityList2";
 	}
 	
 	@RequestMapping(value = "/communityView.nmj")
 	public String communityView(int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityViewCommand().execute(model);
 		return "community/communityView";
@@ -85,6 +90,7 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/communityView2.nmj")
 	public String communityView2(int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityViewCommand2().execute(model);
 		return "community/communityView2";
@@ -93,6 +99,7 @@ public class CommunityController {
 	// 리뷰 수정 불러오기
 	@RequestMapping("/updateReview.nmj")
 	public String updateReview(int mb_uid, int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("review_uid", review_uid);
 		new CommunitySelectViewCommand().execute(model);
@@ -134,6 +141,7 @@ public class CommunityController {
 	
 	@RequestMapping("/reportReview.nmj")
 	public String reportReview(int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityReportReviewCommand().execute(model);
 		return "community/reportReview";
@@ -141,6 +149,7 @@ public class CommunityController {
 	
 	@RequestMapping("/reportReply.nmj")
 	public String reportReply(int reply_uid, int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("reply_uid", reply_uid);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityReportReplyCommand().execute(model);
@@ -149,6 +158,7 @@ public class CommunityController {
 	
 	@RequestMapping("/reportReview2.nmj")
 	public String reportReview2(int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityReportReviewCommand().execute(model);
 		return "community/reportReview2";
@@ -156,6 +166,7 @@ public class CommunityController {
 	
 	@RequestMapping("/reportReply2.nmj")
 	public String reportReply2(int reply_uid, int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("reply_uid", reply_uid);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityReportReplyCommand().execute(model);
@@ -164,6 +175,7 @@ public class CommunityController {
 	
 	@RequestMapping("/deleteReview.nmj")
 	public String deleteReview(int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityDeleteReviewCommand().execute(model);
 		return "community/deleteReview";
@@ -171,6 +183,7 @@ public class CommunityController {
 	
 	@RequestMapping("/deleteReview2.nmj")
 	public String deleteReview2(int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityDeleteReviewCommand().execute(model);
 		return "community/deleteReview2";
@@ -178,6 +191,7 @@ public class CommunityController {
 	
 	@PostMapping(value = "/writeReply.nmj")
 	public String insertReply(int mb_uid, int review_uid, String reply_content, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("review_uid", review_uid);
 		model.addAttribute("reply_content", reply_content);
@@ -187,6 +201,7 @@ public class CommunityController {
 	
 	@PostMapping(value = "/writeReply2.nmj")
 	public String insertReply2(int mb_uid, int review_uid, String reply_content, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("review_uid", review_uid);
 		model.addAttribute("reply_content", reply_content);
@@ -196,6 +211,7 @@ public class CommunityController {
 	
 	@RequestMapping("/deleteReply.nmj")
 	public String deleteReply(int reply_uid, int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("reply_uid", reply_uid);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityDeleteReplyCommand().execute(model);
@@ -204,6 +220,7 @@ public class CommunityController {
 	
 	@RequestMapping("/deleteReply2.nmj")
 	public String deleteReply2(int reply_uid, int review_uid, Model model) {
+		model.addAttribute("nav", 5);
 		model.addAttribute("reply_uid", reply_uid);
 		model.addAttribute("review_uid", review_uid);
 		new CommunityDeleteReplyCommand().execute(model);

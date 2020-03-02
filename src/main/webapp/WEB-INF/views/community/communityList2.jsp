@@ -158,37 +158,7 @@
 
 <body>
 	<input type="hidden" id="page" value="1">
-	<header>
-		<div class="container text-center headerContainer">
-				<!-- if(Session.getAttribute("mb_uid") == null) { -->
-				<div id="login_signUp">
-					<span id="login">로그인</span>
-					<span class="line">|</span>
-					<span id="signup">회원가입</span>
-				</div>
-				<!-- } else { -->
-				<div id="logout_mypage" style="display: none;">
-					<span id="logout">로그아웃</span>
-					<span class="line">|</span>
-					<span id="mypage">마이페이지</span>
-				</div>
-				<!-- } -->
-				
-				<div class="fh5co-navbar-brand">
-					<a href="main.nmj"><img id="logo" src="../img/logo/nmj_logo.jpg"></a>
-				</div>
-			<nav id="fh5co-main-nav" role="navigation">
-				<ul>
-					<li><a href="main.nmj">메인</a></li>
-					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
-					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj" class="active">떠들자</a></li>
-					
-				</ul>
-			</nav>
-		</div>
-	</header>
+	<jsp:include page="normalHeader.jsp"></jsp:include>
 	
 		<div id="fh5co-intro-section">
     		<div class="row">

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.dao.CustomerDAO;
+import qna.project.nmj.security.PasswordEncoding;
 
 public class CusUpdateInfoOkCommand implements Command {
 
@@ -19,6 +20,8 @@ public class CusUpdateInfoOkCommand implements Command {
 		// 수정 성공/실패를 위한 변수
 		int cnt = 0;
 		boolean existFile = false; //파일 첨부 여부
+		
+		PasswordEncoding pe = new PasswordEncoding();
 		
 		Map<String, Object> map = model.asMap();
 		MemberDTO dto = (MemberDTO)map.get("dto");
@@ -39,7 +42,7 @@ public class CusUpdateInfoOkCommand implements Command {
 		
 		// 2. 이미지 파일 저장할 경로 만들기
 		ServletContext context = C.context;
-		String saveDirectory = context.getRealPath("img/store");
+		String saveDirectory = context.getRealPath("img/member");
 		
 		// 3. 파일 있을 때와 없을 때 처리
 		if(upload.getOriginalFilename() == "" || upload.getOriginalFilename() == null) {
@@ -73,9 +76,19 @@ public class CusUpdateInfoOkCommand implements Command {
 		CustomerDAO dao = C.sqlSession.getMapper(CustomerDAO.class);
 	
 		if(existFile) {
-			cnt = dao.updateMemberByUid(dto);
+			if(dto.getMb_pw() == null || dto.getMb_pw().equals("")) {
+				cnt = dao.updateMemberByUid2(dto);
+			} else if(dto.getMb_pw() != null || !dto.getMb_pw().equals("")) {
+				dto.setMb_pw(pe.encode(dto.getMb_pw()));
+				cnt = dao.updateMemberByUid(dto);
+			}
 		} else {
-			cnt = dao.updateMemberByUid(dto);
+			if(dto.getMb_pw() == null || dto.getMb_pw().equals("")) {
+				cnt = dao.updateMemberByUid2(dto);
+			} else if(dto.getMb_pw() != null || !dto.getMb_pw().equals("")) {
+				dto.setMb_pw(pe.encode(dto.getMb_pw()));
+				cnt = dao.updateMemberByUid(dto);
+			}
 		}
 		
 		model.addAttribute("result", cnt);

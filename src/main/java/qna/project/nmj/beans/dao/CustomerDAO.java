@@ -11,6 +11,7 @@ import qna.project.nmj.beans.ReservationDTO;
 public interface CustomerDAO {
 	public MemberDTO selectMemberByUid(int mb_uid);
 	public int updateMemberByUid(@Param("dto") MemberDTO dto);
+	public int updateMemberByUid2(@Param("dto") MemberDTO dto);
 	public ArrayList<CusMyPageDTO> selectReservationByUid(int mb_uid);
 	public ArrayList<CusMyPageDTO> selectLikeByUid(int mb_uid);
 	public ArrayList<CusMyPageDTO> selectMyReviewByUid(int mb_uid);

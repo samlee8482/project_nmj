@@ -80,37 +80,7 @@ function chkSubmit(){
 }
 </script>
 
-	<header>
-		<div class="container text-center headerContainer">
-				<!-- if(Session.getAttribute("mb_uid") == null) { -->
-				<div id="login_signUp">
-					<span id="login">로그인</span>
-					<span class="line">|</span>
-					<span id="signup">회원가입</span>
-				</div>
-				<!-- } else { -->
-				<div id="logout_mypage" style="display: none;">
-					<span id="logout">로그아웃</span>
-					<span class="line">|</span>
-					<span id="mypage">마이페이지</span>
-				</div>
-				<!-- } -->
-				
-				<div class="fh5co-navbar-brand">
-					<a href="main.nmj"><img id="logo" src="../img/logo/nmj_logo.jpg"></a>
-				</div>
-			<nav id="fh5co-main-nav" role="navigation">
-				<ul>
-					<li><a href="main.nmj">메인</a></li>
-					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
-					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj">떠들자</a></li>
-					
-				</ul>
-			</nav>
-		</div>
-	</header>
+	<jsp:include page="normalHeader.jsp"></jsp:include>
 
 	<div id="fh5co-intro-section">
 		<div class="container">
@@ -129,16 +99,16 @@ function chkSubmit(){
 			<form name="frm" id="signUp_frm" action="signUpCustomerOk.nmj" onsubmit="return chkSubmit()">
 				<div class="signUp_input_container">
 					<div class="form-group">
-					<input name="mb_id" id="mb_id" class="form-control" placeholder="아이디" required>
+					<input name="mb_id" id="mb_id" class="form-control" pattern="^[a-zA-Z]{1}[a-zA-Z0-9_]{6,20}$" placeholder="아이디" required>
 					<div class="check_font" id="id_check"></div>
 					</div>
-					<input type="password" name="mb_pw" class="form-control" placeholder="비밀번호" required>
+					<input type="password" name="mb_pw" class="form-control" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$" placeholder="비밀번호" required>
 					<input type="password" name="mb_pwOk" class="form-control" placeholder="비밀번호 재확인" required>
 				</div>
 				<div class="signUp_input_container">
 					<input name="mb_name" class="form-control" placeholder="이름" required>
-					<input name="mb_email" class="form-control" placeholder="이메일" required>
-					<input name="mb_tel" class="form-control" placeholder="전화번호" required>
+					<input name="mb_email" class="form-control" placeholder="이메일" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" required>
+					<input name="mb_tel" class="form-control" placeholder="전화번호 ex) 010-1234-1234" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})" required>
 					<input name="mb_type" type="hidden" value="1">
 				</div>
 				<br>
