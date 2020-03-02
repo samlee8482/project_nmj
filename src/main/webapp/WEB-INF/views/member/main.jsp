@@ -71,19 +71,22 @@
 	<body>
 	<header>
 		<div class="container text-center headerContainer">
-			<!-- if(Session.getAttribute("mb_uid") == null) { -->
-			<div id="login_signUp">
-				<span id="login">로그인</span>
-				<span class="line">|</span>
-				<span id="signup">회원가입</span>
-			</div>
-			<!-- } else { -->
-			<div id="logout_mypage" style="display: none;">
-				<span id="logout">로그아웃</span>
-				<span class="line">|</span>
-				<span id="mypage">마이페이지</span>
-			</div>
-			<!-- } -->
+			<c:choose>
+				<c:when test="${sessionScope.mb_uid eq null }">
+					<div id="login_signUp">
+						<span id="login">로그인</span>
+						<span class="line">|</span>
+						<span id="signup">회원가입</span>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="logout_mypage">
+						<span id="logout">로그아웃</span>
+						<span class="line">|</span>
+						<span id="mypage">마이페이지</span>
+					</div>
+				</c:otherwise>			
+			</c:choose>
 
 			<div class="fh5co-navbar-brand">
 				<a href="main.nmj"><img id="logo" src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"></a>

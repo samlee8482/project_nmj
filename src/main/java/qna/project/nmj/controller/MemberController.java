@@ -168,7 +168,13 @@ public class MemberController {
 		new LoginCommand().execute(model);
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		if(mb_uid != 0) {
-			session.setAttribute("mb_uid", mb_uid);			
+			session.setAttribute("mb_uid", mb_uid);
+			System.out.println(mb_uid);
+		}
+		int type = (Integer)model.getAttribute("type");
+		if(type == 2) {
+			int store_uid = (Integer)model.getAttribute("store_uid");
+			session.setAttribute("store_uid", store_uid);
 		}
 		return "/member/loginOk";
 	}
