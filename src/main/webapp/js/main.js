@@ -150,7 +150,7 @@ $(document).ready(function(){
 	});
 
 	$("span#signup").click(function (){
-		location.href = "signUp.nmj";
+		location.href = "signUpType.nmj";
 	});
 
 	$("span#logout").click(function (){

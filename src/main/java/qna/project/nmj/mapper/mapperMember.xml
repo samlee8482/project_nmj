@@ -130,8 +130,13 @@
 	</select>
 	
 	
+	<select id="login" >
+		SELECT mb_pw from nmj_member WHERE mb_id = #{param1};	
+	</select>
 	
-	
+	<select id="getMbUid" resultType="int">
+		SELECT mb_uid from nmj_member WHERE mb_id = #{param1};
+	</select>
 	
 </mapper>
 

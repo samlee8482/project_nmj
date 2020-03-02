@@ -1,6 +1,10 @@
 package qna.project.nmj.controller;
 
-import javax.servlet.http.HttpServletRequest;import org.springframework.security.crypto.password.PasswordEncoder;
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +21,7 @@ import qna.project.nmj.beans.SpaceDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 import qna.project.nmj.command.*;
+import qna.project.nmj.security.PasswordEncoding;
 
 @Controller
 @RequestMapping(value="/store")
@@ -140,10 +145,13 @@ public class StoreMyPageController {
 	
 //	5. 매장 공간 관리
 	@RequestMapping(value="/storeMySpace.nmj")
-	public String storeMySpace(Model model, int store_uid) {
+	public String storeMySpace(Model model, int store_uid, HttpSession s) {
 		model.addAttribute("store_uid", store_uid);
+		s.getAttribute("name");
 		command = new StoreMySpaceCommand();
 		command.execute(model);
+		PasswordEncoding cs = new PasswordEncoding();
+		System.out.println(cs.encode("1234"));
 		model.addAttribute("nav", 3);
 		return "/store/storeMySpace";
 	}

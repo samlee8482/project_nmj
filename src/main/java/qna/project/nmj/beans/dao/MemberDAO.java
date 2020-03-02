@@ -29,6 +29,12 @@ public interface MemberDAO {
 	// 비밀번호 수정
 	public int updatePw(String mb_pw, String mb_id);
 	
+	//아이디로 비밀번호 불러오기
+	public String login(String mb_id);
+	
+	//아이디로 mb_uid불러오기
+	public int getMbUid(String mb_id);
+	
 	// 매장 찾기 페이지
 	// 몇번째 from 부터 몇개 rows 를 SELECT
 	public ArrayList<StoreDTO> selectStore(int store_type);
