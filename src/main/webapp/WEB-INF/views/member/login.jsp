@@ -22,10 +22,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
 
 
-<!-- 새힘 CSS  
-<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/myCSS_sam.css">
--->
-
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/login.css">
 
 <!-- Modernizr JS -->
@@ -89,8 +85,8 @@ function chkSubmit(){
 				<div>
 					<button class="loginButton" type="submit">로그인</button>
 					<div class="findIdPw">
-						<button>아이디 찾기</button>
-						<button>비밀번호 찾기</button>
+						<button>ID | PW 찾기</button>
+						<button>회원가입</button>
 					</div>
 				</div>	
 			</div>
