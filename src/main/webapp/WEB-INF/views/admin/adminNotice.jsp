@@ -23,6 +23,9 @@
   <!-- Custom styles for this page / 테이블에 관한 css-->
   <link href="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="../4/united/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="../_assets/css/custom.min.css">
+
 </head>
 <body id="page-top">
 
@@ -105,10 +108,13 @@
 		<br>
 		
 		<button class="btn btn-secondary" onclick="location.href='adminCommunity.nmj'">게시글</button>
-        <button class="btn btn-secondary active" onclick="location.href='adminReply.nmj'">댓글</button>
-        <button class="btn btn-secondary" onclick="location.href='adminNotice.nmj'">공지사항</button>
+        <button class="btn btn-secondary" onclick="location.href='adminReply.nmj'">댓글</button>
+        <button class="btn btn-secondary active" onclick="location.href='adminNotice.nmj'">공지사항</button>
         <br><br>
-            
+        
+        <button class="btn btn-success" onclick="location.href='adminNoticeWrite.nmj'">공지사항 등록하기</button>
+        <br><br>
+           
             <div class="table-responsive"> 
             
 	<c:choose>
@@ -121,23 +127,17 @@
       <thead>
           <tr>
             <th>no.</th>
-            <th>아이디</th>
-            <th>댓글내용</th>
-            <th>글내용</th>
-            <th>작성일</th>
-            <th>삭제</th>
+            <th>제목</th>
+            <th>조회수</th>
           </tr>
 		</thead>
 		
 		<tbody>
 	<c:forEach var="dto" items="${list}">
 		<tr>
-			<td>${dto.reply_uid }</td>
-			<td>${dto.mb_id }</td>
-			<td>${dto.reply_content }</td>
-			<td><a href="adminCommunityInfo.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
-			<td>${dto.reply_date }</td>
-			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteReply.nmj?reply_uid=${dto.reply_uid}'">삭제</button></td>
+			<td>${dto.notice_uid }</td>
+			<td><a href="adminNoticeInfo.nmj?notice_uid=${dto.notice_uid }">${dto.notice_subject }</a></td>
+			<td>${dto.notice_viewCount }</td>
 		</tr>					
 	</c:forEach>
 		</tbody>

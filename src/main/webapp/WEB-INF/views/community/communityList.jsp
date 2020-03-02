@@ -120,7 +120,6 @@
        result += '<th>아이디</th>';
        result += '<th>내용</th>';
        result += '<th>조회수</th>';
-       result += '<th>작성일</th>';
        result += '</tr>';
     
     if(jsonObj.status == "OK") {
@@ -153,7 +152,6 @@
     		   result += '<td>관리자에 의해 삭제된 글입니다.</td>';
     	   }
     	   result += '<td>' + items[i].review_viewCount + '</td>';
-   		   result += '<td>' + items[i].review_date + '</td>';
    		   result += '</tr>';
        }
        
