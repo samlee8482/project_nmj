@@ -24,13 +24,14 @@ public class MemberController {
 	
 	// 아이디 비밀번호 찾기
 	@RequestMapping("/findIdPw.nmj")
-	public void findIdPw() {
-		
+	public void findIdPw(Model model) {
+		model.addAttribute("nav", 0);
 	}
 	
 	// 아이디 찾기
 	@RequestMapping(value = "/findIdOk.nmj", method = RequestMethod.POST)
 	public String findIdOk(String mb_name, String mb_email, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_name", mb_name);
 		System.out.println("Controller " + mb_name);
 		model.addAttribute("mb_email", mb_email);
@@ -42,6 +43,7 @@ public class MemberController {
 	// 비밀번호 찾기
 	@RequestMapping("/findPwOk.nmj")
 	public String findPwOk(String mb_id, String mb_name, String mb_email, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_id", mb_id);
 		System.out.println("Controller " + mb_id);
 		model.addAttribute("mb_name", mb_name);
@@ -56,8 +58,8 @@ public class MemberController {
 	@GetMapping("/findStore.nmj")
 	public String findStoreGet(int store_type, Model model) {
 		model.addAttribute("store_type", store_type);
-		// model.addAttribute("page", page);
 		new FindStoreGetCommand().execute(model);
+		model.addAttribute("nav", store_type+1);
 		
 		return "/member/findStore";
 	}
@@ -66,6 +68,7 @@ public class MemberController {
 	
 	@RequestMapping("storeDetail.nmj")
 	public String storeDetail(int store_uid, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("store_uid", store_uid);
 		new StoreDetailCommand().execute(model);
 		return "/member/storeDetail";
@@ -89,32 +92,33 @@ public class MemberController {
 	// 회원가입
 	// 회원타입 선택
 	@RequestMapping("/signUpType.nmj")
-	public void signUpType() {
+	public void signUpType(Model model) {
+		model.addAttribute("nav", 0);
 		
 	}
 	
 	// 일반회원 약관동의 양식
 	@RequestMapping("/signUpTerms.nmj")
-	public void signUpTerms() {
-		
+	public void signUpTerms(Model model) {
+		model.addAttribute("nav", 0);
 	}
 	
 	// 매장회원 약관동의 양식
 	@RequestMapping("/signUpTerms2.nmj")
-	public void signUpTerms2() {
-		
+	public void signUpTerms2(Model model) {
+		model.addAttribute("nav", 0);
 	}
 	
 	// 회원가입 양식
 	@RequestMapping("/signUpCustomer.nmj")
-	public void signUpCustomer() {
-		
+	public void signUpCustomer(Model model) {
+		model.addAttribute("nav", 0);
 	}
 	
 	// 회원가입 양식
 	@RequestMapping("/signUpStore.nmj")
-	public void signUpStore() {
-		
+	public void signUpStore(Model model) {
+		model.addAttribute("nav", 0);
 	}
 	
 	// 일반회원가입
