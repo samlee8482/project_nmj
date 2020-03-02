@@ -12,7 +12,7 @@
 	<c:otherwise>
 	<script>
 		alert("삭제 성공");
-		location.href = "communityView.nmj?review_uid=${review_uid}&mb_uid=${mb_uid}";
+		location.href = "communityView.nmj?review_uid=${review_uid}";
 	</script>
 	</c:otherwise>
 </c:choose>
