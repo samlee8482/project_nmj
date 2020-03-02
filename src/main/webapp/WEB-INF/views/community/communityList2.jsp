@@ -4,7 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
-	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
     int writePages = 10;
 %>
 
@@ -94,7 +93,7 @@
  function loadPage(page) {
     
     $.ajax({
-       url : "${pageContext.request.contextPath}/memberAjax/communityList2.nmj/<%= writePages%>/" + page + "?mb_uid=<%= mb_uid%>",
+       url : "${pageContext.request.contextPath}/memberAjax/communityList2.nmj/<%= writePages%>/" + page,
        type : "GET",
        cache : false,
        success : function(data, status) {
@@ -137,7 +136,7 @@
     	  result += '<td>' + items[i].mb_id + '</td>';
     	   if(items[i].review_ban == 0){
     		   result += '<td><a href="communityView2.nmj?review_uid=' + items[i].review_uid;
-    		   result += '&mb_uid=<%=mb_uid%>">' + items[i].review_content + '</a></td>';
+    		   result += '">' + items[i].review_content + '</a></td>';
     	   } else {
     		   result += '<td>관리자에 의해 삭제된 글입니다.</td>';
     	   }
@@ -186,7 +185,7 @@
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
 					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj?mb_uid=<%=mb_uid%>" class="active">떠들자</a></li>
+					<li><a href="communityList.nmj" class="active">떠들자</a></li>
 					
 				</ul>
 			</nav>
@@ -204,8 +203,8 @@
 	<div class="div-relative">
 	<div class="show_list_container">
 	
-	<button class="btn btn-secondary btn-lg" onclick="location.href='communityList.nmj?mb_uid=<%=mb_uid%>'">후기글</button>
-    <button class="btn btn-secondary active btn-lg" onclick="location.href='communityList2.nmj?mb_uid=<%=mb_uid%>'">자유글</button>
+	<button class="btn btn-secondary btn-lg" onclick="location.href='communityList.nmj'">후기글</button>
+    <button class="btn btn-secondary active btn-lg" onclick="location.href='communityList2.nmj'">자유글</button>
         <br><br>
 			
 		<table id="communityList">
@@ -216,9 +215,11 @@
 
 	<ul class="pagination" id="pagination"></ul>
 
-	
-	<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=<%=mb_uid%>'">자유글 작성</button>
-	
+	<c:choose>
+	 	<c:when test="${sessonScope.mb_uid != null }">
+		<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=${sessonScope.mb_uid}'">자유글 작성</button>
+		</c:when>
+	</c:choose>
 
 	</div>
 	</div>
