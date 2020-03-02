@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import qna.project.nmj.beans.MemberDTO;
-import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
+import qna.project.nmj.command.LoginCommand;
 import qna.project.nmj.command.MainCommand;
 import qna.project.nmj.command.MbFindIdOkCommand;
 import qna.project.nmj.command.MbFindPwOkCommand;

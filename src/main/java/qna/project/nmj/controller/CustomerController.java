@@ -1,5 +1,7 @@
 package qna.project.nmj.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,6 @@ import qna.project.nmj.command.CusShowReserveCommand;
 import qna.project.nmj.command.CusShowReviewCommand;
 import qna.project.nmj.command.CusUpdateInfoCommand;
 import qna.project.nmj.command.CusUpdateInfoOkCommand;
-import qna.project.nmj.command.SignUpCustomerOkCommand;
 
 @Controller
 @RequestMapping("/customer")
@@ -31,21 +32,23 @@ public class CustomerController {
 	
 	// 손님회원 - 마이페이지(새힘)
 	@RequestMapping("/cusMyPage.nmj")
-	public String myPage(int mb_uid) {
+	public String myPage(HttpSession session, Model model) {
+		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		return "customer/cusMyPage";
 	}
 	
 	// 마이페이지 - 회원 정보 수정 불러오기
 	@RequestMapping("/cusUpdateInfo.nmj")
-	public String updateInfo(int mb_uid, Model model) {
-		model.addAttribute("mb_uid", mb_uid);
+	public String updateInfo(HttpSession session, Model model) {
+		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusUpdateInfoCommand().execute(model);
 		return "/customer/cusUpdateInfo";
 	}
 	
 	// 마이페이지 - 회원 정보 수정
 	@RequestMapping(value="/cusUpdateInfoOk.nmj", method = RequestMethod.POST)
-	public String updateInfoOk(@RequestParam("upload") MultipartFile upload, MemberDTO dto, Model model) {
+	public String updateInfoOk(HttpSession session, @RequestParam("upload") MultipartFile upload, MemberDTO dto, Model model) {
+		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("dto", dto);
 		model.addAttribute("upload", upload);
 		new CusUpdateInfoOkCommand().execute(model);
@@ -54,8 +57,8 @@ public class CustomerController {
 	
 	// 마이페이지 - 예약/찜 목록 보기
 	@RequestMapping("/cusShowReserve.nmj")
-	public String showReserve(int mb_uid, Model model) {
-		model.addAttribute("mb_uid", mb_uid);
+	public String showReserve(HttpSession session, Model model) {
+		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusShowReserveCommand().execute(model);
 		new CusShowLikeCommand().execute(model);
 		return "/customer/cusShowReserve";
@@ -63,8 +66,8 @@ public class CustomerController {
 	
 	// 마이페이지 - 내 리뷰, 댓글 보기
 	@RequestMapping("/cusShowReview.nmj")
-	public String showReview(int mb_uid, Model model) {
-		model.addAttribute("mb_uid", mb_uid);
+	public String showReview(HttpSession session, Model model) {
+		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusShowReviewCommand().execute(model);
 		new CusShowReplyCommand().execute(model);
 		return "/customer/cusShowReview";
@@ -72,8 +75,8 @@ public class CustomerController {
 	
 	// 예약페이지
 	@RequestMapping("/cusReserve.nmj")
-	public String reserve(int mb_uid, int store_uid, int store_type, Model model) {
-		model.addAttribute("mb_uid", mb_uid);
+	public String reserve(HttpSession session, int store_uid, int store_type, Model model) {
+		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("store_type", store_type);
 		new CusReserveCommand().execute(model);
