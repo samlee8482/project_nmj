@@ -153,7 +153,9 @@ public class MemberController {
 		model.addAttribute("mb_pw", mb_pw);
 		new LoginCommand().execute(model);
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
-		session.setAttribute("mb_uid", mb_uid);
+		if(mb_uid != 0) {
+			session.setAttribute("mb_uid", mb_uid);			
+		}
 		return "/member/loginOk";
 	}
 }
