@@ -140,6 +140,10 @@
 	<select id="getMbType" resultType="int">
 		SELECT mb_type from nmj_member WHERE mb_id = #{param1};
 	</select>
+	
+	<select id="getStoreUid" resultType="int">
+		SELECT store_uid from nmj_store WHERE mb_uid = #{param1};
+	</select>
 </mapper>
 
 

@@ -157,6 +157,11 @@ public class MemberController {
 			session.setAttribute("mb_uid", mb_uid);
 			System.out.println(mb_uid);
 		}
+		int type = (Integer)model.getAttribute("type");
+		if(type == 2) {
+			int store_uid = (Integer)model.getAttribute("store_uid");
+			session.setAttribute("store_uid", store_uid);
+		}
 		return "/member/loginOk";
 	}
 }
