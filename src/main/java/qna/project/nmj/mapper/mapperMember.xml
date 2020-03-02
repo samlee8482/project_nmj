@@ -137,6 +137,9 @@
 		SELECT mb_uid from nmj_member WHERE mb_id = #{param1};
 	</select>
 	
+	<select id="getMbType" resultType="int">
+		SELECT mb_type from nmj_member WHERE mb_id = #{param1};
+	</select>
 </mapper>
 
 

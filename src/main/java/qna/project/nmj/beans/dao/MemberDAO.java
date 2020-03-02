@@ -35,6 +35,9 @@ public interface MemberDAO {
 	//아이디로 mb_uid불러오기
 	public int getMbUid(String mb_id);
 	
+	//아이디로 mb_type불러오기
+	public int getMbType(String mb_id);
+	
 	// 매장 찾기 페이지
 	// 몇번째 from 부터 몇개 rows 를 SELECT
 	public ArrayList<StoreDTO> selectStore(int store_type);
