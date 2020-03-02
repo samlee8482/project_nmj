@@ -129,7 +129,7 @@
 	</select>
 	
 	
-	<select id="login" >
+	<select id="login" resultType="string" >
 		SELECT mb_pw from nmj_member WHERE mb_id = #{param1};	
 	</select>
 	
