@@ -5,14 +5,21 @@
 	<!-- 마이페이지 - 회원 정보 수정 -->
 	<!-- 회원 정보 불러오기-->
 	<select id="selectMemberByUid" resultType="qna.project.nmj.beans.MemberDTO">
-		SELECT mb_img_sav, mb_tel, mb_name, mb_id, mb_pw, mb_email
+		SELECT mb_img_sav, mb_tel, mb_name, mb_id, mb_email
 		FROM NMJ_member
 		WHERE mb_uid = #{mb_uid};
 	</select>
-	<!-- 회원 정보 수정-->
+	<!-- 회원 정보 수정(비밀번호 포함) -->
 	<update id="updateMemberByUid" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
 		UPDATE NMJ_member
 		SET mb_name = #{dto.mb_name}, mb_tel = #{dto.mb_tel}, mb_pw = #{dto.mb_pw},
+		mb_email = #{dto.mb_email}, mb_img_sav = #{dto.mb_img_sav}
+		WHERE mb_uid = #{dto.mb_uid};
+	</update>
+	<!-- 회원 정보 수정(비밀번호 미포함) -->
+	<update id="updateMemberByUid2" flushCache="true" parameterType="qna.project.nmj.beans.MemberDTO">
+		UPDATE NMJ_member
+		SET mb_name = #{dto.mb_name}, mb_tel = #{dto.mb_tel},
 		mb_email = #{dto.mb_email}, mb_img_sav = #{dto.mb_img_sav}
 		WHERE mb_uid = #{dto.mb_uid};
 	</update>
