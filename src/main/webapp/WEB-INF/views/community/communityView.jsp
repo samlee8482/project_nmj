@@ -3,10 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<%
-	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +41,7 @@ function chkDelete(uid){
 	var r = confirm("삭제하시겠습니까?");
 	
 	if(r){
-		location.href = 'deleteReview.nmj?review_uid=' + uid + '&mb_uid=<%=mb_uid%>';
+		location.href = 'deleteReview.nmj?review_uid=' + uid;
 	}
 }
 
@@ -90,7 +86,7 @@ function chkSubmit(){
 					<li><a href="findStore.nmj?store_type=1">놀자</a></li>
 					<li><a href="findStore.nmj?store_type=2">먹자</a></li>
 					<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="communityList.nmj?mb_uid=<%=mb_uid%>" class="active">떠들자</a></li>
+					<li><a href="communityList.nmj" class="active">떠들자</a></li>
 					
 				</ul>
 			</nav>
@@ -159,18 +155,21 @@ function chkSubmit(){
 	<br>
 	</div>
 
-    <button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">신고하기</button>
-    <button class="btn btn-outline-warning btn-lg" onclick="location.href='communityList.nmj?mb_uid=<%=mb_uid%>'">목록보기</button>
+    <button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
+    <button class="btn btn-outline-warning btn-lg" onclick="location.href='communityList.nmj'">목록보기</button>
     
-<%--     <c:choose>
-    <c:when test="${mb_uid == dto.mb_uid }"> --%>
-	    <button class="btn btn-outline-success btn-lg" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">수정하기</button>
+	<c:choose>
+    <c:when test="${sessonScope.mb_uid == dto.mb_uid }">
+	    <button class="btn btn-outline-success btn-lg" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}&mb_uid=${sessonScope.mb_uid}'">수정하기</button>
 	    <button class="btn btn-outline-info btn-lg" onclick="chkDelete(${dto.review_uid })">삭제하기</button>
-<%--     </c:when>
-    </c:choose> --%>
+	</c:when>
+    </c:choose>
     
-    <button class="btn btn-outline-secondary btn-lg" onclick="location.href='writeReview.nmj?mb_uid=<%=mb_uid%>'">작성하기</button>
-    
+    <c:choose>
+	 	<c:when test="${sessonScope.mb_uid != null }">
+    	<button class="btn btn-outline-secondary btn-lg" onclick="location.href='writeReview.nmj?mb_uid=${sessonScope.mb_uid}'">작성하기</button>
+    	</c:when>
+    </c:choose>
     <br><br><br><br><br>
 
 	<h3>댓글 목록</h3>
@@ -178,8 +177,7 @@ function chkSubmit(){
 	<br><br>
 	
 	<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" onSubmit="return chkSubmit()" method="post">
-		<!-- 나중에 바꾸기 -->
-		<input type="hidden" name="mb_uid" value="<%= mb_uid%>"/> 
+		<input type="hidden" name="mb_uid" value="${sessonScope.mb_uid}"/> 
 		<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
 		<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
 		<button class="btn btn-secondary btn-lg" type="submit">등록</button>
@@ -202,8 +200,14 @@ function chkSubmit(){
 				<b>${reply.mb_id }</b><br>
 				${reply.reply_content }<br>
 				<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p>
-				<button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">신고하기</button>
-				<button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}&mb_uid=<%=mb_uid%>'">삭제하기</button>
+				<button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
+				
+				<c:choose>
+    			<c:when test="${sessonScope.mb_uid == reply.mb_uid }">
+					<button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">삭제하기</button>
+				</c:when>
+				</c:choose>
+				
 				</td>
 				</c:when>
 				<c:otherwise>

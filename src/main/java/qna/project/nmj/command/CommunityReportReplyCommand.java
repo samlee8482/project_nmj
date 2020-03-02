@@ -15,14 +15,12 @@ public class CommunityReportReplyCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		int reply_uid = (Integer)map.get("reply_uid");
 		int review_uid = (Integer)map.get("review_uid");
-		int mb_uid = (Integer)map.get("mb_uid");
 
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
 		int cnt = dao.reportReply(reply_uid);
 		model.addAttribute("result", cnt);
 		model.addAttribute("review_uid", review_uid);
-		model.addAttribute("mb_uid", mb_uid);
 	}
 
 }

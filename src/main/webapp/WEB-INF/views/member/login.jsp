@@ -20,10 +20,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/owl.theme.default.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootswatch.css">
 
-<!-- 새힘 CSS -->
+
+<!-- 새힘 CSS  
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/myCSS_sam.css">
+-->
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/login.css">
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
@@ -32,6 +35,8 @@
 <script>
 // form 검증
 function chkSubmit(){
+	
+	
 }
 </script>
 
@@ -67,56 +72,57 @@ function chkSubmit(){
 		</div>
 	</header>
 
-	<div id="fh5co-intro-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<p class="title">로그인</h2>
+	
+	<form action="loginOk.nmj">
+		<div class="loginContainer">
+		
+			<div class="formContainer">
+				<div>
+					<input type="text" placeholder="아이디를 입력하세요">		
 				</div>
+				
+				<div>
+					<input type="password" placeholder="비밀번호를 입력하세요">		
+				</div>
+				
+			
+				<div>
+					<button class="loginButton" type="submit">로그인</button>
+					<div class="findIdPw">
+						<button>아이디 찾기</button>
+						<button>비밀번호 찾기</button>
+					</div>
+				</div>	
 			</div>
 		</div>
-	</div>
-	<!-- end fh5co-intro-section -->
+	</form>
 	
-	<div class=" div-relative" style="height: 100px;">
-		<div id="signUp_frm_container" class="jumbotron" style="height: 350px">
-			<form name="frm" id="signUp_frm" action="loginOk.nmj" onsubmit="return chkSubmit()" method="post">
-				<div class="signUp_input_container">
-					<div class="form-group">
-					<input name="mb_id" id="mb_id" class="form-control" placeholder="아이디" required>
-					<div class="check_font" id="id_check"></div>
-					</div>
-					<input type="password" name="mb_pw" class="form-control" placeholder="비밀번호" required>
-				</div>
-				<button type="submit" id="reg_submit" class="btn btn-primary myBtn">로그인</button>
-			</form>
-		</div>
-	</div>
 	
-	<br><br><br><br><br><br><br><br><br><br>
 	
+	
+	<!-- footer -->
 	<footer>
-		<div id="footer" class="fh5co-border-line">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center">
-						<p>
-							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
-							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="#" target="_blank">Korea IT Academy</a> /
-							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
-							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
-						</p>
-						<p class="fh5co-social-icons">
-							<a href="#"><i class="icon-twitter-with-circle"></i></a> <a
-								href="#"><i class="icon-facebook-with-circle"></i></a> <a
-								href="#"><i class="icon-instagram-with-circle"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+      <div id="footer" class="fh5co-border-line">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-8 col-md-offset-2 text-center">
+                  <p>
+                     Copyright 2020 Team <a href="#">Q&A</a>. All Rights
+                     Reserved. <br>Made with <i class="icon-heart3 love"></i> by
+                     <a href="#" target="_blank">Korea IT Academy</a> /
+                     Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+                     &amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
+                  </p>
+                  <p class="fh5co-social-icons">
+                     <a href="#"><i class="icon-twitter-with-circle"></i></a> <a
+                        href="#"><i class="icon-facebook-with-circle"></i></a> <a
+                        href="#"><i class="icon-instagram-with-circle"></i></a>
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
 
 	<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>

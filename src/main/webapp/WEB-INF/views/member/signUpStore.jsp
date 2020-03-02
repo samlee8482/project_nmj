@@ -129,16 +129,16 @@ function chkSubmit(){
 			<form name="frm" id="signUp_frm" action="signUpStoreOk.nmj" onsubmit="return chkSubmit()">
 				<div class="signUp_input_container">
 					<div class="form-group">
-					<input name="mb_id" id="mb_id" class="form-control" placeholder="아이디" required>
+					<input name="mb_id" id="mb_id" class="form-control" pattern="^[a-zA-Z]{1}[a-zA-Z0-9_]{6,20}$" placeholder="아이디" required>
 					<div class="check_font" id="id_check"></div>
 					</div>
-					<input type="password" name="mb_pw" class="form-control" placeholder="비밀번호" required>
+					<input type="password" name="mb_pw" class="form-control" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$" placeholder="비밀번호" required>
 					<input type="password" name="mb_pwOk" class="form-control" placeholder="비밀번호 재확인" required>
 				</div>
 				<div class="signUp_input_container">
 					<input name="mb_name" class="form-control" placeholder="이름" required>
-					<input name="mb_email" class="form-control" placeholder="이메일" required>
-					<input name="mb_tel" class="form-control" placeholder="전화번호" required>
+					<input name="mb_email" class="form-control" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" placeholder="이메일" required>
+					<input name="mb_tel" class="form-control" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})" placeholder="전화번호 ex) 010-1234-1234" required>
 					<input name="mb_type" type="hidden" value="0">
 				</div>
 				<br>
