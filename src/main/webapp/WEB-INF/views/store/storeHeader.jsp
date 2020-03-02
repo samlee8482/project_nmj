@@ -18,6 +18,18 @@
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<c:choose>
+	<c:when test="${sessionScope.mb_type == 0 || sessionScope.mb_type == null || empty sessionScope.mb_type}">
+		<script>
+			alert("로그인을 하지 않으셨거나 권한이 없는 사용자 또는 자동 로그아웃 되었습니다. 로그인 해주세요.");
+			location.href = "${pageContext.request.contextPath}/member/main.nmj";
+		</script>
+	</c:when>
+</c:choose>
+
 	<header>
 		<div class="container text-center">
 			<div class="fh5co-navbar-brand">
@@ -27,13 +39,13 @@
 			</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
-					<li><a id="1" href="index.html" class="active">홈</a></li>
-					<li><a id="2" href="work.html">회원정보수정</a></li>
-					<li><a id="3" href="storeMySpace.nmj?store_uid=1">매장 공간 관리</a></li>
-					<li><a id="4" href="storeMyFood.nmj?store_uid=1">음식 메뉴 관리</a></li>
-					<li><a id="5" href="storeMyReview.nmj?store_uid=1">내 매장 리뷰보기</a></li>
-					<li><a id="6" href="storeSettings.nmj?store_uid=1">매장 정보 수정</a></li>
-					<li><a id="7" href="storeSettingsRequest.nmj?store_uid=1">매장 정보 수정 요청</a></li>
+					<li><a id="1" href="${pageContext.request.contextPath}/member/main.nmj">홈</a></li>
+					<li><a id="2" href="${pageContext.request.contextPath}/customer/cusUpdateInfo.jsp?mb_uid=${sessionScope.mb_uid}">회원정보수정</a></li>
+					<li><a id="3" href="storeMySpace.nmj?store_uid=${sessionScope.store_uid}">매장 공간 관리</a></li>
+					<li><a id="4" href="storeMyFood.nmj?store_uid=${sessionScope.store_uid}">음식 메뉴 관리</a></li>
+					<li><a id="5" href="storeMyReview.nmj?store_uid=${sessionScope.store_uid}">내 매장 리뷰보기</a></li>
+					<li><a id="6" href="storeSettings.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정</a></li>
+					<li><a id="7" href="storeSettingsRequest.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정 요청</a></li>
 				</ul>
 			</nav>
 		</div>
