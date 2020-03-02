@@ -175,6 +175,8 @@ values
 (	70,	"soshi34",	"1234",	"장미인애",	"010-5678-9876",	"",	"",	"beautiful313@gmail.com",	1	);
 
 -- nmj_food (음식 테이블)
+
+-- 놀자~
 insert into nmj_food 
 	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
 values
@@ -198,18 +200,48 @@ values
 (	18,	1,	"",	"",	2500,	"갈비만두"	),
 (	19,	1,	"",	"",	2000,	"김밥"	),
 (	20,	1,	"",	"",	2500,	"치즈김밥"	);
--- 보류
-/*
-(	21,	2,	"",	"",	7000,	"순대국밥"	),
-(	22,	2,	"",	"",	7000,	"돼지국밥"	),
-(	23,	2,	"",	"",	9000,	"소머리국밥"	),
-(	24,	2,	"",	"",	9000,	"육개장"	),
-(	25,	2,	"",	"",	8000,	"뼈해장국"	),
-(	26,	2,	"",	"",	5000,	"짜장면"	),
-(	27,	2,	"",	"",	6000,	"짬뽕"	),
-(	28,	2,	"",	"",	14000,	"탕수육"	),
-(	29,	2,	"",	"",	18000,	"동파육"	);
-*/
+
+
+/* 놀자 매장들 공통 음식 추가*/
+insert into nmj_food 
+	(store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
+	select 
+	ns.store_uid,
+	nf.food_img_org,
+	nf.food_img_sav,
+	nf.food_price,
+	nf.food_name
+from nmj_store ns , nmj_food nf
+where ns.store_type = 1 and ns.store_uid > 1;
+
+-- 먹자~
+insert into nmj_food 
+	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
+values
+(	601,	31,	"",	"",	7000,	"순대국밥"	),
+(	602,	31,	"",	"",	7000,	"돼지국밥"	),
+(	603,	31,	"",	"",	9000,	"소머리국밥"	),
+(	604,	31,	"",	"",	9000,	"육개장"	),
+(	605,	31,	"",	"",	8000,	"뼈해장국"	),
+(	606,	31,	"",	"",	5000,	"짜장면"	),
+(	607,	31,	"",	"",	6000,	"짬뽕"	),
+(	608,	31,	"",	"",	14000,	"탕수육"	),
+(	609,	31,	"",	"",	18000,	"동파육"	);
+
+/* 먹자 매장 공통음식 추가*/
+insert into nmj_food 
+	(store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
+	select 
+	ns.store_uid,
+	nf.food_img_org,
+	nf.food_img_sav,
+	nf.food_price,
+	nf.food_name
+from nmj_store ns , nmj_food nf
+where ns.store_type = 2 and ns.store_uid > 30  and nf.food_uid >= 601;
+
+
+
 
 
 insert into nmj_request

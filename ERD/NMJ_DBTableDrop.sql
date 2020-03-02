@@ -16,3 +16,10 @@ DROP TABLE IF EXISTS nmj_spaceimage ;
 DROP TABLE IF EXISTS nmj_spacelist ;
 DROP TABLE IF EXISTS nmj_store ;
 DROP TABLE IF EXISTS nmj_storedtype ;
+
+
+
+
+
+/* 데이터 삭제 */
+truncate table nmj_food;
