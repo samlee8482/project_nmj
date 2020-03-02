@@ -175,6 +175,8 @@ values
 (	70,	"soshi34",	"1234",	"장미인애",	"010-5678-9876",	"",	"",	"beautiful313@gmail.com",	1	);
 
 -- nmj_food (음식 테이블)
+
+-- 놀자~
 insert into nmj_food 
 	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
 values
@@ -212,7 +214,7 @@ insert into nmj_food
 from nmj_store ns , nmj_food nf
 where ns.store_type = 1 and ns.store_uid > 1;
 
-
+-- 먹자~
 insert into nmj_food 
 	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
 values
