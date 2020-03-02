@@ -5,7 +5,7 @@ CREATE TABLE NMJ_member
 (
     `mb_uid`      INT             NOT NULL    AUTO_INCREMENT COMMENT '회원 고유번호', 
     `mb_id`       VARCHAR(45)     NOT NULL    COMMENT '회원 id', 
-    `mb_pw`       VARCHAR(45)     NOT NULL    COMMENT '회원 비밀번호', 
+    `mb_pw`       TEXT            NOT NULL    COMMENT '회원 비밀번호', 
     `mb_name`     VARCHAR(45)     NOT NULL    COMMENT '회원 이름', 
     `mb_img_org`  VARCHAR(200)    NULL        COMMENT '회원 사진원본명', 
     `mb_img_sav`  VARCHAR(200)    NULL        COMMENT '회원 사진저장명', 
