@@ -21,7 +21,7 @@ import qna.project.nmj.beans.SpaceDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
 import qna.project.nmj.command.*;
-import qna.project.nmj.security.CustomNoOpPasswordEncoder;
+import qna.project.nmj.security.PasswordEncoding;
 
 @Controller
 @RequestMapping(value="/store")
@@ -150,7 +150,7 @@ public class StoreMyPageController {
 		s.getAttribute("name");
 		command = new StoreMySpaceCommand();
 		command.execute(model);
-		CustomNoOpPasswordEncoder cs = new CustomNoOpPasswordEncoder();
+		PasswordEncoding cs = new PasswordEncoding();
 		System.out.println(cs.encode("1234"));
 		model.addAttribute("nav", 3);
 		return "/store/storeMySpace";

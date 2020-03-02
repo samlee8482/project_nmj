@@ -1,5 +1,7 @@
 package qna.project.nmj.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -146,10 +148,14 @@ public class MemberController {
 	
 	// 로그인 ok
 	@RequestMapping("/loginOk.nmj")
-	public String loginOk(String mb_id, String mb_pw) {
-		System.out.println("아이디: " + mb_id);
-		System.out.println("pw: " + mb_pw);
-		// TODO
+	public String loginOk(Model model, String mb_id, String mb_pw, HttpSession session) {
+		model.addAttribute("mb_id", mb_id);
+		model.addAttribute("mb_pw", mb_pw);
+		new LoginCommand().execute(model);
+		int mb_uid = (Integer)model.getAttribute("mb_uid");
+		if(mb_uid != 0) {
+			session.setAttribute("mb_uid", mb_uid);			
+		}
 		return "/member/loginOk";
 	}
 }
