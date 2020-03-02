@@ -69,39 +69,7 @@
 
 	</head>
 	<body>
-	<header>
-		<div class="container text-center headerContainer">
-			<c:choose>
-				<c:when test="${sessionScope.mb_uid eq null }">
-					<div id="login_signUp">
-						<span id="login">로그인</span>
-						<span class="line">|</span>
-						<span id="signup">회원가입</span>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div id="logout_mypage">
-						<span id="logout">로그아웃</span>
-						<span class="line">|</span>
-						<span id="mypage">마이페이지</span>
-					</div>
-				</c:otherwise>			
-			</c:choose>
-
-			<div class="fh5co-navbar-brand">
-				<a href="main.nmj"><img id="logo" src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"></a>
-			</div>
-			<nav id="fh5co-main-nav" role="navigation">
-				<ul>
-					<li><a href="main.nmj" class="active">메인</a></li>
-							<li><a href="findStore.nmj?store_type=1">놀자</a></li>
-							<li><a href="findStore.nmj?store_type=2">먹자</a></li>
-							<li><a href="findStore.nmj?store_type=3">자자</a></li>
-					<li><a href="${pageContext.request.contextPath}/community/communityList.nmj">떠들자</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+	<jsp:include page="normalHeader.jsp"></jsp:include>
 	
 	<!-- 지도 -->
 	<div id="fh5co-intro-section">

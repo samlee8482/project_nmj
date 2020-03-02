@@ -18,7 +18,7 @@
 	<c:when test="${type == 2 }">
 		<script>
 			alert("매장 로그인 성공");
-			location.href="${pageContext.request.contextPath}/store/storeMyPage.nmj";
+			location.href="${pageContext.request.contextPath}/store/storeMySpace.nmj";
 		</script>
 	</c:when>
 	<c:when test="${type == 3 }">
