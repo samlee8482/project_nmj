@@ -63,6 +63,41 @@ function chkSubmit(){
 }
 </script>
 
+<style>
+
+.filebox input[type="file"] {
+   position: absolute;
+   width: 0;
+   height: 0;
+   padding: 0;
+   overflow: hidden;
+   border: 0;
+}
+
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #999;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+}
+
+/* named upload */
+.filebox .upload-name {
+    display: inline-block;
+  height: 35px;
+  font-size:18px; 
+  padding: 0 10px;
+    vertical-align: middle;
+    background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+
+}
+</style>
 
 <body>
 
@@ -120,7 +155,7 @@ function chkSubmit(){
 				<span id="update_info_container4">비밀번호　 <input class="update_info" type="text" name="mb_pw" placeholder="회원비밀번호" value="${myPage.mb_pw }" required></span><br>
 				<span id="update_info_container5">이메일　　 <input class="update_info" type="text" name="mb_email" placeholder="회원이메일" value="${myPage.mb_email }"></span><br>
 				<span id="update_info_container6">프로필변경 <input id="update_info_file" class="update_info" type="file" name="upload" accept="image/*"></span><br><br><br>
-				<input class="login_btn" type="submit" value="수정하기">
+				<input class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" type="submit" value="수정하기">
 			</form>
 		</div>
 	</div>

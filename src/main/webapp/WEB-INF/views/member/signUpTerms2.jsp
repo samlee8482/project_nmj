@@ -129,9 +129,9 @@ function check(){
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class=" div-relative" style="height: 1000px;">
+<div class=" div-relative" style="height: auto;">
 		<div id="terms_container" class="jumbotron">
-			<div>
+			<div id="terms_1">
 				<h2>회원가입약관</h2>
 				<textarea class="form-control temrs_textarea" id="exampleTextarea" rows="15">
 				제 1 장 총칙
@@ -268,9 +268,8 @@ function check(){
 					<input id="chk1" "name="term_chk" class="form-check-input" type="checkbox">
 					　 약관에 동의합니다.
 				</label> 
-	
-				<br><br><br>
-				
+			</div>
+			<div id="terms_2">
 				<h2>개인정보처리방침</h2>
 				<textarea class="form-control temrs_textarea" id="exampleTextarea" rows="15">
 				<놀먹자>('https://nmj.nmj'이하 '놀먹자')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.
@@ -435,10 +434,8 @@ function check(){
 					<button id="terms_btn_left" type="submit" class="btn btn-primary terms_btn">동의</button>
 					<button type="button" id="terms_btn_right" class="btn btn-primary terms_btn" onclick="check()">비동의</button>
 				</div>
-				
-			
+			</div>
 		</div>
-	</div>
 	</div>
 	
 	<footer>

@@ -9,11 +9,12 @@
 	</insert>
 	<!-- 매장회원 정보등록 -->
 	<insert id="insertStore" flushCache="true" parameterType="qna.project.nmj.beans.StoreDTO">
-		INSERT INTO
-		(store_name, store_address, store_regNum, store_type, store_dtype, store_tel, store_start, store_end, store_content)
+		INSERT INTO NMJ_store
+		(store_name, store_address, store_regNum, store_type, store_dtype, store_tel, store_hours, store_content)
 		VALUES
-		(#{dto.store_name}, #{dto.store_address}, #{dto.store_regNum}, #{dto.store_type}, #{dto.store_dtype}, #{dto.store_tel}, #{dto.store_start}, #{dto.store_end}, #{dto.store_content});
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8});
 	</insert>
+	
 	
 	<!-- 아이디 중복검사 -->
 	<select id="checkOverId" parameterType="String" resultType="int">
@@ -129,7 +130,7 @@
 	</select>
 	
 	
-	<select id="login" >
+	<select id="login" resultType="string" >
 		SELECT mb_pw from nmj_member WHERE mb_id = #{param1};	
 	</select>
 	
@@ -139,6 +140,10 @@
 	
 	<select id="getMbType" resultType="int">
 		SELECT mb_type from nmj_member WHERE mb_id = #{param1};
+	</select>
+	
+	<select id="getStoreUid" resultType="int">
+		SELECT store_uid from nmj_store WHERE mb_uid = #{param1};
 	</select>
 </mapper>
 

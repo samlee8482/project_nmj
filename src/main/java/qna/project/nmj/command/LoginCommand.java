@@ -15,8 +15,15 @@ public class LoginCommand implements Command {
 		String mb_pw = (String)model.getAttribute("mb_pw");
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		if(pe.matches(mb_pw, dao.login(mb_id))) {
-			model.addAttribute("mb_uid", dao.getMbUid(mb_id));
-			model.addAttribute("type", dao.getMbType(mb_id));
+			int mb_uid = dao.getMbUid(mb_id);
+			model.addAttribute("mb_uid", mb_uid);
+			int type =  dao.getMbType(mb_id);
+			model.addAttribute("type", type);
+			if(type== 2) {
+				int store_uid = dao.getStoreUid(mb_uid);
+				model.addAttribute("store_uid", store_uid);
+				
+			}
 		}else {
 			model.addAttribute("mb_uid", 0);
 			model.addAttribute("type", -1);

@@ -5,7 +5,6 @@
 	<c:when test="${not empty sessionScope.loginUid}">
 			<script>
 					location.href = "cusMyPage.nmj?mb_uid=${sessionScope.loginUid}";
-					//location.href = "cusMyPage.nmj?mb_uid=5";
 			</script>
 	</c:when>
 	<c:otherwise>

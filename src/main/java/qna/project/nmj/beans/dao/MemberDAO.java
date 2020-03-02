@@ -18,7 +18,7 @@ public interface MemberDAO {
 	// 회원가입 - 회원정보 입력
 	public int insertMember(@Param("dto") MemberDTO dto);
 	// 회원가입 - 매장회원 정보등록
-	public int insertStore(@Param("dto") StoreDTO dto);
+	public int insertStore(String store_name, String store_address, String store_regNum, String store_type, String store_dtype, String store_tel, String store_hours, String store_content);
 	
 	
 	// 아이디 비밀번호 찾기
@@ -37,6 +37,8 @@ public interface MemberDAO {
 	
 	//아이디로 mb_type불러오기
 	public int getMbType(String mb_id);
+	
+	public int getStoreUid(int mb_uid);
 	
 	// 매장 찾기 페이지
 	// 몇번째 from 부터 몇개 rows 를 SELECT

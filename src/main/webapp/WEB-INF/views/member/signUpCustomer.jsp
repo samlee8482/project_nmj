@@ -124,7 +124,7 @@ function chkSubmit(){
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class=" div-relative" style="height: 500px;">
+	<div class=" div-relative" style="height: auto;">
 		<div id="signUp_frm_container" class="jumbotron">
 			<form name="frm" id="signUp_frm" action="signUpCustomerOk.nmj" onsubmit="return chkSubmit()">
 				<div class="signUp_input_container">
@@ -146,8 +146,6 @@ function chkSubmit(){
 			</form>
 		</div>
 	</div>
-	
-	<br><br><br><br><br><br><br><br><br><br>
 	
 	<footer>
 		<div id="footer" class="fh5co-border-line">
