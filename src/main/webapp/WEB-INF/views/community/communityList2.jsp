@@ -5,6 +5,7 @@
 
 <%
 	int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));
+    int writePages = 10;
 %>
 
 <!DOCTYPE html>
@@ -36,10 +37,130 @@
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
 
+<!-- 페이징 -->
+<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
-<body>
 
+<script>
+//페이지 최초 로딩되면 게시글 목록 첫페이지분 로딩
+
+ $(document).ready(function(){
+    $("input#page").val(1);   // 페이지 최초 로딩되면 1페이지
+    loadPage(1) // n Page 읽어오기
+
+   var html = "<ul class='pagination'>";
+   var curPage = parseInt($("input#page").val());
+
+   if(curPage != 1) {
+      html += "<li class='back'><a class='fas fa-angle-double-left'></a></li>";
+   }
+   var calPage = parseInt(curPage / 10); 
+   var pagesize = 0;
+   
+   if((calPage+1)*10 > ${totalPage}/10){
+	   pagesize = ${totalPage}/10 - (calPage)*10 +1;
+   }else{
+	   pagesize = 10;
+   }
+   
+   for(var i = 1; i <=  pagesize; i++){
+      html +=   "<li class='page-item'><a class='page-link'>"+ (calPage*10 + i) + "</a></li>";
+      
+   }
+      
+      
+   if(curPage < ${totalPage}){
+      html += "<li class='next'><a class='fas fa-angle-double-right'></a></li>";
+   }
+   $("#pagination").html(html);
+   $(".page-item").click(function(){   
+      var pagetext = $(this).text();
+      loadPage(pagetext);
+   });
+   
+   $(".next").click(function(){   
+	  loadPage(pagesize);
+   });
+   
+   $(".back").click(function(){   
+      loadPage(1);
+   });
+
+ });
+
+ // page번째 페이지 목록 로딩
+ function loadPage(page) {
+    
+    $.ajax({
+       url : "${pageContext.request.contextPath}/memberAjax/communityList2.nmj/<%= writePages%>/" + page + "?mb_uid=<%= mb_uid%>",
+       type : "GET",
+       cache : false,
+       success : function(data, status) {
+          if(status == "success") {
+             
+             if(updateList(data)) { // 페이지 업데이트
+                // 페이지 로딩이 성공한 후에야 현재 페이지 정보 업데이트
+                $("input#page").val(page);
+             }
+          }
+       }
+       
+    });
+ } // end loadPage()
+
+
+ function updateList(jsonObj) {
+  	var result = '<tr>';
+       result += '<th>no.</th>';
+       result += '<th>아이디</th>';
+       result += '<th>내용</th>';
+       result += '<th>조회수</th>';
+       result += '<th>작성일</th>';
+       result += '</tr>';
+    
+    if(jsonObj.status == "OK") {
+       
+       var count = jsonObj.count; // 글 개수
+       var items = jsonObj.list; // 글 목록
+       
+       if(count == 0){
+    	   result += '첫번째 게시글을 남겨보세요!<br>';
+       }
+       
+       var i;
+       for(i = 0; i < count; i++) {
+       	  result += '<tr>';
+       	  var k = i + 1;
+    	  result += '<td>'+ k + '</td>';
+    	  result += '<td>' + items[i].mb_id + '</td>';
+    	   if(items[i].review_ban == 0){
+    		   result += '<td><a href="communityView2.nmj?review_uid=' + items[i].review_uid;
+    		   result += '&mb_uid=<%=mb_uid%>">' + items[i].review_content + '</a></td>';
+    	   } else {
+    		   result += '<td>관리자에 의해 삭제된 글입니다.</td>';
+    	   }
+    	   result += '<td>' + items[i].review_viewCount + '</td>';
+   		   result += '<td>' + items[i].review_date + '</td>';
+   		   result += '</tr>';
+       }
+       
+       $("#communityList").html(result); // 테이블 내용 업데이트
+       
+       return true;
+    } else {
+       return false;
+    }
+    
+    return false;
+ }
+
+ </script>
+
+
+<body>
+	<input type="hidden" id="page" value="1">
 	<header>
 		<div class="container text-center headerContainer">
 				<!-- if(Session.getAttribute("mb_uid") == null) { -->
@@ -87,45 +208,17 @@
     <button class="btn btn-secondary active btn-lg" onclick="location.href='communityList2.nmj?mb_uid=<%=mb_uid%>'">자유글</button>
         <br><br>
 			
-	<c:choose>
-	<c:when test="${empty list || fn.length(list) == 0 }">
-		데이터가 없습니다<br>
-	</c:when>
-	
-	<c:otherwise>
-      <table>
-          <tr>
-            <th>no.</th>
-            <th>아이디</th>
-            <th>내용</th>
-            <th>조회수</th>
-            <th>작성일</th>
-          </tr>
-		
-		<c:forEach var="dto" items="${list}">
-		<tr>
-			<td>${dto.review_uid }</td>
-			<td>${dto.mb_id }</td>
-			<c:choose>
-				<c:when test="${dto.review_ban == 0 }">
-					<td><a href="communityView2.nmj?review_uid=${dto.review_uid }&mb_uid=<%=mb_uid%>">${dto.review_content }</a></td>
-				</c:when>
-				<c:otherwise>
-					<td>관리자에 의해 삭제된 글입니다.</td>
-				</c:otherwise>
-			</c:choose>
-			<td>${dto.review_viewCount }</td>
-			<td>${dto.review_date }</td>
-		</tr>					
-			</c:forEach>
+		<table id="communityList">
+          
 
-		      </table>
-		</c:otherwise>
-		</c:choose>
-		
-				<br><br>
-		
-		<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=<%=mb_uid%>'">리뷰작성</button>
+
+		</table>
+
+	<ul class="pagination" id="pagination"></ul>
+
+	
+	<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=<%=mb_uid%>'">자유글 작성</button>
+	
 
 	</div>
 	</div>

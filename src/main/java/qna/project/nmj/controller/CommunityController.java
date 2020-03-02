@@ -1,16 +1,21 @@
 package qna.project.nmj.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import qna.project.nmj.beans.AjaxBoardList;
 import qna.project.nmj.beans.C;
+import qna.project.nmj.beans.ReviewJoinDTO;
+import qna.project.nmj.beans.dao.ReviewDAO;
 import qna.project.nmj.command.*;
 
 @Controller
@@ -60,16 +65,16 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/communityList.nmj")
-	public String selectAllReview( Model model) {
-		command = new CommunityListCommand();
-		command.execute(model);
+	public String selectAllReview( Model model, int mb_uid ) {
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityListCommand().execute(model);
 		return "community/communityList";
 	}
 	
 	@RequestMapping("/communityList2.nmj")
-	public String selectAllReview2( Model model) {
-		command = new CommunityListCommand2();
-		command.execute(model);
+	public String selectAllReview2( Model model, int mb_uid) {
+		model.addAttribute("mb_uid", mb_uid);
+		new CommunityListCommand2().execute(model);
 		return "community/communityList2";
 	}
 	
