@@ -142,27 +142,3 @@
 }());
 
 
-// 우리가 필요한 기능들 삽입
-$(document).ready(function(){
-	
-	$("span#login").click(function (){
-		location.href = "login.nmj";
-	});
-
-	$("span#signup").click(function (){
-		location.href = "signUpType.nmj";
-	});
-
-	$("span#logout").click(function (){
-		// 세션 삭제
-		sessionStorage.removeItem("mb_uid");
-		location.href = "main.nmj";
-	});
-
-	$("span#mypage").click(function (){
-		var mb_uid = sessionStorage.getItem("mb_uid");
-		location.href = "mypage.nmj?mb_uid" + mb_uid ;
-	});
-
-
-});

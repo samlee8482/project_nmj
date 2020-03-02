@@ -145,13 +145,11 @@ public class StoreMyPageController {
 	
 //	5. 매장 공간 관리
 	@RequestMapping(value="/storeMySpace.nmj")
-	public String storeMySpace(Model model, int store_uid, HttpSession s) {
+	public String storeMySpace(Model model, HttpSession session) {
+		int store_uid = (int)session.getAttribute("store_uid");
 		model.addAttribute("store_uid", store_uid);
-		s.getAttribute("name");
 		command = new StoreMySpaceCommand();
 		command.execute(model);
-		PasswordEncoding cs = new PasswordEncoding();
-		System.out.println(cs.encode("1234"));
 		model.addAttribute("nav", 3);
 		return "/store/storeMySpace";
 	}
@@ -159,7 +157,8 @@ public class StoreMyPageController {
 	
 //	6. 내 매장 리뷰 보기
 	@RequestMapping(value="/storeMyReview.nmj")
-	public String storeMyReview(Model model, int store_uid) {
+	public String storeMyReview(Model model, HttpSession session) {
+		int store_uid = (int)session.getAttribute("store_uid");
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMyReviewCommand();
 		command.execute(model);
@@ -168,7 +167,8 @@ public class StoreMyPageController {
 	}
 
 	@RequestMapping(value="/storeMySpaceImg.nmj")
-	public String storeMySpaceImg(Model model, int store_uid) {
+	public String storeMySpaceImg(Model model, HttpSession session) {
+		int store_uid = (int)session.getAttribute("store_uid");
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMySpaceImgCommand();
 		command.execute(model);		

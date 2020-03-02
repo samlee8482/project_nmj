@@ -49,26 +49,7 @@
 
 </head>
 <body>
-	<header>
-		<div class="container text-center">
-			<div class="fh5co-navbar-brand">
-				<a class="fh5co-logo" href="index.html"><img
-					src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"
-					style="width: 200px; height: 150px;" /></a>
-			</div>
-			<nav id="fh5co-main-nav" role="navigation">
-				<ul>
-					<li><a href="index.html" class="active">홈</a></li>
-					<li><a href="work.html">회원정보수정</a></li>
-					<li><a href="services.html">내 매장 리뷰보기</a></li>
-					<li><a href="about.html">매장 정보 수정</a></li>
-					<li><a href="contact.html">음식 매뉴 관리</a></li>
-					<li><a href="contact.html">매장 공간 관리</a></li>
-					<li><a href="contact.html">매장 정보 수정 요청</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+	<jsp:include page="storeHeader.jsp"></jsp:include>
 	<div id="fh5co-intro-section">
 		<div class="container">
 			<div class="row">
@@ -210,28 +191,7 @@
 		
 	
 	<div class="clear"></div><br><br><br>
-	<footer>
-		<div id="footer" class="fh5co-border-line">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center">
-						<p>
-							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
-							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
-							<a href="#" target="_blank">Korea IT Academy</a> /
-							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
-							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
-						</p>
-						<p class="fh5co-social-icons">
-							<a href="#"><i class="icon-twitter-with-circle"></i></a> <a
-								href="#"><i class="icon-facebook-with-circle"></i></a> <a
-								href="#"><i class="icon-instagram-with-circle"></i></a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="../footer.jsp"></jsp:include>
 
 	
 	<!-- Main JS (Do not remove) -->
