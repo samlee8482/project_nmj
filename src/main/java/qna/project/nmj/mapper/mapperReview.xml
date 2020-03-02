@@ -112,5 +112,35 @@
 		DELETE FROM NMJ_reply
 		WHERE reply_uid = #{reply_uid}
 	</delete>
+	
+	<select id="selectByRow" resultType="qna.project.nmj.beans.ReviewJoinDTO">
+ 		<![CDATA[
+ 			SELECT a.*, b.store_type, b.store_name, c.mb_id 
+			FROM NMJ_review a 
+			JOIN NMJ_store b ON a.store_uid = b.store_uid 
+			JOIN NMJ_member c ON a.mb_uid = c.mb_uid
+			WHERE a.store_uid != 0
+			ORDER BY review_uid DESC
+ 			LIMIT #{fromRow}, #{writePages} 
+ 		]]>		
+	</select>
+	
+	<select id="selectByRow2" resultType="qna.project.nmj.beans.ReviewJoinDTO">
+ 		<![CDATA[
+ 			SELECT a.*, c.mb_id 
+			FROM NMJ_review a  
+			JOIN NMJ_member c ON a.mb_uid = c.mb_uid
+			WHERE a.store_uid = 0
+			ORDER BY review_uid DESC
+ 			LIMIT #{fromRow}, #{writePages} 
+ 		]]>		
+	</select>
 
+	<select id="selectAllReviewCount" resultType="int">
+		SELECT count(*) from NMJ_review WHERE store_uid != 0;
+	</select>
+	
+	<select id="selectAllReviewCount2" resultType="int">
+		SELECT count(*) from NMJ_review WHERE store_uid = 0;
+	</select>
 </mapper>

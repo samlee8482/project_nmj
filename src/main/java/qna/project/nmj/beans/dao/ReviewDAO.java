@@ -8,6 +8,9 @@ import qna.project.nmj.beans.*;
 
 public interface ReviewDAO {
 	
+	public int selectAllReviewCount();
+	public int selectAllReviewCount2();
+	
 	// 리뷰 삽입
 	public int insertReview(int mb_uid, int store_uid, String review_content, int review_rate);
 	
@@ -20,6 +23,8 @@ public interface ReviewDAO {
 	// 리뷰 목록
 	public ArrayList<ReviewJoinDTO> selectAllReview();
 	public ArrayList<ReviewJoinDTO> selectAllReview2();
+	public ArrayList<ReviewJoinDTO> selectByRow(@Param("fromRow") int fromRow, @Param("writePages") int writePages);
+	public ArrayList<ReviewJoinDTO> selectByRow2(@Param("fromRow") int fromRow, @Param("writePages") int writePages);
 	
 	// 댓글 목록
 	public ArrayList<ReplyJoinDTO> selectAllReply(int review_uid);

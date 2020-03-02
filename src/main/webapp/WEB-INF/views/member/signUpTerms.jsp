@@ -28,27 +28,57 @@
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-function chk(){
-	var chk_obj = document.getElementsByName("term_chk");
-	var chk_leng = chk_obj.length;
-	var checked = 0; 
+$(document).ready(function(){
+	
 
-	for(i=0; i < chk_leng; i++){
-		if(chk_obj[i].checked == true){
-			checked +=1;
+
+//	var chk_obj = document.getElementsByName("term_chk");
+//	var chk_leng = chk_obj.length;
+//	var checked = 0; 
+
+//	for(i=0; i < chk_leng; i++){
+//		if(chk_obj[i].checked == true){
+//			checked +=1;
+//		}
+
+//	}
+
+//	if(checked == 2){
+//		location.href="signUpCustomer.nmj";
+//		return true;
+//	}else{
+//		alert("약관에 모두 동의해주세요.");
+///		location.href="signUpTerms.nmj";
+//		return false;
+//	}
+	
+//	return false;
+//}	
+	$("#terms_btn_left").click(function(){
+		var checked = 0;
+		if($("#chk1").is(":checked") == true){
+			checked ++;
 		}
+		if($("#chk2").is(":checked") == true){
+			checked ++;
+		}	
+		if(checked == 2){
+			location.href="signUpCustomer.nmj";
+		}else{
+			alert("약관에 모두 동의해주세요.");
+		}
+	});
 
+});
+
+function check(){
+	alert("약관에 모두 동의해주세요.");
+	location.href="main.nmj";
 }
 
-	if(checked == 0 || checked == 1){
-		alert("약관에 모두 동의해주세요.");
-		return false;
-	} else {
-		alert(checked+"개선택");
-	}
-}
 
 </script>
 
@@ -101,7 +131,7 @@ function chk(){
 	
 	<div class=" div-relative" style="height: 1000px;">
 		<div id="terms_container" class="jumbotron">
-			<form action="signUpCustomer.nmj"onsubmit="chk()">
+			<div>
 				<h2>회원가입약관</h2>
 				<textarea class="form-control temrs_textarea" id="exampleTextarea" rows="15">
 				제 1 장 총칙
@@ -235,7 +265,7 @@ function chk(){
 				
 				</textarea>
 				<label name="term1" class="form-check-label terms_label">
-					<input name="term_chk" class="form-check-input" type="checkbox">
+					<input id="chk1" "name="term_chk" class="form-check-input" type="checkbox">
 					　 약관에 동의합니다.
 				</label> 
 	
@@ -398,14 +428,15 @@ function chk(){
 				② 정보주체께서는 놀먹자(‘https://nmj.nmj’이하 ‘놀먹자) 의 서비스(또는 사업)을 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보 보호책임자 및 담당부서로 문의하실 수 있습니다. 놀먹자(‘https://nmj.nmj’이하 ‘놀먹자) 은(는) 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다.
 				</textarea>
 				<label name="term2" class="form-check-label terms_label">
-					<input name="term_chk" class="form-check-input" type="checkbox">
+					<input id="chk2" name="term_chk" class="form-check-input" type="checkbox">
 					　개인정보처리방침에 동의합니다.
 				</label> 
-				
 				<div id="temrs_btn_container">
-					<button class="btn btn-primary terms_btn">동의</button><button id="terms_btn_right" class="btn btn-primary terms_btn" onclick="history.back()">비동의</button>
+					<button id="terms_btn_left" type="submit" class="btn btn-primary terms_btn">동의</button>
+					<button type="button" id="terms_btn_right" class="btn btn-primary terms_btn" onclick="check()">비동의</button>
 				</div>
-			</form>
+				
+			
 		</div>
 	</div>
 	</div>

@@ -17,6 +17,8 @@ public interface MemberDAO {
 	public int checkOverId(String mb_id);
 	// 회원가입 - 회원정보 입력
 	public int insertMember(@Param("dto") MemberDTO dto);
+	// 회원가입 - 매장회원 정보등록
+	public int insertStore(@Param("dto") StoreDTO dto);
 	
 	
 	// 아이디 비밀번호 찾기
