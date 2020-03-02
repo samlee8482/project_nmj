@@ -75,6 +75,7 @@ public class MemberController {
 	@RequestMapping("main.nmj")
 	public String main(Model model) {
 		new MainCommand().execute(model);
+		model.addAttribute("nav", 1);
 		return "/member/main";
 	}
 	
@@ -172,6 +173,7 @@ public class MemberController {
 			System.out.println(mb_uid);
 		}
 		int type = (Integer)model.getAttribute("type");
+		session.setAttribute("mb_type", type);
 		if(type == 2) {
 			int store_uid = (Integer)model.getAttribute("store_uid");
 			session.setAttribute("store_uid", store_uid);
