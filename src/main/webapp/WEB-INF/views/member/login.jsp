@@ -78,11 +78,11 @@ function chkSubmit(){
 		
 			<div class="formContainer">
 				<div>
-					<input type="text" placeholder="아이디를 입력하세요">		
+					<input type="text" name="mb_id" placeholder="아이디를 입력하세요">		
 				</div>
 				
 				<div>
-					<input type="password" placeholder="비밀번호를 입력하세요">		
+					<input type="password" name="mb_pw" placeholder="비밀번호를 입력하세요">		
 				</div>
 				
 			

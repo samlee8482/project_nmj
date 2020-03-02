@@ -34,10 +34,10 @@
 						<span id="logout">로그아웃</span>
 						<span class="line">|</span>
 						<c:choose>
-							<c:when test="${sessionScope.my_type == 1 }">
+							<c:when test="${sessionScope.mb_type == 1 }">
 								<span id="mypage">마이페이지</span>					
 							</c:when>
-							<c:when test="${sessionScope.my_type == 2 }">
+							<c:when test="${sessionScope.mb_type == 2 }">
 								<span id="storepage">매장페이지</span>
 							</c:when>
 						</c:choose>
