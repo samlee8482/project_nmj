@@ -95,7 +95,7 @@
 
 		$("span#logout").click(function (){
 			// 세션 삭제
-			location.href = "${pageContext.request.contextPath}/member/main.nmj";
+			location.href = "${pageContext.request.contextPath}/member/logout.nmj";
 		});
 		
 		$("span#mypage").click(function(){

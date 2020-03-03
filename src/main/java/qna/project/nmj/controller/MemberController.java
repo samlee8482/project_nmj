@@ -169,8 +169,7 @@ public class MemberController {
 	
 	// 로그인 ok
 	@RequestMapping("/loginOk.nmj")
-	public String loginOk(Model model, String mb_id, String mb_pw, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String loginOk(Model model, String mb_id, String mb_pw, HttpSession session) {
 		model.addAttribute("mb_id", mb_id);
 		model.addAttribute("mb_pw", mb_pw);
 		new LoginCommand().execute(model);
@@ -188,5 +187,11 @@ public class MemberController {
 			session.setAttribute("store_uid", store_uid);
 		}
 		return "/member/loginOk";
+	}
+	
+	@RequestMapping("/logout.nmj")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/member/logout";
 	}
 }

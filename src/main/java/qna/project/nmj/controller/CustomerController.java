@@ -29,6 +29,7 @@ public class CustomerController {
 	// 마이페이지 연결 전 세션값 있는지 확인하는 페이지
 	@RequestMapping("/cusMyPageAction.nmj")
 	public String updateInfoAction() {
+		
 		return "/customer/cusMyPageAction";
 	}
 	
@@ -66,6 +67,7 @@ public class CustomerController {
 	// 마이페이지 - 예약/찜 목록 보기
 	@RequestMapping("/cusShowReserve.nmj")
 	public String showReserve(HttpSession session, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusShowReserveCommand().execute(model);
 		new CusShowLikeCommand().execute(model);
@@ -75,6 +77,7 @@ public class CustomerController {
 	// 마이페이지 - 내 리뷰, 댓글 보기
 	@RequestMapping("/cusShowReview.nmj")
 	public String showReview(HttpSession session, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusShowReviewCommand().execute(model);
 		new CusShowReplyCommand().execute(model);
@@ -84,6 +87,7 @@ public class CustomerController {
 	// 예약페이지
 	@RequestMapping("/cusReserve.nmj")
 	public String reserve(HttpSession session, int store_uid, int store_type, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("store_type", store_type);
@@ -93,6 +97,7 @@ public class CustomerController {
 	
 	@RequestMapping("/cusReserveOk.nmj")
 	public String reserveOk(ReservationDTO dto, Model model) {
+		model.addAttribute("nav", 0);	
 		model.addAttribute("dto", dto);
 		new CusReserveOkCommand().execute(model);
 		return "/customer/cusReserveOk";
