@@ -1,5 +1,6 @@
 package qna.project.nmj.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
@@ -167,7 +169,8 @@ public class MemberController {
 	
 	// 로그인 ok
 	@RequestMapping("/loginOk.nmj")
-	public String loginOk(Model model, String mb_id, String mb_pw, HttpSession session) {
+	public String loginOk(Model model, String mb_id, String mb_pw, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		model.addAttribute("mb_id", mb_id);
 		model.addAttribute("mb_pw", mb_pw);
 		new LoginCommand().execute(model);
@@ -175,7 +178,9 @@ public class MemberController {
 		if(mb_uid != 0) {
 			session.setAttribute("mb_uid", mb_uid);
 		}
+		System.out.println((Integer)session.getAttribute("mb_uid"));
 		int type = (Integer)model.getAttribute("type");
+		//model.addAttribute("mb_type", type);
 		session.setAttribute("mb_type", type);
 		System.out.println(type);
 		if(type == 2) {

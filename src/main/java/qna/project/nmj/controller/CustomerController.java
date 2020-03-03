@@ -1,5 +1,6 @@
 package qna.project.nmj.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
@@ -32,14 +34,19 @@ public class CustomerController {
 	
 	// 손님회원 - 마이페이지(새힘)
 	@RequestMapping("/cusMyPage.nmj")
-	public String myPage(HttpSession session, Model model) {
+	public String myPage(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		return "customer/cusMyPage";
 	}
 	
 	// 마이페이지 - 회원 정보 수정 불러오기
 	@RequestMapping("/cusUpdateInfo.nmj")
-	public String updateInfo(HttpSession session, Model model) {
+	public String updateInfo(Model model,  HttpServletRequest request) {
+		model.addAttribute("nav", 0);
+		HttpSession session = request.getSession();
+		System.out.println((Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusUpdateInfoCommand().execute(model);
 		return "/customer/cusUpdateInfo";
@@ -48,6 +55,7 @@ public class CustomerController {
 	// 마이페이지 - 회원 정보 수정
 	@RequestMapping(value="/cusUpdateInfoOk.nmj", method = RequestMethod.POST)
 	public String updateInfoOk(HttpSession session, @RequestParam("upload") MultipartFile upload, MemberDTO dto, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("dto", dto);
 		model.addAttribute("upload", upload);

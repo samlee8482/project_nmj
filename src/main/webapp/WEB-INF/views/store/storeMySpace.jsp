@@ -49,7 +49,36 @@
 
 </head>
 <body>
-	<jsp:include page="storeHeader.jsp"></jsp:include>
+	<c:choose>
+	<c:when test="${sessionScope.mb_type == 0 || sessionScope.mb_type == null || empty sessionScope.mb_type}">
+		<script>
+			alert(${sessionScope.mb_type});
+			alert("로그인을 하지 않으셨거나 권한이 없는 사용자 또는 자동 로그아웃 되었습니다. 로그인 해주세요.");
+			location.href = "${pageContext.request.contextPath}/member/main.nmj";
+		</script>
+	</c:when>
+</c:choose>
+
+	<header>
+		<div class="container text-center">
+			<div class="fh5co-navbar-brand">
+				<a class="fh5co-logo" href="index.html"><img
+					src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"
+					style="width: 200px; height: 150px;" /></a>
+			</div>
+			<nav id="fh5co-main-nav" role="navigation">
+				<ul>
+					<li><a id="1" href="${pageContext.request.contextPath}/member/main.nmj">홈</a></li>
+					<li><a id="2" href="${pageContext.request.contextPath}/customer/cusUpdateInfo.jsp?mb_uid=${sessionScope.mb_uid}">회원정보수정</a></li>
+					<li><a id="3" href="storeMySpace.nmj?store_uid=${sessionScope.store_uid}">매장 공간 관리</a></li>
+					<li><a id="4" href="storeMyFood.nmj?store_uid=${sessionScope.store_uid}">음식 메뉴 관리</a></li>
+					<li><a id="5" href="storeMyReview.nmj?store_uid=${sessionScope.store_uid}">내 매장 리뷰보기</a></li>
+					<li><a id="6" href="storeSettings.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정</a></li>
+					<li><a id="7" href="storeSettingsRequest.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정 요청</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 	<div id="fh5co-intro-section">
 		<div class="container">
 			<div class="row">
