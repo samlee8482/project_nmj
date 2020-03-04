@@ -47,11 +47,11 @@
 				<ul>
 					<li><a id="1" href="${pageContext.request.contextPath}/member/main.nmj">홈</a></li>
 					<li><a id="2" href="${pageContext.request.contextPath}/customer/cusUpdateInfo.nmj">회원정보수정</a></li>
-					<li><a id="3" href="storeMySpace.nmj">매장 공간 관리</a></li>
-					<li><a id="4" href="storeMyFood.nmj">음식 메뉴 관리</a></li>
-					<li><a id="5" href="storeMyReview.nmj">내 매장 리뷰보기</a></li>
-					<li><a id="6" href="storeSettings.nmj">매장 정보 수정</a></li>
-					<li><a id="7" href="storeSettingsRequest.nmj">매장 정보 수정 요청</a></li>
+					<li><a id="3" href="${pageContext.request.contextPath}/store/storeMySpace.nmj">매장 공간 관리</a></li>
+					<li><a id="4" href="${pageContext.request.contextPath}/store/storeMyFood.nmj">음식 메뉴 관리</a></li>
+					<li><a id="5" href="${pageContext.request.contextPath}/store/storeMyReview.nmj">내 매장 리뷰보기</a></li>
+					<li><a id="6" href="${pageContext.request.contextPath}/store/storeSettings.nmj">매장 정보 수정</a></li>
+					<li><a id="7" href="${pageContext.request.contextPath}/store/storeSettingsRequest.nmj">매장 정보 수정 요청</a></li>
 				</ul>
 			</nav>
 		</div>
