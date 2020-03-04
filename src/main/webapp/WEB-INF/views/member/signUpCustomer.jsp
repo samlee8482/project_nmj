@@ -86,7 +86,7 @@ function chkSubmit(){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<p class="title">회원가입</h2>
+					<h2 class="title">회원가입</h2>
 					<p class="subtitle">"놀먹자의 식구가 되어보세요"</p>
 				</div>
 			</div>
@@ -108,7 +108,7 @@ function chkSubmit(){
 				<div class="signUp_input_container">
 					<input name="mb_name" class="form-control" placeholder="이름" required>
 					<input name="mb_tel" class="form-control" placeholder="전화번호 ex) 010-1234-1234" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})" required>
-					<input name="mb_email" class="form-control" placeholder="이메일" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" required>
+					<input name="mb_email" id="mb_email" class="form-control" placeholder="이메일" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" required>
 					<div class="check_font" id="email_check"></div>
 					<input name="mb_type" type="hidden" value="1">
 				</div>
