@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import qna.project.nmj.beans.MemberDTO;
+import qna.project.nmj.beans.StoreDetailDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
 import qna.project.nmj.command.LoginCommand;
 import qna.project.nmj.command.MainCommand;

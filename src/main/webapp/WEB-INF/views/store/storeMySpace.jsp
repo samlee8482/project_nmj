@@ -27,8 +27,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/mySpace.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootswatch.css">
 
-<!-- Modernizr JS -->
-<script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
+
 <!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	
@@ -42,7 +41,8 @@
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- Stellar -->
 	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-<script> var store_uid = ${store_uid};</script>
+<script> var store_uid = ${sessionScope.store_uid};
+</script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="${pageContext.request.contextPath}/js/mySpace.js"></script>
@@ -220,7 +220,28 @@
 		
 	
 	<div class="clear"></div><br><br><br>
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<footer>
+		<div id="footer" class="fh5co-border-line">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<p>
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
+							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
+						</p>
+						<p class="fh5co-social-icons">
+							<a href="#"><i class="icon-twitter-with-circle"></i></a> <a
+								href="#"><i class="icon-facebook-with-circle"></i></a> <a
+								href="#"><i class="icon-instagram-with-circle"></i></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 	
 	<!-- Main JS (Do not remove) -->

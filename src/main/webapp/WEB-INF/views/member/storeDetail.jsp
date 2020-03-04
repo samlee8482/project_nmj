@@ -115,7 +115,7 @@
 						</div>
 
 						<div class="col-md-12 reserveSubmit">
-							<input type="submit" value="RESERVE" class="btn btn-primary" onclick="location.href = 'cusReserve.nmj?store_uid=${store_uid }'">
+							<input type="submit" value="RESERVE" class="btn btn-primary" onclick="location.href = '${pageContext.request.contextPath}/customer/cusReserve.nmj?store_uid=${store_uid }&store_type=${list.store_type }'">
 						</div>
 					</div>
 				</div>

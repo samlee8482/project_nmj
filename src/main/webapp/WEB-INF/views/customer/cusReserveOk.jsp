@@ -12,7 +12,7 @@
 	<c:when test="${result == 1 }">
 		<script>
 			alert("예약이 완료되었습니다.");
-			location.href = "main.nmj";
+			location.href = "${pageContext.request.contextPath}/member/main.nmj";
 		</script>
 	</c:when>
 </c:choose>

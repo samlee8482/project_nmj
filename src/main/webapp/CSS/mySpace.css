@@ -138,6 +138,22 @@
 	background-size: 100% 100%;
 }
 
+.tablespaceimg{
+	width: 150px;
+	height: 150px;
+	background-image: url("../img/space/spacetable.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.roomspaceimg{
+	width: 200px;
+	height: 100px;
+	background-image: url("../img/space/spaceroom.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
 .spaceEmpty0{
 	opacity: 1;
 }
