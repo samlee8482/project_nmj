@@ -24,7 +24,7 @@
 				<div class="foodList">
 				</div>
 				<div class="col-md-12">
-					<button class="btn btn-primary btn-lg" type="button" onclick="location.href = 'storeMyFoodInsert.nmj?store_uid=${store_uid}'">음식 추가</button>
+					<button class="btn btn-primary btn-lg" type="button" onclick="location.href = 'storeMyFoodInsert.nmj'">음식 추가</button>
 				</div>
 			</div>
 		</div>

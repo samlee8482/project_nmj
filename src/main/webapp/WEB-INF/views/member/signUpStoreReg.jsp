@@ -5,6 +5,7 @@
 <head>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241e9154c601bbf9fb3d6d3a33e4af25&libraries=services"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,8 +117,8 @@ function chkSubmit(){
 			<div class="animate-box fadeInUp animated">
 				<form name="frm" action="signUpStoreRegOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
 					<input type="hidden" name="mb_uid" value="${param.mb_uid }">
-					<input type="hidden" id="x" name="entX" value="${result.store_long}">
-					<input type="hidden" id="y" name="entY" value="${result.store_lat}">
+					<input type="hidden" id="x" name="entX">
+					<input type="hidden" id="y" name="entY">
 				 	<div class="col-md-12">
 					 	<div class="form-group">
 				 			<label>매장 이름 등록</label>
@@ -165,7 +166,7 @@ function chkSubmit(){
 				 	</div>
 				 	<div class="col-md-12">
 					 	<div class="form-group">
-						 	<input type="file" name="upload" accept="image/*">
+						 	<input type="file" name="storeRegImg" accept="image/*">
 					 	</div>
 				 	</div>
 				 	
@@ -177,7 +178,7 @@ function chkSubmit(){
 				 	<div class="col-md-12">
 					 	<div class="form-group">
 						 	<select class="store_type form-control" id="store_type" name="store_type" onchange="changeDetails()">
-						 		<option value="1">놀자</option>
+						 		<option value="1" selected>놀자</option>
 						 		<option value="2">먹자</option>
 						 		<option value="3">자자</option>
 						 	</select>
@@ -348,7 +349,7 @@ function chkSubmit(){
 				 	</div>
 				 	<div class="col-md-12">
 					 	<div class="form-group">
-						 	<input type="file" name="upload" accept="image/*">
+						 	<input type="file" name="storeImg" accept="image/*">
 					 	</div>
 				 	</div>
 				 
@@ -384,13 +385,7 @@ function changeDetails() {
 	l = dtypes.length;
 	var result = "";
 	for(i = 0; i < l; i++){
-		
-		if(dtypes[i].store_dtype == ${result.store_dtype}){
-			
-			result += "<option value='" + dtypes[i].store_dtype + "' selected>" + dtypes[i].store_dname + "</option>";
-		}else{
-			result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
-		}
+		result += "<option value='" + dtypes[i].store_dtype + "'>" + dtypes[i].store_dname + "</option>";
 	}
 	
 	$("select.store_dtype").html(result);
@@ -432,8 +427,8 @@ function getJackson(){
                 });
             }
         }).open();
-    	}
     }
+    
 
 	
 </script>
