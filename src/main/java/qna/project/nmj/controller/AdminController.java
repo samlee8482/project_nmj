@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -230,6 +231,61 @@ public class AdminController {
 		model.addAttribute("store_long", store_long);
 		new AdminStoreAcceptOk2Command().execute(model);
 		return "admin/acceptStore";
+	}
+	
+	@RequestMapping("/adminNotice.nmj")
+	public String noticelist(Model model) {
+		command = new AdminNoticeListCommand();
+		command.execute(model);
+		return "admin/adminNotice";	
+	}
+	
+	@RequestMapping("/adminNoticeWrite.nmj")
+	public String noticewrite(Model model) {
+		return "admin/adminNoticeWrite";	
+	}
+	
+	@PostMapping(value = "/adminNoticeWriteOk.nmj")
+	public String noticewriteOk(String notice_subject, String notice_content, Model model) {
+		model.addAttribute("notice_subject", notice_subject);
+		model.addAttribute("notice_content", notice_content);
+		command = new AdminWriteNoticeCommand();
+		command.execute(model);
+		return "admin/writeNoticeOk";	
+	}
+	
+	@RequestMapping("/adminNoticeInfo.nmj")
+	public String noticeinfo(int notice_uid, Model model) {
+		model.addAttribute("notice_uid", notice_uid);
+		command = new AdminNoticeInfoCommand();
+		command.execute(model);
+		return "admin/adminNoticeInfo";	
+	}
+	
+	@RequestMapping("/adminNoticeDelete.nmj")
+	public String noticedelete(int notice_uid, Model model) {
+		model.addAttribute("notice_uid", notice_uid);
+		command = new AdminNoticeDeleteCommand();
+		command.execute(model);
+		return "admin/deleteNotice";	
+	}
+	
+	@RequestMapping("/adminNoticeUpdate.nmj")
+	public String noticeupdate(int notice_uid, Model model) {
+		model.addAttribute("notice_uid", notice_uid);
+		command = new AdminNoticeSelectCommand();
+		command.execute(model);
+		return "admin/adminNoticeUpdate";	
+	}
+	
+	@PostMapping(value = "/adminNoticeUpdateOk.nmj")
+	public String noticeupdateOk(@Param("notice_uid") int notice_uid, @Param("notice_subject") String notice_subject, @Param("notice_content") String notice_content, Model model) {
+		model.addAttribute("notice_uid", notice_uid);
+		model.addAttribute("notice_subject", notice_subject);
+		model.addAttribute("notice_content", notice_content);
+		command = new AdminUpdateNoticeCommand();
+		command.execute(model);
+		return "admin/updateNoticeOk";	
 	}
 
 }

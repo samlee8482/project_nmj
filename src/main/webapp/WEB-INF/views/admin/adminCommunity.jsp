@@ -109,6 +109,7 @@
 		
 		<button class="btn btn-secondary active" onclick="location.href='adminCommunity.nmj'">게시글</button>
         <button class="btn btn-secondary" onclick="location.href='adminReply.nmj'">댓글</button>
+        <button class="btn btn-secondary" onclick="location.href='adminNotice.nmj'">공지사항</button>
         <br><br>
             
             <div class="table-responsive"> 
@@ -128,7 +129,6 @@
             <th>아이디</th>
             <th>내용</th>
             <th>조회수</th>
-            <th>작성일</th>
             <th>삭제</th>
           </tr>
 		</thead>
@@ -153,7 +153,6 @@
 			<td>${dto.mb_id }</td>
 			<td><a href="adminCommunityInfo.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
 			<td>${dto.review_viewCount }</td>
-			<td>${dto.review_date }</td>
 			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteReview.nmj?review_uid=${dto.review_uid}'">삭제</button></td>
 		</tr>					
 	</c:forEach>

@@ -50,10 +50,10 @@
 			</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
-					<li><a id="1" href="main.nmj" class="active">메인</a></li>
-					<li><a id="2" href="findStore.nmj?store_type=1">놀자</a></li>
-					<li><a id="3" href="findStore.nmj?store_type=2">먹자</a></li>
-					<li><a id="4" href="findStore.nmj?store_type=3">자자</a></li>
+					<li><a id="1" href="${pageContext.request.contextPath}/member/main.nmj" class="active">메인</a></li>
+					<li><a id="2" href="${pageContext.request.contextPath}/member/findStore.nmj?store_type=1">놀자</a></li>
+					<li><a id="3" href="${pageContext.request.contextPath}/member/findStore.nmj?store_type=2">먹자</a></li>
+					<li><a id="4" href="${pageContext.request.contextPath}/member/findStore.nmj?store_type=3">자자</a></li>
 					<li><a id="5" href="${pageContext.request.contextPath}/community/communityList.nmj">떠들자</a></li>
 				</ul>
 			</nav>
@@ -95,10 +95,7 @@
 
 		$("span#logout").click(function (){
 			// 세션 삭제
-			<%
-			session.invalidate();
-			%>
-			location.href = "${pageContext.request.contextPath}/member/main.nmj";
+			location.href = "${pageContext.request.contextPath}/member/logout.nmj";
 		});
 		
 		$("span#mypage").click(function(){

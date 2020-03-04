@@ -33,7 +33,7 @@ public class CustomerController {
 	
 	// 손님회원 - 마이페이지(새힘)
 	@RequestMapping("/cusMyPage.nmj")
-	public String myPage(HttpSession session, Model model) {
+	public String myPage(Model model, HttpSession session) {
 		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		return "customer/cusMyPage";
@@ -41,10 +41,10 @@ public class CustomerController {
 	
 	// 마이페이지 - 회원 정보 수정 불러오기
 	@RequestMapping("/cusUpdateInfo.nmj")
-	public String updateInfo(HttpSession session, Model model) {
+	public String updateInfo(Model model,  HttpSession session) {
 		model.addAttribute("nav", 0);
-		model.addAttribute("mb_uid", (int)session.getAttribute("mb_uid"));
-		System.out.println(model.getAttribute("mb_uid"));
+		System.out.println((Integer)session.getAttribute("mb_uid"));
+		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusUpdateInfoCommand().execute(model);
 		return "/customer/cusUpdateInfo";
 	}
@@ -93,7 +93,7 @@ public class CustomerController {
 	
 	@RequestMapping("/cusReserveOk.nmj")
 	public String reserveOk(ReservationDTO dto, Model model) {
-		model.addAttribute("nav", 0);
+		model.addAttribute("nav", 0);	
 		model.addAttribute("dto", dto);
 		new CusReserveOkCommand().execute(model);
 		return "/customer/cusReserveOk";

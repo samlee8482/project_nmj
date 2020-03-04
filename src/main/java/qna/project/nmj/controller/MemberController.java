@@ -1,5 +1,6 @@
 package qna.project.nmj.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
@@ -176,7 +178,9 @@ public class MemberController {
 			session.setAttribute("mb_uid", mb_uid);
 			System.out.println(mb_uid);
 		}
+		System.out.println((Integer)session.getAttribute("mb_uid"));
 		int type = (Integer)model.getAttribute("type");
+		//model.addAttribute("mb_type", type);
 		session.setAttribute("mb_type", type);
 		System.out.println(type);
 		if(type == 2) {
@@ -184,5 +188,11 @@ public class MemberController {
 			session.setAttribute("store_uid", store_uid);
 		}
 		return "/member/loginOk";
+	}
+	
+	@RequestMapping("/logout.nmj")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/member/logout";
 	}
 }

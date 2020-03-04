@@ -54,7 +54,7 @@ table, th, td{
 	</div>
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: 1400px;">
+	<div class="div-relative" style="width: 100%; height: auto;">
 		<div class="show_list_container">
 			<h1>놀자 예약목록</h1><br><br><br><br>
 			<table>
