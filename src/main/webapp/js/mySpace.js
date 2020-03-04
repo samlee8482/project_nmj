@@ -14,6 +14,33 @@ var draggcnt = 0;
  var space_yloc = new Array();
 
  $(window).load(function(){
+	 $(".reservOk").click(function(){
+		 var reservUid = $(this).attr("class").split(" ")[1];
+		 $.ajax({
+			 url : "/nmj/ajax/store/reservationOk.ajax",
+			 type : "POST",
+			 cache : false,
+			 data : {
+				 "reservation_uid" : reservUid
+			 },
+			 success : function(data, status){
+			 }
+		 });
+	 });
+	 $(".reservNo").click(function(){
+		 var reservUid = $(this).attr("class").split(" ")[1];
+		 $.ajax({
+			 url : "/nmj/ajax/store/reservationNo.ajax",
+			 type : "POST",
+			 cache : false,
+			 data : {
+				 "reservation_uid" : reservUid
+			 },
+			 success : function(data, status){
+			 }
+		 });
+		 
+	 });
 	  $("#addButton").click(function(){
 		 var html = "";
 		 var selectBox = $("#space_type").val();

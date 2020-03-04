@@ -120,8 +120,8 @@
 							<td>${reserv.reservation_end }</td>
 							<td>${reserv.reservation_count }</td>
 							<td>${reserv.reservation_price }</td>
-							<td><button>승인</button></td>
-							<td><button>거절</button></td>
+							<td><button class="reservOk ${reserv.reservation_uid }">승인</button></td>
+							<td><button class="reservNo ${reserv.reservation_uid }">거절</button></td>
 						</tr>				
 					</c:forEach>
 						</table>
