@@ -147,7 +147,6 @@ public class StoreMyPageController {
 	@RequestMapping(value="/storeMySpace.nmj")
 	public String storeMySpace(Model model, HttpSession session) {
 		int store_uid = (int)session.getAttribute("store_uid");
-		System.out.println(store_uid);
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMySpaceCommand();
 		command.execute(model);
@@ -178,6 +177,7 @@ public class StoreMyPageController {
 	
 	@RequestMapping(value="/storeImgDetail.nmj")
 	public String storeImgDetail(Model model, int space_uid) {
+		model.addAttribute("nav", 3);
 		model.addAttribute("space_uid", space_uid);
 		command = new StoreImgDetailCommand(); 
 		command.execute(model);
