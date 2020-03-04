@@ -42,7 +42,7 @@ public class StoreSettingsOkCommand implements Command {
 				File saveFile = new File(saveDirectory, upload.getOriginalFilename());
 				try {
 					// 6. 지정된 경로에 파일 저장
-					upload.transferTo(saveFile);
+					upload.transferTo(saveFile); // 동일안 이름.확장자 덮어씌움
 					existFile = true; //파일 저장 후 파일 첨부 여부 true로 바꿈
 					dto.setStore_img_org(upload.getOriginalFilename()); //파일 원본명
 					dto.setStore_img_sav(upload.getOriginalFilename()); //파일 저장명

@@ -103,4 +103,15 @@ public class AjaxStoreMyPageController {
 		return qr;
 	}
 	
+	@PostMapping(value="/reservationOk.ajax")
+	public void reservationOk(int reservation_uid) {
+		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		dao.reservationOk(reservation_uid);
+	}
+	
+	@PostMapping(value="/reservationNo.ajax")
+	public void reservationNo(int reservation_uid) {
+		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		dao.reservationNo(reservation_uid);
+	}
 }

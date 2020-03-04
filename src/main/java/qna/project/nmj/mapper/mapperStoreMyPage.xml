@@ -167,7 +167,7 @@
 	</update>
 	
 	<select id="reservSelect" resultType="qna.project.nmj.beans.StoreMyReviewDTO">
-		SELECT * FROM NMJ_reservation re, NMJ_member mem WHERE store_uid = #{param1} and re.mb_uid = mem.mb_uid ORDER BY re.reservation_uid asc;
+		SELECT * FROM NMJ_reservation re, NMJ_member mem WHERE store_uid = #{param1} and re.mb_uid = mem.mb_uid  and re.reservation_check = 0 ORDER BY re.reservation_uid asc;
 	</select>
 
 	<select id="spaceImgSelect" resultType="qna.project.nmj.beans.StoreSpaceImgDTO">
@@ -184,4 +184,12 @@
 	<delete id="spaceImageDelete">
 		DELETE FROM NMJ_spaceimage WHERE space_img_uid = #{param1};
 	</delete>
+	
+	<update id="reservationOk">
+		UPDATE nmj_reservation SET reservation_check = 1 where reservation_uid = #{param1};
+	</update>
+	
+	<update id="reservationNo">
+		UPDATE nmj_reservation SET reservation_check = 2 where reservation_uid = #{param1}; 
+	</update>
 </mapper>

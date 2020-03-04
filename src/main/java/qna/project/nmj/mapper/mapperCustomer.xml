@@ -30,7 +30,8 @@
 		SELECT n4.store_uid, n4.store_type, n4.store_name, n2.reservation_start, n2.reservation_end, n2.reservation_count, n2.reservation_price, n2.reservation_seat
 		FROM NMJ_reservation n2, NMJ_store n4
 		WHERE #{mb_uid} = n2.mb_uid
-		AND n4.store_uid = n2.store_uid;
+		AND n4.store_uid = n2.store_uid
+		AND n2.reservation_check = 1;
 	</select>
 	<!-- 찜 목록 -->
 	<select id="selectLikeByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
