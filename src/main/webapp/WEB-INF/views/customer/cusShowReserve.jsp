@@ -55,7 +55,7 @@ table, th, td{
 	
 	<div class="div-relative" style="width: 100%; height: auto;">
 		<div class="show_list_container">
-			<h1>놀자 예약목록</h1>
+			<h3>놀자 예약목록</h3>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -92,7 +92,7 @@ table, th, td{
 		
 			<br>
 		
-			<h1>먹자 예약목록</h1>
+			<h3>먹자 예약목록</h3>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -124,7 +124,7 @@ table, th, td{
 		
 			<br>
 		
-			<h1>자자 예약목록</h1>
+			<h3>자자 예약목록</h3>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -160,7 +160,7 @@ table, th, td{
 		
 			<br>
 		
-			<h1>찜</h1>
+			<h3>찜</h3>
 			<table>
 				<tr>
 					<th>No.</th>
