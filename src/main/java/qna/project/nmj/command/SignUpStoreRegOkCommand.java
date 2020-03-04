@@ -22,27 +22,59 @@ public class SignUpStoreRegOkCommand implements Command {
 		
 		Map<String, Object> map = model.asMap();
 		StoreDTO dto = (StoreDTO)map.get("dto");
-		MultipartFile upload = (MultipartFile) map.get("upload");
+		MultipartFile storeImg = (MultipartFile) map.get("storeImg");
+		MultipartFile storeRegImg = (MultipartFile) map.get("storeRegImg");
 		
 		// 2. 이미지 파일 저장할 경로 만들기
 		ServletContext context = C.context;
 		String saveDirectory = context.getRealPath("img/store");
 		
 		// 3. 파일 있을 때와 없을 때 처리
-		if(upload.getOriginalFilename() == "" || upload.getOriginalFilename() == null) {
+		if(storeImg.getOriginalFilename() == "" || storeImg.getOriginalFilename() == null) {
 			System.out.println("no file");
 		} else {
 			// 4. 확장자 체크 image/jpg, image/jpeg, image/png, image/gif
-			String contentType = upload.getContentType();
+			String contentType = storeImg.getContentType();
 			if(contentType.equals("image/jpg") || contentType.equals("image/jpeg") || contentType.equals("image/png") || contentType.equals("image/gif")) {
 				// 5. 파일 경로 지정
-				File saveFile = new File(saveDirectory, upload.getOriginalFilename());
+				File saveFile = new File(saveDirectory, storeImg.getOriginalFilename());
 				try {
 					// 6. 지정된 경로에 파일 저장
-					upload.transferTo(saveFile);
+					storeImg.transferTo(saveFile);
 					existFile = true; //파일 저장 후 파일 첨부 여부 true로 바꿈
-					dto.setStore_regImg_org(upload.getOriginalFilename()); //파일 원본명
-					dto.setStore_regImg_sav(upload.getOriginalFilename()); //파일 저장명
+					dto.setStore_img_org(storeImg.getOriginalFilename()); //파일 원본명
+					dto.setStore_img_sav(storeImg.getOriginalFilename()); //파일 저장명
+				} catch (Exception e) {
+					e.printStackTrace();
+					cnt = 500; // 500 : 파일 저장 실패
+					model.addAttribute("cnt", cnt);
+					return;
+				}
+			} else {
+				System.out.println("not an image file");
+				cnt = 101; // 101 : 이미지가 아닌 다른 파일을 업로드 할 경우
+				model.addAttribute("cnt", cnt);
+				return;
+			}
+		}
+		
+		saveDirectory = context.getRealPath("img/store_regNum");
+		
+		// 3. 파일 있을 때와 없을 때 처리
+		if(storeRegImg.getOriginalFilename() == "" || storeRegImg.getOriginalFilename() == null) {
+			System.out.println("no file");
+		} else {
+			// 4. 확장자 체크 image/jpg, image/jpeg, image/png, image/gif
+			String contentType = storeRegImg.getContentType();
+			if(contentType.equals("image/jpg") || contentType.equals("image/jpeg") || contentType.equals("image/png") || contentType.equals("image/gif")) {
+				// 5. 파일 경로 지정
+				File saveFile = new File(saveDirectory, storeRegImg.getOriginalFilename());
+				try {
+					// 6. 지정된 경로에 파일 저장
+					storeRegImg.transferTo(saveFile);
+					existFile = true; //파일 저장 후 파일 첨부 여부 true로 바꿈
+					dto.setStore_regImg_org(storeRegImg.getOriginalFilename()); //파일 원본명
+					dto.setStore_regImg_sav(storeRegImg.getOriginalFilename()); //파일 저장명
 				} catch (Exception e) {
 					e.printStackTrace();
 					cnt = 500; // 500 : 파일 저장 실패
@@ -67,6 +99,10 @@ public class SignUpStoreRegOkCommand implements Command {
 		System.out.println("Command store_content : " + dto.getStore_content());
 		System.out.println("Command store_type : " + dto.getStore_type());
 		System.out.println("Command store_dtype : " + dto.getStore_dtype());
+		System.out.println("Command store_lat : " + dto.getStore_lat());
+		System.out.println("Command store_long : " + dto.getStore_long());
+		System.out.println("Command img : " + dto.getStore_img_sav());
+		System.out.println("Command regimg : " + dto.getStore_regImg_sav());
 		
 		String store_hours = dto.getStore_start() + "~" + dto.getStore_end();
 		dto.setStore_hours(store_hours);
