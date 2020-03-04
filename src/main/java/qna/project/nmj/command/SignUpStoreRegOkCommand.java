@@ -57,29 +57,20 @@ public class SignUpStoreRegOkCommand implements Command {
 			}
 		}
 		
-//		String store_name = (String)map.get("store_name");
-//		System.out.println("Command store_name : " + store_name);
-//		int mb_uid = (Integer)map.get("mb_uid");
-//		System.out.println("Command mb_uid : " + mb_uid);
-//		String store_address = (String)map.get("store_address");
-//		System.out.println("Command store_address : " + store_address);
-//		String store_regNum = (String)map.get("store_regNum");
-//		System.out.println("Command store_regNum : " + store_regNum);
-//		String store_tel = (String)map.get("store_tel");
-//		System.out.println("Command store_tel : " + store_tel);
-//		String store_start = (String)map.get("store_start");
-//		System.out.println("Command store_start : " + store_start);
-//		String store_end = (String)map.get("store_end");
-//		System.out.println("Command store_end : " + store_end);
-//		String store_content = (String)map.get("store_content");
-//		System.out.println("Command store_content : " + store_content);
-//		int store_type = (Integer)map.get("store_type");
-//		System.out.println("Command store_type : " + store_type);
-//		int store_dtype = (Integer)map.get("store_dtype");
-//		System.out.println("Command store_dtype : " + store_dtype);
+		System.out.println("Command store_name : " + dto.getStore_name());
+		System.out.println("Command mb_uid : " + dto.getMb_uid());
+		System.out.println("Command store_address : " + dto.getStore_address());
+		System.out.println("Command store_regNum : " + dto.getStore_regNum());
+		System.out.println("Command store_tel : " + dto.getStore_tel());
+		System.out.println("Command store_start : " + dto.getStore_start());
+		System.out.println("Command store_end : " + dto.getStore_end());
+		System.out.println("Command store_content : " + dto.getStore_content());
+		System.out.println("Command store_type : " + dto.getStore_type());
+		System.out.println("Command store_dtype : " + dto.getStore_dtype());
 		
 		String store_hours = dto.getStore_start() + "~" + dto.getStore_end();
 		dto.setStore_hours(store_hours);
+		System.out.println("Command store_start : " + dto.getStore_hours());
 		
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		
