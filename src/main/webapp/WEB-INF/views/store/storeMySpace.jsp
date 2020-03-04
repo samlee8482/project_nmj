@@ -175,9 +175,9 @@
 								</c:forEach>
 							</select>
 							<span>인원수</span><input id="spaceNum" type="number" style="width:70px;">
-							<div class="clear"/>
+							<div class="clear"></div>
 							<span>공간 이름</span><input id="spaceName" type="text">
-							<div class="clear"/>
+							<div class="clear"></div>
 							<span>공간 가격</span><input id="spacePrice" type="number">
 							</h4>
 							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
