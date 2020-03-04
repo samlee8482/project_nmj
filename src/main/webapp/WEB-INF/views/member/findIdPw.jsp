@@ -100,8 +100,8 @@ function chkSubmit2(){
 			       <div class="find_id">
 			       	<h2>아이디 찾기</h2><br>
 			       </div>
-			       		<input name="mb_name" class="find_info form-control" type="text" placeholder="이름" required="required"><br>
-			       		<input name="mb_email" class="find_info form-control" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
+			       		<input name="mb_name" class="find_info form-control" type="text" placeholder="이름" required="required">
+			       		<input name="mb_email" class="find_info form-control" type="text" placeholder="ex)  *****@example.com" required="required">
 			       		<button type="submit" class="find_btn btn btn-primary">아이디 찾기</button>
 				</form>
 	       </div>
@@ -111,9 +111,9 @@ function chkSubmit2(){
 					<div class="find_pw">
 						<h2>비밀번호 찾기</h2><br>
 					</div>
-						<input name="mb_id" class="find_info form-control" type="text" placeholder="아이디" required="required"><br>
-						<input name="mb_name" class="find_info form-control" type="text" placeholder="이름" required="required"><br>
-						<input name="mb_email" class="find_info form-control" type="text" placeholder="ex)  *****@example.com" required="required"><br><br>
+						<input name="mb_id" class="find_info form-control" type="text" placeholder="아이디" required="required">
+						<input name="mb_name" class="find_info form-control" type="text" placeholder="이름" required="required">
+						<input name="mb_email" class="find_info form-control" type="text" placeholder="ex)  *****@example.com" required="required">
 						<button type="submit" class="find_btn btn btn-primary">비밀번호 찾기</button>
 				</form>
 			</div>

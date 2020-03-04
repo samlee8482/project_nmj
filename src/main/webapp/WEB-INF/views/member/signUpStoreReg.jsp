@@ -116,6 +116,8 @@ function chkSubmit(){
 			<div class="animate-box fadeInUp animated">
 				<form name="frm" action="signUpStoreRegOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
 					<input type="hidden" name="mb_uid" value="${param.mb_uid }">
+					<input type="hidden" id="x" name="entX" value="${result.store_long}">
+					<input type="hidden" id="y" name="entY" value="${result.store_lat}">
 				 	<div class="col-md-12">
 					 	<div class="form-group">
 				 			<label>매장 이름 등록</label>
