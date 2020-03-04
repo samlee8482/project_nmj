@@ -121,8 +121,6 @@
             <th>이름</th>
             <th>아이디</th>
             <th>연락처</th>
-            <th>이메일</th>
-            <th>회원등록일</th>
             <th>회원삭제</th>
           </tr>
           </thead>
@@ -142,12 +140,10 @@
 				</c:otherwise>
 			</c:choose>
 			
-			<td><a href="adminStoreInfo.nmj?mb_uid=${dto.mb_uid }">${dto.store_name }</a></td>
+			<td style = "max-width: 120px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="adminStoreInfo.nmj?mb_uid=${dto.mb_uid }">${dto.store_name }</a></td>
 			<td>${dto.mb_name }</td>
 			<td>${dto.mb_id }</td>
 			<td>${dto.mb_tel }</td>
-			<td>${dto.mb_email }</td>
-			<td>${dto.mb_regDate }</td>
 			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteStoreMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button></td>
 		</tr>					
 	</c:forEach>

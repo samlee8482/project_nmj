@@ -22,8 +22,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>리뷰 상세 보기</title>
+	<c:choose>
+		<c:when test="${dto.store_uid != 0 }">
+  		<title>리뷰 상세 보기</title>
+  	</c:when>
+  	<c:otherwise>
+  		<title>자유글 상세 보기</title>
+  	</c:otherwise>
+  	</c:choose>
 
   <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -102,36 +108,60 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
+          <c:choose>
+		<c:when test="${dto.store_uid != 0 }">
           <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">리뷰 상세 보기</h1>
+            </c:when>
+            <c:otherwise>
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">자유글 상세 보기</h1>
+            </c:otherwise>
+            </c:choose>
             
           <div class="card shadow mb-4">
 
             <div class="card-body">
               
             <div style="text-align:left;">
-	<u><strong>매장종류</strong></u><br> 
-		<c:choose>
-			<c:when test="${dto.store_type == 1 }">
-				놀자
+            <c:choose>
+		<c:when test="${dto.store_uid != 0 }">
+			<u><strong>매장종류</strong></u><br> 
+				<c:choose>
+					<c:when test="${dto.store_type == 1 }">
+						놀자
+					</c:when>
+					<c:when test="${dto.store_type == 2 }">
+						먹자
+					</c:when>
+					<c:otherwise>
+						자자
+					</c:otherwise>
+				</c:choose>
+				<br><br>
+			<u><strong>매장명</strong></u><br> ${dto.store_name }  <br><br>
 			</c:when>
-			<c:when test="${dto.store_type == 2 }">
-				먹자
-			</c:when>
-			<c:otherwise>
-				자자
-			</c:otherwise>
-		</c:choose>
-		<br><br>
-	<u><strong>매장명</strong></u><br> ${dto.store_name }  <br><br>
+			</c:choose>
 	<u><strong>작성자</strong></u><br> ${dto.mb_id } <br><br>
 	<u><strong>내용</strong></u><br> ${dto.review_content }<br><br>
-	<u><strong>평점</strong></u><br> ${dto.review_rate }<br><br>
+	<c:choose>
+		<c:when test="${dto.store_uid != 0 }">
+			<u><strong>평점</strong></u><br> ${dto.review_rate }<br><br>
+	</c:when>
+	</c:choose>
 	<u><strong>조회수</strong></u><br> ${dto.review_viewCount }<br><br>
 	<u><strong>작성일</strong></u><br> ${dto.review_date }<br>
 	<br>
 	</div>
+	<button class="btn btn-primary" onclick="location.href='deleteReview.nmj?review_uid=${dto.review_uid}'">삭제하기</button><br><br>
+	
+	<c:choose>
+		<c:when test="${dto.store_uid != 0 }">
+    		<button class="contact100-form-btn" onclick="location.href='adminCommunity.nmj'">목록보기</button>
+		</c:when>
+		<c:otherwise>
+    		<button class="contact100-form-btn" onclick="location.href='adminCommunity2.nmj'">목록보기</button>
+		</c:otherwise>
+	</c:choose>
 
-    <button class="contact100-form-btn" onclick="location.href='adminCommunity.nmj'">목록보기</button>
 </div>
 </div>
 

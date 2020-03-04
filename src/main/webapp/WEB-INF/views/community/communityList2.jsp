@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
     int writePages = 10;
@@ -132,9 +133,9 @@
        	  result += '<tr>';
        	  var k = i + 1;
     	  result += '<td>'+ k + '</td>';
-    	  result += '<td>' + items[i].mb_id + '</td>';
+    	  result += '<td style="width: 100px">' + items[i].mb_id + '</td>';
     	   if(items[i].review_ban == 0){
-    		   result += '<td><a href="communityView2.nmj?review_uid=' + items[i].review_uid;
+    		   result += '<td style = "max-width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="communityView2.nmj?review_uid=' + items[i].review_uid;
     		   result += '">' + items[i].review_content + '</a></td>';
     	   } else {
     		   result += '<td>관리자에 의해 삭제된 글입니다.</td>';
@@ -160,18 +161,109 @@
 	<input type="hidden" id="page" value="1">
 	<jsp:include page="normalHeader.jsp"></jsp:include>
 	
-		<div id="fh5co-intro-section">
-    		<div class="row">
-				<div class="col-md-12 text-center">
-					<h2>자유글 목록</h2>
+		<div class="fh5co-parallax" style="background-image: url(/nmj/img/findStore.jpg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+					<div class="fh5co-intro fh5co-table-cell">
+						<h1 class="text-center">Let's Talk</h1>
+						<p>놀먹자의 다른 회원들과 자유롭게 정보를 공유해보세요!</p>
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	
 	<div class="div-relative">
 	<div class="show_list_container">
 	
-	<button class="btn btn-secondary btn-lg" onclick="location.href='communityList.nmj'">후기글</button>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h3>공지사항</h3>
+				</div>
+			</div>
+		
+	<c:choose>
+	<c:when test="${empty list || fn.length(list) == 0 }">
+		공지사항이 없습니다<br>
+	</c:when>
+	
+	<c:otherwise>
+		<table>
+			<thead>
+				<th>no.</th>
+	            <th>제목</th>
+	            <th>조회수</th>
+			</thead>
+			<tbody>
+			<c:forEach var="dto" items="${list}">
+				<tr>
+					<td>${dto.notice_uid }</td>
+				<td><a href="noticeView.nmj?notice_uid=${dto.notice_uid }">${dto.notice_subject }</a></td>
+				<td>${dto.notice_viewCount }</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</c:otherwise>
+	</c:choose>
+
+	<br><br>
+	
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h3>이벤트</h3>
+				</div>
+			</div>
+
+	<c:choose>
+	<c:when test="${empty list2 || fn.length(list2) == 0 }">
+		이벤트가 없습니다<br>
+	</c:when>
+	
+	<c:otherwise>
+		<table>
+			<thead>
+				<th>no.</th>
+	            <th>제목</th>
+	            <th>이벤트 시작</th>
+	            <th>이벤트 종료</th>
+	            <th>조회수</th>
+			</thead>
+			<tbody>
+			<c:forEach var="dto" items="${list2}">
+				<tr>
+					<td>${dto.notice_uid }</td>
+					<td><a href="noticeView.nmj?notice_uid=${dto.notice_uid }">${dto.notice_subject }</a></td>
+					
+					<td>
+					<fmt:parseDate var="parsedDate" value="${dto.notice_startDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
+					<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/>
+					</td>
+					<td>
+					<fmt:parseDate var="parsedDate" value="${dto.notice_endDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
+					<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/>
+					</td>
+					<td>${dto.notice_viewCount }</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</c:otherwise>
+	</c:choose>
+
+	<br><br>
+	
+	
+    		<div class="row">
+				<div class="col-md-12 text-center">
+					<h3>자유글 목록</h3>
+				</div>
+			</div>
+	
+	<button class="btn btn-secondary btn-lg" onclick="location.href='communityList.nmj'">리뷰글</button>
     <button class="btn btn-secondary active btn-lg" onclick="location.href='communityList2.nmj'">자유글</button>
         <br><br>
 			
@@ -183,9 +275,11 @@
 
 	<ul class="pagination" id="pagination"></ul>
 
+	<br>
+	
 	<c:choose>
-	 	<c:when test="${sessonScope.mb_uid != null }">
-		<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=${sessonScope.mb_uid}'">자유글 작성</button>
+	 	<c:when test="${sessionScope.mb_uid != null }">
+		<button class="btn btn-primary btn-lg" onclick="location.href='writeReview2.nmj?mb_uid=${sessionScope.mb_uid}'">자유글 작성</button>
 		</c:when>
 	</c:choose>
 

@@ -43,13 +43,13 @@ function chkSubmit(){
 		alert("내용을 입력하세요");
 		return false;
 	}
-
-	if(notice_content.length == 0){
+	else if(notice_content.length == 0){
 		alert("내용을 입력하세요");
 		return false;
 	}
-
-	return true;
+	else {
+		return true;
+	}
 }
 </script>
 
@@ -124,12 +124,12 @@ function chkSubmit(){
 
 			<form name="frm" method="post" action="adminNoticeWriteOk.nmj" onSubmit="return chkSubmit()">
 				
-				제목
+				<strong>제목</strong>
 				<input class="form-control mr-sm-2" type="text" name="notice_subject" />
 				
 				<br><br>
 		  		
-		  		내용
+		  		<strong>내용</strong>
 				<textarea name="notice_content" id="editor1"></textarea>
 				<script>
 					CKEDITOR.replace('editor1', {

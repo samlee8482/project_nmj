@@ -101,6 +101,13 @@ public class AdminController {
 		return "admin/adminCommunity";	
 	}
 	
+	@RequestMapping("/adminCommunity2.nmj")
+	public String communityList2(Model model) {
+		command = new AdminCommunityListCommand2();
+		command.execute(model);
+		return "admin/adminCommunity2";	
+	}
+	
 	@RequestMapping(value = "/adminSearchCommunity.nmj", method = RequestMethod.POST)
 	public String reviewSearchList(int searchOption, String search, Model model) {
 		model.addAttribute("searchOption", searchOption);
@@ -109,6 +116,19 @@ public class AdminController {
 		command.execute(model);
 		if(searchOption == 1 || searchOption == 2) {
 			return "admin/adminCommunity";	
+		} else {
+			return "admin/adminReply";	
+		}
+	}
+	
+	@RequestMapping(value = "/adminSearchCommunity2.nmj", method = RequestMethod.POST)
+	public String reviewSearchList2(int searchOption, String search, Model model) {
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("search", search);
+		command = new AdminReviewSearchListCommand2();
+		command.execute(model);
+		if(searchOption == 1 || searchOption == 2) {
+			return "admin/adminCommunity2";	
 		} else {
 			return "admin/adminReply";	
 		}
@@ -134,7 +154,7 @@ public class AdminController {
 		new AdminReviewDeleteCommand().execute(model);
 		return "admin/deleteReview";
 	}
-	
+
 	@RequestMapping(value = "/deleteReply.nmj")
 	public String deleteReply(int reply_uid, Model model) {
 		model.addAttribute("reply_uid", reply_uid);
@@ -240,9 +260,21 @@ public class AdminController {
 		return "admin/adminNotice";	
 	}
 	
+	@RequestMapping("/adminEvent.nmj")
+	public String eventlist(Model model) {
+		command = new AdminEventListCommand();
+		command.execute(model);
+		return "admin/adminEvent";	
+	}
+	
 	@RequestMapping("/adminNoticeWrite.nmj")
 	public String noticewrite(Model model) {
 		return "admin/adminNoticeWrite";	
+	}
+	
+	@RequestMapping("/adminEventWrite.nmj")
+	public String eventwrite(Model model) {
+		return "admin/adminEventWrite";	
 	}
 	
 	@PostMapping(value = "/adminNoticeWriteOk.nmj")
@@ -252,6 +284,17 @@ public class AdminController {
 		command = new AdminWriteNoticeCommand();
 		command.execute(model);
 		return "admin/writeNoticeOk";	
+	}
+	
+	@PostMapping(value = "/adminEventWriteOk.nmj")
+	public String eventwriteOk(String notice_subject, String notice_content, String notice_startDate, String notice_endDate, Model model) {
+		model.addAttribute("notice_subject", notice_subject);
+		model.addAttribute("notice_content", notice_content);
+		model.addAttribute("notice_startDate", notice_startDate);
+		model.addAttribute("notice_endDate", notice_endDate);
+		command = new AdminWriteEventCommand();
+		command.execute(model);
+		return "admin/writeEventOk";	
 	}
 	
 	@RequestMapping("/adminNoticeInfo.nmj")
@@ -270,6 +313,14 @@ public class AdminController {
 		return "admin/deleteNotice";	
 	}
 	
+	@RequestMapping("/adminEventDelete.nmj")
+	public String eventdelete(int notice_uid, Model model) {
+		model.addAttribute("notice_uid", notice_uid);
+		command = new AdminNoticeDeleteCommand();
+		command.execute(model);
+		return "admin/deleteEvent";	
+	}
+	
 	@RequestMapping("/adminNoticeUpdate.nmj")
 	public String noticeupdate(int notice_uid, Model model) {
 		model.addAttribute("notice_uid", notice_uid);
@@ -278,12 +329,32 @@ public class AdminController {
 		return "admin/adminNoticeUpdate";	
 	}
 	
+	@RequestMapping("/adminEventUpdate.nmj")
+	public String eventupdate(int notice_uid, Model model) {
+		model.addAttribute("notice_uid", notice_uid);
+		command = new AdminNoticeSelectCommand();
+		command.execute(model);
+		return "admin/adminEventUpdate";	
+	}
+	
 	@PostMapping(value = "/adminNoticeUpdateOk.nmj")
 	public String noticeupdateOk(@Param("notice_uid") int notice_uid, @Param("notice_subject") String notice_subject, @Param("notice_content") String notice_content, Model model) {
 		model.addAttribute("notice_uid", notice_uid);
 		model.addAttribute("notice_subject", notice_subject);
 		model.addAttribute("notice_content", notice_content);
 		command = new AdminUpdateNoticeCommand();
+		command.execute(model);
+		return "admin/updateNoticeOk";	
+	}
+	
+	@PostMapping(value = "/adminEventUpdateOk.nmj")
+	public String eventeupdateOk(@Param("notice_uid") int notice_uid, @Param("notice_subject") String notice_subject, @Param("notice_content") String notice_content, @Param("notice_startDate") String notice_startDate, @Param("notice_endDate") String notice_endDate, Model model) {
+		model.addAttribute("notice_uid", notice_uid);
+		model.addAttribute("notice_subject", notice_subject);
+		model.addAttribute("notice_content", notice_content);
+		model.addAttribute("notice_startDate", notice_startDate);
+		model.addAttribute("notice_endDate", notice_endDate);
+		command = new AdminUpdateEventCommand();
 		command.execute(model);
 		return "admin/updateNoticeOk";	
 	}

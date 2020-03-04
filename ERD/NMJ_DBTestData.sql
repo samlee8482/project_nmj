@@ -172,7 +172,8 @@ values
 (	67,	"subininin32",	"$2a$10$gwE6R3amUPLEtJ0GrRkVYusDfQ7hAx571HQRewGc3zJ8mZo7k4wGC",	"허숩인",	"010-9992-1144",	"",	"",	"heoheo33@gmail.com",	1	),
 (	68,	"saylalala44",	"$2a$10$gwE6R3amUPLEtJ0GrRkVYusDfQ7hAx571HQRewGc3zJ8mZo7k4wGC",	"신동규",	"010-8784-9990",	"",	"",	"shindong22@gmail.com",	1	),
 (	69,	"bigbang33",	"$2a$10$gwE6R3amUPLEtJ0GrRkVYusDfQ7hAx571HQRewGc3zJ8mZo7k4wGC",	"박상원",	"010-7575-5757",	"",	"",	"sangpark1313@gmail.com",	1	),
-(	70,	"soshi34",	"$2a$10$gwE6R3amUPLEtJ0GrRkVYusDfQ7hAx571HQRewGc3zJ8mZo7k4wGC",	"장미인애",	"010-5678-9876",	"",	"",	"beautiful313@gmail.com",	1	);
+(	70,	"soshi34",	"$2a$10$gwE6R3amUPLEtJ0GrRkVYusDfQ7hAx571HQRewGc3zJ8mZo7k4wGC",	"장미인애",	"010-5678-9876",	"",	"",	"beautiful313@gmail.com",	1	)
+;
 
 -- nmj_food (음식 테이블)
 

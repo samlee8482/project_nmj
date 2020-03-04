@@ -126,12 +126,12 @@ function chkSubmit(){
 			
 				<input type="hidden" name="notice_uid" value="${dto.notice_uid }"/>
 				
-				제목
+				<strong>제목</strong>
 				<input class="form-control mr-sm-2" type="text" name="notice_subject" value="${dto.notice_subject }"/>
 				
 				<br><br>
 		  		
-		  		내용
+		  		<strong>내용</strong>
 				<textarea name="notice_content" id="editor1">${dto.notice_content }</textarea>
 				<script>
 					CKEDITOR.replace('editor1', {

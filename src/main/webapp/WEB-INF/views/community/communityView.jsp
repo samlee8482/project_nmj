@@ -122,42 +122,39 @@ function chkSubmit(){
 	</tr>
 	</table>
 
-	<br>
 	</div>
 
-    <button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
-    <button class="btn btn-outline-warning btn-lg" onclick="location.href='communityList.nmj'">목록보기</button>
+    <button class="btn btn-danger btn-sm" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
+    <button class="btn btn-warning btn-sm" onclick="location.href='communityList.nmj'">목록보기</button>
     
 	<c:choose>
-    <c:when test="${sessonScope.mb_uid == dto.mb_uid }">
-	    <button class="btn btn-outline-success btn-lg" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}&mb_uid=${sessonScope.mb_uid}'">수정하기</button>
-	    <button class="btn btn-outline-info btn-lg" onclick="chkDelete(${dto.review_uid })">삭제하기</button>
+    <c:when test="${sessionScope.mb_uid == dto.mb_uid }">
+	    <button class="btn btn-success btn-sm" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}&mb_uid=${sessionScope.mb_uid}'">수정하기</button>
+	    <button class="btn btn-info btn-sm" onclick="chkDelete(${dto.review_uid })">삭제하기</button>
 	</c:when>
     </c:choose>
     
     <c:choose>
-	 	<c:when test="${sessonScope.mb_uid != null }">
-    	<button class="btn btn-outline-secondary btn-lg" onclick="location.href='writeReview.nmj?mb_uid=${sessonScope.mb_uid}'">작성하기</button>
+	 	<c:when test="${sessionScope.mb_uid != null }">
+    	<button class="btn btn-secondary btn-sm" onclick="location.href='writeReview.nmj?mb_uid=${sessionScope.mb_uid}'">작성하기</button>
     	</c:when>
     </c:choose>
-    <br><br><br><br><br>
+    <br><br><br>
 
-	<h3>댓글 목록</h3>
-	
-	<br><br>
+	<h4><b>댓글 목록</b></h4>
 	
 	<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" onSubmit="return chkSubmit()" method="post">
-		<input type="hidden" name="mb_uid" value="${sessonScope.mb_uid}"/> 
+		<input type="hidden" name="mb_uid" value="${sessionScope.mb_uid}"/> 
 		<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
 		<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
-		<button class="btn btn-secondary btn-lg" type="submit">등록</button>
+		<button class="btn btn-secondary" type="submit">등록</button>
 	</form>
 	
-	<br><br>
+	<br>
 
     <c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">
-		첫번째 댓글을 남겨보세요!<br>
+		<h4>첫번째 댓글을 남겨보세요!</h4>
 	</c:when>
 	
 	<c:otherwise>
@@ -170,11 +167,11 @@ function chkSubmit(){
 				<b>${reply.mb_id }</b><br>
 				${reply.reply_content }<br>
 				<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p>
-				<button class="btn btn-outline-danger btn-lg" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
+				<button class="btn btn-outline-danger btn-sm" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
 				
 				<c:choose>
-    			<c:when test="${sessonScope.mb_uid == reply.mb_uid }">
-					<button class="btn btn-outline-info btn-lg" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">삭제하기</button>
+    			<c:when test="${sessionScope.mb_uid == reply.mb_uid }">
+					<button class="btn btn-outline-info btn-sm" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">삭제하기</button>
 				</c:when>
 				</c:choose>
 				

@@ -11,9 +11,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>일반회원관리</title>
+<title>커뮤니티관리</title>
 
-<!-- Custom fonts for this template -->
+ <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -22,6 +22,9 @@
 
   <!-- Custom styles for this page / 테이블에 관한 css-->
   <link href="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="../4/united/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="../_assets/css/custom.min.css">
 
 </head>
 <body id="page-top">
@@ -33,7 +36,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="user_user.html">
+      <a class="sideㄴbar-brand d-flex align-items-center justify-content-center" href="user_user.html">
       
             <img src="img/logo2.png" style="width: 100px; margin-top: 30px;">
       </a>
@@ -85,24 +88,33 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">일반회원관리</h1>
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">커뮤니티 관리</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
 
             <div class="card-body">
-		
-		<form name="frm" class="form-inline my-2 my-lg-0" action="adminSearchMember.nmj" method="post">
+            
+        <form name="frm" class="form-inline my-2 my-lg-0" action="adminSearchCommunity2.nmj" method="post">
 		<select name="searchOption" class="custom-select">
-		  <option value="1">이름</option>
-		  <option value="2">아이디</option>
+		  <option value="1">글내용</option>
+		  <option value="2">아이디로 글검색</option>
+		  <option value="3">댓글내용</option>
+		  <option value="4">아이디로 댓글검색</option>
 		</select>
 		<input class="form-control mr-sm-2" type="text" name="search"/>
 		<button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
 		</form>
-		<br><br>
+		<br>
 		
-              <div class="table-responsive">
+		<button class="btn btn-secondary" onclick="location.href='adminCommunity.nmj'">리뷰글</button>
+		<button class="btn btn-secondary active" onclick="location.href='adminCommunity2.nmj'">자유글</button>
+        <button class="btn btn-secondary" onclick="location.href='adminReply.nmj'">댓글</button>
+        <button class="btn btn-secondary" onclick="location.href='adminNotice.nmj'">공지사항</button>
+                <button class="btn btn-secondary" onclick="location.href='adminEvent.nmj'">이벤트</button>
+        <br><br>
+            
+            <div class="table-responsive"> 
             
 	<c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">
@@ -111,33 +123,32 @@
 	
 	<c:otherwise>
       <table class="table table-bordered" id="dataTable">
-
       <thead>
           <tr>
-            <th>이름</th>
+            <th>no.</th>
             <th>아이디</th>
-            <th>연락처</th>
-            <th>이메일</th>
-            <th>회원삭제</th>
+            <th>내용</th>
+            <th>조회수</th>
+            <th>삭제</th>
           </tr>
-	</thead>
+		</thead>
+		
+		<tbody>
 	<c:forEach var="dto" items="${list}">
-	<tbody>
 		<tr>
-			<td><a href="adminMemberInfo.nmj?mb_uid=${dto.mb_uid }">${dto.mb_name }</a></td>
+			<td>${dto.review_uid }</td>
 			<td>${dto.mb_id }</td>
-			<td>${dto.mb_tel }</td>
-			<td>${dto.mb_email }</td>
-			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button></td>
-		</tr>
-		</tbody>				
+			<td style = "max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="adminCommunityInfo.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
+			<td>${dto.review_viewCount }</td>
+			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteReview.nmj?review_uid=${dto.review_uid}'">삭제</button></td>
+		</tr>					
 	</c:forEach>
-
-		</table>
+		</tbody>
+      </table>
     </c:otherwise>
 </c:choose>
 
-              </div>
+	</div>
             </div>
           </div>
 
@@ -185,6 +196,7 @@
 
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/admin/js/demo/datatables-demo.js"></script>
+
 
 </body>
 

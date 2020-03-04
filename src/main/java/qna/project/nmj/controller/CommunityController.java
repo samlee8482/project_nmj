@@ -96,6 +96,14 @@ public class CommunityController {
 		return "community/communityView2";
 	}
 	
+	@RequestMapping(value = "/noticeView.nmj")
+	public String noticeView(int notice_uid, Model model) {
+		model.addAttribute("nav", 5);
+		model.addAttribute("notice_uid", notice_uid);
+		new CommunityNoticeViewCommand().execute(model);
+		return "community/noticeView";
+	}
+	
 	// 리뷰 수정 불러오기
 	@RequestMapping("/updateReview.nmj")
 	public String updateReview(int mb_uid, int review_uid, Model model) {
