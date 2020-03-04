@@ -18,6 +18,8 @@ SELECT * FROM NMJ_space WHERE store_uid = 1 group by space_name ORDER BY space_u
 truncate table nmj_space ;  
 select * from nmj_spaceimage ns ;
 SELECT * FROM nmj_review;
+select * from nmj_space ns ;
 select * from nmj_member nm ;
 select * from nmj_store ns ;
+
 SELECT * FROM NMJ_spaceimage si, NMJ_space sp WHERE sp.space_uid = si.space_uid and sp.store_uid = 1;

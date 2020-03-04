@@ -12,13 +12,7 @@ var draggcnt = 0;
  var space_name = new Array();
  var space_xloc = new Array();
  var space_yloc = new Array();
- var token = $("meta[name='_csrf']").attr("content");
- var header = $("meta[name='_csrf_header']").attr("content");
- $(function() {
-     $(document).ajaxSend(function(e, xhr, options) {
-         xhr.setRequestHeader(header, token);
-     });
- });
+
  $(window).load(function(){
 	  $("#addButton").click(function(){
 		 var html = "";
@@ -36,34 +30,34 @@ var draggcnt = 0;
 
 			 for(var i = 0; i < spaceNum ; i++){
 				 cntpc++;
-				 html += '<div class="draggbox pcspecial pcspace infospace_count#' + 1 + ' infospace_price#' + spacePrice + ' infospaceName#' + cntpc + spaceName + ' infospaceList#1info" style="float:left"><div class="pcspaceimg" ></div><div class="pcNum">'+ cntpc + '번 좌석</div></div>';
+				 html += '<div class="draggbox pcspecial pcspace infospace_count#' + 1 + ' infospace_price#' + spacePrice + ' infospaceName#' + cntpc + spaceName + ' infospaceList#1info" style="float:left"><div class="pcspaceimg" ></div><div class="pcNum">'+ cntpc + spaceName +'</div></div>';
 			 }	
 			 html +=  '</div>';
 			 break;
 		 case '2':
 			 cntkar++;
 			 draggString = "#draggablekar";
-			 html += '<div id="draggablekar'+ draggcnt + '" class="draggablekar draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#2info"><div class="karspaceimg"></div><div class="karNum">'+ cntkar + '번 방</div></div>';
+			 html += '<div id="draggablekar'+ draggcnt + '" class="draggablekar draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#2info"><div class="karspaceimg"></div><div class="karNum">'+ spaceName + '</div></div>';
 			 break;
 		 case '3':
 			 cntbil++;
 			 draggString = "#draggablebil";
-			 html += '<div id="draggablebil'+ draggcnt + '" class="draggablebil draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' +  spaceName + ' infospaceList#3info"><div class="bilspaceimg"></div><div class="bilNum">' + cntbil + '번 당구대</div></div>';
+			 html += '<div id="draggablebil'+ draggcnt + '" class="draggablebil draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' +  spaceName + ' infospaceList#3info"><div class="bilspaceimg"></div><div class="bilNum">' + spaceName + '</div></div>';
 			 break;
 		 case '4':
 			 cntbowl++;
 			 draggString = "#draggablebowl";
-			 html += '<div id="draggablebowl'+ draggcnt + '" class="draggablebowl draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#4info"><div class="bowlspaceimg"></div><div class="bowlNum">' + cntbowl +'번 레일</div></div>';
+			 html += '<div id="draggablebowl'+ draggcnt + '" class="draggablebowl draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#4info"><div class="bowlspaceimg"></div><div class="bowlNum">' + spaceName +'</div></div>';
 			 break;
 		 case '5':
 			 cnttable++;
 			 draggString = "#draggableTable";
-			 html += '<div id="draggableTable'+ draggcnt + '" class="draggableTable draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#5info"><div class="tablespaceimg"></div><div class="tableNum">' + cnttable + '번 테이블</div></div>';
+			 html += '<div id="draggableTable'+ draggcnt + '" class="draggableTable draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#5info"><div class="tablespaceimg"></div><div class="tableNum">' + spaceName + '</div></div>';
 			 break;
 		 default:
 			 cntroom++;
 			 draggString = "#draggableRoom";
-   		 	 html += '<div id="draggableRoom'+ draggcnt + '" class="draggableRoom draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#' + selectBox + 'info"><div class="roomspaceimg"></div><div class="roomNum">' + cntroom + '번 방</div></div>';
+   		 	 html += '<div id="draggableRoom'+ draggcnt + '" class="draggableRoom draggbox ui-widget-content infospace_count#' + spaceNum + ' infospace_price#' + spacePrice + ' infospaceName#' + spaceName + ' infospaceList#' + selectBox + 'info"><div class="roomspaceimg"></div><div class="roomNum">' + spaceName + '</div></div>';
 			 break;
 		 }
 		 $("#boxMakingArea").append(html);

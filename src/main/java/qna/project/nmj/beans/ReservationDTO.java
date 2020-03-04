@@ -7,7 +7,7 @@ public class ReservationDTO {
 	private int mb_uid;
 	private String space_uid;
 	private int reservation_check;
-	private int reservation_date;
+	private String reservation_date;
 	private int reservation_count;
 	private String reservation_seat;
 	private int reservation_price;
@@ -17,7 +17,7 @@ public class ReservationDTO {
 		// TODO Auto-generated constructor stub
 	}
 	public ReservationDTO(int reservation_uid, String reservation_start, String reservation_end, int mb_uid,
-			String space_uid, int reservation_check, int reservation_date, int reservation_count,
+			String space_uid, int reservation_check, String reservation_date, int reservation_count,
 			String reservation_seat, int reservation_price, int store_uid) {
 		super();
 		this.reservation_uid = reservation_uid;
@@ -68,10 +68,10 @@ public class ReservationDTO {
 	public void setReservation_check(int reservation_check) {
 		this.reservation_check = reservation_check;
 	}
-	public int getReservation_date() {
+	public String getReservation_date() {
 		return reservation_date;
 	}
-	public void setReservation_date(int reservation_date) {
+	public void setReservation_date(String reservation_date) {
 		this.reservation_date = reservation_date;
 	}
 	public int getReservation_count() {

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.StoreDTO;
+import qna.project.nmj.beans.StoreDetailDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
 import qna.project.nmj.command.LoginCommand;
 import qna.project.nmj.command.MainCommand;

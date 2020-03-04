@@ -147,6 +147,7 @@ public class StoreMyPageController {
 	@RequestMapping(value="/storeMySpace.nmj")
 	public String storeMySpace(Model model, HttpSession session) {
 		int store_uid = (int)session.getAttribute("store_uid");
+		System.out.println(store_uid);
 		model.addAttribute("store_uid", store_uid);
 		command = new StoreMySpaceCommand();
 		command.execute(model);
