@@ -88,7 +88,7 @@ function chkSubmit(){
 	<!-- end fh5co-intro-section -->
 	
 	<div class="div-relative">
-		<div class="show_list_container">
+		<div class="write_container">
 			<form name="frm" method="post" action="updateReviewOk2.nmj" onSubmit="return chkSubmit()">
 				
 				<input id="review_uid" type="hidden" name="review_uid" value="${dto.review_uid }" />
@@ -102,7 +102,7 @@ function chkSubmit(){
 				<script>
 					CKEDITOR.replace('editor1', {
 						allowedContent: true,
-						width: '600px',
+						width: '100%',
 						height: '600px'
 					});
 				</script>

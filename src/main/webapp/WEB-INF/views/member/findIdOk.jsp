@@ -53,14 +53,14 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>아이디 찾기</h2>
-					<p>"네 이름이 금도끼냐 은도끼냐"</p>
+					<p>"다음번엔 까먹지 않기!"</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
 
-	<div class="div-relative" style="height: 300px;">
+	<div class="div-relative">
 		<div class="findOk_container">
 			<div class="findOk_content">회원님께서 찾으시는 아이디는 <br>'${findIdOk}'입니다.<br>다시 로그인 해주시기 바랍니다.</div><br><br>
 			<button class="login_btn" onclick="location.href='login.nmj'">로그인</button>
