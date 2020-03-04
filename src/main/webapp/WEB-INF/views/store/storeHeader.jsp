@@ -33,29 +33,11 @@
 
 	<header>
 		<div class="container text-center headerContainer">
-			<c:choose>
-				<c:when test="${sessionScope.mb_uid eq null}">
-					<div id="login_signUp">
-						<span id="login">로그인</span>
-						<span class="line">|</span>
-						<span id="signup">회원가입</span>
-					</div>
-				</c:when>
-				<c:when test="${sessionScope.mb_uid != null }">
-					<div id="logout_mypage">
-						<span id="logout">로그아웃</span>
-						<span class="line">|</span>
-						<c:choose>
-							<c:when test="${sessionScope.mb_type == 1 }">
-								<span id="mypage">마이페이지</span>					
-							</c:when>
-							<c:when test="${sessionScope.mb_type == 2 }">
-								<span id="storepage">매장페이지</span>
-							</c:when>
-						</c:choose>
-					</div>
-				</c:when>			
-			</c:choose>
+			<div id="logout_mypage">
+				<span id="logout">로그아웃</span>
+				<span class="line">|</span>
+				<span id="storepage">매장페이지</span>
+			</div>
 			<div class="fh5co-navbar-brand">
 				<a class="fh5co-logo" href="index.html"><img
 					src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"
@@ -103,22 +85,11 @@ $(document).ready(function(){
 	$("#7").removeClass("active");
 	$("#" + ${nav}).addClass("active");
 	
-	$("span#login").click(function (){
-		location.href = "${pageContext.request.contextPath}/member/login.nmj";
-	});
-
-	$("span#signup").click(function (){
-		location.href = "${pageContext.request.contextPath}/member/signUpType.nmj";
-	});
-
 	$("span#logout").click(function (){
 		// 세션 삭제
 		location.href = "${pageContext.request.contextPath}/member/logout.nmj";
 	});
 	
-	$("span#mypage").click(function(){
-		location.href="${pageContext.request.contextPath}/customer/cusMyPage.nmj";
-	});	
 	$("span#storepage").click(function(){
 		location.href="${pageContext.request.contextPath}/store/storeMySpace.nmj";
 	});
