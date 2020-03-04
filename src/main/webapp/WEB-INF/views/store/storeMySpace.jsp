@@ -10,9 +10,6 @@
 <title>놀먹자~!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="favicon.ico">
-<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-
 <!-- Animate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/animate.css">
 <!-- Icomoon Icon Fonts-->
@@ -70,7 +67,7 @@
 				<ul>
 					<li><a id="1" href="${pageContext.request.contextPath}/member/main.nmj">홈</a></li>
 					<li><a id="2" href="${pageContext.request.contextPath}/customer/cusUpdateInfo.jsp?mb_uid=${sessionScope.mb_uid}">회원정보수정</a></li>
-					<li><a id="3" href="storeMySpace.nmj?store_uid=${sessionScope.store_uid}">매장 공간 관리</a></li>
+					<li><a id="3" class="active" href="storeMySpace.nmj?store_uid=${sessionScope.store_uid}">매장 공간 관리</a></li>
 					<li><a id="4" href="storeMyFood.nmj?store_uid=${sessionScope.store_uid}">음식 메뉴 관리</a></li>
 					<li><a id="5" href="storeMyReview.nmj?store_uid=${sessionScope.store_uid}">내 매장 리뷰보기</a></li>
 					<li><a id="6" href="storeSettings.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정</a></li>
@@ -178,9 +175,9 @@
 								</c:forEach>
 							</select>
 							<span>인원수</span><input id="spaceNum" type="number" style="width:70px;">
-							<div class="clear"/>
+							<div class="clear"></div>
 							<span>공간 이름</span><input id="spaceName" type="text">
-							<div class="clear"/>
+							<div class="clear"></div>
 							<span>공간 가격</span><input id="spacePrice" type="number">
 							</h4>
 							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
@@ -195,7 +192,7 @@
 				<span>고르신 공간 : </span> <span id="select-result">없음</span>.
 				<form name ="space_uids"id="space_uids" target="매장 이미지 넣기" method="post">
 				</form>
-					<button id="imgAllInsert">이미지 넣기</button>
+					<button id="imgAllInsert" class="btn btn-danger">이미지 넣기</button>
 				
 				
 				</div>
@@ -205,7 +202,7 @@
 						<c:forEach var="list" items="${space2 }">
 							<li class="space_uid${list.space_uid } ui-widget-content">
 								<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
-								<button onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
+								<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
 							</li>
 						</c:forEach>
 						</ol>

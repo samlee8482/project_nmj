@@ -143,15 +143,26 @@ public class MemberController {
 	
 	// 매장회원 매장정보 양식
 	@RequestMapping("/signUpStoreReg.nmj")
-	public void signUpStoreReg() {
-		
+	public void signUpStoreReg(Model model) {
+		model.addAttribute("nav", 0);
 	}
 	
 	// 매장회원 매장정보 요청
 	@RequestMapping("/signUpStoreRegOk.nmj")
-	public String signUpStoreRegOk(@RequestParam("upload") MultipartFile upload, StoreDTO dto, Model model) {
+	public String signUpStoreRegOk(
+			@RequestParam("storeImg") MultipartFile storeImg, 
+			@RequestParam("storeRegImg") MultipartFile storeRegImg, 
+			StoreDTO dto, 
+			String entY,
+			String entX,
+			Model model) {
+		if(entY != null || entY.equals("") || entX != null || entX.equals("")) {
+			dto.setStore_lat(Double.parseDouble(entY));
+			dto.setStore_long(Double.parseDouble(entX));
+		}
 		model.addAttribute("dto", dto);
-		model.addAttribute("upload", upload);
+		model.addAttribute("storeImg", storeImg);
+		model.addAttribute("storeRegImg", storeRegImg);
 		new SignUpStoreRegOkCommand().execute(model);
 		return "/member/signUpStoreRegOk";
 	}

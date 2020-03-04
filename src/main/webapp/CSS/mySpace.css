@@ -35,7 +35,7 @@
 #boxListArea{
 	width: 300px;
 	height: 200px;
-	background-color: red;
+	background-color: #138496;
 }
 
 #confirmArea{
@@ -180,6 +180,7 @@
 
 #mySpaceImg{
 	width: 300px;
+	background-color: #f7bdaa;
 	
 }
 
@@ -189,7 +190,6 @@
 
 #selectable .ui-selected {
 	background: #F39814;
-	color: white;
 }
 
 #selectable {
@@ -201,5 +201,25 @@
 #selectable li {
 	margin: 3px;
 	font-size: 10px;
-	height: 18px;
+	height: 30px;
+}
+
+#selectable li a{
+	color: black;
+}
+#select-result{
+	font-size:11px;
+	color: black;
+}
+
+#imgAllInsert{
+	width: 100%;
+}
+
+.storeImgDetailbtn{
+	float:right;
+}
+
+.card-title span{
+	color:white;
 }
