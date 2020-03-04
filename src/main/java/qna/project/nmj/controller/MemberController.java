@@ -174,6 +174,7 @@ public class MemberController {
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		if(mb_uid != 0) {
 			session.setAttribute("mb_uid", mb_uid);
+			System.out.println(mb_uid);
 		}
 		int type = (Integer)model.getAttribute("type");
 		session.setAttribute("mb_type", type);

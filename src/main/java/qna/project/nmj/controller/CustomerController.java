@@ -26,13 +26,15 @@ public class CustomerController {
 	
 	// 마이페이지 연결 전 세션값 있는지 확인하는 페이지
 	@RequestMapping("/cusMyPageAction.nmj")
-	public String updateInfoAction() {
+	public String updateInfoAction(Model model) {
+		model.addAttribute("nav", 0);
 		return "/customer/cusMyPageAction";
 	}
 	
 	// 손님회원 - 마이페이지(새힘)
 	@RequestMapping("/cusMyPage.nmj")
 	public String myPage(HttpSession session, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		return "customer/cusMyPage";
 	}
@@ -40,7 +42,9 @@ public class CustomerController {
 	// 마이페이지 - 회원 정보 수정 불러오기
 	@RequestMapping("/cusUpdateInfo.nmj")
 	public String updateInfo(HttpSession session, Model model) {
-		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
+		model.addAttribute("nav", 0);
+		model.addAttribute("mb_uid", (int)session.getAttribute("mb_uid"));
+		System.out.println(model.getAttribute("mb_uid"));
 		new CusUpdateInfoCommand().execute(model);
 		return "/customer/cusUpdateInfo";
 	}
@@ -48,6 +52,7 @@ public class CustomerController {
 	// 마이페이지 - 회원 정보 수정
 	@RequestMapping(value="/cusUpdateInfoOk.nmj", method = RequestMethod.POST)
 	public String updateInfoOk(HttpSession session, @RequestParam("upload") MultipartFile upload, MemberDTO dto, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("dto", dto);
 		model.addAttribute("upload", upload);
@@ -58,6 +63,7 @@ public class CustomerController {
 	// 마이페이지 - 예약/찜 목록 보기
 	@RequestMapping("/cusShowReserve.nmj")
 	public String showReserve(HttpSession session, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusShowReserveCommand().execute(model);
 		new CusShowLikeCommand().execute(model);
@@ -67,6 +73,7 @@ public class CustomerController {
 	// 마이페이지 - 내 리뷰, 댓글 보기
 	@RequestMapping("/cusShowReview.nmj")
 	public String showReview(HttpSession session, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusShowReviewCommand().execute(model);
 		new CusShowReplyCommand().execute(model);
@@ -76,6 +83,7 @@ public class CustomerController {
 	// 예약페이지
 	@RequestMapping("/cusReserve.nmj")
 	public String reserve(HttpSession session, int store_uid, int store_type, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("store_type", store_type);
@@ -85,6 +93,7 @@ public class CustomerController {
 	
 	@RequestMapping("/cusReserveOk.nmj")
 	public String reserveOk(ReservationDTO dto, Model model) {
+		model.addAttribute("nav", 0);
 		model.addAttribute("dto", dto);
 		new CusReserveOkCommand().execute(model);
 		return "/customer/cusReserveOk";
