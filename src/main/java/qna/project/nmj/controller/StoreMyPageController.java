@@ -47,7 +47,8 @@ public class StoreMyPageController {
 	
 //	2. 매장 정보 수정
 	@RequestMapping("/storeSettings.nmj")
-	public String storeSettings(int store_uid, Model model) {
+	public String storeSettings(HttpSession session, Model model) {
+		int store_uid = (int) session.getAttribute("store_uid");
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
 		model.addAttribute("nav", 6);
@@ -65,7 +66,8 @@ public class StoreMyPageController {
 	
 //	3. 매장 정보 수정 요청
 	@RequestMapping(value = "/storeSettingsRequest.nmj")
-	public String storeSettingsRequest(int store_uid, Model model) {
+	public String storeSettingsRequest(HttpSession session, Model model) {
+		int store_uid = (int) session.getAttribute("store_uid");
 		model.addAttribute("store_uid", store_uid);
 		new StoreSettingsCommand().execute(model);
 		model.addAttribute("nav", 7);
@@ -95,7 +97,8 @@ public class StoreMyPageController {
 	
 //	4. 음식 메뉴 관리
 	@RequestMapping(value = "/storeMyFood.nmj")
-	public String storeMyFood(int store_uid, Model model) {
+	public String storeMyFood(HttpSession session, Model model) {
+		int store_uid = (int)session.getAttribute("store_uid");
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("nav", 4);
 		
@@ -128,7 +131,8 @@ public class StoreMyPageController {
 	}
 //	4-3. 매장 음식 추가
 	@RequestMapping(value = "/storeMyFoodInsert.nmj")
-	public String storeMyFoodInsert(int store_uid, Model model) {
+	public String storeMyFoodInsert(HttpSession session, Model model) {
+		int store_uid = (int) session.getAttribute("store_uid");
 		model.addAttribute("store_uid", store_uid);
 		model.addAttribute("nav", 4);
 		return "/store/storeMyFoodInsert";
