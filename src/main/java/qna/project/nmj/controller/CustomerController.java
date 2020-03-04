@@ -26,8 +26,8 @@ public class CustomerController {
 	
 	// 마이페이지 연결 전 세션값 있는지 확인하는 페이지
 	@RequestMapping("/cusMyPageAction.nmj")
-	public String updateInfoAction() {
-		
+	public String updateInfoAction(Model model) {
+		model.addAttribute("nav", 0);
 		return "/customer/cusMyPageAction";
 	}
 	

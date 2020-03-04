@@ -121,4 +121,8 @@ public interface StoreMyPageDAO {
 
 	
 	public ArrayList<StoreDTO> selectAllStores();
+	
+	public int reservationOk(int reservation_uid);
+	
+	public int reservationNo(int reservation_uid);
 }

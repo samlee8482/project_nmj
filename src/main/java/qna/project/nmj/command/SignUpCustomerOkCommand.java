@@ -21,7 +21,9 @@ public class SignUpCustomerOkCommand implements Command {
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		
 		cnt = dao.insertMember(dto);
+		int mb_uid = dao.selectMb_Uid(dto.getMb_id());
 		
+		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("result", cnt);
 	}
 

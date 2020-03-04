@@ -1,6 +1,5 @@
 package qna.project.nmj.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -8,9 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
+import qna.project.nmj.beans.StoreDTO;
+import qna.project.nmj.beans.StoreDetailDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
 import qna.project.nmj.command.LoginCommand;
 import qna.project.nmj.command.MainCommand;
@@ -141,22 +143,26 @@ public class MemberController {
 	
 	// 매장회원 매장정보 양식
 	@RequestMapping("/signUpStoreReg.nmj")
-	public void signUpStoreReg() {
-		
+	public void signUpStoreReg(Model model) {
+		model.addAttribute("nav", 0);
 	}
 	
 	// 매장회원 매장정보 요청
 	@RequestMapping("/signUpStoreRegOk.nmj")
-	public String signUpStoreRegOk(String store_name, String store_address, String store_regNum, String store_type, String store_dtype, String store_tel, String store_start, String store_end, String store_content, Model model) {
-		model.addAttribute("store_name", store_name);
-		model.addAttribute("store_address", store_address);
-		model.addAttribute("store_regNum", store_regNum);
-		model.addAttribute("store_type", store_type);
-		model.addAttribute("store_dtype", store_dtype);
-		model.addAttribute("store_tel", store_tel);
-		model.addAttribute("store_start", store_start);
-		model.addAttribute("store_end", store_end);
-		model.addAttribute("store_content", store_content);
+	public String signUpStoreRegOk(
+			@RequestParam("storeImg") MultipartFile storeImg, 
+			@RequestParam("storeRegImg") MultipartFile storeRegImg, 
+			StoreDTO dto, 
+			String entY,
+			String entX,
+			Model model) {
+		if(entY != null || entY.equals("") || entX != null || entX.equals("")) {
+			dto.setStore_lat(Double.parseDouble(entY));
+			dto.setStore_long(Double.parseDouble(entX));
+		}
+		model.addAttribute("dto", dto);
+		model.addAttribute("storeImg", storeImg);
+		model.addAttribute("storeRegImg", storeRegImg);
 		new SignUpStoreRegOkCommand().execute(model);
 		return "/member/signUpStoreRegOk";
 	}
@@ -176,6 +182,7 @@ public class MemberController {
 		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		if(mb_uid != 0) {
 			session.setAttribute("mb_uid", mb_uid);
+			System.out.println(mb_uid);
 		}
 		System.out.println((Integer)session.getAttribute("mb_uid"));
 		int type = (Integer)model.getAttribute("type");

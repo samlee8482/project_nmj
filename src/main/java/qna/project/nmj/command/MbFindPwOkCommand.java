@@ -37,7 +37,7 @@ public class MbFindPwOkCommand implements Command {
 //		String mb_email = (String)model.getAttribute("mb_email");    
 
 		final String SMTP_USERNAME = "samlee8482@naver.com";
-		final String SMTP_PASSWORD = "aiu794613!";
+		final String SMTP_PASSWORD = "aiu794613~";
 		String HOST = "smtp.naver.com";
 		//int PORT = 587;
 
@@ -87,7 +87,7 @@ public class MbFindPwOkCommand implements Command {
 				   message.setSubject("[놀먹자] 비밀번호 안내입니다.");
 				   
 				   // 메일 내용
-				   message.setText("놀먹자를 이용해주셔서 감사합니다.\n" + dto.getMb_name() + " 고객님의 임시 비밀번호는 " + ranPw + "입니다.");
+				   message.setText("놀먹자를 이용해주셔서 감사합니다.\n" + dto.getMb_name() + " 고객님의 임시 비밀번호는 " + ranPw + "입니다.\n임시비밀번호로 로그인 한 뒤 반드시 비밀번호 변경을 해주시기 바랍니다.");
 		
 				   System.out.println("Sending...");
 				   

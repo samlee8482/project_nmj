@@ -10,9 +10,6 @@
 <title>놀먹자~!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="favicon.ico">
-<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-
 <!-- Animate.css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/animate.css">
 <!-- Icomoon Icon Fonts-->
@@ -27,8 +24,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/mySpace.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootswatch.css">
 
-<!-- Modernizr JS -->
-<script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
+
 <!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	
@@ -42,7 +38,8 @@
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- Stellar -->
 	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-<script> var store_uid = ${store_uid};</script>
+<script> var store_uid = ${sessionScope.store_uid};
+</script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="${pageContext.request.contextPath}/js/mySpace.js"></script>
@@ -70,7 +67,7 @@
 				<ul>
 					<li><a id="1" href="${pageContext.request.contextPath}/member/main.nmj">홈</a></li>
 					<li><a id="2" href="${pageContext.request.contextPath}/customer/cusUpdateInfo.jsp?mb_uid=${sessionScope.mb_uid}">회원정보수정</a></li>
-					<li><a id="3" href="storeMySpace.nmj?store_uid=${sessionScope.store_uid}">매장 공간 관리</a></li>
+					<li><a id="3" class="active" href="storeMySpace.nmj?store_uid=${sessionScope.store_uid}">매장 공간 관리</a></li>
 					<li><a id="4" href="storeMyFood.nmj?store_uid=${sessionScope.store_uid}">음식 메뉴 관리</a></li>
 					<li><a id="5" href="storeMyReview.nmj?store_uid=${sessionScope.store_uid}">내 매장 리뷰보기</a></li>
 					<li><a id="6" href="storeSettings.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정</a></li>
@@ -120,8 +117,8 @@
 							<td>${reserv.reservation_end }</td>
 							<td>${reserv.reservation_count }</td>
 							<td>${reserv.reservation_price }</td>
-							<td><button>승인</button></td>
-							<td><button>거절</button></td>
+							<td><button class="reservOk ${reserv.reservation_uid }">승인</button></td>
+							<td><button class="reservNo ${reserv.reservation_uid }">거절</button></td>
 						</tr>				
 					</c:forEach>
 						</table>
@@ -178,9 +175,9 @@
 								</c:forEach>
 							</select>
 							<span>인원수</span><input id="spaceNum" type="number" style="width:70px;">
-							<div class="clear"/>
+							<div class="clear"></div>
 							<span>공간 이름</span><input id="spaceName" type="text">
-							<div class="clear"/>
+							<div class="clear"></div>
 							<span>공간 가격</span><input id="spacePrice" type="number">
 							</h4>
 							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
@@ -195,7 +192,7 @@
 				<span>고르신 공간 : </span> <span id="select-result">없음</span>.
 				<form name ="space_uids"id="space_uids" target="매장 이미지 넣기" method="post">
 				</form>
-					<button id="imgAllInsert">이미지 넣기</button>
+					<button id="imgAllInsert" class="btn btn-danger">이미지 넣기</button>
 				
 				
 				</div>
@@ -205,7 +202,7 @@
 						<c:forEach var="list" items="${space2 }">
 							<li class="space_uid${list.space_uid } ui-widget-content">
 								<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
-								<button onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
+								<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
 							</li>
 						</c:forEach>
 						</ol>
@@ -220,7 +217,28 @@
 		
 	
 	<div class="clear"></div><br><br><br>
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<footer>
+		<div id="footer" class="fh5co-border-line">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<p>
+							Copyright 2020 Team <a href="#">Q&A</a>. All Rights
+							Reserved. <br>Made with <i class="icon-heart3 love"></i> by
+							<a href="#" target="_blank">Korea IT Academy</a> /
+							Images: <a href="https://www.pexels.com/" target="_blank">Pexels</a>
+							&amp; <a href="http://plmd.me/" target="_blank">PLMD</a>
+						</p>
+						<p class="fh5co-social-icons">
+							<a href="#"><i class="icon-twitter-with-circle"></i></a> <a
+								href="#"><i class="icon-facebook-with-circle"></i></a> <a
+								href="#"><i class="icon-instagram-with-circle"></i></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 	
 	<!-- Main JS (Do not remove) -->

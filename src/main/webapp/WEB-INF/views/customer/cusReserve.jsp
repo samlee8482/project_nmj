@@ -102,7 +102,7 @@ function chkSubmit(){
 		frm["reservation_end"].focus();
 		return false;
 	}
-	if(reservation_count == "" || (typeof(reservation_count) != "number")){
+	if(reservation_count == "" ){
 		alert("인원을 입력해주세요.");
 		frm["reservation_count"].focus();
 		return false;
@@ -310,7 +310,7 @@ $(document).ready(function(){
 						</div>
 				<div id="resultBox">
 							
-							<input type="text" placeholder="인원을 입력하세요" name="reservation_count" id="reserve_count" class="reserve_info form-control myInput"/ required>
+							<input type="number" placeholder="인원을 입력하세요" name="reservation_count" id="reservation_count" class="reserve_info form-control myInput"/ required>
 				<hr width="100%" align="center" size="0.7px">
 							<div>금액</div>
 							

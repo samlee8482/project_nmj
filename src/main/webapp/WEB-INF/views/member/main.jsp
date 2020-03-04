@@ -140,7 +140,7 @@
 				<div class="col-md-4 blog-section"  onclick="location.href = 'storeDetail.nmj?store_uid=${nol.store_uid}'">			
 					<a class="imgBox"><img src="${pageContext.request.contextPath}/img/store/${nol.store_img_sav}"></a>
 					<span>${num.count }<small>★ ${nol.totalAvg }</small></span>
-					<h3>${nol.store_name }</h3>
+					<h3 style="margin-bottom: 20px;">${nol.store_name }</h3>
 					<a class="btn btn-primary" href='storeDetail.nmj?store_uid=${nol.store_uid}'>Read More</a>
 				</div>
 				</c:forEach>			
@@ -215,7 +215,14 @@
                   <c:forEach var="talk" items="${community }">
                      <tr>
                         <td>${talk.mb_id }</td>
-                        <td><a href="${pageContext.request.contextPath}/community/communityView.nmj?review_uid=${talk.review_uid}">${talk.review_content }</a></td>
+                        <c:choose>
+                        	<c:when test="${fn:length(talk.review_content) > 10 }">
+		                        <td><a href="${pageContext.request.contextPath}/community/communityView.nmj?review_uid=${talk.review_uid}">${fn:substring(talk.review_content,0,10) }...</a></td>                	                        		
+                        	</c:when>
+                        	<c:otherwise>
+		                        <td><a href="${pageContext.request.contextPath}/community/communityView.nmj?review_uid=${talk.review_uid}">${talk.review_content }</a></td>                	
+                        	</c:otherwise>
+                        </c:choose>
                         <td>${talk.review_date }</td>
                         <td>${talk.review_viewCount }</td>
                      </tr>

@@ -321,8 +321,24 @@ values
 (5, 3, "싫어요", 0),
 (6, 3, "굳굳", 0);
 
+insert into nmj_notice 
+(notice_subject, notice_content, notice_viewCount )
+values
+("놀먹자 기본 수칙", "1. 바른말 고운말\n 2. 허위광고&과대광고 금지\n 3. 기범이는 짱이다", 7942);
+
+
+insert into nmj_notice
+(notice_subject, notice_content, notice_startDate, notice_endDate, notice_type )
+values
+("수수료 할인 이벤트 진행~!", "")
+
+
+
+
+
+
+
 select * from nmj_spacelist ns ;
-select * from nmj_review nr ;
 select * from nmj_member;
 select * from nmj_storedtype;
 select * from nmj_store;

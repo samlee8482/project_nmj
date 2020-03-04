@@ -55,7 +55,7 @@ function chkSubmit(){
 				<div>
 					<button class="loginButton" type="submit">로그인</button>
 					<div class="findIdPw">
-						<button>ID | PW 찾기</button>
+						<button type="button" onclick="location.href='findIdPw.nmj'">ID | PW 찾기</button>
 						<button>회원가입</button>
 					</div>
 				</div>	

@@ -10,6 +10,7 @@ public class CusMyPageDTO {
 	private Timestamp reservation_start;
 	private Timestamp reservation_end;
 	private int reservation_count;
+	private int reservation_price;
 	private String reservation_seat;
 	private String review_content;
 	private int review_rate;
@@ -25,9 +26,9 @@ public class CusMyPageDTO {
 	}
 
 	public CusMyPageDTO(int store_uid, int store_type, String store_name, Timestamp reservation_start,
-			Timestamp reservation_end, int reservation_count, String reservation_seat, String review_content,
-			int review_rate, int review_viewCount, Timestamp review_date, int review_uid, String reply_content,
-			Timestamp reply_date, int reply_uid) {
+			Timestamp reservation_end, int reservation_count, int reservation_price, String reservation_seat,
+			String review_content, int review_rate, int review_viewCount, Timestamp review_date, int review_uid,
+			String reply_content, Timestamp reply_date, int reply_uid) {
 		super();
 		this.store_uid = store_uid;
 		this.store_type = store_type;
@@ -35,6 +36,7 @@ public class CusMyPageDTO {
 		this.reservation_start = reservation_start;
 		this.reservation_end = reservation_end;
 		this.reservation_count = reservation_count;
+		this.reservation_price = reservation_price;
 		this.reservation_seat = reservation_seat;
 		this.review_content = review_content;
 		this.review_rate = review_rate;
@@ -92,6 +94,14 @@ public class CusMyPageDTO {
 
 	public void setReservation_count(int reservation_count) {
 		this.reservation_count = reservation_count;
+	}
+
+	public int getReservation_price() {
+		return reservation_price;
+	}
+
+	public void setReservation_price(int reservation_price) {
+		this.reservation_price = reservation_price;
 	}
 
 	public String getReservation_seat() {
@@ -166,4 +176,5 @@ public class CusMyPageDTO {
 		this.reply_uid = reply_uid;
 	}
 
+	
 }

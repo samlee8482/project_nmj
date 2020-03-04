@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -104,8 +106,14 @@ function chkSubmit(){
 </style>
 
 <body>
-
-	<jsp:include page="normalHeader.jsp"></jsp:include>
+	<c:choose>
+		<c:when test="${sessionScope.mb_type == 2}">
+			<jsp:include page="../store/storeHeader.jsp"/>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="normalHeader.jsp"></jsp:include>
+		</c:otherwise>
+	</c:choose>
 
 	<div id="fh5co-intro-section">
 		<div class="container">
