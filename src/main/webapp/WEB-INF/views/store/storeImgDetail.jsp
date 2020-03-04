@@ -69,7 +69,7 @@
 					<div>${list.space_img_sav }</div>
 				</div>
 				<div class="deletebox">
-					<button class="doDel btn btn-info img_uid${list.space_img_uid }" onclick="location.href='storeMySpaceImgDelete.nmj?space_img_uid=${list.space_img_uid}&space_uid=${list.space_uid }'">삭제하기</button>
+					<button class="doDel outline-primary img_uid${list.space_img_uid }" onclick="location.href='storeMySpaceImgDelete.nmj?space_img_uid=${list.space_img_uid}&space_uid=${list.space_uid }'">삭제하기</button>
 				</div>
 			</div>
 		</c:forEach>
