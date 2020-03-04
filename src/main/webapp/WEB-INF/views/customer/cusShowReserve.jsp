@@ -47,7 +47,6 @@ table, th, td{
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>예약&찜 목록</h2>
-					<p>"이곳은 당신의 발자취"</p>
 				</div>
 			</div>
 		</div>
@@ -56,7 +55,7 @@ table, th, td{
 	
 	<div class="div-relative" style="width: 100%; height: auto;">
 		<div class="show_list_container">
-			<h1>놀자 예약목록</h1><br><br><br><br>
+			<h1>놀자 예약목록</h1>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -104,7 +103,7 @@ table, th, td{
 		
 			<br>
 		
-			<h1>먹자 예약목록</h1><br><br><br><br>
+			<h1>먹자 예약목록</h1>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -131,7 +130,7 @@ table, th, td{
 		
 			<br>
 		
-			<h1>자자 예약목록</h1><br><br><br><br>
+			<h1>자자 예약목록</h1>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -162,7 +161,7 @@ table, th, td{
 		
 			<br>
 		
-			<h1>찜</h1><br><br><br><br>
+			<h1>찜</h1>
 			<table>
 				<tr>
 					<th>No.</th>

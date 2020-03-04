@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=241e9154c601bbf9fb3d6d3a33e4af25&libraries=services"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -113,6 +115,7 @@ function chkSubmit(){
 		<div class="row">
 			<div class="animate-box fadeInUp animated">
 				<form name="frm" action="signUpStoreRegOk.nmj" method="post" onsubmit="return chkUpdate()" enctype="Multipart/form-data">
+					<input type="hidden" name="mb_uid" value="${param.mb_uid }">
 				 	<div class="col-md-12">
 					 	<div class="form-group">
 				 			<label>매장 이름 등록</label>
