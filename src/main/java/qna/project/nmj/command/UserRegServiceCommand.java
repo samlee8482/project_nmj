@@ -21,5 +21,12 @@ public class UserRegServiceCommand{
 
 		return dao.checkOverId(mb_id);
 	}
+	// 중복 아이디 체크
+	public int userEmailCheck(String mb_email) {
+		
+		dao = userSqlSessin.getMapper(MemberDAO.class);
+		
+		return dao.checkOverEmail(mb_email);
+	}
 	
 }

@@ -1,6 +1,5 @@
 package qna.project.nmj.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -8,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
+import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.StoreDetailDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
 import qna.project.nmj.command.LoginCommand;
@@ -148,16 +149,9 @@ public class MemberController {
 	
 	// 매장회원 매장정보 요청
 	@RequestMapping("/signUpStoreRegOk.nmj")
-	public String signUpStoreRegOk(String store_name, String store_address, String store_regNum, String store_type, String store_dtype, String store_tel, String store_start, String store_end, String store_content, Model model) {
-		model.addAttribute("store_name", store_name);
-		model.addAttribute("store_address", store_address);
-		model.addAttribute("store_regNum", store_regNum);
-		model.addAttribute("store_type", store_type);
-		model.addAttribute("store_dtype", store_dtype);
-		model.addAttribute("store_tel", store_tel);
-		model.addAttribute("store_start", store_start);
-		model.addAttribute("store_end", store_end);
-		model.addAttribute("store_content", store_content);
+	public String signUpStoreRegOk(@RequestParam("upload") MultipartFile upload, StoreDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		model.addAttribute("upload", upload);
 		new SignUpStoreRegOkCommand().execute(model);
 		return "/member/signUpStoreRegOk";
 	}

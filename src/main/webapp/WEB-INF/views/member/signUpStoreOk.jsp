@@ -13,7 +13,7 @@
 	<c:when test="${result == 1}">
 		<script>
 			alert("다음 양식으로 넘어갑니다.");
-			location.href="signUpStoreReg.nmj?mb_uid=${dto.mb_uid})";
+			location.href="signUpStoreReg.nmj?mb_uid=${mb_uid}";
 		</script>
 	</c:when>
 </c:choose>

@@ -38,7 +38,6 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>내가 쓴 리뷰와 댓글</h2>
-					<p>"한번 뱉어낸 말은 다시 삼킬 수 없다"</p>
 				</div>
 			</div>
 		</div>

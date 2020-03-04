@@ -107,8 +107,9 @@ function chkSubmit(){
 				</div>
 				<div class="signUp_input_container">
 					<input name="mb_name" class="form-control" placeholder="이름" required>
-					<input name="mb_email" class="form-control" placeholder="이메일" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" required>
 					<input name="mb_tel" class="form-control" placeholder="전화번호 ex) 010-1234-1234" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})" required>
+					<input name="mb_email" class="form-control" placeholder="이메일" pattern="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$" required>
+					<div class="check_font" id="email_check"></div>
 					<input name="mb_type" type="hidden" value="1">
 				</div>
 				<br>
@@ -199,7 +200,48 @@ function chkSubmit(){
 			});
 		});
 	</script>
-	
+	<script>
+	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#mb_email").blur(function() {
+		// id = "id_reg" / name = "userId"
+		var mb_email = $('#mb_email').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/user/emailCheck?mb_email='+ mb_email,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+						// 1 : 이메일이 중복되는 문구
+						$("#email_check").text("사용중인 이메일입니다 :p");
+						$("#email_check").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+					} else {
+						
+						if(mb_email.trim().length >= 4 && mb_email.trim().length <= 40 ){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#email_check").text("");
+							$("#reg_submit").attr("disabled", false);
+				
+						} else if(mb_email == ""){
+							
+							$('#email_check').text('이메일을 입력해주세요 :)');
+							$('#email_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} else {
+							$('#email_check').text("올바르지 않은 이메일 주소 입니다.");
+							$('#email_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);
+						}
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>

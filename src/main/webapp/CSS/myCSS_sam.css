@@ -174,7 +174,7 @@
 }
 
 .find_info_container{
-	width: 1000px;
+	width: 300px;
 	height: auto;
 	margin: 0px auto;
 }
@@ -195,6 +195,7 @@
 	background-color: white;
 	border: 0.7px solid #aaa;
 	border-radius: 5px;
+	margin-top: 30px;
 }
 
 .findOk_container{

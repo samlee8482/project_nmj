@@ -21,4 +21,12 @@ public class AjaxUserRegController {
 
 			return reg_service.userIdCheck(mb_id);
 		}
+		
+		// email 중복 체크 컨트롤러
+		@RequestMapping(value = "/user/emailCheck", method = RequestMethod.GET)
+		@ResponseBody
+		public int emailCheck(@RequestParam("mb_email") String mb_email) {
+			
+			return reg_service.userEmailCheck(mb_email);
+		}
 }
