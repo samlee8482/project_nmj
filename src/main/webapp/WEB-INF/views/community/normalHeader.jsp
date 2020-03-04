@@ -46,7 +46,7 @@
 			</c:choose>
 
 			<div class="fh5co-navbar-brand">
-				<a href="main.nmj"><img id="logo" src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"></a>
+				<a href="${pageContext.request.contextPath}/member/main.nmj"><img id="logo" src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"></a>
 			</div>
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
