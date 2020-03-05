@@ -66,7 +66,16 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+		div.mapEvent{
+			position: relative;
+			top: 20px;
+			height: 150px;
+		}
+		div.mapEvent > div{
+			font-size: 13px;
+		}
+	</style>
 	</head>
 	<body>
 	<jsp:include page="normalHeader.jsp"></jsp:include>
@@ -138,7 +147,16 @@
 			<div class="row">
 				<c:forEach var="nol" items="${nol }" varStatus="num">
 				<div class="col-md-4 blog-section"  onclick="location.href = 'storeDetail.nmj?store_uid=${nol.store_uid}'">			
-					<a class="imgBox"><img src="${pageContext.request.contextPath}/img/store/${nol.store_img_sav}"></a>
+					<a class="imgBox">
+					<c:choose>
+						<c:when test="${empty nol.store_img_sav }">
+							<img src="${pageContext.request.contextPath}/img/store/storeDefault.jpeg">
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/img/store/${nol.store_img_sav}">
+						</c:otherwise>
+					</c:choose>
+					</a>
 					<span>${num.count }<small>★ ${nol.totalAvg }</small></span>
 					<h3 style="margin-bottom: 20px;">${nol.store_name }</h3>
 					<a class="btn btn-primary" href='storeDetail.nmj?store_uid=${nol.store_uid}'>Read More</a>
@@ -157,7 +175,16 @@
 			<div class="row">
 				<c:forEach var="muk" items="${muk }" varStatus="num">
 				<div class="col-md-4 blog-section"  onclick="location.href = 'storeDetail.nmj?store_uid=${muk.store_uid}'">			
-					<a class="imgBox"><img src="${pageContext.request.contextPath}/img/store/${muk.store_img_sav}"></a>
+					<a class="imgBox">
+					<c:choose>
+						<c:when test="${empty muk.store_img_sav }">
+							<img src="${pageContext.request.contextPath}/img/store/storeDefault.jpeg">
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/img/store/${muk.store_img_sav}">
+						</c:otherwise>
+					</c:choose>
+					</a>
 					<span>${num.count }<small>★ ${muk.totalAvg }</small></span>
 					<h3>${muk.store_name }</h3>
 					<a class="btn btn-primary" href='storeDetail.nmj?store_uid=${muk.store_uid}'>Read More</a>
@@ -176,7 +203,16 @@
 			<div class="row">
 				<c:forEach var="ja" items="${ja }" varStatus="num">
 				<div class="col-md-4 blog-section"  onclick="location.href = 'storeDetail.nmj?store_uid=${ja.store_uid}'">			
-					<a class="imgBox"><img src="${pageContext.request.contextPath}/img/store/${ja.store_img_sav}"></a>
+					<a class="imgBox">
+					<c:choose>
+						<c:when test="${empty ja.store_img_sav }">
+							<img src="${pageContext.request.contextPath}/img/store/storeDefault.jpeg">
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/img/store/${ja.store_img_sav}">
+						</c:otherwise>
+					</c:choose>
+					</a>
 					<span>${num.count }<small>★ ${ja.totalAvg }</small></span>
 					<h3>${ja.store_name }</h3>
 					<a class="btn btn-primary" href='storeDetail.nmj?store_uid=${ja.store_uid}'>Read More</a>
