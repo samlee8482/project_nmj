@@ -80,7 +80,7 @@ values
 insert into nmj_member 
 	(mb_uid, mb_id,	mb_pw, mb_name,	mb_tel,	mb_img_org,	mb_img_sav,	mb_email, mb_type)
 values
-	(100, "admin", "1234", "명성힘", "010-0000-0000", "", "", "admin@nmj.com", 3);
+	(100, "admin", "$2a$10$gwE6R3amUPLEtJ0GrRkVYusDfQ7hAx571HQRewGc3zJ8mZo7k4wGC", "명성힘", "010-0000-0000", "", "", "admin@nmj.com", 3);
 
 -- nmj_store (매장 회원)
 INSERT INTO nmj_store
