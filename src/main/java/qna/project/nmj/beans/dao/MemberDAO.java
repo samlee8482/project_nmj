@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import qna.project.nmj.beans.LikeDTO;
 import qna.project.nmj.beans.MainDTO;
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.StoreDTO;
@@ -48,6 +49,7 @@ public interface MemberDAO {
 	
 	public int getStoreUid(int mb_uid);
 	
+	public LikeDTO getLike(int mb_uid, int store_uid);
 	// 매장 찾기 페이지
 	// 몇번째 from 부터 몇개 rows 를 SELECT
 	public ArrayList<StoreDTO> selectStore(int store_type);

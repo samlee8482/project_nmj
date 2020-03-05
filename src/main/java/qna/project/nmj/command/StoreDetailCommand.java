@@ -10,10 +10,12 @@ public class StoreDetailCommand implements Command{
 	@Override
 	public void execute(Model model) {
 		int store_uid = (Integer)model.getAttribute("store_uid");
+		int mb_uid = (Integer)model.getAttribute("mb_uid");
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		model.addAttribute("list", dao.selectStoreDetail(store_uid));
 		model.addAttribute("restSeat", dao.StoreDetailRestSeat(store_uid));
 		model.addAttribute("foodMenu", dao.selectFood(store_uid));
+		model.addAttribute("like", dao.getLike(mb_uid, store_uid));
 		
 	}
 	
