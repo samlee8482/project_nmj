@@ -328,9 +328,18 @@ values
 (6, 3, "굳굳", 0);
 
 insert into nmj_notice 
-(notice_subject, notice_content, notice_viewCount )
+(notice_subject, notice_content, notice_viewCount, notice_type )
 values
-("놀먹자 기본 수칙", "1. 바른말 고운말\n 2. 허위광고&과대광고 금지\n 3. 기범이는 짱이다", 7942);
+("놀먹자 기본 수칙", "1. 바른말 고운말\n 2. 허위광고&과대광고 금지\n 3. 기범이는 ^^", 7942, 0),
+("도배금지", "똑같은 글 도배할 시 강제로 회원탈퇴할거니까 하지 마세요", 3, 0)
+;
+
+insert into nmj_notice 
+(notice_subject, notice_content, notice_startDate, notice_endDate, notice_type )
+values
+("놀자 할인 이벤트", "10% 할인합니다", "2020-03-05", "2020-03-30", 1),
+("첫 코인 충천시 쿠폰지급!", "처음으로 코인 충전하신 분들에게 3000원 무료 쿠폰 지급해드립니다", "2020-03-01", "2020-06-30", 1)
+;
 
 
 
