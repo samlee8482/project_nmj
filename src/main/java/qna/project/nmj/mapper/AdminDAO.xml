@@ -256,7 +256,7 @@
  		resultType="qna.project.nmj.beans.NoticeDTO">
  		SELECT * FROM NMJ_notice 
  		WHERE notice_type = 1 and 
- 		 notice_startDate &lt;= now() and notice_endDate &gt;= now()
+ 		 now() between notice_startDate and notice_endDate
  		ORDER BY notice_uid DESC
  	</select>
  	
