@@ -20,6 +20,21 @@
 		VALUES
 		(#{dto.store_name}, #{dto.store_address}, #{dto.store_regNum}, #{dto.store_type}, #{dto.store_dtype}, #{dto.store_tel}, #{dto.store_hours}, #{dto.store_content}, #{dto.store_regImg_org}, #{dto.store_regImg_sav}, #{dto.store_img_org}, #{dto.store_img_sav}, #{dto.store_lat}, #{dto.store_long}, #{dto.mb_uid});
 	</insert>
+	<!-- 매장 store_uid 불러오기 -->
+	<select id="selectStore_Uid" resultType="int">
+		SELECT store_uid
+		FROM NMJ_store
+		WHERE mb_uid = #{param1}
+		ORDER BY store_regDate DESC limit 1;
+	</select>
+	<!-- 매장정보 승인요청 -->
+	<insert id="insertRequest">
+		INSERT INTO
+			nmj_request
+			(request_type, request_content)
+		VALUES
+			(#{dto.request_type}, #{dto.request_content});
+	</insert>
 	
 	<!-- 아이디 중복검사 -->
 	<select id="checkOverId" parameterType="String" resultType="int">
@@ -114,7 +129,7 @@
 	
 	
 	
-<!-- 메인 페이지 -->
+	<!-- 메인 페이지 -->
 	
 	<!-- 평점순 추천 가게(핫플레이스) -->
 	<select id="selectHotPlaceNol" resultType="qna.project.nmj.beans.MainDTO">

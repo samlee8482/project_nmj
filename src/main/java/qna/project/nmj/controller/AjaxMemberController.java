@@ -3,9 +3,11 @@ package qna.project.nmj.controller;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import qna.project.nmj.ajax.dto.AjaxBoardQueryResult;
 import qna.project.nmj.ajax.dto.AjaxStoreDTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreFindDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypeDTO;
@@ -171,4 +173,35 @@ public class AjaxMemberController {
 		return result;
 	}
 	
+	@PostMapping(value="/insertLike")
+	public AjaxBoardQueryResult insertLike(int mb_uid, int store_uid) {
+		AjaxBoardQueryResult qr = new AjaxBoardQueryResult();
+		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
+		int cnt = 0; 
+		cnt = dao.likeInsert(mb_uid, store_uid);
+		if(cnt != 0) {
+			qr.setStatus("OK");
+			qr.setCount(cnt);
+		}else {
+			qr.setStatus("FAIL");
+			qr.setCount(cnt);
+		}
+		return qr;
+	}
+	
+	@PostMapping(value="/deleteLike")
+	public AjaxBoardQueryResult deleteLike(int mb_uid, int store_uid) {
+		AjaxBoardQueryResult qr = new AjaxBoardQueryResult();
+		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
+		int cnt = 0; 
+		cnt = dao.likeCancel(mb_uid, store_uid);
+		if(cnt != 0) {
+			qr.setStatus("OK");
+			qr.setCount(cnt);
+		}else {
+			qr.setStatus("FAIL");
+			qr.setCount(cnt);
+		}
+		return qr;
+	}
 }

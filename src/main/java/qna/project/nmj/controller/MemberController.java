@@ -12,13 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.StoreDTO;
-import qna.project.nmj.beans.StoreDetailDTO;
 import qna.project.nmj.command.FindStoreGetCommand;
 import qna.project.nmj.command.LoginCommand;
 import qna.project.nmj.command.MainCommand;
 import qna.project.nmj.command.MbFindIdOkCommand;
 import qna.project.nmj.command.MbFindPwOkCommand;
 import qna.project.nmj.command.SignUpCustomerOkCommand;
+import qna.project.nmj.command.SignUpStoreOkCommand;
 import qna.project.nmj.command.SignUpStoreRegOkCommand;
 import qna.project.nmj.command.StoreDetailCommand;
 
@@ -144,7 +144,7 @@ public class MemberController {
 	@RequestMapping("/signUpStoreOk.nmj")
 	public String signUpStoreOk(MemberDTO dto, Model model) {
 		model.addAttribute("dto", dto);
-		new SignUpCustomerOkCommand().execute(model);
+		new SignUpStoreOkCommand().execute(model);
 		return "/member/signUpStoreOk";
 	}
 	

@@ -37,17 +37,8 @@ public class AjaxMapController {
 			case 5:
 				icon = "cinema.png";
 				break;
-			case 6:
-				icon = "korean.png";
-				break;
-			case 7:
-				icon = "chinese.png";
-				break;
-			case 8:
-				icon = "western.png";
-				break;
-			case 9:
-				icon = "japanese.png";
+			case 6: case 7: case 8: case 9:
+				icon = "restaurant.png";
 				break;
 			case 10:
 				icon = "fastfood.png";
