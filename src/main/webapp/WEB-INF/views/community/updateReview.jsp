@@ -49,6 +49,16 @@ function chkSubmit(){
 	return true;
 }
 </script>
+
+<c:choose>
+	<c:when test="${sessionScope.mb_uid == null || empty sessionScope.mb_uid}">
+		<script>
+			alert("로그인을 하지 않으셨거나 권한이 없는 사용자 또는 자동 로그아웃 되었습니다. 로그인 해주세요.");
+			location.href = "${pageContext.request.contextPath}/member/main.nmj";
+		</script>
+	</c:when>
+</c:choose>
+
 </head>
 <body>
 	<header>
