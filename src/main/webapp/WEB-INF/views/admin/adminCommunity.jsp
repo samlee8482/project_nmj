@@ -65,6 +65,12 @@
           <i class="fas fa-fw fa-cog"></i>
           <span>Customer Service</span></a>
       </li>
+      
+      	<li class="nav-item">
+      	<a class="nav-link" href="${pageContext.request.contextPath}/member/logout.nmj"> 
+          <i class="fas fa-fw fa-cog"></i>
+          <span>LogOut</span></a>
+		</li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -89,7 +95,8 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">커뮤니티 관리</h1>
-
+			
+			
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
 

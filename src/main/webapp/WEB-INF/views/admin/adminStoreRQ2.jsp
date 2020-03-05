@@ -77,6 +77,12 @@
           <i class="fas fa-fw fa-cog"></i>
           <span>Customer Service</span></a>
       </li>
+      
+      <li class="nav-item">
+      	<a class="nav-link" href="${pageContext.request.contextPath}/member/logout.nmj"> 
+          <i class="fas fa-fw fa-cog"></i>
+          <span>LogOut</span></a>
+		</li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -118,6 +124,61 @@
 					</c:when>
 					<c:otherwise>
 						자자
+					</c:otherwise>
+				</c:choose>
+			<br><br>
+			<u><strong>매장상세종류</strong></u><br> 
+				<c:choose>
+					<c:when test="${dto.store_dtype == 1 }">
+						피시방
+					</c:when>
+					<c:when test="${dto.store_dtype == 2 }">
+						노래방
+					</c:when>
+					<c:when test="${dto.store_dtype == 3 }">
+						당구장
+					</c:when>
+					<c:when test="${dto.store_dtype == 4 }">
+						볼링장
+					</c:when>
+					<c:when test="${dto.store_dtype == 5 }">
+						영화관
+					</c:when>
+					<c:when test="${dto.store_dtype == 6 }">
+						한식
+					</c:when>
+					<c:when test="${dto.store_dtype == 7 }">
+						중식
+					</c:when>
+					<c:when test="${dto.store_dtype == 8 }">
+						양식
+					</c:when>
+					<c:when test="${dto.store_dtype == 9 }">
+						일식
+					</c:when>
+					<c:when test="${dto.store_dtype == 10 }">
+						분식
+					</c:when>
+					<c:when test="${dto.store_dtype == 11 }">
+						모텔
+					</c:when>
+					<c:when test="${dto.store_dtype == 12 }">
+						호텔
+					</c:when>
+					<c:when test="${dto.store_dtype == 13 }">
+						리조트/콘도
+					</c:when>
+					<c:when test="${dto.store_dtype == 14 }">
+						펜션/풀빌라
+					</c:when>
+					<c:when test="${dto.store_dtype == 15 }">
+						게스트하우스
+					</c:when>
+					<c:when test="${dto.store_dtype == 16 }">
+						술집
+					</c:when>
+					<c:otherwise>
+						기타
 					</c:otherwise>
 				</c:choose>
 			<br><br>
