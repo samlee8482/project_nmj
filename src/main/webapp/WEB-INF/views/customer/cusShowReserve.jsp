@@ -172,7 +172,17 @@ table, th, td{
 						<tr>
 							<td>${status.index + 1}</td>
 							<td>${item.store_name }</td>
-							<td>${item.store_type }</td>
+							<c:choose>
+								<c:when test="${item.store_type == 1 }">
+									<td>놀자</td>
+								</c:when>
+								<c:when test="${item.store_type == 2 }">
+									<td>먹자</td>
+								</c:when>
+								<c:when test="${item.store_type == 3 }">
+									<td>자자</td>
+								</c:when>
+							</c:choose>
 						</tr> 
 						</c:forEach>
 				</c:if>
