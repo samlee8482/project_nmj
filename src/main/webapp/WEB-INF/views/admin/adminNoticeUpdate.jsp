@@ -34,21 +34,20 @@
 
 <script>
 function chkSubmit(){
-	frm = document.forms["frm"];
+	var editor_val = CKEDITOR.instances.editor1.document.getBody().getChild(0).getText() ;
+    
+	if (editor_val.trim() == '') {
+		alert('글을 작성해주세요!') ;
+		return false ;
+	}
 	
-	var notice_subject = frm["subject_content"].value.trim();
-	var notice_content = frm["notice_content"].value.trim();
-
+	frm = document.forms["frm"];
+	var notice_subject = frm["notice_subject"].value.trim();
 	if(notice_subject == ""){
-		alert("내용을 입력하세요");
+		alert("제목을 입력하세요");
 		return false;
 	}
-
-	if(notice_content.length == 0){
-		alert("내용을 입력하세요");
-		return false;
-	}
-
+	
 	return true;
 }
 </script>
