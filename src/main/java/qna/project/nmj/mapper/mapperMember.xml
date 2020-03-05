@@ -119,7 +119,7 @@
 		select 
 			count(space_name) count
 		from nmj_space
-		where space_empty = 1 and store_uid = #{param1};
+		where space_empty = 0 and store_uid = #{param1};
 	</select>
 	
 	
