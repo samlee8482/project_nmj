@@ -11,7 +11,7 @@
 <c:if test="${cnt == 1 }">
 	<script>
 		alert("음식 추가 성공");
-		// location.href = "";
+		location.href = "${pageContext.servletContext.contextPath}/store/storeMyFood.nmj";
 	</script>
 </c:if>
 <c:if test="${cnt == 101 }">
