@@ -33,12 +33,16 @@
 <script src="js/jquery.js"></script>
 <script>
 function chkSubmit(){
+	var editor_val = CKEDITOR.instances.editor1.document.getBody().getChild(0).getText() ;
+    
+	if (editor_val.trim() == '') {
+		alert('글을 작성해주세요!') ;
+		return false ;
+	}
 	frm = document.forms["frm"];
-	
-	var review_content = frm["review_content"].value.trim();
-	
-	if(review_content.length == 0){
-		alert("내용을 입력하세요");
+	var review_rate = frm["review_rate"].value.trim();
+	if(review_rate == 0){
+		alert("평점을 입력하세요");
 		return false;
 	}
 	

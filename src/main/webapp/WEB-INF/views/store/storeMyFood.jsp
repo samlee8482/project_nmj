@@ -54,7 +54,7 @@ function changeDetails() {
 		result += "<div class='fh5co-grid-work'>";
 		
 		result += "<div class='work-holder'>";
-		result += "<img style='width: 100%; height: 100%;' src='${pageContext.servletContext.contextPath}/img/food/" + food[i].food_img_sav + "'>";
+		result += "<img style='width: 100%; height: 300px;' src='${pageContext.servletContext.contextPath}/img/food/" + food[i].food_img_sav + "'>";
 		result += "</div>";
 		
 		result += "<div class='desc'>";
