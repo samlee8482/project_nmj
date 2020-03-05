@@ -122,14 +122,28 @@
        result += '<th>내용</th>';
        result += '<th>조회수</th>';
        result += '</tr>';
+       
     
     if(jsonObj.status == "OK") {
        
        var count = jsonObj.count; // 글 개수
        var items = jsonObj.list; // 글 목록
+       var noticeList = jsonObj.noticeList; // 글 목록
        
        if(count == 0){
     	   result += '첫번째 게시글을 남겨보세요!<br>';
+       }
+       
+       var j;
+       for(j = 0; j<noticeList.length; j++){
+    	 result += '<tr>';
+		 result += '<td style="background-color: #FFF0F0"> 공지글 </td>';
+		 result += '<td style="background-color: #FFF0F0"> - </td>';
+		 result += '<td style="background-color: #FFF0F0"> - </td>';
+		 result += '<td style="background-color: #FFF0F0"> 관리자 </td>';
+		 result += '<td style="background-color: #FFF0F0"><a href="noticeView.nmj?notice_uid=' + noticeList[j].notice_uid + '">' + noticeList[j].notice_subject + '</a></td>';
+		 result += '<td style="background-color: #FFF0F0">' + noticeList[j].notice_viewCount + '</td>';
+		 result += '</tr>';
        }
        
        var i;
@@ -190,38 +204,7 @@
 	
 	<div class="div-relative">
 	<div class="show_list_container">
-	
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<h3>공지사항</h3>
-				</div>
-			</div>
 		
-	<c:choose>
-	<c:when test="${empty list || fn.length(list) == 0 }">
-		공지사항이 없습니다<br>
-	</c:when>
-	
-	<c:otherwise>
-		<table>
-			<thead>
-				<th>no.</th>
-	            <th>제목</th>
-	            <th>조회수</th>
-			</thead>
-			<tbody>
-			<c:forEach var="dto" items="${list}">
-				<tr>
-					<td>${dto.notice_uid }</td>
-				<td><a href="noticeView.nmj?notice_uid=${dto.notice_uid }">${dto.notice_subject }</a></td>
-				<td>${dto.notice_viewCount }</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-	</c:otherwise>
-	</c:choose>
-
 	<br><br>
 	
 			<div class="row">
@@ -231,25 +214,22 @@
 			</div>
 
 	<c:choose>
-	<c:when test="${empty list2 || fn.length(list2) == 0 }">
+	<c:when test="${empty list || fn.length(list) == 0 }">
 		이벤트가 없습니다<br>
 	</c:when>
 	
 	<c:otherwise>
 		<table>
 			<thead>
-				<th>no.</th>
 	            <th>제목</th>
 	            <th>이벤트 시작</th>
 	            <th>이벤트 종료</th>
 	            <th>조회수</th>
 			</thead>
 			<tbody>
-			<c:forEach var="dto" items="${list2}">
+			<c:forEach var="dto" items="${list}">
 				<tr>
-					<td>${dto.notice_uid }</td>
 					<td><a href="noticeView.nmj?notice_uid=${dto.notice_uid }">${dto.notice_subject }</a></td>
-					
 					<td>
 					<fmt:parseDate var="parsedDate" value="${dto.notice_startDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
 					<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/>
