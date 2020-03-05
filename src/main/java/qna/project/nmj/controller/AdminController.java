@@ -229,8 +229,8 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/adminAccept.nmj")
-	public String acceptStoreOk(int store_uid, int request_uid, Model model) {
-		model.addAttribute("store_uid", store_uid);
+	public String acceptStoreOk(int mb_uid, int request_uid, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("request_uid", request_uid);
 		new AdminStoreAcceptOkCommand().execute(model);
 		return "admin/acceptStore";
