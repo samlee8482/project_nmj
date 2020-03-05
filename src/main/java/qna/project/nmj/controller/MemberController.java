@@ -176,7 +176,8 @@ public class MemberController {
 	
 	// 로그인
 	@RequestMapping("/login.nmj")
-	public String login() {
+	public String login(Model model) {
+		model.addAttribute("nav", 0);
 		return "/member/login";
 	}
 	

@@ -40,6 +40,9 @@
 							<c:when test="${sessionScope.mb_type == 2 }">
 								<span id="storepage">매장페이지</span>
 							</c:when>
+							<c:when test="${sessionScope.mb_type == 3 }">
+								<span id="adminpage">관리자페이지</span>
+							</c:when>
 						</c:choose>
 					</div>
 				</c:when>			
@@ -103,6 +106,9 @@
 		});	
 		$("span#storepage").click(function(){
 			location.href="${pageContext.request.contextPath}/store/storeMySpace.nmj";
+		});
+		$("span#adminpage").click(function(){
+			location.href="${pageContext.request.contextPath}/admin/adminMember.nmj";
 		});
 	});
 	</script>
