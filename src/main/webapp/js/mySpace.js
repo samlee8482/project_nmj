@@ -14,6 +14,20 @@ var draggcnt = 0;
  var space_yloc = new Array();
 
  $(window).load(function(){
+	 $(".spaceDelete").click(function(){
+		 var space_uid = $(this).attr("class").split("#")[1];
+		 $.ajax({
+			 url : "/nmj/ajax/store/spaceDelete.ajax",
+			 type : "POST",
+			 cache : false,
+			 data : {
+				 "space_uid" : space_uid
+			 },
+			 success : function(data, status){
+				 alert("삭제에 성공했습니다.");
+			 }
+		 });
+	 });
 	 $(".reservOk").click(function(){
 		 var reservUid = $(this).attr("class").split(" ")[1];
 		 $.ajax({
