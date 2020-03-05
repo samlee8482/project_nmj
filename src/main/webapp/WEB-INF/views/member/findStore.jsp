@@ -196,7 +196,7 @@ function changeDetails() {
 			result += "<a href='" + uidUrl;
 			result += "'>";
 		
-		if(dtypes[i].stores[j].store_img_sav == null) {
+		if(dtypes[i].stores[j].store_img_sav.trim().length == 0) {
 			result += "<img src = '${pageContext.request.contextPath}/img/store/storeDefault.jpeg'>";
 		} else {
 			result += "<img src='${pageContext.request.contextPath}/img/store/" + dtypes[i].stores[j].store_img_sav + "'>";	
@@ -246,7 +246,7 @@ function changeDetailsOnClick(DTYPE){
 		
 		result += "<a href='storeDetail.nmj?store_uid=" + stores[i].store_uid + "'>";
 		
-		if(stores[i].store_regImg_sav == null) {
+		if(stores[i].store_regImg_sav.trim().length == 0) {
 			result += "<img src = '${pageContext.request.contextPath}/img/store/storeDefault.jpeg'>";
 		} else {
 			result += "<img src='${pageContext.request.contextPath}/img/store/" + stores[i].store_img_sav + "'>";
@@ -295,7 +295,7 @@ function searchStoreName(storeName) {
 			result += "<a href='" + uidUrl;
 			result += "'>";
 		
-		if(dtypes[i].stores[j].store_img_sav == null) {
+		if(dtypes[i].stores[j].store_img_sav.trim().length == 0) {
 			result += "<img src = '${pageContext.request.contextPath}/img/store/storeDefault.jpeg'>";
 		} else {
 			result += "<img src='${pageContext.request.contextPath}/img/store/" + dtypes[i].stores[j].store_img_sav + "'>";	
@@ -318,9 +318,6 @@ function searchStoreName(storeName) {
 	}
 	$("div#storeLists").html(result);	
 	
-			
-		
-		
 	
 }
 
