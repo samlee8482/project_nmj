@@ -44,7 +44,7 @@
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/storeDetail.css">
-
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -52,7 +52,9 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	<script>
+		
+	</script>
 	</head>
 	<body>
 
@@ -87,7 +89,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 animate-box">
-					<h3>매장 정보</h3>
+					<div id="storeInfomation">매장 정보 
+						<c:if test="${sessionScope.mb_uid != null }">
+						<c:choose>
+							<c:when test="${empty like}">
+								<div id="likebtn">
+									찜<i class="far fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>
+								</div>
+							</c:when>
+							<c:when test="${not empty like }">
+								<div id="dislikebtn">
+									찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>
+								</div>							
+							</c:when>						
+						</c:choose>
+						</c:if>
+					</div>
+					
 					<ul class="contact-info">
 						<li><i class="icon-table"></i>잔여석 : <b>${restSeat.count }</b></li>
 						<li><i class="icon-phone2"></i>${list.store_tel }</li>

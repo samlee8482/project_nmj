@@ -71,7 +71,14 @@ public class MemberController {
 	
 	
 	@RequestMapping("storeDetail.nmj")
-	public String storeDetail(int store_uid, Model model) {
+	public String storeDetail(int store_uid, Model model, HttpSession session) {
+		int mb_uid = 0;
+		
+		if(session.getAttribute("mb_uid") != null){
+			mb_uid = (Integer)session.getAttribute("mb_uid");						
+		}
+		
+		model.addAttribute("mb_uid", mb_uid);
 		model.addAttribute("nav", 0);
 		model.addAttribute("store_uid", store_uid);
 		new StoreDetailCommand().execute(model);
