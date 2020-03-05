@@ -166,6 +166,15 @@
 	<select id="getLike" resultType="qna.project.nmj.beans.LikeDTO">
 		SELECT * FROM nmj_like WHERE mb_uid = #{param1} AND store_uid = #{param2};
 	</select>
+	
+	<delete id="likeCancel">
+		delete from NMJ_like where mb_uid = #{param1} AND store_uid = #{param2};
+	</delete>
+	
+	<insert id="likeInsert">
+		insert into NMJ_like (mb_uid, store_uid) values (#{param1}, #{param2});
+	</insert>
+	
 </mapper>
 
 
