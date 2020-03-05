@@ -11,7 +11,7 @@
 <c:if test="${cnt == 1 }">
 	<script>
 		alert("정보 수정 요청 성공");
-		// location.href = "";
+		location.href = "${pageContext.servletContext.contextPath}/member/main.nmj";
 	</script>
 </c:if>
 <c:if test="${cnt == 101 }">
