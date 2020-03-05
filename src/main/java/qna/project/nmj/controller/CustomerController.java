@@ -42,7 +42,12 @@ public class CustomerController {
 	// 마이페이지 - 회원 정보 수정 불러오기
 	@RequestMapping("/cusUpdateInfo.nmj")
 	public String updateInfo(Model model,  HttpSession session) {
-		model.addAttribute("nav", 0);
+		int mb_type = (int)session.getAttribute("mb_type");
+		if( mb_type == 2) {
+			model.addAttribute("nav", 2);
+		} else {
+			model.addAttribute("nav", 0);
+		}
 		System.out.println((Integer)session.getAttribute("mb_uid"));
 		model.addAttribute("mb_uid", (Integer)session.getAttribute("mb_uid"));
 		new CusUpdateInfoCommand().execute(model);
