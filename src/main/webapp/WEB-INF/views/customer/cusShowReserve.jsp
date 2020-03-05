@@ -168,13 +168,13 @@ table, th, td{
 					<th>분류</th>
 				</tr>
 				<c:if test="${not empty myPageLike}">
-					<tr>
 						<c:forEach var="item" items="${myPageLike}" varStatus="status">
+						<tr>
 							<td>${status.index + 1}</td>
 							<td>${item.store_name }</td>
 							<td>${item.store_type }</td>
+						</tr> 
 						</c:forEach>
-					</tr> 
 				</c:if>
 				<c:if test="${empty myPageLike }">
 					<tr>
