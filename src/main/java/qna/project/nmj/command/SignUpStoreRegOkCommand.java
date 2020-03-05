@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import qna.project.nmj.beans.C;
+import qna.project.nmj.beans.RequestDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.dao.MemberDAO;
 
@@ -106,11 +107,27 @@ public class SignUpStoreRegOkCommand implements Command {
 		
 		String store_hours = dto.getStore_start() + "~" + dto.getStore_end();
 		dto.setStore_hours(store_hours);
-		System.out.println("Command store_start : " + dto.getStore_hours());
+		System.out.println("Command store_hours : " + dto.getStore_hours());
+		
 		
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		
+		// 매장정보등록
 		cnt = dao.insertStore(dto);
+
+		// store_uid 불러오기
+		int store_uid = dao.selectStore_Uid(dto.getMb_uid());
+		System.out.println("Command store_uid : " + store_uid);
+		
+		// 매장등록 요청
+		RequestDTO rdto = new RequestDTO();
+		String request_content = "";
+		request_content = "store_uid:" + store_uid;
+		rdto.setRequest_content(request_content);
+		System.out.println("Command request_content : " + request_content);
+		rdto.setRequest_type(1); // 'request_type = 1'은 가입 요청
+		int rcnt = dao.insertRequest(rdto);
+		System.out.println("Command rcnt : " + rcnt);
 		
 		model.addAttribute("result", cnt);
 	}
