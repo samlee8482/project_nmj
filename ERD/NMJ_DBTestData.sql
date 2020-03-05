@@ -187,26 +187,26 @@ values
 insert into nmj_food 
 	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
 values
-	(	1,	1,	"",	"",	1500,	"아이스티"	),
-(	2,	1,	"",	"",	2000,	"아이스커피"	),
-(	3,	1,	"",	"",	1500,	"녹차"	),
-(	4,	1,	"",	"",	1000,	"콜라"	),
-(	5,	1,	"",	"",	1000,	"사이다"	),
-(	6,	1,	"",	"",	1000,	"환타"	),
-(	7,	1,	"",	"",	2500,	"라면"	),
-(	8,	1,	"",	"",	3500,	"김치볶음밥"	),
-(	9,	1,	"",	"",	2200,	"생과일쥬스"	),
-(	10,	1,	"",	"",	500,	"계랸"	),
-(	11,	1,	"",	"",	500,	"치즈"	),
-(	12,	1,	"",	"",	3000,	"떡볶이"	),
-(	13,	1,	"",	"",	2000,	"기본 핫도그"	),
-(	14,	1,	"",	"",	2500,	"치즈 핫도그"	),
-(	15,	1,	"",	"",	2500,	"매콤 핫도그"	),
-(	16,	1,	"",	"",	3500,	"치킨마요덮밥"	),
-(	17,	1,	"",	"",	2500,	"김치만두"	),
-(	18,	1,	"",	"",	2500,	"갈비만두"	),
-(	19,	1,	"",	"",	2000,	"김밥"	),
-(	20,	1,	"",	"",	2500,	"치즈김밥"	);
+(	1,	1,	"icetea.jpg",	"icetea.jpg",	1500,	"아이스티"	),
+(	2,	1,	"iceCoffe.jpg",	"iceCoffe.jpg",	2000,	"아이스커피"	),
+(	3,	1,	"greenTea.jpg",	"greenTea.jpg",	1500,	"녹차"	),
+(	4,	1,	"cola.png",	"cola.png",	1000,	"콜라"	),
+(	5,	1,	"cider.jpeg",	"cider.jpeg",	1000,	"사이다"	),
+(	6,	1,	"fanta.jpg",	"fanta.jpg",	1000,	"환타"	),
+(	7,	1,	"ramen.jpg",	"ramen.jpg",	2500,	"라면"	),
+(	8,	1,	"kimchiFriedRice.jpeg",	"kimchiFriedRice.jpeg",	3500,	"김치볶음밥"	),
+(	9,	1,	"realFruitJuice.png",	"realFruitJuice.png",	2200,	"생과일쥬스"	),
+(	10,	1,	"egg.jpg",	"egg.jpg",	500,	"계랸"	),
+(	11,	1,	"cheeze.jpeg",	"cheeze.jpeg",	500,	"치즈"	),
+(	12,	1,	"tteokbokki.jpeg",	"tteokbokki.jpeg",	3000,	"떡볶이"	),
+(	13,	1,	"normalHotdog.jpeg",	"normalHotdog.jpeg",	2000,	"기본 핫도그"	),
+(	14,	1,	"cheeseHotdog.jpeg",	"cheeseHotdog.jpeg",	2500,	"치즈 핫도그"	),
+(	15,	1,	"spiceHotdog.jpg",	"spiceHotdog.jpg",	2500,	"매콤 핫도그"	),
+(	16,	1,	"chickenMayo.jpg",	"chickenMayo.jpg",	3500,	"치킨마요덮밥"	),
+(	17,	1,	"kimchiMandoo.jpg",	"kimchiMandoo.jpg",	2500,	"김치만두"	),
+(	18,	1,	"galbiMandoo.jpg",	"galbiMandoo.jpg",	2500,	"갈비만두"	),
+(	19,	1,	"kimbab.jpg",	"kimbab.jpg",	2000,	"김밥"	),
+(	20,	1,	"cheezeKimbab.jpg",	"cheezeKimbab.jpg",	2500,	"치즈김밥"	);
 
 
 /* 놀자 매장들 공통 음식 추가*/
@@ -225,15 +225,15 @@ where ns.store_type = 1 and ns.store_uid > 1;
 insert into nmj_food 
 	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
 values
-(	601,	31,	"",	"",	7000,	"순대국밥"	),
-(	602,	31,	"",	"",	7000,	"돼지국밥"	),
-(	603,	31,	"",	"",	9000,	"소머리국밥"	),
-(	604,	31,	"",	"",	9000,	"육개장"	),
-(	605,	31,	"",	"",	8000,	"뼈해장국"	),
-(	606,	31,	"",	"",	5000,	"짜장면"	),
-(	607,	31,	"",	"",	6000,	"짬뽕"	),
-(	608,	31,	"",	"",	14000,	"탕수육"	),
-(	609,	31,	"",	"",	18000,	"동파육"	);
+(	601,	2,	"soodaeKookbab.jpg",	"soodaeKookbab.jpg",	7000,	"순대국밥"	),
+(	602,	2,	"pigKookbab.jpg",	"pigKookbab.jpg",	7000,	"돼지국밥"	),
+(	603,	2,	"cowHeadKookbab.jpg",	"cowHeadKookbab.jpg",	9000,	"소머리국밥"	),
+(	604,	2,	"6gaejang.jpg",	"6gaejang.jpg",	9000,	"육개장"	),
+(	605,	2,	"boneHaejangKook.jpg",	"boneHaejangKook.jpg",	8000,	"뼈해장국"	),
+(	606,	2,	"jjajangNoodle.jpg",	"jjajangNoodle.jpg",	5000,	"짜장면"	),
+(	607,	2,	"jjambbong.jpg",	"jjambbong.jpg",	6000,	"짬뽕"	),
+(	608,	2,	"tangsooyook.jpg",	"tangsooyook.jpg",	14000,	"탕수육"	),
+(	609,	2,	"dongpayook.jpg",	"dongpayook.jpg",	18000,	"동파육"	);
 
 /* 먹자 매장 공통음식 추가*/
 insert into nmj_food 
