@@ -31,17 +31,18 @@
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
 <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-<script src="js/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 function chkSubmit(){
-	frm = document.forms["frm"];
-	
-	var review_content = frm["review_content"].value.trim();
-	
-	if(review_content.length == 0){
-		alert("내용을 입력하세요");
-		return false;
+	var editor_val = CKEDITOR.instances.editor1.document.getBody().getChild(0).getText() ;
+    
+	if (editor_val.trim() == '') {
+		alert('글을 작성해주세요!') ;
+		return false ;
 	}
+
 	
 	return true;
 }

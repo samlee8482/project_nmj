@@ -45,6 +45,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/storeDetail.css">
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -53,7 +55,94 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	<script>
-		
+	$(window).load(function(){
+			$("#dislikebtn").mouseenter(function(){
+				var html = '찜<i class="fas fa-heart-broken" style="font-size:20px; color:#F03962; margin-left:5px;"></i>';
+				$("#dislikebtn").html(html);
+			});
+			$("#dislikebtn").mouseleave(function(){
+				var html = '찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>';
+				$("#dislikebtn").html(html);
+			});
+			$("#likebtn").click(function(){
+				var mb_uid = ${sessionScope.mb_uid}*1;
+				var store_uid = ${param.store_uid}*1;
+				 $.ajax({
+					 url : "/nmj/memberAjax/insertLike",
+					 type : "POST",
+					 cache : false,
+					 data : {
+						 "mb_uid" : mb_uid,
+						 "store_uid" : store_uid
+					 },
+					 success : function(data, status){
+						if(status == "success"){
+							var html = '<div id="dislikebtn">찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
+							$("#likebox").html(html);
+							$("#dislikebtn").click(function(){
+								var mb_uid = ${sessionScope.mb_uid}*1;
+								var store_uid = ${param.store_uid}*1;
+								 $.ajax({
+									 url : "/nmj/memberAjax/deleteLike",
+									 type : "POST",
+									 cache : false,
+									 data : {
+										 "mb_uid" : mb_uid,
+										 "store_uid" : store_uid
+									 },
+									 success : function(data, status){
+										 if(status == "success"){
+											 var html = '<div id="likebtn">찜<i class="far fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
+											 $("#likebox").html(html);
+										 }
+									 }
+								 });
+							});
+							
+						}
+					 }
+				 });
+			});
+			$("#dislikebtn").click(function(){
+				var mb_uid = ${sessionScope.mb_uid}*1;
+				var store_uid = ${param.store_uid}*1;
+				 $.ajax({
+					 url : "/nmj/memberAjax/deleteLike",
+					 type : "POST",
+					 cache : false,
+					 data : {
+						 "mb_uid" : mb_uid,
+						 "store_uid" : store_uid
+					 },
+					 success : function(data, status){
+						 if(status == "success"){
+							 var html = '<div id="likebtn">찜<i class="far fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
+							 $("#likebox").html(html);
+							$("#likebtn").click(function(){
+								var mb_uid = ${sessionScope.mb_uid}*1;
+								var store_uid = ${param.store_uid}*1;
+								 $.ajax({
+									 url : "/nmj/memberAjax/insertLike",
+									 type : "POST",
+									 cache : false,
+									 data : {
+										 "mb_uid" : mb_uid,
+										 "store_uid" : store_uid
+									 },
+									 success : function(data, status){
+										if(status == "success"){
+											var html = '<div id="dislikebtn">찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
+											$("#likebox").html(html);
+											
+										}
+									 }
+								 });
+							});
+						 }
+					 }
+				 });
+			});
+		});
 	</script>
 	</head>
 	<body>
@@ -90,6 +179,7 @@
 			<div class="row">
 				<div class="col-md-4 animate-box">
 					<div id="storeInfomation">매장 정보 
+						<div id="likebox">
 						<c:if test="${sessionScope.mb_uid != null }">
 						<c:choose>
 							<c:when test="${empty like}">
@@ -104,6 +194,7 @@
 							</c:when>						
 						</c:choose>
 						</c:if>
+						</div>
 					</div>
 					
 					<ul class="contact-info">

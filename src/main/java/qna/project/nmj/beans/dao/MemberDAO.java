@@ -52,8 +52,8 @@ public interface MemberDAO {
 	
 	// 찜기능
 	public LikeDTO getLike(int mb_uid, int store_uid);
-	public LikeDTO likeCancel(int mb_uid, int store_uid);
-	public LikeDTO likeInsert(int mb_uid, int store_uid);
+	public int likeCancel(int mb_uid, int store_uid);
+	public int likeInsert(int mb_uid, int store_uid);
 	
 	
 	
