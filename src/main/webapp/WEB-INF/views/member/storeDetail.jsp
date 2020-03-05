@@ -224,7 +224,14 @@
 						</div>
 
 						<div class="col-md-12 reserveSubmit">
-							<input type="submit" value="RESERVE" class="btn btn-primary" onclick="location.href = '${pageContext.request.contextPath}/customer/cusReserve.nmj?store_uid=${store_uid }&store_type=${list.store_type }'">
+							<c:choose>
+								<c:when test="${empty sessionScope.mb_uid }">
+									<input type="submit" value="RESERVE" class="btn btn-primary" onclick="location.href = '${pageContext.request.contextPath}/member/login.nmj'">
+								</c:when>	
+								<c:otherwise>
+									<input type="submit" value="RESERVE" class="btn btn-primary" onclick="location.href = '${pageContext.request.contextPath}/customer/cusReserve.nmj?store_uid=${store_uid }&store_type=${list.store_type }'">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
