@@ -93,9 +93,9 @@
 	<!-- end fh5co-intro-section -->
 	
 		<div id="leftArea">
-		<div id="draggArea">		
-		</div>
-		<div id="reservationArea">			
+			<div id="draggArea">		
+			</div>
+			<div id="reservationArea">			
 					<c:if test="${fn:length(reservation) eq 0 }">
 						<div>예약신청이 없습니다.</div>
 					</c:if>
@@ -127,7 +127,7 @@
 					</c:forEach>
 						</table>
 					</c:if>			
-			</div>
+				</div>
 			</div>
 		
 		<div id="rightArea">
@@ -206,7 +206,8 @@
 						<c:forEach var="list" items="${space2 }">
 							<li class="space_uid${list.space_uid } ui-widget-content">
 								<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
-								<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
+								<button class="spaceDelete del#${list.space_uid }#">삭제하기</button> 
+								<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button>
 							</li>
 						</c:forEach>
 						</ol>

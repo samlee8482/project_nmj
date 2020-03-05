@@ -192,4 +192,8 @@
 	<update id="reservationNo">
 		UPDATE nmj_reservation SET reservation_check = 2 where reservation_uid = #{param1}; 
 	</update>
+	
+	<delete id="spaceDelete">
+		DELETE FROM nmj_space WHERE space_uid = #{param1};
+	</delete>
 </mapper>
