@@ -66,7 +66,16 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+		div.mapEvent{
+			position: relative;
+			top: 20px;
+			height: 150px;
+		}
+		div.mapEvent > div{
+			font-size: 13px;
+		}
+	</style>
 	</head>
 	<body>
 	<jsp:include page="normalHeader.jsp"></jsp:include>
