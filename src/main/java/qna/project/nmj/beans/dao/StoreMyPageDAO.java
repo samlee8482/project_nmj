@@ -125,4 +125,6 @@ public interface StoreMyPageDAO {
 	public int reservationOk(int reservation_uid);
 	
 	public int reservationNo(int reservation_uid);
+	
+	public int spaceDelete(int space_uid);
 }

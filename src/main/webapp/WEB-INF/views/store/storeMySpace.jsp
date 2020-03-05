@@ -56,7 +56,12 @@
 </c:choose>
 
 	<header>
-		<div class="container text-center">
+		<div class="container text-center headerContainer">
+			<div id="logout_mypage">
+				<span id="logout">로그아웃</span>
+				<span class="line">|</span>
+				<span id="storepage">매장페이지</span>
+			</div>
 			<div class="fh5co-navbar-brand">
 				<a class="fh5co-logo" href="index.html"><img
 					src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"
@@ -65,12 +70,12 @@
 			<nav id="fh5co-main-nav" role="navigation">
 				<ul>
 					<li><a id="1" href="${pageContext.request.contextPath}/member/main.nmj">홈</a></li>
-					<li><a id="2" href="${pageContext.request.contextPath}/customer/cusUpdateInfo.jsp?mb_uid=${sessionScope.mb_uid}">회원정보수정</a></li>
-					<li><a id="3" class="active" href="storeMySpace.nmj?store_uid=${sessionScope.store_uid}">매장 공간 관리</a></li>
-					<li><a id="4" href="storeMyFood.nmj?store_uid=${sessionScope.store_uid}">음식 메뉴 관리</a></li>
-					<li><a id="5" href="storeMyReview.nmj?store_uid=${sessionScope.store_uid}">내 매장 리뷰보기</a></li>
-					<li><a id="6" href="storeSettings.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정</a></li>
-					<li><a id="7" href="storeSettingsRequest.nmj?store_uid=${sessionScope.store_uid}">매장 정보 수정 요청</a></li>
+					<li><a id="2" href="${pageContext.request.contextPath}/customer/cusUpdateInfo.nmj">회원정보수정</a></li>
+					<li><a id="3" class="active" href="${pageContext.request.contextPath}/store/storeMySpace.nmj">매장 공간 관리</a></li>
+					<li><a id="4" href="${pageContext.request.contextPath}/store/storeMyFood.nmj">음식 메뉴 관리</a></li>
+					<li><a id="5" href="${pageContext.request.contextPath}/store/storeMyReview.nmj">내 매장 리뷰보기</a></li>
+					<li><a id="6" href="${pageContext.request.contextPath}/store/storeSettings.nmj">매장 정보 수정</a></li>
+					<li><a id="7" href="${pageContext.request.contextPath}/store/storeSettingsRequest.nmj">매장 정보 수정 요청</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -88,9 +93,9 @@
 	<!-- end fh5co-intro-section -->
 	
 		<div id="leftArea">
-		<div id="draggArea">		
-		</div>
-		<div id="reservationArea">			
+			<div id="draggArea">		
+			</div>
+			<div id="reservationArea">			
 					<c:if test="${fn:length(reservation) eq 0 }">
 						<div>예약신청이 없습니다.</div>
 					</c:if>
@@ -122,7 +127,7 @@
 					</c:forEach>
 						</table>
 					</c:if>			
-			</div>
+				</div>
 			</div>
 		
 		<div id="rightArea">
@@ -201,7 +206,8 @@
 						<c:forEach var="list" items="${space2 }">
 							<li class="space_uid${list.space_uid } ui-widget-content">
 								<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
-								<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button> 
+								<button class="spaceDelete del#${list.space_uid }#">삭제하기</button> 
+								<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button>
 							</li>
 						</c:forEach>
 						</ol>
@@ -264,7 +270,7 @@ $( function() {
         $("#space_uids").html(uidsText);
       }
     });
-  } );
+} );
   $(document).ready(function(){
 	 $("#imgAllInsert").click(function(){
 		 var space_uid = $("#space_uid").val();
@@ -273,6 +279,15 @@ $( function() {
 		 }
 		 
 	 }); 
+	 
+	$("span#logout").click(function (){
+		// 세션 삭제
+		location.href = "${pageContext.request.contextPath}/member/logout.nmj";
+	});
+	
+	$("span#storepage").click(function(){
+		location.href="${pageContext.request.contextPath}/store/storeMySpace.nmj";
+	});
   });
   </script>
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>

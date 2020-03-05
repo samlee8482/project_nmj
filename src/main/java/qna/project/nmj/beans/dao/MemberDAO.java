@@ -54,7 +54,14 @@ public interface MemberDAO {
 	
 	public int getStoreUid(int mb_uid);
 	
+	
+	// 찜기능
 	public LikeDTO getLike(int mb_uid, int store_uid);
+	public LikeDTO likeCancel(int mb_uid, int store_uid);
+	public LikeDTO likeInsert(int mb_uid, int store_uid);
+	
+	
+	
 	// 매장 찾기 페이지
 	// 몇번째 from 부터 몇개 rows 를 SELECT
 	public ArrayList<StoreDTO> selectStore(int store_type);
