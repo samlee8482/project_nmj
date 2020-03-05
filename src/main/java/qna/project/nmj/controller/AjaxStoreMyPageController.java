@@ -114,4 +114,10 @@ public class AjaxStoreMyPageController {
 		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
 		dao.reservationNo(reservation_uid);
 	}
+	
+	@PostMapping(value="/spaceDelete.ajax")
+	public void spaceDelete(int space_uid) {
+		StoreMyPageDAO dao = C.sqlSession.getMapper(StoreMyPageDAO.class);
+		dao.spaceDelete(space_uid);
+	}
 }

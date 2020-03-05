@@ -147,7 +147,7 @@
 }
 
 .roomspaceimg{
-	width: 200px;
+	width: 100px;
 	height: 100px;
 	background-image: url("../img/space/spaceroom.png");
 	background-repeat: no-repeat;
@@ -222,4 +222,8 @@
 
 .card-title span{
 	color:white;
+}
+
+.spaceDelete{
+	float:right;
 }

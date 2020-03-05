@@ -188,7 +188,7 @@ insert into nmj_food
 	(	food_uid,	store_uid,	food_img_org,	food_img_sav,	food_price,	food_name	)
 values
 (	1,	1,	"icetea.jpg",	"icetea.jpg",	1500,	"아이스티"	),
-(	2,	1,	"iceCoffe.jpg",	"iceCoffe.jpg",	2000,	"아이스커피"	),
+(	2,	1,	"iceCoffe.jpg",	"iceCoffee.jpg",	2000,	"아이스커피"	),
 (	3,	1,	"greenTea.jpg",	"greenTea.jpg",	1500,	"녹차"	),
 (	4,	1,	"cola.png",	"cola.png",	1000,	"콜라"	),
 (	5,	1,	"cider.jpeg",	"cider.jpeg",	1000,	"사이다"	),
