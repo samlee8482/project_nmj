@@ -23,7 +23,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="form-group">
-							<input class="form-control" type="text" class="food_name" name="food_name" value="" placeholder="음식 이름" required>
+							<input class="form-control food_name" type="text" name="food_name" value="" placeholder="음식 이름" required>
 						</div>
 					</div>
 					
