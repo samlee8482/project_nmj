@@ -29,4 +29,20 @@ public class AjaxUserRegController {
 			
 			return reg_service.userEmailCheck(mb_email);
 		}
+		
+		// 사업자등록번호 중복 체크 컨트롤러
+		@RequestMapping(value = "/user/regNumCheck", method = RequestMethod.GET)
+		@ResponseBody
+		public int regNumCheck(@RequestParam("store_regNum") String store_regNum) {
+			
+			return reg_service.userRegNumCheck(store_regNum);
+		}
+		
+		// 매장전화번호 중복 체크 컨트롤러
+		@RequestMapping(value = "/user/telCheck", method = RequestMethod.GET)
+		@ResponseBody
+		public int telCheck(@RequestParam("store_tel") String store_tel) {
+			
+			return reg_service.userTelCheck(store_tel);
+		}
 }

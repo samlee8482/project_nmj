@@ -46,7 +46,7 @@
 	
 	<div class="div-relative" style="width: 100%; height: auto;">
 		<div class="show_list_container">
-			<h2>내가 쓴 리뷰</h2>
+			<h3>내가 쓴 리뷰</h3>
 			<table>
 				<tr>
 					<th>No.</th>
@@ -61,6 +61,9 @@
 						<tr>
 							<td>${status.index + 1}</td>
 							<c:choose>
+								<c:when test="${item.store_uid == 0 }">
+									<td>자유글</td>
+								</c:when>
 								<c:when test="${item.store_type == 1 }">
 									<td>놀자</td>
 								</c:when>
@@ -87,7 +90,7 @@
 		</div>
 		
 		<div class="show_list_container">
-			<h2>내가 쓴 댓글</h2>
+			<h3>내가 쓴 댓글</h3>
 			<table>
 				<tr>
 					<th>No.</th>

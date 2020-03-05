@@ -17,6 +17,10 @@ public interface MemberDAO {
 	public int checkOverId(String mb_id);
 	// 회원가입 - 이메일 중복체크
 	public int checkOverEmail(String mb_email);
+	// 회원가입 - 사업자등록번호 중복체크
+	public int checkOverRegNum(String store_regNum);
+	// 회원가입 - 매장전화번호 중복체크
+	public int checkOverTel(String store_tel);
 	// 회원가입 - 회원정보 입력
 	public int insertMember(@Param("dto") MemberDTO dto);
 	// 회원가입 - 매장회원 mb_uid 불러오기

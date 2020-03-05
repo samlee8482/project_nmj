@@ -107,9 +107,11 @@
 		</form>
 		<br>
 		
-		<button class="btn btn-secondary active" onclick="location.href='adminCommunity.nmj'">게시글</button>
+		<button class="btn btn-secondary active" onclick="location.href='adminCommunity.nmj'">리뷰글</button>
+		<button class="btn btn-secondary" onclick="location.href='adminCommunity2.nmj'">자유글</button>
         <button class="btn btn-secondary" onclick="location.href='adminReply.nmj'">댓글</button>
         <button class="btn btn-secondary" onclick="location.href='adminNotice.nmj'">공지사항</button>
+                <button class="btn btn-secondary" onclick="location.href='adminEvent.nmj'">이벤트</button>
         <br><br>
             
             <div class="table-responsive"> 
@@ -151,7 +153,7 @@
 			
 			<td>${dto.store_name }</td>
 			<td>${dto.mb_id }</td>
-			<td><a href="adminCommunityInfo.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
+			<td style = "max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="adminCommunityInfo.nmj?review_uid=${dto.review_uid }">${dto.review_content }</a></td>
 			<td>${dto.review_viewCount }</td>
 			<td><button class="btn btn-outline-secondary" onclick="location.href='deleteReview.nmj?review_uid=${dto.review_uid}'">삭제</button></td>
 		</tr>					

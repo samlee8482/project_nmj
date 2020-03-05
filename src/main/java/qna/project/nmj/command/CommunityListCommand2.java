@@ -12,6 +12,11 @@ public class CommunityListCommand2 implements Command {
 		
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		model.addAttribute("totalPage", dao.selectAllReviewCount2());
+		
+		AdminDAO dao1 = C.sqlSession.getMapper(AdminDAO.class);
+		model.addAttribute("list", dao1.selectAllNotice());
+		model.addAttribute("list2", dao1.selectAllEvent());
+		// model.addAttribute("list2", dao1.selectAllOngoingEvent());
 	}
 
 }

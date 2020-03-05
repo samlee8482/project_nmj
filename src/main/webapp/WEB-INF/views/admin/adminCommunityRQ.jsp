@@ -102,30 +102,41 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">리뷰 상세 보기</h1>
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">게시글 신고</h1>
             
           <div class="card shadow mb-4">
 
             <div class="card-body">
               
             <div style="text-align:left;">
-	<u><strong>매장종류</strong></u><br> 
-		<c:choose>
-			<c:when test="${dto.store_type == 1 }">
-				놀자
+        
+        <c:choose>
+		<c:when test="${dto.store_uid != 0 }">
+			<u><strong>매장종류</strong></u><br> 
+				<c:choose>
+					<c:when test="${dto.store_type == 1 }">
+						놀자
+					</c:when>
+					<c:when test="${dto.store_type == 2 }">
+						먹자
+					</c:when>
+					<c:otherwise>
+						자자
+					</c:otherwise>
+				</c:choose>
+				<br><br>
+			<u><strong>매장명</strong></u><br> ${dto.store_name }  <br><br>
 			</c:when>
-			<c:when test="${dto.store_type == 2 }">
-				먹자
-			</c:when>
-			<c:otherwise>
-				자자
-			</c:otherwise>
 		</c:choose>
-		<br><br>
-	<u><strong>매장명</strong></u><br> ${dto.store_name }  <br><br>
 	<u><strong>작성자</strong></u><br> ${dto.mb_id } <br><br>
 	<u><strong>내용</strong></u><br> ${dto.review_content }<br><br>
-	<u><strong>평점</strong></u><br> ${dto.review_rate }<br><br>
+	
+	<c:choose>
+		<c:when test="${dto.store_uid != 0 }">
+			<u><strong>평점</strong></u><br> ${dto.review_rate }<br><br>
+		</c:when>
+	</c:choose>
+	
 	<u><strong>조회수</strong></u><br> ${dto.review_viewCount }<br><br>
 	<u><strong>작성일</strong></u><br> ${dto.review_date }<br>
 	<br>

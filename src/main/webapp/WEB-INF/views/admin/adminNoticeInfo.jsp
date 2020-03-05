@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:choose>
 	<c:when test="${empty dto }">
@@ -102,7 +103,14 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">리뷰 상세 보기</h1>
+        <c:choose>
+		<c:when test="${dto.notice_type == 0 }">
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">공지사항 상세보기</h1>
+		</c:when>
+		<c:otherwise>
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">이벤트 상세보기</h1>
+		</c:otherwise>
+		</c:choose>
             
           <div class="card shadow mb-4">
 
@@ -111,22 +119,37 @@
             <div style="text-align:left;">
 
 	<u><strong>제목</strong></u><br> ${dto.notice_subject } <br><br>
+	<c:choose>
+			<c:when test="${dto.notice_type == 1 }">
+				<u><strong>이벤트 시작</strong></u><br> 
+					<fmt:parseDate var="parsedDate" value="${dto.notice_startDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
+					<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/><br><br>
+				<u><strong>이벤트 종료</strong></u><br>
+					<fmt:parseDate var="parsedDate" value="${dto.notice_endDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
+					<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/><br><br>
+			</c:when>
+	</c:choose>
 	<u><strong>내용</strong></u><br> ${dto.notice_content }<br><br>
 	<u><strong>조회수</strong></u><br> ${dto.notice_viewCount }<br><br>
 	<u><strong>작성일</strong></u><br> ${dto.notice_regDate }<br><br>
-	<c:choose>
-			<c:when test="${dto.notice_type == 1 }">
-				<u><strong>이벤트 시작일</strong></u><br> ${dto.notice_startDate }<br><br>
-				<u><strong>이벤트 종료일</strong></u><br> ${dto.notice_endDate }<br><br>
-			</c:when>
-	</c:choose>
 	<br>
 	</div>
-
-    <button class="btn btn-primary" onclick="location.href='adminNoticeUpdate.nmj?notice_uid=${dto.notice_uid}'">수정하기</button>
-    <button class="btn btn-success" onclick="location.href='adminNoticeDelete.nmj?notice_uid=${dto.notice_uid}'">삭제하기</button>
-    <button class="btn btn-info" onclick="location.href='adminNoticeWrite.nmj'">등록하기</button><br><br>
-    <button class="contact100-form-btn" onclick="location.href='adminNotice.nmj'">목록보기</button>
+    
+   	<c:choose>
+		<c:when test="${dto.notice_type == 0 }">
+		    <button class="btn btn-outline-primary" onclick="location.href='adminNoticeUpdate.nmj?notice_uid=${dto.notice_uid}'">수정하기</button>
+		    <button class="btn btn-outline-success" onclick="location.href='adminNoticeDelete.nmj?notice_uid=${dto.notice_uid}'">삭제하기</button>
+		    <button class="btn btn-outline-info" onclick="location.href='adminNoticeWrite.nmj'">등록하기</button><br><br>
+		    <button class="contact100-form-btn" onclick="location.href='adminNotice.nmj'">목록보기</button>
+		</c:when>
+		<c:otherwise>
+		    <button class="btn btn-outline-primary" onclick="location.href='adminEventUpdate.nmj?notice_uid=${dto.notice_uid}'">수정하기</button>
+		    <button class="btn btn-outline-success" onclick="location.href='adminEventDelete.nmj?notice_uid=${dto.notice_uid}'">삭제하기</button>
+		    <button class="btn btn-outline-info" onclick="location.href='adminEventWrite.nmj'">등록하기</button><br><br>
+		    <button class="contact100-form-btn" onclick="location.href='adminEvent.nmj'">목록보기</button>
+		</c:otherwise>
+	</c:choose>
+	
 </div>
 </div>
 

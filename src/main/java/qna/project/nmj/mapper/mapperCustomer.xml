@@ -48,11 +48,9 @@
 		FROM NMJ_review
 		WHERE mb_uid = #{param1};
 		-->
-		SELECT n3.store_type, n3.store_name, n2.review_content, n2.review_rate, n2.review_viewCount, n2.review_date, n2.review_uid
-		FROM NMJ_member n1, NMJ_review n2, NMJ_store n3
-		WHERE n2.mb_uid = #{param1}
-		AND n1.mb_uid = n2.mb_uid
-		AND n2.store_uid = n3.store_uid;
+		SELECT n2.review_content, n2.review_rate, n2.review_viewCount, n2.review_date, n2.review_uid, n2.store_uid
+		FROM NMJ_review n2
+		WHERE n2.mb_uid = #{param1};
 	</select>
 	<!-- 댓글 목록 -->
 	<select id="selectMyReplyByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">

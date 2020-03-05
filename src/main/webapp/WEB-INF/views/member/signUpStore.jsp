@@ -86,7 +86,7 @@ function chkSubmit(){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<p class="title">회원가입</h2>
+					<h2 class="title">회원가입</h2>
 					<p class="subtitle">"놀먹자의 식구가 되어보세요"</p>
 				</div>
 			</div>

@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
-
-<c:choose>
-	<c:when test="${empty dto }">
-	<script>
-		alert("해당 정보가 삭제되거나 없습니다");
-		history.back();
-	</script>
-	</c:when>
-	<c:otherwise>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>매장회원 상세보기</title>
+  <title>공지사항 등록하기</title>
 
     <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,6 +30,56 @@
   <!-- 정보 form -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/css/util.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/css/main.css">
+  
+  <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+function chkSubmit(){
+	frm = document.forms["frm"];
+	
+	var notice_subject = frm["subject_content"].value.trim();
+	var notice_content = frm["notice_content"].value.trim();
+
+	if(notice_subject == ""){
+		alert("제목을 입력하세요");
+		return false;
+	}
+	else {
+		
+		if(notice_content.length == 0){
+			alert("내용을 입력하세요");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+}
+</script>
+
+<script>
+$.datepicker.setDefaults({
+    dateFormat: 'yy-mm-dd',
+    prevText: '이전 달',
+    nextText: '다음 달',
+    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    showMonthAfterYear: true,
+    yearSuffix: '년' 
+});
+
+
+$(function(){
+  $("#datepicker1, #datepicker2").datepicker();
+});
+</script>
 
 </head>
 
@@ -102,63 +144,50 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">매장회원 상세보기</h1>
+          <h1 class="h3 mb-2 text-gray-800" style="margin-top: 30px; margin-bottom: 30px; font-size: 1.5em;">일반회원 상세보기</h1>
             
           <div class="card shadow mb-4">
 
             <div class="card-body">
-            
-	         <c:choose>
-	             <c:when test='${dto.mb_img_org == null || fn:trim(dto.mb_img_org) == ""}'>
-	             <img src="${pageContext.request.contextPath}/img/member/memberDefault.png" style="width:200px">
-	             </c:when>
-	             <c:otherwise>
-	             <img src="${pageContext.request.contextPath}/img/member/${dto.mb_img_org }" style="width:200px">
-	             </c:otherwise>
-	          </c:choose>
-	          <br><br>
 
-			<div style="text-align:left;">
-			<u><strong>이름</strong></u><br> ${dto.mb_name } <br><br>
-			<u><strong>아이디</strong></u><br> ${dto.mb_id } <br><br>
-			<u><strong>연락처</strong></u><br> ${dto.mb_tel } <br><br>
-			<u><strong>이메일</strong></u><br> ${dto.mb_email } <br><br>
-			<u><strong>가입날짜</strong></u><br> ${dto.mb_regDate } <br><br>
+			<form name="frm" method="post" action="adminEventUpdateOk.nmj" onSubmit="return chkSubmit()">
 			
-             <c:choose>
-                <c:when test='${dto2.store_img_org == null || fn:trim(dto2.store_img_org) == ""}'>
-                <img src="${pageContext.request.contextPath}/img/store/storeDefault.png" style="width:300px">
-                </c:when>
-                <c:otherwise>
-                <img src="${pageContext.request.contextPath}/img/store/${dto2.store_img_org }" style="width:300px">
-                </c:otherwise>
-             </c:choose>
-             <br><br>
-             
-			<u><strong>매장종류</strong></u><br> 
-				<c:choose>
-					<c:when test="${dto2.store_type == 1 }">
-						놀자
-					</c:when>
-					<c:when test="${dto2.store_type == 2 }">
-						먹자
-					</c:when>
-					<c:otherwise>
-						자자
-					</c:otherwise>
-				</c:choose>
-			<br><br>
-			<u><strong>매장이름</strong></u><br> ${dto2.store_name }  <br><br>
-			<u><strong>매장주소</strong></u><br> ${dto2.store_address } <br><br>
-			<u><strong>매장연락처</strong></u><br> ${dto2.store_tel }<br><br>
-			<u><strong>매장영업시간</strong></u><br> ${dto2.store_hours }<br><br>
-			<u><strong>매장설명</strong></u><br> ${dto2.store_content }<br><br>
-			<u><strong>매장사업자번호</strong></u><br> ${dto2.store_regNum }<br><br>
-			<u><strong>매장평점</strong></u><br> ${rate }<br><br>
-			<br>
-			</div>
-		<button class="btn btn-primary" onclick="location.href='deleteStoreMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button><br><br>
-        <button class="contact100-form-btn" onclick="location.href='adminStore.nmj'">목록보기</button>
+				<input type="hidden" name="notice_uid" value="${dto.notice_uid }"/>
+				
+				<strong>제목</strong>
+				<input class="form-control mr-sm-2" type="text" name="notice_subject" value="${dto.notice_subject }"/>
+
+				<br><br>
+				
+				<strong>이벤트 시작</strong> <br>
+				<fmt:parseDate var="parsedDate" value="${dto.notice_startDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
+				<fmt:formatDate var="startDate" value="${parsedDate}" pattern="yyyy-MM-dd"/>
+				<input class="form-control mr-sm-2" type="text" name="notice_startDate" id="datepicker1" value="${startDate}">
+				<br><br>
+				
+				<strong>이벤트 종료</strong><br>
+				<fmt:parseDate var="parsedDate" value="${dto.notice_endDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
+				<fmt:formatDate var="endDate" value="${parsedDate}" pattern="yyyy-MM-dd"/>
+				<input class="form-control mr-sm-2" type="text" name="notice_endDate" id="datepicker2" value="${endDate}">
+				<br><br>
+		  		
+		  		<strong>내용</strong>
+				<textarea name="notice_content" id="editor1">${dto.notice_content }</textarea>
+				<script>
+					CKEDITOR.replace('editor1', {
+						allowedContent: true,
+						width: '600px',
+						height: '600px'
+					});
+				</script>
+				<br><br>
+
+				<button class="btn btn-primary" type="submit">수정 완료</button>
+				
+			</form>
+          
+          <br><br>
+        <button class="contact100-form-btn" onclick="location.href='adminEvent.nmj'">목록보기</button>
 </div>
 </div>
 
@@ -190,28 +219,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-
-<!-- Bootstrap core JavaScript-->
-  <script src="${pageContext.request.contextPath}/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="${pageContext.request.contextPath}/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="${pageContext.request.contextPath}/admin/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="${pageContext.request.contextPath}/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="${pageContext.request.contextPath}/admin/js/demo/datatables-demo.js"></script>
-
 </body>
 
 </html>
-
-
-	</c:otherwise>
-</c:choose>

@@ -95,7 +95,7 @@ function chkSubmit(){
 	<!-- end fh5co-intro-section -->
 	
 	<div class="div-relative">
-	<div class="show_list_container">
+		<div class="write_container">
 			<h3>여러분의 리뷰를 남겨주세요</h3><br>
 			<form name="frm" method="post" action="writeReviewOk.nmj" onSubmit="return chkSubmit()">
 
@@ -117,7 +117,7 @@ function chkSubmit(){
 				<script>
 					CKEDITOR.replace('editor1', {
 						allowedContent: true,
-						width: '600px',
+						width: '100%',
 						height: '600px'
 					});
 				</script>

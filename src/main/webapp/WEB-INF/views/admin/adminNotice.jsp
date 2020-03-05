@@ -94,22 +94,12 @@
           <div class="card shadow mb-4">
 
             <div class="card-body">
-            
-        <form name="frm" class="form-inline my-2 my-lg-0" action="adminSearchCommunity.nmj" method="post">
-		<select name="searchOption" class="custom-select">
-		  <option value="1">글내용</option>
-		  <option value="2">아이디로 글검색</option>
-		  <option value="3">댓글내용</option>
-		  <option value="4">아이디로 댓글검색</option>
-		</select>
-		<input class="form-control mr-sm-2" type="text" name="search"/>
-		<button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>
-		</form>
-		<br>
 		
-		<button class="btn btn-secondary" onclick="location.href='adminCommunity.nmj'">게시글</button>
+		<button class="btn btn-secondary" onclick="location.href='adminCommunity.nmj'">리뷰글</button>
+		<button class="btn btn-secondary" onclick="location.href='adminCommunity2.nmj'">자유글</button>
         <button class="btn btn-secondary" onclick="location.href='adminReply.nmj'">댓글</button>
         <button class="btn btn-secondary active" onclick="location.href='adminNotice.nmj'">공지사항</button>
+        <button class="btn btn-secondary" onclick="location.href='adminEvent.nmj'">이벤트</button>
         <br><br>
         
         <button class="btn btn-success" onclick="location.href='adminNoticeWrite.nmj'">공지사항 등록하기</button>

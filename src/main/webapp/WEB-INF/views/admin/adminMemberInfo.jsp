@@ -127,7 +127,7 @@
 			<u><strong>가입날짜</strong></u><br> ${dto.mb_regDate }<br>
 			<br>
 		  </div>
-          
+        <button class="btn btn-primary" onclick="location.href='deleteMember.nmj?mb_uid=${dto.mb_uid}'">삭제</button><br><br>
         <button class="contact100-form-btn" onclick="location.href='adminMember.nmj'">목록보기</button>
 </div>
 </div>
