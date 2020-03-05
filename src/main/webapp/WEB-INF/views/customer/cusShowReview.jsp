@@ -33,7 +33,7 @@
 <body>
 
 	<jsp:include page="normalHeader.jsp"></jsp:include>
-	<div id="fh5co-intro-section">
+	<div id="fh5co-intro-section" style="background-image: url(&quot;/nmj/img/muk.jpg&quot;); background-position: 0% 21.4583px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
