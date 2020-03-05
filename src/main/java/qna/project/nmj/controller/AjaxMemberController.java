@@ -15,9 +15,11 @@ import qna.project.nmj.ajax.dto.AjaxStoreTypesDTO;
 import qna.project.nmj.beans.AjaxBoardList;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.FindStoreDTO;
+import qna.project.nmj.beans.NoticeDTO;
 import qna.project.nmj.beans.ReviewJoinDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.StoreTypeDTO;
+import qna.project.nmj.beans.dao.AdminDAO;
 import qna.project.nmj.beans.dao.MemberDAO;
 import qna.project.nmj.beans.dao.ReviewDAO;
 import qna.project.nmj.beans.dao.StoreMyPageDAO;
@@ -130,6 +132,10 @@ public class AjaxMemberController {
 		list = dao.selectByRow((page - 1) * writePages, writePages);
 		result.setList(list);
 		
+		AdminDAO dao1 = C.sqlSession.getMapper(AdminDAO.class);
+		ArrayList<NoticeDTO> noticeList = dao1.selectAllNotice();
+		result.setNoticeList(noticeList);
+		
 		// 읽어들인 글 내용이 있는 경우와 없는 경우 나누어 처리
 		if(list != null && list.size() > 0) {
 			result.setStatus("OK");
@@ -151,6 +157,10 @@ public class AjaxMemberController {
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		list = dao.selectByRow2((page - 1) * writePages, writePages);
 		result.setList(list);
+		
+		AdminDAO dao1 = C.sqlSession.getMapper(AdminDAO.class);
+		ArrayList<NoticeDTO> noticeList = dao1.selectAllNotice();
+		result.setNoticeList(noticeList);
 		
 		// 읽어들인 글 내용이 있는 경우와 없는 경우 나누어 처리
 		if(list != null && list.size() > 0) {
