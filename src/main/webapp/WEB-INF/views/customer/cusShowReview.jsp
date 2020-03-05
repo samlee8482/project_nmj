@@ -109,14 +109,21 @@
 				</tr>
 				<tr>
 				<c:if test="${not empty myPageReply}">
-					<tr>
-						<c:forEach var="item" items="${myPageReply}" varStatus="status">
+					<c:forEach var="item" items="${myPageReply}" varStatus="status">
+						<tr>
 							<td>${status.index + 1}</td>
 							<td>${item.reply_content }</td>
-							<td><a href="#">${item.review_content }</a></td>
+							<c:choose>
+								<c:when test="${item.store_uid == 0} ">
+									<td><a href="${pageContext.request.contextPath}/community/communityView2.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
+								</c:when>
+								<c:otherwise>
+									<td><a href="${pageContext.request.contextPath}/community/communityView.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
+								</c:otherwise>
+							</c:choose>
 							<td>${item.reply_date }</td>
-						</c:forEach>
-					</tr> 
+						</tr> 
+					</c:forEach>
 				</c:if>
 				<c:if test="${empty myPageReply || fn.length(myPageReply) == 0 }">
 					<tr>
