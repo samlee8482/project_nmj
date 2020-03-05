@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import qna.project.nmj.beans.LikeDTO;
 import qna.project.nmj.beans.MainDTO;
 import qna.project.nmj.beans.MemberDTO;
+import qna.project.nmj.beans.RequestDTO;
 import qna.project.nmj.beans.StoreDTO;
 import qna.project.nmj.beans.StoreDetailDTO;
 import qna.project.nmj.beans.StoreTypeDTO;
@@ -28,6 +29,10 @@ public interface MemberDAO {
 	public int selectMb_Uid(String mb_id);
 	// 회원가입 - 매장회원 정보등록
 	public int insertStore(@Param("dto") StoreDTO dto);
+	// 회원가입 - 매장 store_uid 불러오기
+	public int selectStore_Uid(int mb_uid);
+	// 회원가입 - 매장정보 승인요청
+	public int insertRequest(@Param("dto") RequestDTO dto);
 	
 	
 	// 아이디 비밀번호 찾기
@@ -52,8 +57,8 @@ public interface MemberDAO {
 	
 	// 찜기능
 	public LikeDTO getLike(int mb_uid, int store_uid);
-	public LikeDTO likeCancel(int mb_uid, int store_uid);
-	public LikeDTO likeInsert(int mb_uid, int store_uid);
+	public int likeCancel(int mb_uid, int store_uid);
+	public int likeInsert(int mb_uid, int store_uid);
 	
 	
 	

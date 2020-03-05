@@ -36,7 +36,7 @@
 	<!-- 찜 목록 -->
 	<select id="selectLikeByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
 		SELECT n2. store_uid, n2.store_name, n2.store_type
-		FROM NMJ_member n1, NMJ_store n2, NMJ_like n3
+		FROM NMJ_store n2, NMJ_like n3
 		WHERE #{mb_uid} = n3.mb_uid
 		AND n2.store_uid = n3.store_uid;
 	</select>
