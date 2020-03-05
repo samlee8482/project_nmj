@@ -74,7 +74,7 @@ table, th, td{
 							<tr>
 								<c:set var="store1" value='1'/>
 								<td>${status.index + 1}</td>
-								<td><a href="writeReview.nmj?mb_uid=${sessionScope.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
+								<td><a href="${pageContext.request.contextPath}/community/writeReview.nmj?mb_uid=${sessionScope.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
 								<td>${item.reservation_start }</td>
 								<td>${item.reservation_end }</td>
 								<td>${item.reservation_count }</td>

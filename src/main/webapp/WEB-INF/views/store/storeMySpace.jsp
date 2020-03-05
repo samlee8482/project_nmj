@@ -49,7 +49,6 @@
 	<c:choose>
 	<c:when test="${sessionScope.mb_type == 0 || sessionScope.mb_type == null || empty sessionScope.mb_type}">
 		<script>
-			alert(${sessionScope.mb_type});
 			alert("로그인을 하지 않으셨거나 권한이 없는 사용자 또는 자동 로그아웃 되었습니다. 로그인 해주세요.");
 			location.href = "${pageContext.request.contextPath}/member/main.nmj";
 		</script>
