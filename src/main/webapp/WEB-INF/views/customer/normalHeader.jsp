@@ -76,7 +76,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
 	
 	<!-- Main JS (Do not remove) -->
-	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	
 	<script>
 	// 우리가 필요한 기능들 삽입
 	$(document).ready(function(){

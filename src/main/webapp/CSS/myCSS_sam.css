@@ -334,3 +334,14 @@
 	opacity: 0.5;
 	background-color: yellow;
 }
+
+#divView {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	border: solid 2px #d0d0d0;
+	width: 300px;
+	height: 300px;
+	overflow:hidden;
+	z-index: 9999;
+}
