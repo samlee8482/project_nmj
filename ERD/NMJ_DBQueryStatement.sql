@@ -4,6 +4,7 @@ select * from nmj_reservation nr ;
 describe  nmj_reservation ;
 describe nmj_review ;
 select * from nmj_like nl ;
+describe nmj_reply ;
 
 SELECT
 			store_uid,

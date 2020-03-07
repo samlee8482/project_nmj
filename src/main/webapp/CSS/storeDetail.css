@@ -27,7 +27,7 @@
 
 
 
-#menu {
+#menu, #room {
 	color: red;
 	cursor: pointer;
 }

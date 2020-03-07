@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약페이지</title>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/mySpace.css">
 <!-- Animate.css -->
@@ -30,136 +32,14 @@
 
 <!-- DatePicker -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/datepicker.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
 </head>
-<script>
-// form 검증
-function chkSubmit(){
-	
-	frm = document.forms["frm"];
-	
-	// 현재 날짜와 시간을 가지는 객체를 리턴
-	var today = new Date();
-	
-	var cur_year = today.getFullYear(); // 년도
-	var cur_month = today.getMonth() + 1;  // 월
-	var cur_date = today.getDate();  // 날짜
-	var cur_day = today.getDay();  // 요일
-	
-	var reservation_date = frm["reservation_date"].value.trim();
-	var reservation_start = frm["reservation_start"].value.trim();
-	var reservation_end = frm["reservation_end"].value.trim();
-	var reservation_count = frm["reservation_count"].value.trim();
-	var reservation_price = frm["reservation_price"].value.trim();
-	
-	var res_year = reservation_date.substring(0,4);
-	res_year *= 1;	// 비교하기 위해 number 타입으로 형변환
-	cur_year *= 1;	// 비교하기 위해 number 타입으로 형변환
-	
-	var res_month = reservation_date.substring(5,7);
-	res_month *= 1;	// 비교하기 위해 number 타입으로 형변환
-	cur_month *= 1;	// 비교하기 위해 number 타입으로 형변환
-	
-	var res_date = reservation_date.substring(8,10);
-	res_date *= 1; // 비교하기 위해 number 타입으로 형변환
-	cur_date *= 1; // 비교하기 위해 number 타입으로 형변환
-	
-	// 예약날짜가 과거일 경우 return false
-	if(cur_year > res_year ||
-			(cur_year == res_year && cur_month > res_month) ||
-			(cur_year == res_year && cur_month == res_month && cur_date > res_date)){
-		alert("예약가능한 날짜가 아닙니다.")
-		return false;
-	}
-	
-	// 예약시간이 과거일 경우 return false
-	var res_start = reservation_start.replace(":","");
-	var res_end = reservation_end.replace(":","");
-	res_start *= 1;
-	res_end *= 1;
-	
-	if(res_start > res_end || res_start == res_end){
-		alert("예약가능한 시간이 아닙니다.")
-		return false;
-	}
-	
-	// 공백문자일 경우 return false
-	if(reservation_date == ""){
-		alert("날짜를 입력해주세요.");
-		frm["reservation_date"].focus();
-		return false;
-	}
-	if(reservation_start == "" || reservation_start == "시작 시간"){
-		alert("시작 시간을 입력해주세요.");
-		frm["reservation_start"].focus();
-		return false;
-	}
-	if(reservation_end == "" || reservation_end == "종료 시간"){
-		alert("종료 시간을 입력해주세요.");
-		frm["reservation_end"].focus();
-		return false;
-	}
-	if(reservation_count == "" ){
-		alert("인원을 입력해주세요.");
-		frm["reservation_count"].focus();
-		return false;
-	}
-	if(reservation_price == ""){
-		alert("금액이 0원입니다.");
-		frm["reservation_date"].focus();
-		return false;
-	}
-	if((reservation_end - reservation_start) < 0){
-		alert("종료시간이 시작시간보다 앞설 수 없습니다.")
-		frm["reservation_end"].focus();
-		return false;
-	}
-	
-	return true;
-}
-$(document).ready(function(){
-	$(".spaceEmpty0").click(function(){
-		var info = $(this).attr("class");
-		
-		var uid = info.split("#")[1];
-		var name = info.split("#")[6];
-		var price = info.split("#")[4];
-		var seats = $("#space_uid").val();
-		if(!seats){
-			seats = uid;
-		}else{
-			seats = seats + "," + uid;		
-		}
-		$("#space_uid").val(seats);
-		
-		var selectedSeats = $("#selectedSeat").text();
-		if(!selectedSeats){
-			selectedSeats = name;
-		}else{
-			selectedSeats = selectedSeats + ", " + name;
-		}
-		
-		$("#selectedSeat").text(selectedSeats);
-		$("#reservation_seat").val(selectedSeats);
-		var seatPrice = $("#reserve_price").val()*1;
-		if(!seatPrice){
-			seatPrice = price*1;
-		}else{
-			seatPrice = seatPrice*1 + price*1;
-		}
-		$("#reserve_price").val(seatPrice);
-		$(this).addClass("selectingSeat");
-	});	
-});
 
-</script>
 <body>
 
 	<jsp:include page="normalHeader.jsp"></jsp:include>
-
+	<div id="divView"></div>
 	<div id="fh5co-intro-section">
 		<div class="container">
 			<div class="row">
@@ -286,22 +166,22 @@ $(document).ready(function(){
 									<c:choose>
 										
 										<c:when test="${list.spaceList_uid eq 1 }">
-											pcspace space_uid#${list.space_uid }# space_count#1 space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#1 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="pcspaceimg spaceIsEmpty${list.space_empty}" ></div><div class="pcNum">${list.space_name }</div>
+											boximg pcspace space_uid#${list.space_uid }# space_count#1 space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#1 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="pcspaceimg spaceIsEmpty${list.space_empty}" ></div><div class="pcNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 2 }">
-											draggablekar ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#2 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="karspaceimg spaceIsEmpty${list.space_empty}"></div><div class="karNum">${list.space_name }</div>
+											boximg draggablekar ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#2 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="karspaceimg spaceIsEmpty${list.space_empty}"></div><div class="karNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 3 }">
-											draggablebil ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#3 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="bilspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bilNum">${list.space_name }</div>
+											boximg draggablebil ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#3 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="bilspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bilNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 4 }">
-											draggablebowl ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#4 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc+ 100}px; top:${list.space_yloc -400}px"><div class="bowlspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bowlNum">${list.space_name }</div>
+											boximg draggablebowl ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#4 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc+ 100}px; top:${list.space_yloc -300}px"><div class="bowlspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bowlNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 5 }">
-											draggableTable ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }#  spaceName#${list.space_name }# spaceList#5 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="tablespaceimg spaceIsEmpty${list.space_empty}"></div><div class="tableNum">${list.space_name }</div>
+											boximg draggableTable ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }#  spaceName#${list.space_name }# spaceList#5 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="tablespaceimg spaceIsEmpty${list.space_empty}"></div><div class="tableNum">${list.space_name }</div>
 										</c:when>			
 										<c:otherwise>
-											draggableRoom ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#${list.spaceList_uid } spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 400}px"><div class="roomspaceimg spaceIsEmpty${list.space_empty}"></div><div class="roomNum">${list.space_name }</div>
+											boximg draggableRoom ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#${list.spaceList_uid } spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="roomspaceimg spaceIsEmpty${list.space_empty}"></div><div class="roomNum">${list.space_name }</div>
 										</c:otherwise>	
 									</c:choose>
 										</div>
@@ -389,7 +269,7 @@ $(document).ready(function(){
 	<script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
 
 	<!-- Main JS (Do not remove) -->
-	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	
 	
 	<!-- DatePicker -->
 	<script src="${pageContext.request.contextPath}/js/datepicker.min.js"></script>
@@ -397,4 +277,194 @@ $(document).ready(function(){
 	<script src="${pageContext.request.contextPath}/js/datepicker.en.js"></script>
 	
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="${pageContext.request.contextPath}/js/rollingSlider.js"></script>
+
+<script>
+var images = [];
+var imgCheck = 0;
+// form 검증
+function chkSubmit(){
+	
+	frm = document.forms["frm"];
+	
+	// 현재 날짜와 시간을 가지는 객체를 리턴
+	var today = new Date();
+	
+	var cur_year = today.getFullYear(); // 년도
+	var cur_month = today.getMonth() + 1;  // 월
+	var cur_date = today.getDate();  // 날짜
+	var cur_day = today.getDay();  // 요일
+	
+	var reservation_date = frm["reservation_date"].value.trim();
+	var reservation_start = frm["reservation_start"].value.trim();
+	var reservation_end = frm["reservation_end"].value.trim();
+	var reservation_count = frm["reservation_count"].value.trim();
+	var reservation_price = frm["reservation_price"].value.trim();
+	
+	var res_year = reservation_date.substring(0,4);
+	res_year *= 1;	// 비교하기 위해 number 타입으로 형변환
+	cur_year *= 1;	// 비교하기 위해 number 타입으로 형변환
+	
+	var res_month = reservation_date.substring(5,7);
+	res_month *= 1;	// 비교하기 위해 number 타입으로 형변환
+	cur_month *= 1;	// 비교하기 위해 number 타입으로 형변환
+	
+	var res_date = reservation_date.substring(8,10);
+	res_date *= 1; // 비교하기 위해 number 타입으로 형변환
+	cur_date *= 1; // 비교하기 위해 number 타입으로 형변환
+	
+	// 예약날짜가 과거일 경우 return false
+	if(cur_year > res_year ||
+			(cur_year == res_year && cur_month > res_month) ||
+			(cur_year == res_year && cur_month == res_month && cur_date > res_date)){
+		alert("예약가능한 날짜가 아닙니다.")
+		return false;
+	}
+	
+	// 예약시간이 과거일 경우 return false
+	var res_start = reservation_start.replace(":","");
+	var res_end = reservation_end.replace(":","");
+	res_start *= 1;
+	res_end *= 1;
+	
+	if(res_start > res_end || res_start == res_end){
+		alert("예약가능한 시간이 아닙니다.")
+		return false;
+	}
+	
+	// 공백문자일 경우 return false
+	if(reservation_date == ""){
+		alert("날짜를 입력해주세요.");
+		frm["reservation_date"].focus();
+		return false;
+	}
+	if(reservation_start == "" || reservation_start == "시작 시간"){
+		alert("시작 시간을 입력해주세요.");
+		frm["reservation_start"].focus();
+		return false;
+	}
+	if(reservation_end == "" || reservation_end == "종료 시간"){
+		alert("종료 시간을 입력해주세요.");
+		frm["reservation_end"].focus();
+		return false;
+	}
+	if(reservation_count == "" ){
+		alert("인원을 입력해주세요.");
+		frm["reservation_count"].focus();
+		return false;
+	}
+	if(reservation_price == ""){
+		alert("금액이 0원입니다.");
+		frm["reservation_date"].focus();
+		return false;
+	}
+	if((reservation_end - reservation_start) < 0){
+		alert("종료시간이 시작시간보다 앞설 수 없습니다.")
+		frm["reservation_end"].focus();
+		return false;
+	}
+	
+	return true;
+}
+window.onload = function(){
+	$(".spaceEmpty0").click(function(){
+		var info = $(this).attr("class");
+		
+		var uid = info.split("#")[1];
+		var name = info.split("#")[6];
+		var price = info.split("#")[4];
+		var seats = $("#space_uid").val();
+		if(!seats){
+			seats = uid;
+		}else{
+			seats = seats + "," + uid;		
+		}
+		$("#space_uid").val(seats);
+		
+		var selectedSeats = $("#selectedSeat").text();
+		if(!selectedSeats){
+			selectedSeats = name;
+		}else{
+			selectedSeats = selectedSeats + ", " + name;
+		}
+		
+		$("#selectedSeat").text(selectedSeats);
+		$("#reservation_seat").val(selectedSeats);
+		var seatPrice = $("#reserve_price").val()*1;
+		if(!seatPrice){
+			seatPrice = price*1;
+		}else{
+			seatPrice = seatPrice*1 + price*1;
+		}
+		$("#reserve_price").val(seatPrice);
+		$(this).addClass("selectingSeat");
+	});	
+	
+	$(".boximg").mouseover(function(e){
+		var space_uid = $(this).attr("class").split("#")[1];
+		$.ajax({
+			 url : "/nmj/ajax/store/getSpaceImg.ajax",
+			 type : "POST",
+			 cache : false,
+			 data : {
+				 "space_uid" : space_uid
+			 },
+			 success : function(data, status){
+				if(status=="success"){
+					insertImg(data);
+				}
+			 }
+		 });
+		if( imgCheck == 1){
+			
+			var divTop = e.pageY;
+			var divLeft = e.pageX;
+			$("#divView").css({
+				"top" :divTop,
+				"left" : divLeft,
+				"position" :"absolute",
+				"display" : "inline"
+			});
+		}
+	});
+	$(".boximg").mouseout(function(){
+		$("#divView").hide();
+	});
+};
+function insertImg(jsonObj){
+	result = "";
+	images.length = 0;
+	if(jsonObj.status =="OK"){
+		var list = jsonObj.list;
+		for(var i = 0 ; i < jsonObj.count; i++){
+			//result ="<img src='${pageContext.request.contextPath}/img/space/";
+			//result += list[i].space_img_sav;
+			//result +="' style='width:100px; height:100px; background-repeat: no-repeat;	background-size: 100% 100%;'>";
+			result = "<img src='${pageContext.request.contextPath}/img/space/bill_space_img1.jpeg' style='width:300px; height:300px; background-repeat: no-repeat;	background-size: 100% 100%;'>";
+			images[i] = result;
+		}
+		doNowIn();
+		imgCheck = 1;
+	}else{
+		$("#divView").html("");
+		imgCheck = 0;
+	}
+	
+}
+
+function doNowIn() {
+    jQuery("#divView").srolling({
+      data : images,
+      auto : true,
+      item_count : 1, 
+      cache_count : 5, 
+      width:  300,
+      height : 300,
+      delay : 5000,
+      delay_frame : 0,
+      move : 'left'
+    });
+}; 
+</script>
 </html>
