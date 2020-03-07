@@ -206,6 +206,9 @@
 							<c:when test="${list.store_type ne 3 }">
 								<li><i class="icon-map3"></i><b id="menu">메뉴판 펼치기</b></li>
 							</c:when>
+							<c:otherwise>
+								<li><i class="icon-images"></i><b id="room">방 사진 보기</b></li>
+							</c:otherwise>
 						</c:choose>
 						<c:choose>
 							<c:when test="${empty list.store_content }">
