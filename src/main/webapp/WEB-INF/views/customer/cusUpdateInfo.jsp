@@ -139,7 +139,16 @@ function chkSubmit(){
 		<div id="update_frm_container">
 			<form name="frm" id="update_frm" method="post" enctype="Multipart/form-data" action="cusUpdateInfoOk.nmj" onsubmit="">
 				<input type="hidden" name="mb_uid" value="${mb_uid }">
-				<span id="update_info_container"><img src="${pageContext.servletContext.contextPath}/img/member/${myPage.mb_img_sav }" style="height: 200px; margin-bottom: 70px;"></span><br><br><br>
+				<span id="update_info_container">
+					<c:choose>
+						<c:when test="${empty myPage.mb_img_sav }">
+							<img src="${pageContext.servletContext.contextPath}/img/member/memberDefault.png" style="height: 200px; margin-bottom: 70px;">
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.servletContext.contextPath}/img/member/${myPage.mb_img_sav }" style="height: 200px; margin-bottom: 70px;">
+						</c:otherwise>
+					</c:choose>
+				</span><br><br><br>
 				<span id="update_info_container1">이름　　　 <input class="update_info" type="text" name="mb_name" placeholder="회원이름" value="${myPage.mb_name }" required></span><br>
 				<span id="update_info_container2">연락처　　 <input class="update_info" type="text" name="mb_tel" placeholder="회원연락처" value="${myPage.mb_tel }" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})"></span><br>
 				<span id="update_info_container3">아이디　　 <input class="update_info" type="text" name="mb_id" placeholder="회원아이디" value="${myPage.mb_id }" disabled></span><br>
