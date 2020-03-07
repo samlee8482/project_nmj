@@ -108,6 +108,11 @@
 		WHERE review_uid = #{review_uid}
 	</delete>
 	
+	<delete id="deleteRequest">
+		DELETE FROM NMJ_request
+		WHERE request_content = #{review_uid}
+	</delete>
+	
 	<delete id="deleteReply">
 		DELETE FROM NMJ_reply
 		WHERE reply_uid = #{reply_uid}

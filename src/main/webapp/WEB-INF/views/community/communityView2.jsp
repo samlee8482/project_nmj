@@ -41,7 +41,7 @@ function chkDelete(uid){
 	var r = confirm("삭제하시겠습니까?");
 	
 	if(r){
-		location.href = 'deleteReview.nmj?review_uid=' + uid;
+		location.href = 'deleteReview2.nmj?review_uid=' + uid;
 	}
 }
 
@@ -119,14 +119,17 @@ function chkSubmit(){
 
 	<h4><b>댓글 목록</b></h4>
 	
-	<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply2.nmj" method="post" onSubmit="return chkSubmit()">
-		<input type="hidden" name="mb_uid" value="${sessionScope.mb_uid}"/> 
-				<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
-		<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
-		<button class="btn btn-secondary btn-lg" type="submit">등록</button>
-	</form>
-	
+	<c:choose>
+	<c:when test="${sessionScope.mb_uid != null }">
+		<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply2.nmj" method="post" onSubmit="return chkSubmit()">
+			<input type="hidden" name="mb_uid" value="${sessionScope.mb_uid}"/> 
+					<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
+			<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
+			<button class="btn btn-secondary btn-lg" type="submit">등록</button>
+		</form>
 	<br>
+	</c:when>
+	</c:choose>
 
     <c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">

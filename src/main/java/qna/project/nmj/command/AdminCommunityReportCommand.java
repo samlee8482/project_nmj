@@ -23,7 +23,11 @@ public class AdminCommunityReportCommand implements Command {
 		
 		
 
-		ReviewJoinDTO review = dao.selectReviewByUid(review_uid);
+		ReviewJoinDTO review = dao.selectReviewByUid2(review_uid);
+
+		if(review.getStore_uid() != 0) {
+			review = dao.selectReviewByUid(review_uid);
+		}
 		model.addAttribute("dto", review);
 		model.addAttribute("request_uid", request_uid);
 	}

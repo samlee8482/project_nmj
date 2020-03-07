@@ -143,14 +143,17 @@ function chkSubmit(){
 
 	<h4><b>댓글 목록</b></h4>
 	
-	<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" onSubmit="return chkSubmit()" method="post">
-		<input type="hidden" name="mb_uid" value="${sessionScope.mb_uid}"/> 
-		<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
-		<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
-		<button class="btn btn-secondary" type="submit">등록</button>
-	</form>
-	
+	<c:choose>
+ 	<c:when test="${sessionScope.mb_uid != null }">
+		<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" onSubmit="return chkSubmit()" method="post">
+			<input type="hidden" name="mb_uid" value="${sessionScope.mb_uid}"/> 
+			<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
+			<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
+			<button class="btn btn-secondary" type="submit">등록</button>
+		</form>
 	<br>
+	</c:when>
+	</c:choose>
 
     <c:choose>
 	<c:when test="${empty list || fn.length(list) == 0 }">

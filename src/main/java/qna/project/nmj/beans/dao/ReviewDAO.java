@@ -52,6 +52,7 @@ public interface ReviewDAO {
 	
 	// 리뷰 삭제
 	public int deleteReview(int review_uid);
+	public int deleteRequest(int review_uid);
 	
 	// 댓글 삭제
 	public int deleteReply(int reply_uid);
