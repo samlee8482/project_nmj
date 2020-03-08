@@ -362,3 +362,21 @@
 	border-collapse: collapse;
 }
 
+/*****오다현 짬******/
+.cmTable th{
+	border:none !important;
+}
+.cmTable td{
+	background: none !important;
+	border:none !important;
+	border-bottom: 2px solid #eee !important;
+	text-align:center;
+}
+
+.tdSubject{
+	text-align:left !important;
+}
+
+.bg-pink td{
+	background: #FFF0F0 !important;
+}
