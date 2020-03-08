@@ -117,6 +117,8 @@ function chkSubmit(){
     
     <br><br><br>
 
+
+<div class="replyContainer">
 	<h4><b>댓글 목록</b></h4>
 	
 	<c:choose>
@@ -167,7 +169,7 @@ function chkSubmit(){
 	</c:choose>
     
 
-    
+    </div>
 	</div>
 	</div>
 	
