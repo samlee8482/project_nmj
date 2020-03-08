@@ -118,7 +118,6 @@ var draggcnt = 0;
 		 }if(cntroom != 0){
 			 boxListString += "<div>총 방 수 : " + cntroom + "개</div>";
 		 }
-		 boxListString += '<button id="confirmbtn" type="button" class="btn btn-info">저장하기</button>';
 		 $("#boxListArea").html(boxListString);
 		 $("#confirmbtn").click(function(){
 			 var i = 0;
