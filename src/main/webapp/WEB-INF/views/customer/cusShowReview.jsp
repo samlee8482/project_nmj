@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,17 +43,23 @@
 <body>
 
 	<jsp:include page="normalHeader.jsp"></jsp:include>
-	<div id="fh5co-intro-section" style="background-image: url(&quot;/nmj/img/muk.jpg&quot;); background-position: 0% 21.4583px;">
+	<div class="fh5co-parallax" style="background-image: url(/nmj/img/muk.jpg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-center">
-					<h2>내가 쓴 리뷰와 댓글</h2>
+				<div
+					class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+					<div class="fh5co-intro fh5co-table-cell">
+						<h1 class="text-center">내가 쓴 리뷰와 댓글</h1>
+						<p>모두 확인하실 수 있습니다</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end fh5co-intro-section -->
 	
+	<br>
 	<div class="div-relative" style="width: 100%; height: auto;">
 		<div class="show_list_container">
 			<h3>내가 쓴 리뷰</h3>
@@ -83,7 +90,7 @@
 									<td>자자</td>
 								</c:otherwise>
 							</c:choose>
-							<td><a href="/nmj/community/communityView.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
+							<td style = "max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="/nmj/community/communityView.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
 							<td>${item.review_rate }</td>
 							<td>${item.review_viewCount }</td>
 							<td>${item.review_date }</td>
@@ -115,10 +122,10 @@
 							<td>${item.reply_content }</td>
 							<c:choose>
 								<c:when test="${item.store_uid == 0} ">
-									<td><a href="${pageContext.request.contextPath}/community/communityView2.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
+									<td style = "max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/community/communityView2.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
 								</c:when>
 								<c:otherwise>
-									<td><a href="${pageContext.request.contextPath}/community/communityView.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
+									<td style = "max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="${pageContext.request.contextPath}/community/communityView.nmj?review_uid=${item.review_uid }">${item.review_content }</a></td>
 								</c:otherwise>
 							</c:choose>
 							<td>${item.reply_date }</td>
