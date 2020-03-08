@@ -82,16 +82,20 @@ function chkSubmit2(){
 
 	<jsp:include page="normalHeader.jsp"></jsp:include>
 
-	<div id="fh5co-intro-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<p class="title">아이디 비밀번호 찾기</h2>
-					<p class="subtitle">"여러분들의 소중한 정보를 기억해주세요"</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="fh5co-parallax" style="background-image: url(images/hero-1.jpg);" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+               <div class="fh5co-intro fh5co-table-cell">
+                  <h1 class="text-center">아이디 비밀번호 찾기</h1>
+                  <p class="subtitle">"여러분들의 소중한 정보를 기억해주세요"</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+	
 	<!-- end fh5co-intro-section -->
 	
 	<div class="div-relative" style="width: 100%; height: auto; text-align: center;">

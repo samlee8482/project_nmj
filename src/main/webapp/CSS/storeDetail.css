@@ -51,7 +51,7 @@
 	
 }
 
-#likebtn{
+.likebtn{
 	width:70px;
 	height:50px;
 	display:inline;
@@ -60,7 +60,7 @@
 	cursor: pointer;
 }
 
-#dislikebtn{
+.dislikebtn{
 	width:70px;
 	height:50px;
 	display:inline;
