@@ -202,7 +202,6 @@
 			<u><strong>매장사업자번호</strong></u><br> ${dto.store_regNum }<br><br>
 			<c:choose>
 	             <c:when test='${dto.store_regImg_org == null || dto.store_regImg_org == "null" || fn:trim(dto.store_regImg_org) == ""}'>
-	             <img src="${pageContext.request.contextPath}/img/store_regNum/store_regNumDefault.png" style="width:300px">
 	             </c:when>
 	             <c:otherwise>
 	             <img src="${pageContext.request.contextPath}/img/store_regNum/${dto.store_regImg_org }" style="width:300px">
@@ -214,7 +213,7 @@
 
 	
 	<button class="btn btn-outline-primary" onclick="location.href='adminAcceptStoreUpdate.nmj?request_uid=${request_uid }&store_uid=${dto.store_uid }&store_name=${dto.store_name}&store_address=${dto.store_address}&store_regNum=${dto.store_regNum}&store_regImg_org=${dto.store_regImg_org}&store_regImg_sav=${dto.store_regImg_sav}&store_type=${dto.store_type}&store_dtype=${dto.store_dtype}&store_lat=${dto.store_lat}&store_long=${dto.store_long}'">승인하기</button>
-	<button class="btn btn-outline-success" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }'">거절하기</button>
+	<button class="btn btn-outline-success" onclick="location.href='adminCSreject2.nmj?request_uid=${request_uid }'">거절하기</button>
 	<br><br>
 	<button class="contact100-form-btn" onclick="location.href='adminCS.nmj'">목록보기</button>
 </div>

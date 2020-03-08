@@ -29,6 +29,11 @@ public class AdminStoreAcceptOk2Command implements Command {
 		AdminDAO dao = C.sqlSession.getMapper(AdminDAO.class);
 		
 		int cnt = dao.updateStore(store_uid, store_name, store_address, store_regNum, store_regImg_org, store_regImg_sav, store_type, store_dtype, store_lat, store_long);
+		
+		if(store_regImg_org.equals("null")) {
+			cnt = dao.updateStore2(store_uid, store_name, store_address, store_regNum, store_type, store_dtype, store_lat, store_long);
+		}
+		
 		dao.solveRequest(request_uid);
 		
 		model.addAttribute("result", cnt);
