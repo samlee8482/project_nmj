@@ -11,7 +11,7 @@
 	</c:when>
 	<c:when test="${result == 1 }">
 		<script>
-			alert("예약이 완료되었습니다.");
+			alert("예약이 완료되었습니다. 매장의 승인을 기다려주세요.");
 			location.href = "${pageContext.request.contextPath}/member/main.nmj";
 		</script>
 	</c:when>
