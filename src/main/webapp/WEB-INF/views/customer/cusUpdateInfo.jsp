@@ -141,7 +141,7 @@ function chkSubmit(){
 				<input type="hidden" name="mb_uid" value="${mb_uid }">
 				<span id="update_info_container">
 					<c:choose>
-						<c:when test="${empty myPage.mb_img_sav }">
+						<c:when test="${empty myPage.mb_img_sav || fn:length(myPage.mb_img_sav) == 0 }">
 							<img src="${pageContext.servletContext.contextPath}/img/member/memberDefault.png" style="height: 200px; margin-bottom: 70px;">
 						</c:when>
 						<c:otherwise>
@@ -156,7 +156,7 @@ function chkSubmit(){
 				<span id="update_info_container5">이메일　　 <input class="update_info" type="text" name="mb_email" placeholder="회원이메일" value="${myPage.mb_email }"></span><br>
 				<span id="update_info_container6">프로필변경 <input id="update_info_file" class="update_info" type="file" name="upload" accept="image/*"></span><br><br><br>
 				<input type="hidden" name="mb_img_sav" value="${myPage.mb_img_sav }"/>
-				<input type="hidden" name="mb_img_org" value="${myPage.mb_img_sav }"/>
+				<input type="hidden" name="mb_img_org" value="${myPage.mb_img_org }"/>
 				<input class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" type="submit" value="수정하기">
 			</form>
 		</div>
