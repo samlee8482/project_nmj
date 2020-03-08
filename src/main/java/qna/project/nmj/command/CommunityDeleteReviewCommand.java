@@ -18,6 +18,9 @@ public class CommunityDeleteReviewCommand implements Command {
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
 		int cnt = dao.deleteReview(review_uid);
+		dao.deleteRequest(review_uid);
+		dao.deleteReview(review_uid);
+		
 		model.addAttribute("result", cnt);
 	}
 

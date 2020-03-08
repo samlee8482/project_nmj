@@ -23,7 +23,25 @@
   <!-- Custom styles for this page / 테이블에 관한 css-->
   <link href="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+<c:choose>
+	<c:when test="${sessionScope.mb_uid == null || empty sessionScope.mb_uid || sessionScope.mb_type != 3}">
+		<script>
+			alert("로그인을 하지 않으셨거나 권한이 없는 사용자 또는 자동 로그아웃 되었습니다. 로그인 해주세요.");
+			location.href = "${pageContext.request.contextPath}/member/main.nmj";
+		</script>
+	</c:when>
+</c:choose>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
+<script>
+$(window).load(function(){
+	$("#dataTable_filter").hide();
+});
+</script>
+
 <body id="page-top">
 
   <!-- Page Wrapper -->

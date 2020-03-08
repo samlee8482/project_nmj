@@ -19,6 +19,8 @@ public class CommunityDeleteReplyCommand implements Command {
 		ReviewDAO dao = C.sqlSession.getMapper(ReviewDAO.class);
 		
 		int cnt = dao.deleteReply(reply_uid);
+		dao.deleteRequest(reply_uid);
+		
 		model.addAttribute("result", cnt);
 		model.addAttribute("review_uid", review_uid);
 	}
