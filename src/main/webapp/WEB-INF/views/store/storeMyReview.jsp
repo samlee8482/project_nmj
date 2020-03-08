@@ -92,7 +92,7 @@ html{
 							</c:choose>							
 								<td>${status.count }</td>
 								<td>${list.mb_id }</td>
-								<td><a href="#">${list.review_content }</a></td>
+								<td><a href="${pageContext.request.contextPath}/community/communityView.nmj?review_uid=${list.review_uid}">${list.review_content }</a></td>
 								<td>${list.review_rate }</td>
 								<td>${list.review_viewCount }</td>
 								<td>${list.review_date }</td>
