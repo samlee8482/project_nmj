@@ -15,7 +15,7 @@
 .title{
 	font-size: 50px;
 }
-
+so
 .subtitle{
 	font-size: 17px;
 }
@@ -304,8 +304,8 @@
 
 #spaceArea{
 	width: 900px;
-	height: 970px;
-	background-color: #E9ECEF;
+	height: 687px;
+	border: 1px solid #ddd;
 	float: left;
 	margin : 0;
 }
@@ -315,8 +315,8 @@
 }
 
 .spaceEmpty1{
-	opacity: 0.2;
-	background-color: red;
+	opacity: 0.15;
+	background-color: white;
 }
 
 .spaceIsEmpty1{
@@ -324,10 +324,12 @@
 }
 #resultBox{
 	width: 250px;
-	height: 970px;
+	height: 687px;
 	background-color: #EEEEEE;
 	float:left;
 	margin : 0;
+	position: relative;
+	padding:5px;
 }
 
 .selectingSeat{
@@ -379,4 +381,23 @@
 
 .bg-pink td{
 	background: #FFF0F0 !important;
+}
+
+.money{
+	margin-top:100px;
+}
+
+.doreserv{
+	width: 100%;
+	
+}
+
+.moneyBox{
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+    max-width: 240px;
+}
+#selectedSeat{
+	color:black;
 }

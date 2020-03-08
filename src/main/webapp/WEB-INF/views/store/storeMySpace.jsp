@@ -289,7 +289,7 @@ $( function() {
         $( ".ui-selected", this ).each(function() {
           var index = $( "#selectable li" ).index( this );
           var text = $( "#selectable li" ).get(index).innerText;
-          text = text.split("이미지 상세 페이지")[0];
+          text = text.split("삭제하기")[0];
           var space_uidText = $("#selectable li").get(index).innerHTML;
           space_uid = space_uidText.split("=")[2];
           space_uid = space_uid.split('"')[0];

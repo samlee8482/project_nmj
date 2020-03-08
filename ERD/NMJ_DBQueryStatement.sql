@@ -21,6 +21,7 @@ truncate table nmj_space ;
 select * from nmj_spaceimage ns ;
 SELECT * FROM nmj_review;
 select * from nmj_space ns ;
+describe nmj_space ;
 select * from nmj_member nm ;
 select * from nmj_store ns ;
 

@@ -29,6 +29,7 @@
 
 <!-- 새힘 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/myCSS_sam.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cusReserve.css">
 
 <!-- DatePicker -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/datepicker.min.css">
@@ -60,12 +61,16 @@
 	<div class="div-relative">
 		<div id="reserve_frm_container">
 			<form name="frm" id="reserve_frm" onsubmit="return chkSubmit();" action="cusReserveOk.nmj" method="post">
-				<div>
-					<div>날짜 선택</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
+						</div>
+					</div>
 						<div>
 							<c:choose>
 							<c:when test="${store_type eq 1}">
-							<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
+							
 							<select name="reservation_start" class="custom-select" style="width: 200px; height: 50px; font-size: 17px;">
 								<option selected>시작 시간</option>
 								<option value="00:00">00:00</option>
@@ -161,8 +166,6 @@
 							</c:choose>
 						</div>
 					</div>
-				<hr width="100%" align="center" size="0.7px">
-				<div>
 					<div>인원 및 좌석선택</div>
 							<div id="spaceArea">
 								<c:forEach var="list" items="${space }">
@@ -192,14 +195,18 @@
 										</div>
 								</c:forEach>
 							</div>
-						</div>
+						
+						
 				<div id="resultBox">
 							
 							<input type="number" placeholder="인원을 입력하세요" name="reservation_count" id="reservation_count" class="reserve_info form-control myInput"/ required>
 				<hr width="100%" align="center" size="0.7px">
-							<div>금액</div>
-							
+						<div>
+							선택하신 좌석 : <span id="selectedSeat"></span>
+						</div>
+						<div class="moneyBox">
 						
+							<div class="money">금액</div>
 						<c:choose>
 							<c:when test="${store_type eq 2}">
 								<div>
@@ -209,24 +216,22 @@
 									<input type="hidden" name="mb_uid" value="${mb_uid }">
 									<input type="hidden" name="store_uid" value="${store_uid }">
 									<input type="hidden" name="store_type" value="${store_type }">
-									<input type="hidden" name="reservation_price" value="0">
-									<button class="btn btn-primary myBtn">예약하기</button>
+									<input type="hidden" name="reservation_price" value="0" class="mt-2 mb-2">
+									<button class="doreserv btn btn-primary myBtn">예약하기</button>
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div>
-									<input type="text" placeholder="금액" name="reservation_price" id="reserve_price" class="reserve_info form-control myInput" value="0">
+									<input type="text" placeholder="금액" name="reservation_price" id="reserve_price" class="reserve_info form-control myInput mt-2 mb-2" value="0">
 								</div>
 								<div>
 									<input type="hidden" name="mb_uid" value="${mb_uid }">
 									<input type="hidden" name="store_uid" value="${store_uid }">
 									<input type="hidden" name="store_type" value="${store_type }">
-									<button class="btn btn-primary myBtn">예약하기</button>
+									<button class="doreserv btn btn-primary myBtn">예약하기</button>
 								</div>
 							</c:otherwise>
 						</c:choose>
-						<div>
-							선택하신 좌석 : <span id="selectedSeat"></span>
 						</div>
 							<input type="hidden" id="space_uid" name = "space_uid">
 							<input type="hidden" id="reservation_seat" name="reservation_seat" value="">
@@ -234,7 +239,7 @@
 			</form>
 		</div>
 	</div>
-	
+
 	<div class="clear"></div>
 	
 	<footer>

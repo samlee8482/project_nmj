@@ -28,7 +28,7 @@ public class StoreDetailDTO {
 	private int space_price;
 	private int space_empty;
 	private int space_count;
-	private int space_name;
+	private String space_name;
 	private double space_xloc;
 	private double space_yloc;
 	
@@ -59,7 +59,7 @@ public class StoreDetailDTO {
 			String store_hours, String store_content, String store_img_org, String store_img_sav, String store_regNum,
 			String store_regImg_org, String store_regImg_sav, double store_lat, double store_long, int store_type,
 			int store_dtype, Timestamp store_regDate, int store_ratings, int store_rateCount, int space_uid,
-			int spaceList_uid, int space_price, int space_empty, int space_count, int space_name, double space_xloc,
+			int spaceList_uid, int space_price, int space_empty, int space_count, String space_name, double space_xloc,
 			double space_yloc, double totalAvg, int count, int food_uid, String food_img_org, String food_img_sav,
 			int food_price, String food_name, String space_img_sav, int space_img_uid) {
 		super();
@@ -342,12 +342,12 @@ public class StoreDetailDTO {
 	}
 
 
-	public int getSpace_name() {
+	public String getSpace_name() {
 		return space_name;
 	}
 
 
-	public void setSpace_name(int space_name) {
+	public void setSpace_name(String space_name) {
 		this.space_name = space_name;
 	}
 
@@ -460,10 +460,6 @@ public class StoreDetailDTO {
 	public void setSpace_img_uid(int space_img_uid) {
 		this.space_img_uid = space_img_uid;
 	}
-	
-	
-	
-	
 
-
-}
+	
+	}
