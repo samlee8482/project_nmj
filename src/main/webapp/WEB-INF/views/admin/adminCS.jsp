@@ -159,26 +159,30 @@ $(window).load(function(){
 			</c:choose>
 			<td>
 			<c:choose>
-				<c:when test="${dto.request_check== 0 }">
-			<button class="btn btn-outline-primary" onclick="location.href='adminCSreject.nmj?request_uid=${dto.request_uid }'">거절</button>
-			<button class="btn btn-outline-success" onclick="location.href='adminCSsolve.nmj?request_uid=${dto.request_uid }'">해결</button>
-				</c:when>
+				<c:when test="${dto.request_check== 0 }">승인대기</c:when>
 				<c:when test="${dto.request_check== 1 }">해결완료</c:when>
 				<c:when test="${dto.request_check== 2 }">거절완료</c:when>
 				</c:choose>
 			</td>
 			<c:choose>
-				<c:when test="${dto.request_type == 1 }">
-					<td><button class="btn btn-outline-secondary" onclick="location.href='adminStoreRQ.nmj?request_uid=${dto.request_uid }'">가입요청링크</button></td>
-				</c:when>
-				<c:when test="${dto.request_type == 2 }">
-					<td><button class="btn btn-outline-secondary" onclick="location.href='adminStoreRQ2.nmj?request_uid=${dto.request_uid}'">수정요청링크</button></td>
-				</c:when>
-				<c:when test="${dto.request_type == 3 }">
-					<td><button class="btn btn-outline-secondary" onclick="location.href='adminCommunityRQ.nmj?request_uid=${dto.request_uid}'">게시글신고링크</button></td>
+				<c:when test="${dto.request_check == 0 }">
+					<c:choose>
+						<c:when test="${dto.request_type == 1 }">
+							<td><button class="btn btn-outline-secondary" onclick="location.href='adminStoreRQ.nmj?request_uid=${dto.request_uid }'">가입요청링크</button></td>
+						</c:when>
+						<c:when test="${dto.request_type == 2 }">
+							<td><button class="btn btn-outline-secondary" onclick="location.href='adminStoreRQ2.nmj?request_uid=${dto.request_uid}'">수정요청링크</button></td>
+						</c:when>
+						<c:when test="${dto.request_type == 3 }">
+							<td><button class="btn btn-outline-secondary" onclick="location.href='adminCommunityRQ.nmj?request_uid=${dto.request_uid}'">게시글신고링크</button></td>
+						</c:when>
+						<c:otherwise>
+							<td><button class="btn btn-outline-secondary" onclick="location.href='adminReplyRQ.nmj?request_uid=${dto.request_uid}'">댓글신고링크</button></td>
+						</c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
-					<td><button class="btn btn-outline-secondary" onclick="location.href='adminReplyRQ.nmj?request_uid=${dto.request_uid}'">댓글신고링크</button></td>
+					<td>완료한 요청</td>
 				</c:otherwise>
 			</c:choose>
 		</tr>					

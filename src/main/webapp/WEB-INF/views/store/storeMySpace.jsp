@@ -90,47 +90,15 @@
 			</div>
 		</div>
 	</div>
-	<!-- end fh5co-intro-section -->
 	
+	<!-- end fh5co-intro-section -->
+	<div class="topBox">
 		<div id="leftArea">
 			<div id="draggArea">		
-			</div>
-			<div id="reservationArea">			
-					<c:if test="${fn:length(reservation) eq 0 }">
-						<div>예약신청이 없습니다.</div>
-					</c:if>
-					<c:if test="${fn:length(reservation) gt 0 }">
-						<table id="reservationtb">
-							<tr class="table-primary">
-								<th>No.</th>
-								<th>공간이름</th>
-								<th>손님 아이디</th>
-								<th>시작시간</th>
-								<th>종료시간</th>
-								<th>예약 인원</th>
-								<th>금액</th>
-								<th>승인</th>
-								<th>거절</th>
-							</tr>		
-					<c:forEach var="reserv" items="${reservation}" varStatus="status">
-						<tr class="table-light">
-							<td>${status.count }</td>
-							<td>${reserv.reservation_seat }</td>
-							<td>${reserv.mb_id }</td>
-							<td>${reserv.reservation_start}</td>
-							<td>${reserv.reservation_end }</td>
-							<td>${reserv.reservation_count }</td>
-							<td>${reserv.reservation_price }</td>
-							<td><button class="reservOk ${reserv.reservation_uid }">승인</button></td>
-							<td><button class="reservNo ${reserv.reservation_uid }">거절</button></td>
-						</tr>				
-					</c:forEach>
-						</table>
-					</c:if>			
-				</div>
-			</div>
+			</div>		
+		</div>
 		
-		<div id="rightArea">
+	<div id="rightArea">
 		<div id="boxMake">
 			<div id="">
 				<div id="boxMakingArea">
@@ -162,66 +130,128 @@
 							</div>
 					</c:forEach>
 				</div>
-				<div id="boxListArea">
-					<div id="confirmArea">
-						 <button id="confirmbtn" type="button" class="btn btn-info">저장하기</button>
-					</div>
-				</div>
+				
 				<div>
-					<div class="card text-white bg-primary mb-3" style="max-width:300px;">
+					<div class="card text-white mt-3 mb-3" style="max-width:300px;">
 						<div class="card-header">공간입력하기</div>
 						<div class="card-body">
-							<h4 class="card-title">
-							<select name="space_type" id="space_type">
-								<option value="">종류 선택</option>								
-								<c:forEach var="list" items="${space_type}">
-									<option value="${list.spaceList_uid }">${list.space_type }</option>
-								</c:forEach>
-							</select>
-							<span>인원수</span><input id="spaceNum" type="number" style="width:70px;">
-							<div class="clear"></div>
-							<span>공간 이름</span><input id="spaceName" type="text">
-							<div class="clear"></div>
-							<span>공간 가격</span><input id="spacePrice" type="number">
-							</h4>
-							<button id="addButton" type="button" class="btn btn-success">추가하기</button>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<select name="space_type" id="space_type" class="form-control">
+											<option value="">선택종류</option>								
+											<c:forEach var="list" items="${space_type}">
+												<option value="${list.spaceList_uid }">${list.space_type }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input id="spaceNum" type="number" class="form-control" placeholder="인원수">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input id="spaceName" type="text" class="form-control" placeholder="공간이름">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input id="spacePrice" type="number" class="form-control" placeholder="공간가격">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input id="addButton" type="button" class="btn btn-primary form-control" value="추가하기">
+									</div>
+								</div>	
+								<div id="boxListArea">							
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<button id="confirmbtn" type="button" class="btn btn-info form-control mt-2">저장하기</button>
+									</div>
+								</div>	
+							</div>
+							
 						</div>
 					</div>
-					<button type="button" class="btn btn-primary btn-lg btn-block bigbutton">공간 이미지 관리</button>
+				
 										
 				</div>
 			</div>
-			<div id="mySpaceImg">								
-				<div id="feedback">
-				<span>고르신 공간 : </span> <span id="select-result">없음</span>.
-				<form name ="space_uids"id="space_uids" target="매장 이미지 넣기" method="post">
-				</form>
-					<button id="imgAllInsert" class="btn btn-danger">이미지 넣기</button>
 				
-				
-				</div>
-				<div>
-					<div>
-					<ol id="selectable">
-						<c:forEach var="list" items="${space2 }">
-							<li class="space_uid${list.space_uid } ui-widget-content">
-								<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
-								<button class="spaceDelete del#${list.space_uid }#">삭제하기</button> 
-								<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button>
-							</li>
-						</c:forEach>
-						</ol>
-					</div>
-				</div>
-			</div>		
 		</div>
-		</div>
+	</div>
+	</div>
 		<div class="clear"></div>
+		<div id="reservationArea">			
+					<c:if test="${fn:length(reservation) eq 0 }">
+						<div>예약신청이 없습니다.</div>
+					</c:if>
+					<c:if test="${fn:length(reservation) gt 0 }">
+						<table id="reservationtb">
+							<tr id="tHead">
+								<th>No.</th>
+								<th>공간이름</th>
+								<th>손님 아이디</th>
+								<th>시작시간</th>
+								<th>종료시간</th>
+								<th>예약 인원</th>
+								<th>금액</th>
+								<th>승인</th>
+								<th>거절</th>
+							</tr>		
+					<c:forEach var="reserv" items="${reservation}" varStatus="status">
+						<tr class="tData">
+							<td>${status.count }</td>
+							<td>${reserv.reservation_seat }</td>
+							<td>${reserv.mb_id }</td>
+							<td>${reserv.reservation_start}</td>
+							<td>${reserv.reservation_end }</td>
+							<td>${reserv.reservation_count }</td>
+							<td>${reserv.reservation_price }</td>
+							<td><button class="reservOk ${reserv.reservation_uid }">승인</button></td>
+							<td><button class="reservNo ${reserv.reservation_uid }">거절</button></td>
+						</tr>				
+					</c:forEach>
+						</table>
+					</c:if>			
+				</div>
+		<div>
+			<button type="button" class="btn btn-primary btn-lg btn-block bigbutton">공간 이미지 관리</button>
 		
+			<div>
+				<div id="mySpaceImg">								
+					<div id="feedback">
+					<span>고르신 공간 : </span> <span id="select-result">없음</span>.
+					<form name ="space_uids"id="space_uids" target="매장 이미지 넣기" method="post">
+					</form>
+						<button id="imgAllInsert" class="btn btn-danger">이미지 넣기</button>
+					
+					
+					</div>
+					<div>
+						<div>
+						<ol id="selectable">
+							<c:forEach var="list" items="${space2 }">
+								<li class="space_uid${list.space_uid } ui-widget-content">
+									<a href="storeImgDetail.nmj?space_uid=${list.space_uid }">${list.space_name }</a>
+									<button class="spaceDelete del#${list.space_uid }#">삭제하기</button> 
+									<button class="storeImgDetailbtn" onclick="location.href='storeImgDetail.nmj?space_uid=${list.space_uid}'">이미지 상세 페이지</button>
+								</li>
+							</c:forEach>
+							</ol>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
 			
 		
 	
-	<div class="clear"></div><br><br><br>
+	<div class="clear"></div>
 	<footer>
 		<div id="footer" class="fh5co-border-line">
 			<div class="container">

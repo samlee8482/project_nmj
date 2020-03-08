@@ -59,7 +59,7 @@
 	
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: auto;">
+	<div class="div-relative" style="width: 100%; height: auto; margin-bottom: 50px;">
 		<div class="show_list_container">
 			<h3>내가 쓴 리뷰</h3>
 			<table>
@@ -137,6 +137,7 @@
 					</tr>
 				</c:if>			
 			</table>
+		<button type="button" class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" onclick="location.href='cusMyPage.nmj'">돌아가기</button>
 		</div>
 	</div>
 	

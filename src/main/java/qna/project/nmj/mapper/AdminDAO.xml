@@ -220,6 +220,12 @@
  		 WHERE store_uid = #{store_uid}
  	</update>
  	
+	<update id="updateStore2">
+ 		 UPDATE NMJ_store
+ 		 SET store_name = #{store_name}, store_address = #{store_address}, store_regNum = #{store_regNum}, store_type = #{store_type}, store_dtype = #{store_dtype}, store_lat = #{store_lat}, store_long = #{store_long}
+ 		 WHERE store_uid = #{store_uid}
+ 	</update>
+ 	
 	<update id="rejectRequest">
  		 UPDATE NMJ_request SET request_check = 2
  		 WHERE request_uid = #{param1}

@@ -162,6 +162,7 @@ function chkSubmit(){
 				<input type="hidden" name="mb_img_sav" value="${myPage.mb_img_sav }"/>
 				<input type="hidden" name="mb_img_org" value="${myPage.mb_img_org }"/>
 				<input class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" type="submit" value="수정하기">
+				<button type="button" class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" onclick="location.href='cusMyPage.nmj'">돌아가기</button>
 			</form>
 		</div>
 	</div>

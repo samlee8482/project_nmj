@@ -162,7 +162,7 @@
 
 	
 	<button class="btn btn-outline-primary" onclick="location.href='adminAccept.nmj?request_uid=${request_uid }&mb_uid=${dto.mb_uid }'">승인하기</button>
-	<button class="btn btn-outline-success" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }'">거절하기</button>
+	<button class="btn btn-outline-success" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }&mb_uid=${dto.mb_uid }'">거절하기</button>
 	<br><br>
 	<button class="contact100-form-btn" onclick="location.href='adminCS.nmj'">목록보기</button>
 </div>
