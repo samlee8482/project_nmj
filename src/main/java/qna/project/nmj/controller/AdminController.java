@@ -170,9 +170,17 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/adminCSreject.nmj")
+	public String rejectCS(int request_uid, int mb_uid, Model model) {
+		model.addAttribute("request_uid", request_uid);
+		model.addAttribute("mb_uid", mb_uid);
+		new AdminRejectCSCommand().execute(model);
+		return "admin/rejectCS";
+	}
+	
+	@RequestMapping(value = "/adminCSreject2.nmj")
 	public String rejectCS(int request_uid, Model model) {
 		model.addAttribute("request_uid", request_uid);
-		new AdminRejectCSCommand().execute(model);
+		new AdminRejectCSCommand2().execute(model);
 		return "admin/rejectCS";
 	}
 	

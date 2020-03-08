@@ -50,18 +50,23 @@ table, th, td{
 </head>
 <body>
 <jsp:include page="normalHeader.jsp"></jsp:include>
-	<div id="fh5co-intro-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<h2>예약&찜 목록</h2>
-				</div>
-			</div>
-		</div>
-	</div>
+	
+	<div class="fh5co-parallax" style="background-image: url(images/hero-1.jpg);" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+               <div class="fh5co-intro fh5co-table-cell">
+                  <h1 class="text-center">예약&찜 목록</h1>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+	
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: auto;">
+	<div class="div-relative" style="width: 100%; height: auto; margin-bottom: 50px;">
 		<div class="show_list_container">
 			<h3>놀자 예약목록</h3>
 			<table>
@@ -200,6 +205,7 @@ table, th, td{
 					</tr>
 				</c:if>			
 			</table>
+			<button type="button" class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" onclick="location.href='cusMyPage.nmj'">돌아가기</button>
 		</div>
 	</div>
 	

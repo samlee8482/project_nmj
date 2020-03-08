@@ -87,6 +87,12 @@
           <span>Customer Service</span></a>
       </li>
       
+       <li class="nav-item">
+      	<a class="nav-link" href="${pageContext.request.contextPath}/member/main.nmj"> 
+          <i class="fas fa-fw fa-cog"></i>
+          <span>놀먹자 홈페이지</span></a>
+		</li>
+      
       <li class="nav-item">
       	<a class="nav-link" href="${pageContext.request.contextPath}/member/logout.nmj"> 
           <i class="fas fa-fw fa-cog"></i>
@@ -156,7 +162,7 @@
 
 	
 	<button class="btn btn-outline-primary" onclick="location.href='adminAccept.nmj?request_uid=${request_uid }&mb_uid=${dto.mb_uid }'">승인하기</button>
-	<button class="btn btn-outline-success" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }'">거절하기</button>
+	<button class="btn btn-outline-success" onclick="location.href='adminCSreject.nmj?request_uid=${request_uid }&mb_uid=${dto.mb_uid }'">거절하기</button>
 	<br><br>
 	<button class="contact100-form-btn" onclick="location.href='adminCS.nmj'">목록보기</button>
 </div>

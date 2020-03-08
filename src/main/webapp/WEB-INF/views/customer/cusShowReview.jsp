@@ -43,24 +43,23 @@
 <body>
 
 	<jsp:include page="normalHeader.jsp"></jsp:include>
-	<div class="fh5co-parallax" style="background-image: url(/nmj/img/muk.jpg);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div
-					class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
-					<div class="fh5co-intro fh5co-table-cell">
-						<h1 class="text-center">내가 쓴 리뷰와 댓글</h1>
-						<p>모두 확인하실 수 있습니다</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
+	<div class="fh5co-parallax" style="background-image: url(images/hero-1.jpg);" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+               <div class="fh5co-intro fh5co-table-cell">
+                  <h1 class="text-center">내가 쓴 리뷰와 댓글</h1>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+	
 	<!-- end fh5co-intro-section -->
 	
-	<br>
-	<div class="div-relative" style="width: 100%; height: auto;">
+	<div class="div-relative" style="width: 100%; height: auto; margin-bottom: 50px;">
 		<div class="show_list_container">
 			<h3>내가 쓴 리뷰</h3>
 			<table>
@@ -138,6 +137,7 @@
 					</tr>
 				</c:if>			
 			</table>
+		<button type="button" class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" onclick="location.href='cusMyPage.nmj'">돌아가기</button>
 		</div>
 	</div>
 	

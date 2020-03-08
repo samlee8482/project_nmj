@@ -23,13 +23,9 @@ SELECT * FROM nmj_review;
 select * from nmj_space ns ;
 select * from nmj_member nm ;
 select * from nmj_store ns ;
-<<<<<<< HEAD
+
 select * from nmj_like nl ;
-delete from nmj_like where like_uid = 2;
+delete from nmj_like where like_uid = 8;
 SELECT * FROM NMJ_spaceimage si, NMJ_space sp WHERE sp.space_uid = si.space_uid and sp.store_uid = 1;
-=======
 SELECT * FROM NMJ_spaceimage si, NMJ_space sp WHERE sp.space_uid = si.space_uid and sp.store_uid = 1;
-
-
  		
->>>>>>> branch 'master' of https://github.com/giibeom/Project_NMJ.git

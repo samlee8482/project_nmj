@@ -124,7 +124,6 @@ function chkSubmit(){
 			</tr>
 			</table>
 	
-		</div>
 	
 	
 	
@@ -146,6 +145,7 @@ function chkSubmit(){
 	    	<button class="btn btn-secondary btn-sm" onclick="location.href='writeReview.nmj?mb_uid=${sessionScope.mb_uid}'">작성하기</button>
 	    	</c:when>
 	    </c:choose>
+		</div>
 	    <br><br><br>
 	
 	

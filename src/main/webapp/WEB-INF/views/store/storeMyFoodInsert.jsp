@@ -54,7 +54,7 @@
 					
 					<div class="col-md-12">
 					 	<div class="form-group">
-						 	<button type="submit" class="btn btn-primary btn-lg">수정</button>
+						 	<button type="submit" class="btn btn-primary btn-lg">추가</button>
 						 	<button type="button" class="btn btn-lg" onclick="history.back()">이전</button>
 					 	</div>
 				 	</div>
