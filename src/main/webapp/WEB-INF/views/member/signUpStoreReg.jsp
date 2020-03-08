@@ -370,7 +370,7 @@ function chkSubmit(){
 					 	</div>
 				 	</div>
 				 
-				 <button type="submit" id="reg_submit" class="btn btn-primary btn-lg">등록</button>
+				 <button type="submit" id="reg_submit" class="btn btn-primary btn-lg" style="margin-left: 15px;">등록</button>
 				</form>
 			</div>
 		</div>
