@@ -88,15 +88,19 @@ function check(){
 
 	<jsp:include page="normalHeader.jsp"></jsp:include>
 
-	<div id="fh5co-intro-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<h2>회원가입</h2>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="fh5co-parallax" style="background-image: url(images/hero-1.jpg);" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+               <div class="fh5co-intro fh5co-table-cell">
+                  <h1 class="text-center">회원가입</h1>
+				  <p>"놀먹자의 식구가 되어보세요"</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 	<!-- end fh5co-intro-section -->
 	
 	<div class=" div-relative" style="height: auto;">
