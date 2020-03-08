@@ -155,13 +155,11 @@
 			<div class="row">
 				<div class="col-md-4 animate-box">
 					<div id="storeInfomation">매장 정보 
-						<div id="likebox">
 						<c:if test="${sessionScope.mb_uid != null }">
 							<div id="likebutton">
-								찜<i class="fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>
+								찜<i class="fa-heart clear" style="font-size:20px; color:#F03962; margin-left:5px;"></i>
 							</div>
 						</c:if>
-						</div>
 					</div>
 					
 					<ul class="contact-info">

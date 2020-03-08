@@ -350,14 +350,18 @@ so
 
 .mainTextContainer {
 	text-align:left;
+	border: 1px solid #c0c0c0;
+	padding: 30px;
 }
+
 
 .replyContainer {
 	padding: 30px;
 }
 
 .replyContainer td {
-	border: 1px solid #f0ad4e;
+	border: 1px solid #c0c0c0;
+	border-top-left-radius: 10px;
 }
 
 .replyContainer table {

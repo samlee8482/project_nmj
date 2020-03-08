@@ -69,7 +69,7 @@
 	<div class="div-relative">
 		<div class="findOk_container">
 			<div class="findOk_content">고객님의 이메일로<br>비밀번호가 발송되었습니다.</div><br><br>
-			<button class="login_btn" onclick="location.href='login.nmj'"">로그인</button>
+			<button class="login_btn btn btn-primary" onclick="location.href='login.nmj'"">로그인</button>
 		</div>
 	</div>
 

@@ -184,7 +184,7 @@ table, th, td{
 						<c:forEach var="item" items="${myPageLike}" varStatus="status">
 						<tr>
 							<td>${status.index + 1}</td>
-							<td>${item.store_name }</td>
+							<td><a href="${pageContext.request.contextPath}/member/storeDetail.nmj?store_uid=${item.store_uid }">${item.store_name }</a></td>
 							<c:choose>
 								<c:when test="${item.store_type == 1 }">
 									<td>놀자</td>
