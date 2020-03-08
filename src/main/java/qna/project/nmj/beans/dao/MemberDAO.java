@@ -62,6 +62,11 @@ public interface MemberDAO {
 	
 	
 	
+	
+	
+	
+	
+	
 	// 매장 찾기 페이지
 	// 몇번째 from 부터 몇개 rows 를 SELECT
 	public ArrayList<StoreDTO> selectStore(int store_type);
@@ -74,6 +79,9 @@ public interface MemberDAO {
 	public StoreDetailDTO selectStoreDetail(int store_uid);
 	public StoreDetailDTO StoreDetailRestSeat(int store_uid);
 	public ArrayList<StoreDetailDTO> selectFood(int store_uid);
+	public ArrayList<StoreDetailDTO> selectRoom(int store_uid);
+	
+	
 	
 	// 메인페이지
 	public ArrayList<MainDTO> selectHotPlaceNol();

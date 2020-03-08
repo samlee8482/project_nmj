@@ -345,3 +345,20 @@
 	overflow:hidden;
 	z-index: 9999;
 }
+
+.mainTextContainer {
+	text-align:left;
+}
+
+.replyContainer {
+	padding: 30px;
+}
+
+.replyContainer td {
+	border: 1px solid #f0ad4e;
+}
+
+.replyContainer table {
+	border-collapse: collapse;
+}
+
