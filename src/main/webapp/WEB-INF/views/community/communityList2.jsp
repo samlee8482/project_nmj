@@ -131,11 +131,11 @@
        
        var j;
        for(j = 0; j<noticeList.length; j++){
-    	 result += '<tr>';
-		 result += '<td style="background-color: #FFF0F0"> 공지글 </td>';
-		 result += '<td style="background-color: #FFF0F0"> 관리자 </td>';
-		 result += '<td style="background-color: #FFF0F0"><a href="noticeView.nmj?notice_uid=' + noticeList[j].notice_uid + '">' + noticeList[j].notice_subject + '</a></td>';
-		 result += '<td style="background-color: #FFF0F0">' + noticeList[j].notice_viewCount + '</td>';
+    	 result += '<tr class="bg-pink">';
+		 result += '<td> 공지글 </td>';
+		 result += '<td> 관리자 </td>';
+		 result += '<td class="tdSubject"><a href="noticeView.nmj?notice_uid=' + noticeList[j].notice_uid + '">' + noticeList[j].notice_subject + '</a></td>';
+		 result += '<td>' + noticeList[j].notice_viewCount + '</td>';
 		 result += '</tr>';
        }
        
@@ -146,10 +146,10 @@
     	  result += '<td>'+ k + '</td>';
     	  result += '<td style="width: 100px">' + items[i].mb_id + '</td>';
     	   if(items[i].review_ban == 0){
-    		   result += '<td style = "max-width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="communityView2.nmj?review_uid=' + items[i].review_uid;
+    		   result += '<td class="tdSubject" style = "max-width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a href="communityView2.nmj?review_uid=' + items[i].review_uid;
     		   result += '">' + items[i].review_content + '</a></td>';
     	   } else {
-    		   result += '<td>관리자에 의해 삭제된 글입니다.</td>';
+    		   result += '<td class="tdSubject">관리자에 의해 삭제된 글입니다.</td>';
     	   }
     	   result += '<td>' + items[i].review_viewCount + '</td>';
    		   result += '</tr>';
@@ -188,7 +188,7 @@
 	</div>
 	
 	<div class="div-relative">
-	<div class="show_list_container">
+	<div class="show_list_container cmTable">
 	
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -212,7 +212,7 @@
 			<tbody>
 			<c:forEach var="dto" items="${list}">
 				<tr>
-					<td><a href="noticeView.nmj?notice_uid=${dto.notice_uid }">${dto.notice_subject }</a></td>
+					<td class="tdSubject"><a href="noticeView.nmj?notice_uid=${dto.notice_uid }">${dto.notice_subject }</a></td>
 					<td>
 					<fmt:parseDate var="parsedDate" value="${dto.notice_startDate}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
 					<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd"/>
