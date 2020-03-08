@@ -75,7 +75,9 @@ function chkSubmit(){
 	
 	<div class="div-relative">
 	<div class="show_list_container">
-			
+	
+	
+	<div class="mainTextContainer">		
 	<div style="text-align:left;">
 	<table>
 	<tr>
@@ -115,6 +117,7 @@ function chkSubmit(){
     </c:when>
     </c:choose>
     
+    </div>
     <br><br><br>
 
 

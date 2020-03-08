@@ -67,6 +67,7 @@
 	<div class="div-relative">
 	<div class="show_list_container">
 			
+	<div class="mainTextContainer">
 	<div style="text-align:left;">
 	<table>
 	<tr>
@@ -107,8 +108,9 @@
 	</table>
 
 	</div>
-
     <button class="btn btn-warning btn-sm" onclick="location.href='communityList.nmj'">목록보기</button>
+	</div>
+
     
 	</div>
 	</div>
