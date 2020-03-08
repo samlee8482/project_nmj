@@ -49,6 +49,7 @@ public interface AdminDAO {
 	public int solveRequest(int request_uid);
 	public int acceptStore(int store_uid);
 	public int updateStore(@Param("store_uid") int store_uid, @Param("store_name") String store_name, @Param("store_address") String store_address, @Param("store_regNum") String store_regNum, @Param("store_regImg_org") String store_regImg_org, @Param("store_regImg_sav") String store_regImg_sav, @Param("store_type") int store_type, @Param("store_dtype") int store_dtype, @Param("store_lat") double store_lat, @Param("store_long") double store_long);
+	public int updateStore2(@Param("store_uid") int store_uid, @Param("store_name") String store_name, @Param("store_address") String store_address, @Param("store_regNum") String store_regNum, @Param("store_type") int store_type, @Param("store_dtype") int store_dtype, @Param("store_lat") double store_lat, @Param("store_long") double store_long);
 	public int insertNotice(String notice_subject, String notice_content);
 	public int insertEvent(String notice_subject, String notice_content, String notice_startDate, String notice_endDate);
 	public int updateNotice(@Param("notice_uid") int notice_uid, @Param("notice_subject") String notice_subject, @Param("notice_content") String notice_content);
