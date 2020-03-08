@@ -75,123 +75,134 @@ function chkSubmit(){
 	
 	<div class="div-relative">
 	<div class="show_list_container">
-			
-	<div style="text-align:left;">
-	<table>
-	<tr>
-	<td style="width:10%; background-color: white"><b>매장종류</b></td>
-		<c:choose>
-			<c:when test="${dto.store_type == 1 }">
-				<td style="background-color: white">놀자</td>
-			</c:when>
-			<c:when test="${dto.store_type == 2 }">
-				<td style="background-color: white">먹자</td>
-			</c:when>
-			<c:otherwise>
-				<td style="background-color: white">자자</td>
-			</c:otherwise>
-		</c:choose>
-	</tr>
-	<tr>
-		<td style="width:10%; background-color: white"><b>매장명</b></td>
-		<td style="background-color: white">${dto.store_name }</td>
-	</tr>
-	<tr>
-		<td style="width:10%; background-color: white"><b>작성자</b></td>
-		<td style="background-color: white">${dto.mb_id }</td>
-	</tr>
-	<tr>
-		<td style="width:10%; background-color: white"><b>내용</b></td>
-		<td style="background-color: white">${dto.review_content }</td>
-	</tr>
-	<tr>
-		<td style="width:10%; background-color: white"><b>평점</b></td>
-		<td style="background-color: white">
-		<c:forEach begin="1" end="${dto.review_rate}" step="1">
-			★ 
-		</c:forEach>
-		</td>
-	</tr>
-	<tr>
-		<td style="width:10%; background-color: white"><b>조회수</b></td>
-		<td style="background-color: white">${dto.review_viewCount }</td>
-	</tr>
-	<tr>
-		<td style="width:10%; background-color: white"><b>작성일</b></td>
-		<td style="background-color: white">${dto.review_date }</td>
-	</tr>
-	</table>
-
-	</div>
-
-    <button class="btn btn-danger btn-sm" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
-    <button class="btn btn-warning btn-sm" onclick="location.href='communityList.nmj'">목록보기</button>
-    
-	<c:choose>
-    <c:when test="${sessionScope.mb_uid == dto.mb_uid }">
-	    <button class="btn btn-success btn-sm" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}&mb_uid=${sessionScope.mb_uid}'">수정하기</button>
-	    <button class="btn btn-info btn-sm" onclick="chkDelete(${dto.review_uid })">삭제하기</button>
-	</c:when>
-    </c:choose>
-    
-    <c:choose>
-	 	<c:when test="${sessionScope.mb_uid != null }">
-    	<button class="btn btn-secondary btn-sm" onclick="location.href='writeReview.nmj?mb_uid=${sessionScope.mb_uid}'">작성하기</button>
-    	</c:when>
-    </c:choose>
-    <br><br><br>
-
-	<h4><b>댓글 목록</b></h4>
-	
-	<c:choose>
- 	<c:when test="${sessionScope.mb_uid != null }">
-		<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" onSubmit="return chkSubmit()" method="post">
-			<input type="hidden" name="mb_uid" value="${sessionScope.mb_uid}"/> 
-			<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
-			<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
-			<button class="btn btn-secondary" type="submit">등록</button>
-		</form>
-	<br>
-	</c:when>
-	</c:choose>
-
-    <c:choose>
-	<c:when test="${empty list || fn.length(list) == 0 }">
-		<h4>첫번째 댓글을 남겨보세요!</h4>
-	</c:when>
-	
-	<c:otherwise>
-	    <table>
-			<c:forEach var="reply" items="${list}">
+			 
+			 
+			 
+		<div class="mainTextContainer">
+			<table>
 			<tr>
+			<td style="width:10%; background-color: white"><b>매장종류</b></td>
 				<c:choose>
-				<c:when test="${reply.reply_ban == 0 }">
-				<td style="background-color: white">
-				<b>${reply.mb_id }</b><br>
-				${reply.reply_content }<br>
-				<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p>
-				<button class="btn btn-outline-danger btn-sm" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
-				
-				<c:choose>
-    			<c:when test="${sessionScope.mb_uid == reply.mb_uid }">
-					<button class="btn btn-outline-info btn-sm" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">삭제하기</button>
-				</c:when>
-				</c:choose>
-				
-				</td>
-				</c:when>
-				<c:otherwise>
-				<td style="background-color: white">관리자에 의해 삭제된 댓글입니다.</td>
-				</c:otherwise>
+					<c:when test="${dto.store_type == 1 }">
+						<td style="background-color: white">놀자</td>
+					</c:when>
+					<c:when test="${dto.store_type == 2 }">
+						<td style="background-color: white">먹자</td>
+					</c:when>
+					<c:otherwise>
+						<td style="background-color: white">자자</td>
+					</c:otherwise>
 				</c:choose>
 			</tr>
-			</c:forEach>
-		</table>
-	</c:otherwise>
-	</c:choose>
-    
-
-    
+			<tr>
+				<td style="width:10%; background-color: white"><b>매장명</b></td>
+				<td style="background-color: white">${dto.store_name }</td>
+			</tr>
+			<tr>
+				<td style="width:10%; background-color: white"><b>작성자</b></td>
+				<td style="background-color: white">${dto.mb_id }</td>
+			</tr>
+			<tr>
+				<td style="width:10%; background-color: white"><b>내용</b></td>
+				<td style="background-color: white">${dto.review_content }</td>
+			</tr>
+			<tr>
+				<td style="width:10%; background-color: white"><b>평점</b></td>
+				<td style="background-color: white">
+				<c:forEach begin="1" end="${dto.review_rate}" step="1">
+					★ 
+				</c:forEach>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:10%; background-color: white"><b>조회수</b></td>
+				<td style="background-color: white">${dto.review_viewCount }</td>
+			</tr>
+			<tr>
+				<td style="width:10%; background-color: white"><b>작성일</b></td>
+				<td style="background-color: white">${dto.review_date }</td>
+			</tr>
+			</table>
+	
+		</div>
+	
+	
+	
+	
+	
+	
+	    <button class="btn btn-danger btn-sm" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
+	    <button class="btn btn-warning btn-sm" onclick="location.href='communityList.nmj'">목록보기</button>
+	    
+		<c:choose>
+	    <c:when test="${sessionScope.mb_uid == dto.mb_uid }">
+		    <button class="btn btn-success btn-sm" onclick="location.href='updateReview.nmj?review_uid=${dto.review_uid}&mb_uid=${sessionScope.mb_uid}'">수정하기</button>
+		    <button class="btn btn-info btn-sm" onclick="chkDelete(${dto.review_uid })">삭제하기</button>
+		</c:when>
+	    </c:choose>
+	    
+	    <c:choose>
+		 	<c:when test="${sessionScope.mb_uid != null }">
+	    	<button class="btn btn-secondary btn-sm" onclick="location.href='writeReview.nmj?mb_uid=${sessionScope.mb_uid}'">작성하기</button>
+	    	</c:when>
+	    </c:choose>
+	    <br><br><br>
+	
+	
+	
+	
+	
+		<div class="replyContainer">
+			<h3><b>댓글 목록</b></h3>
+			
+			<c:choose>
+		 	<c:when test="${sessionScope.mb_uid != null }">
+				<form name="frm" class="form-inline my-2 my-lg-0" action="writeReply.nmj" onSubmit="return chkSubmit()" method="post">
+					<input type="hidden" name="mb_uid" value="${sessionScope.mb_uid}"/> 
+					<input type="hidden" name="review_uid" value="${dto.review_uid }"/> 
+					<input class="form-control mr-sm-2" type="text" name="reply_content" style="width:100%"/>
+					<button class="btn btn-secondary" type="submit">등록</button>
+				</form>
+			<br>
+			</c:when>
+			</c:choose>
+		
+		    <c:choose>
+			<c:when test="${empty list || fn.length(list) == 0 }">
+				<h4 style="color: gray;">첫번째 댓글을 남겨보세요!</h4>
+			</c:when>
+			
+			<c:otherwise>
+			    <table>
+					<c:forEach var="reply" items="${list}">
+					<tr>
+						<c:choose>
+						<c:when test="${reply.reply_ban == 0 }">
+						<td style="background-color: white">
+						<b>${reply.mb_id }</b><br>
+						${reply.reply_content }<br>
+						<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p>
+						<button class="btn btn-outline-danger btn-sm" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
+						
+						<c:choose>
+		    			<c:when test="${sessionScope.mb_uid == reply.mb_uid }">
+							<button class="btn btn-outline-info btn-sm" onclick="location.href='deleteReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">삭제하기</button>
+						</c:when>
+						</c:choose>
+						
+						</td>
+						</c:when>
+						<c:otherwise>
+						<td style="background-color: white">관리자에 의해 삭제된 댓글입니다.</td>
+						</c:otherwise>
+						</c:choose>
+					</tr>
+					</c:forEach>
+				</table>
+			</c:otherwise>
+			</c:choose>
+	
+	    </div>
 	</div>
 	</div>
 	
