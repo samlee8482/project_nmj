@@ -45,11 +45,11 @@
 		        
 		        var lat = position.coords.latitude, // 위도
 		            lon = position.coords.longitude; // 경도
-		        var myPosition = new kakao.maps.LatLng(37.500664, 127.036492); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		        var myPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 		        var image = new kakao.maps.MarkerImage(myLocationImage, myLocationImageSize, myLocationImageOption);
 		        myLocation = myPosition;
 		        // 내위치 받아왓을 때 매장정보 가져오기
-		        getJacksonForDistance(37.500664, 127.036492)
+		        getJacksonForDistance(lat, lon);
 		        
 		        // 마커와 인포윈도우를 표시합니다
 		        displayMyLocation(myPosition, image);
@@ -89,10 +89,10 @@
 		        fillColor: '#CFE7FF', // 채우기 색깔입니다
 		        fillOpacity: 0.1  // 채우기 불투명도 입니다   
 		    }); 
+		    // 지도에 원을 표시합니다 
+		    circle.setMap(map);
 	 	}
 
-	    // 지도에 원을 표시합니다 
-	    circle.setMap(map);
 	}    
 	
 	function getJacksonForDistance(lat, lon){
