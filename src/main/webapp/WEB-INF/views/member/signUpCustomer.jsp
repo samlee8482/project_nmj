@@ -188,7 +188,7 @@ function chkSubmit(){
 							
 						} else {
 							
-							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
+							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :)");
 							$('#id_check').css('color', 'red');
 							$("#reg_submit").attr("disabled", true);
 						}
