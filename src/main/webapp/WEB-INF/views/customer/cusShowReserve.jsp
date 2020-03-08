@@ -66,7 +66,7 @@ table, th, td{
 	
 	<!-- end fh5co-intro-section -->
 	
-	<div class="div-relative" style="width: 100%; height: auto;">
+	<div class="div-relative" style="width: 100%; height: auto; margin-bottom: 50px;">
 		<div class="show_list_container">
 			<h3>놀자 예약목록</h3>
 			<table>
@@ -205,6 +205,7 @@ table, th, td{
 					</tr>
 				</c:if>			
 			</table>
+			<button type="button" class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" onclick="location.href='cusMyPage.nmj'">돌아가기</button>
 		</div>
 	</div>
 	

@@ -104,7 +104,7 @@ function chkSubmit(){
 				<div class="signUp_input_container">
 					<div class="form-group">
 					<input name="mb_id" id="mb_id" class="form-control" pattern="^[a-zA-Z]{1}[a-zA-Z0-9_]{6,20}$" placeholder="아이디" required>
-					<div class="check_font" style="font-size: 14	px;">영문과 숫자로만 이루어진  4~12자리</div>
+					<div class="check_font" style="font-size: 12px;">영문과 숫자로만 이루어진  4 ~ 12자리</div>
 					<div class="check_font" id="id_check"></div>
 					</div>
 					<input type="password" name="mb_pw" class="form-control" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$" placeholder="비밀번호(특수문자, 문자, 숫자를 포함한  8~15자리)" required>
