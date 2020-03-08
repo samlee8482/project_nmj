@@ -29,6 +29,10 @@ public class StoreDetailDTO {
 	private int space_empty;
 	private int space_count;
 	private int space_name;
+	private double space_xloc;
+	private double space_yloc;
+	
+	
 	private double totalAvg;
 	
 	// 잔여석
@@ -41,19 +45,23 @@ public class StoreDetailDTO {
 	private String food_name;
 
 	
+	// 방 사진
+	private String space_img_sav;
+	private int space_img_uid;
+	
 	
 	public StoreDetailDTO() {
 		super();
 	}
 
 
-
 	public StoreDetailDTO(int store_uid, int mb_uid, String store_name, String store_address, String store_tel,
 			String store_hours, String store_content, String store_img_org, String store_img_sav, String store_regNum,
 			String store_regImg_org, String store_regImg_sav, double store_lat, double store_long, int store_type,
 			int store_dtype, Timestamp store_regDate, int store_ratings, int store_rateCount, int space_uid,
-			int spaceList_uid, int space_price, int space_empty, int space_count, int space_name, double totalAvg,
-			int count, int food_uid, String food_img_org, String food_img_sav, int food_price, String food_name) {
+			int spaceList_uid, int space_price, int space_empty, int space_count, int space_name, double space_xloc,
+			double space_yloc, double totalAvg, int count, int food_uid, String food_img_org, String food_img_sav,
+			int food_price, String food_name, String space_img_sav, int space_img_uid) {
 		super();
 		this.store_uid = store_uid;
 		this.mb_uid = mb_uid;
@@ -80,6 +88,8 @@ public class StoreDetailDTO {
 		this.space_empty = space_empty;
 		this.space_count = space_count;
 		this.space_name = space_name;
+		this.space_xloc = space_xloc;
+		this.space_yloc = space_yloc;
 		this.totalAvg = totalAvg;
 		this.count = count;
 		this.food_uid = food_uid;
@@ -87,8 +97,9 @@ public class StoreDetailDTO {
 		this.food_img_sav = food_img_sav;
 		this.food_price = food_price;
 		this.food_name = food_name;
+		this.space_img_sav = space_img_sav;
+		this.space_img_uid = space_img_uid;
 	}
-
 
 
 	public int getStore_uid() {
@@ -96,11 +107,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_uid(int store_uid) {
 		this.store_uid = store_uid;
 	}
-
 
 
 	public int getMb_uid() {
@@ -108,11 +117,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setMb_uid(int mb_uid) {
 		this.mb_uid = mb_uid;
 	}
-
 
 
 	public String getStore_name() {
@@ -120,11 +127,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_name(String store_name) {
 		this.store_name = store_name;
 	}
-
 
 
 	public String getStore_address() {
@@ -132,11 +137,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_address(String store_address) {
 		this.store_address = store_address;
 	}
-
 
 
 	public String getStore_tel() {
@@ -144,11 +147,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_tel(String store_tel) {
 		this.store_tel = store_tel;
 	}
-
 
 
 	public String getStore_hours() {
@@ -156,11 +157,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_hours(String store_hours) {
 		this.store_hours = store_hours;
 	}
-
 
 
 	public String getStore_content() {
@@ -168,11 +167,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_content(String store_content) {
 		this.store_content = store_content;
 	}
-
 
 
 	public String getStore_img_org() {
@@ -180,11 +177,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_img_org(String store_img_org) {
 		this.store_img_org = store_img_org;
 	}
-
 
 
 	public String getStore_img_sav() {
@@ -192,11 +187,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_img_sav(String store_img_sav) {
 		this.store_img_sav = store_img_sav;
 	}
-
 
 
 	public String getStore_regNum() {
@@ -204,11 +197,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_regNum(String store_regNum) {
 		this.store_regNum = store_regNum;
 	}
-
 
 
 	public String getStore_regImg_org() {
@@ -216,11 +207,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_regImg_org(String store_regImg_org) {
 		this.store_regImg_org = store_regImg_org;
 	}
-
 
 
 	public String getStore_regImg_sav() {
@@ -228,11 +217,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_regImg_sav(String store_regImg_sav) {
 		this.store_regImg_sav = store_regImg_sav;
 	}
-
 
 
 	public double getStore_lat() {
@@ -240,11 +227,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_lat(double store_lat) {
 		this.store_lat = store_lat;
 	}
-
 
 
 	public double getStore_long() {
@@ -252,11 +237,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_long(double store_long) {
 		this.store_long = store_long;
 	}
-
 
 
 	public int getStore_type() {
@@ -264,11 +247,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_type(int store_type) {
 		this.store_type = store_type;
 	}
-
 
 
 	public int getStore_dtype() {
@@ -276,11 +257,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_dtype(int store_dtype) {
 		this.store_dtype = store_dtype;
 	}
-
 
 
 	public Timestamp getStore_regDate() {
@@ -288,11 +267,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_regDate(Timestamp store_regDate) {
 		this.store_regDate = store_regDate;
 	}
-
 
 
 	public int getStore_ratings() {
@@ -300,11 +277,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_ratings(int store_ratings) {
 		this.store_ratings = store_ratings;
 	}
-
 
 
 	public int getStore_rateCount() {
@@ -312,11 +287,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setStore_rateCount(int store_rateCount) {
 		this.store_rateCount = store_rateCount;
 	}
-
 
 
 	public int getSpace_uid() {
@@ -324,11 +297,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setSpace_uid(int space_uid) {
 		this.space_uid = space_uid;
 	}
-
 
 
 	public int getSpaceList_uid() {
@@ -336,11 +307,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setSpaceList_uid(int spaceList_uid) {
 		this.spaceList_uid = spaceList_uid;
 	}
-
 
 
 	public int getSpace_price() {
@@ -348,11 +317,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setSpace_price(int space_price) {
 		this.space_price = space_price;
 	}
-
 
 
 	public int getSpace_empty() {
@@ -360,11 +327,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setSpace_empty(int space_empty) {
 		this.space_empty = space_empty;
 	}
-
 
 
 	public int getSpace_count() {
@@ -372,11 +337,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setSpace_count(int space_count) {
 		this.space_count = space_count;
 	}
-
 
 
 	public int getSpace_name() {
@@ -384,11 +347,29 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setSpace_name(int space_name) {
 		this.space_name = space_name;
 	}
 
+
+	public double getSpace_xloc() {
+		return space_xloc;
+	}
+
+
+	public void setSpace_xloc(double space_xloc) {
+		this.space_xloc = space_xloc;
+	}
+
+
+	public double getSpace_yloc() {
+		return space_yloc;
+	}
+
+
+	public void setSpace_yloc(double space_yloc) {
+		this.space_yloc = space_yloc;
+	}
 
 
 	public double getTotalAvg() {
@@ -396,11 +377,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setTotalAvg(double totalAvg) {
 		this.totalAvg = totalAvg;
 	}
-
 
 
 	public int getCount() {
@@ -408,11 +387,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setCount(int count) {
 		this.count = count;
 	}
-
 
 
 	public int getFood_uid() {
@@ -420,11 +397,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setFood_uid(int food_uid) {
 		this.food_uid = food_uid;
 	}
-
 
 
 	public String getFood_img_org() {
@@ -432,11 +407,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setFood_img_org(String food_img_org) {
 		this.food_img_org = food_img_org;
 	}
-
 
 
 	public String getFood_img_sav() {
@@ -444,11 +417,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setFood_img_sav(String food_img_sav) {
 		this.food_img_sav = food_img_sav;
 	}
-
 
 
 	public int getFood_price() {
@@ -456,11 +427,9 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setFood_price(int food_price) {
 		this.food_price = food_price;
 	}
-
 
 
 	public String getFood_name() {
@@ -468,13 +437,33 @@ public class StoreDetailDTO {
 	}
 
 
-
 	public void setFood_name(String food_name) {
 		this.food_name = food_name;
 	}
 
+
+	public String getSpace_img_sav() {
+		return space_img_sav;
+	}
+
+
+	public void setSpace_img_sav(String space_img_sav) {
+		this.space_img_sav = space_img_sav;
+	}
+
+
+	public int getSpace_img_uid() {
+		return space_img_uid;
+	}
+
+
+	public void setSpace_img_uid(int space_img_uid) {
+		this.space_img_uid = space_img_uid;
+	}
 	
 	
 	
 	
+
+
 }

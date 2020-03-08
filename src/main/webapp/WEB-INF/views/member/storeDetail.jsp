@@ -247,36 +247,63 @@
 		
 		
 		
+			<div class="modalContainer">
 		
+	<c:choose>
+		<c:when test="${list.store_type eq 3 }">
+				<c:forEach var="room" items="${roomMenu }">
+					<div class="col-md-4 col-sm-6">
+						<div class="menuPic">
+							<c:choose>
+								<c:when test="${empty room.space_img_sav }">
+									<img src="${pageContext.request.contextPath}/img/space/spaceDefault.png">
+								</c:when>
+								<c:otherwise>
+									<img src="${pageContext.request.contextPath}/img/space/${room.space_img_sav}">
+								</c:otherwise>
+							</c:choose>
+						</div>
+						
+						<div class="menuName">
+							<p>${room.space_name }</p>
+						</div>
+						
+						<div class="menuPrice">
+							<p>${room.space_price }원</p>
+						</div>
+					</div>	
+				</c:forEach>
 		
-		<div class="modalContainer">
-		<c:forEach var="menu" items="${foodMenu }">
-			<div class="col-md-4 col-sm-6">
-				<div class="menuPic">
-					<c:choose>
-						<c:when test="${empty menu.food_img_sav }">
-							<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
-						</c:when>
-						<c:otherwise>
-							<img src="${pageContext.request.contextPath}/img/food/${menu.food_img_sav}">
-						</c:otherwise>
-					</c:choose>
-				</div>
-				
-				<div class="menuName">
-					<p>${menu.food_name }</p>
-				</div>
-				
-				<div class="menuPrice">
-					<p>${menu.food_price }원</p>
-				</div>
-			</div>	
-		</c:forEach>
+		</c:when>
+		<c:otherwise>
+		
+				<c:forEach var="menu" items="${foodMenu }">
+					<div class="col-md-4 col-sm-6">
+						<div class="menuPic">
+							<c:choose>
+								<c:when test="${empty menu.food_img_sav }">
+									<img src="${pageContext.request.contextPath}/img/food/foodDefault.png">
+								</c:when>
+								<c:otherwise>
+									<img src="${pageContext.request.contextPath}/img/food/${menu.food_img_sav}">
+								</c:otherwise>
+							</c:choose>
+						</div>
+						
+						<div class="menuName">
+							<p>${menu.food_name }</p>
+						</div>
+						
+						<div class="menuPrice">
+							<p>${menu.food_price }원</p>
+						</div>
+					</div>	
+				</c:forEach>
+		
+		</c:otherwise>
+	</c:choose>
 	
-	 
 	</div>
-		
-		
 		
 		
 	<div class="clear" style="margin-bottom: 50px;"></div>

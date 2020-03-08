@@ -14,7 +14,10 @@ public class StoreDetailCommand implements Command{
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		model.addAttribute("list", dao.selectStoreDetail(store_uid));
 		model.addAttribute("restSeat", dao.StoreDetailRestSeat(store_uid));
+		
 		model.addAttribute("foodMenu", dao.selectFood(store_uid));
+		model.addAttribute("roomMenu", dao.selectRoom(store_uid));
+
 		model.addAttribute("like", dao.getLike(mb_uid, store_uid));
 		
 	}
