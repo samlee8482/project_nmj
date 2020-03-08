@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-	var chk = true;
 	
     $("b#menu").click(function (){
     	
@@ -15,5 +14,23 @@ $(document).ready(function(){
     	
     	
     });
+    
+    
+    $("b#room").click(function (){
+    	
+    	
+    	if($(".modalContainer").css("display") == "none"){
+    		$(".modalContainer").css("display", "block");
+    		 $("b#room").text("방사진 접기");
+    	} else {
+    		$(".modalContainer").css("display", "none");
+    		$("b#room").text("방사진 보기");
+    	}
+    	
+    	
+    });
+    
+    
+    
 
 }); 

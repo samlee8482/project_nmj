@@ -127,6 +127,9 @@
 		select * from NMJ_food where store_uid = #{param1};	
 	</select>
 	
+	<select id="selectRoom" resultType="qna.project.nmj.beans.StoreDetailDTO">
+		select * from nmj_space natural join nmj_spaceimage where store_uid = #{param1};
+	</select>
 	
 	
 	<!-- 메인 페이지 -->
