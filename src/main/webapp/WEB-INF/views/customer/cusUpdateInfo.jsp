@@ -47,6 +47,7 @@ function chkSubmit(){
 	var mb_name = frm["mb_name"].value.trim();
 	var mb_tel = frm["mb_tel"].value.trim();
 	var mb_pw = frm["mb_pw"].value.trim();
+	//var mb_pwOk = frm["mb_pwOk"].value.trim();
 	var mb_email = frm["mb_email"].value.trim();
 	
 	if(mb_name == ""){
@@ -70,9 +71,10 @@ function chkSubmit(){
 		        $('mb_pw').removeAttr('pattern');
 		 });
 	}
-	if(mb_pw != ""){
-		
-	}
+	//if(mb_pw != "" && mb_pw != mb_pwOk){
+		//alert("비밀번호가 일치하지 않습니다.");
+		//return false;
+	//}
 	
 	return true;
 }
@@ -153,15 +155,17 @@ function chkSubmit(){
 						</c:otherwise>
 					</c:choose>
 				</span><br><br><br>
-				<span id="update_info_container1">이름　　　 <input class="update_info" type="text" name="mb_name" placeholder="회원이름" value="${myPage.mb_name }" required></span><br>
-				<span id="update_info_container2">연락처　　 <input class="update_info" type="text" name="mb_tel" placeholder="회원연락처" value="${myPage.mb_tel }" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})"></span><br>
-				<span id="update_info_container3">아이디　　 <input class="update_info" type="text" name="mb_id" placeholder="회원아이디" value="${myPage.mb_id }" disabled></span><br>
-				<span id="update_info_container4">비밀번호　 <input class="update_info" type="password" name="mb_pw" placeholder="회원비밀번호" value="" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$"></span><br>
-				<span id="update_info_container5">이메일　　 <input class="update_info" type="text" name="mb_email" placeholder="회원이메일" value="${myPage.mb_email }"></span><br>
-				<span id="update_info_container6">프로필변경 <input id="update_info_file" class="update_info" type="file" name="upload" accept="image/*"></span><br><br><br>
+				<span id="update_info_container1">이름　　　 　<input class="update_info" type="text" name="mb_name" placeholder="회원이름" value="${myPage.mb_name }" required></span><br>
+				<span id="update_info_container2">연락처　　 　<input class="update_info" type="text" name="mb_tel" placeholder="회원연락처" value="${myPage.mb_tel }" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})"></span><br>
+				<span id="update_info_container3">아이디　　 　<input class="update_info" type="text" name="mb_id" placeholder="회원아이디" value="${myPage.mb_id }" disabled></span><br>
+				<span id="update_info_container4">비밀번호　　 <input class="update_info" type="password" name="mb_pw" placeholder="회원비밀번호" value="" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$"></span><br>
+				<!-- <span id="update_info_container7">비밀번호 확인 <input class="update_info" type="password" name="mb_pwOk" placeholder="비밀번호 변경시 재확인" required id="mb_pwOk"></span><br> -->
+				<span id="update_info_container5">이메일　　 　<input class="update_info" type="text" name="mb_email" placeholder="회원이메일" value="${myPage.mb_email }" id="mb_email"></span><br>
+				<div class="check_font" id="email_check"></div>
+				<span id="update_info_container6">프로필변경 　<input id="update_info_file" class="update_info" type="file" name="upload" accept="image/*"></span><br><br><br>
 				<input type="hidden" name="mb_img_sav" value="${myPage.mb_img_sav }"/>
 				<input type="hidden" name="mb_img_org" value="${myPage.mb_img_org }"/>
-				<input class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" type="submit" value="수정하기">
+				<input id="reg_submit" class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" type="submit" value="수정하기">
 				<button type="button" class="find_btn btn btn-primary" style="width: 100px; margin-top: -40px; padding: 10px;" onclick="location.href='cusMyPage.nmj'">돌아가기</button>
 			</form>
 		</div>
@@ -205,6 +209,49 @@ function chkSubmit(){
 
 	<!-- Main JS (Do not remove) -->
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	
+	<script>
+	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#mb_email").blur(function() {
+		// id = "id_reg" / name = "userId"
+		var mb_email = $('#mb_email').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/user/emailCheck?mb_email='+ mb_email,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+						// 1 : 이메일이 중복되는 문구
+						$("#email_check").text("사용중인 이메일입니다 :p");
+						$("#email_check").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+					} else {
+						
+						if(mb_email.trim().length >= 4 && mb_email.trim().length <= 40 ){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#email_check").text("");
+							$("#reg_submit").attr("disabled", false);
+				
+						} else if(mb_email == ""){
+							
+							$('#email_check').text('이메일을 입력해주세요 :)');
+							$('#email_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} else {
+							$('#email_check').text("올바르지 않은 이메일 주소 입니다.");
+							$('#email_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);
+						}
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>

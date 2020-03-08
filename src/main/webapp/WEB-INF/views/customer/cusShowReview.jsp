@@ -96,7 +96,7 @@
 						</tr> 
 					</c:forEach>
 				</c:if>
-				<c:if test="${myPageReview == null }">
+				<c:if test="${empty myPageReview || fn.length(myPageReview) == 0 }">
 					<tr>
 						<td colspan="6">작성한 기록이 없습니다.</td>
 					</tr>
