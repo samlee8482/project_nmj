@@ -67,7 +67,7 @@
 	<div class="div-relative">
 		<div class="findOk_container">
 			<div class="findOk_content">회원님께서 찾으시는 아이디는 <br>'${findIdOk}'입니다.<br>다시 로그인 해주시기 바랍니다.</div><br><br>
-			<button class="login_btn" onclick="location.href='login.nmj'">로그인</button>
+			<button class="login_btn btn btn-primary" onclick="location.href='login.nmj'">로그인</button>
 		</div>
 	</div>
 
