@@ -348,17 +348,39 @@
 
 .mainTextContainer {
 	text-align:left;
+	border: 1px solid #c0c0c0;
+	padding: 30px;
 }
+
 
 .replyContainer {
 	padding: 30px;
 }
 
 .replyContainer td {
-	border: 1px solid #f0ad4e;
+	border: 1px solid #c0c0c0;
+	border-top-left-radius: 10px;
 }
 
 .replyContainer table {
 	border-collapse: collapse;
 }
 
+/*****오다현 짬******/
+.cmTable th{
+	border:none !important;
+}
+.cmTable td{
+	background: none !important;
+	border:none !important;
+	border-bottom: 2px solid #eee !important;
+	text-align:center;
+}
+
+.tdSubject{
+	text-align:left !important;
+}
+
+.bg-pink td{
+	background: #FFF0F0 !important;
+}

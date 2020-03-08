@@ -56,93 +56,69 @@
 	<![endif]-->
 	<script>
 	$(window).load(function(){
-			$("#dislikebtn").mouseenter(function(){
-				var html = '찜<i class="fas fa-heart-broken" style="font-size:20px; color:#F03962; margin-left:5px;"></i>';
-				$("#dislikebtn").html(html);
-			});
-			$("#dislikebtn").mouseleave(function(){
-				var html = '찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>';
-				$("#dislikebtn").html(html);
-			});
-			$("#likebtn").click(function(){
-				var mb_uid = ${sessionScope.mb_uid}*1;
-				var store_uid = ${param.store_uid}*1;
-				 $.ajax({
-					 url : "/nmj/memberAjax/insertLike",
-					 type : "POST",
-					 cache : false,
-					 data : {
-						 "mb_uid" : mb_uid,
-						 "store_uid" : store_uid
-					 },
-					 success : function(data, status){
-						if(status == "success"){
-							var html = '<div id="dislikebtn">찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
-							$("#likebox").html(html);
-							$("#dislikebtn").click(function(){
-								var mb_uid = ${sessionScope.mb_uid}*1;
-								var store_uid = ${param.store_uid}*1;
-								 $.ajax({
-									 url : "/nmj/memberAjax/deleteLike",
-									 type : "POST",
-									 cache : false,
-									 data : {
-										 "mb_uid" : mb_uid,
-										 "store_uid" : store_uid
-									 },
-									 success : function(data, status){
-										 if(status == "success"){
-											 var html = '<div id="likebtn">찜<i class="far fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
-											 $("#likebox").html(html);
-										 }
-									 }
-								 });
-							});
-							
+		var like = false;
+		<c:choose>
+			<c:when test="${empty like}">
+				like = false;
+				$("#likebutton i").addClass('far');
+			</c:when>
+			<c:when test="${not empty like }">
+				like = true;
+				$("#likebutton i").addClass('fas');
+			</c:when>						
+		</c:choose>
+		
+		$("#likebutton").on("click", function(){
+			var url = "";
+			if(like){ // 찜이 되어있을 때
+				url = "/nmj/memberAjax/deleteLike";
+			} else{ // 찜이 안되어 있을 때
+				url = "/nmj/memberAjax/insertLike";
+			}
+			
+			var mb_uid = ${sessionScope.mb_uid}*1;
+			var store_uid = ${param.store_uid}*1;
+			 $.ajax({
+				 url : url,
+				 type : "POST",
+				 cache : false,
+				 data : {
+					 "mb_uid" : mb_uid,
+					 "store_uid" : store_uid
+				 },
+				 success : function(data, status){
+					if(status == "success"){
+						if(like){ // 찜이 되어있을 때
+							$("#likebutton i").addClass("far");
+							$("#likebutton i").addClass("fa-heart");
+							$("#likebutton i").removeClass("fas");
+							$("#likebutton i").removeClass("fa-heart-broken");
+							like = false;
+						} else{ // 찜이 안되어있을 때
+							$("#likebutton i").addClass("fas");
+							$("#likebutton i").removeClass("far");
+							like = true;
 						}
-					 }
-				 });
-			});
-			$("#dislikebtn").click(function(){
-				var mb_uid = ${sessionScope.mb_uid}*1;
-				var store_uid = ${param.store_uid}*1;
-				 $.ajax({
-					 url : "/nmj/memberAjax/deleteLike",
-					 type : "POST",
-					 cache : false,
-					 data : {
-						 "mb_uid" : mb_uid,
-						 "store_uid" : store_uid
-					 },
-					 success : function(data, status){
-						 if(status == "success"){
-							 var html = '<div id="likebtn">찜<i class="far fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
-							 $("#likebox").html(html);
-							$("#likebtn").click(function(){
-								var mb_uid = ${sessionScope.mb_uid}*1;
-								var store_uid = ${param.store_uid}*1;
-								 $.ajax({
-									 url : "/nmj/memberAjax/insertLike",
-									 type : "POST",
-									 cache : false,
-									 data : {
-										 "mb_uid" : mb_uid,
-										 "store_uid" : store_uid
-									 },
-									 success : function(data, status){
-										if(status == "success"){
-											var html = '<div id="dislikebtn">찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i></div>'
-											$("#likebox").html(html);
-											
-										}
-									 }
-								 });
-							});
-						 }
-					 }
-				 });
-			});
+					}
+				 }
+			 });
+			
 		});
+		
+		$("#likebutton").on("mouseenter", function(){
+			if(like){
+				$("#likebutton i").addClass("fa-heart-broken");
+				$("#likebutton i").removeClass("fa-heart");
+			}
+		});
+		$("#likebutton").on("mouseleave", function(){
+			if(like){
+				$("#likebutton i").addClass("fa-heart");
+				$("#likebutton i").removeClass("fa-heart-broken");
+			}
+		});
+		
+	});
 	</script>
 	</head>
 	<body>
@@ -181,18 +157,9 @@
 					<div id="storeInfomation">매장 정보 
 						<div id="likebox">
 						<c:if test="${sessionScope.mb_uid != null }">
-						<c:choose>
-							<c:when test="${empty like}">
-								<div id="likebtn">
-									찜<i class="far fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>
-								</div>
-							</c:when>
-							<c:when test="${not empty like }">
-								<div id="dislikebtn">
-									찜<i class="fas fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>
-								</div>							
-							</c:when>						
-						</c:choose>
+							<div id="likebutton">
+								찜<i class="fa-heart" style="font-size:20px; color:#F03962; margin-left:5px;"></i>
+							</div>
 						</c:if>
 						</div>
 					</div>
