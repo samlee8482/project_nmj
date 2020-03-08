@@ -126,6 +126,12 @@ $(function(){
           <span>Customer Service</span></a>
       </li>
       
+       <li class="nav-item">
+      	<a class="nav-link" href="${pageContext.request.contextPath}/member/main.nmj"> 
+          <i class="fas fa-fw fa-cog"></i>
+          <span>놀먹자 홈페이지</span></a>
+		</li>
+      
       <li class="nav-item">
       	<a class="nav-link" href="${pageContext.request.contextPath}/member/logout.nmj"> 
           <i class="fas fa-fw fa-cog"></i>
