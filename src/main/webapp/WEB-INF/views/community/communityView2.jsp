@@ -156,7 +156,7 @@ function chkSubmit(){
 				
 				<c:choose>
 		 		<c:when test="${sessionScope.mb_uid != null }">
-				<button class="btn btn-outline-danger btn-sm" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
+				<button class="btn btn-outline-danger btn-sm" onclick="location.href='reportReply2.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
 				</c:when>
 				</c:choose>	
 					
