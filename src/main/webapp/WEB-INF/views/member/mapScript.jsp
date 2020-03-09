@@ -187,7 +187,8 @@
 				position: new kakao.maps.LatLng(jsonObjDistance[j].store_lat, jsonObjDistance[j].store_long),
 				clickable: true,
 				map: map,
-				image: new kakao.maps.MarkerImage("${pageContext.servletContext.contextPath}/img/mapIcons/" + jsonObjDistance[j].icon , new kakao.maps.Size(40, 40), {offset: new kakao.maps.Point(20, 20)})
+				image: new kakao.maps.MarkerImage("${pageContext.servletContext.contextPath}/img/mapIcons/" + jsonObjDistance[j].icon , 
+						new kakao.maps.Size(40, 40), {offset: new kakao.maps.Point(20, 40)})
 			});
 			//마커 지도에 표시
 			markers[i].setMap(map);
