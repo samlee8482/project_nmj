@@ -78,6 +78,7 @@ table, th, td{
 					<th>인원수</th>
 					<th>예약금액</th>
 					<th>좌석</th>
+					<th>상태</th>
 				</tr>
 							<c:set var="store1" value='0'/>
 						<c:forEach var="item" items="${myPageReservation}" varStatus="status">
@@ -93,12 +94,20 @@ table, th, td{
 								<td>${item.reservation_count }</td>
 								<td>${item.reservation_price }</td>
 								<td>${item.reservation_seat }</td>
-								</tr>
+								<c:choose>
+									<c:when test="${item.reservation_check eq 0}">
+										<td>미승인</td>
+									</c:when>
+									<c:otherwise>
+										<td>승인</td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
 							</c:if>		
 						</c:forEach>
 						<c:if test="${store1 == 0 }">
 							<tr>
-								<td colspan="7">예약 기록이 없습니다.</td>
+								<td colspan="8">예약 기록이 없습니다.</td>
 							</tr>
 						</c:if>
 			</table>
@@ -113,6 +122,7 @@ table, th, td{
 					<th>예약시간</th>
 					<th>인원수</th>
 					<th>좌석</th>
+					<th>상태</th>
 				</tr>
 				
 					<c:set var="store2" value="0"/>
@@ -125,12 +135,20 @@ table, th, td{
 							<td>${item.store_start }</td>
 							<td>${item.reservation_count }</td>
 							<td>${item.reservation_seat }</td>
+							<c:choose>
+									<c:when test="${item.reservation_check eq 0}">
+										<td>미승인</td>
+									</c:when>
+									<c:otherwise>
+										<td>승인</td>
+									</c:otherwise>
+							</c:choose>
 							</tr>
 						</c:if>		
 					</c:forEach>
 					<c:if test="${store2 == 0 }">
 						<tr>
-								<td colspan="7">예약 기록이 없습니다.</td>
+								<td colspan="8">예약 기록이 없습니다.</td>
 							</tr>
 					</c:if>
 			</table>
@@ -147,6 +165,7 @@ table, th, td{
 					<th>인원수</th>
 					<th>예약금액</th>
 					<th>방</th>
+					<th>상태</th>
 				</tr>
 				
 					<c:set var="store3" value="0"/>
@@ -161,12 +180,20 @@ table, th, td{
 							<td>${item.reservation_count }</td>
 							<td>${item.reservation_price }</td>
 							<td>${item.reservation_seat }</td>
+							<c:choose>
+									<c:when test="${item.reservation_check eq 0}">
+										<td>미승인</td>
+									</c:when>
+									<c:otherwise>
+										<td>승인</td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</c:if>		
 					</c:forEach>
 					<c:if test="${store3 == 0 }">
 						<tr>
-								<td colspan="7">예약 기록이 없습니다.</td>
+								<td colspan="8">예약 기록이 없습니다.</td>
 							</tr>
 					</c:if>
 			</table>
