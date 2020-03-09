@@ -98,8 +98,11 @@ table, th, td{
 									<c:when test="${item.reservation_check eq 0}">
 										<td>미승인</td>
 									</c:when>
-									<c:otherwise>
+									<c:when test="${item.reservation_check eq 1 }">
 										<td>승인</td>
+									</c:when>
+									<c:otherwise>
+										<td>거절</td>
 									</c:otherwise>
 								</c:choose>
 							</tr>
@@ -132,15 +135,18 @@ table, th, td{
 							<c:set var="store2" value="1"/>
 							<td>${status.index + 1}</td>
 							<td><a href="writeReview.nmj?mb_uid=${item.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
-							<td>${item.store_start }</td>
+							<td>${item.reservation_start }</td>
 							<td>${item.reservation_count }</td>
 							<td>${item.reservation_seat }</td>
 							<c:choose>
 									<c:when test="${item.reservation_check eq 0}">
 										<td>미승인</td>
 									</c:when>
-									<c:otherwise>
+									<c:when test="${item.reservation_check eq 1 }">
 										<td>승인</td>
+									</c:when>
+									<c:otherwise>
+										<td>거절</td>
 									</c:otherwise>
 							</c:choose>
 							</tr>
@@ -174,9 +180,9 @@ table, th, td{
 							<tr>
 							<c:set var="store3" value="1"/>
 							<td>${status.index + 1}</td>
-							<td><a href="writeReview.nmj?mb_uid=${item.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
-							<td>${item.store_start }</td>
-							<td>${item.store_end }</td>
+							<td><a href="writeReview.nmj?mb_uid=${sessionScope.mb_uid}&store_uid=${item.store_uid }">${item.store_name }</a></td>
+							<td>${item.reservation_start }</td>
+							<td>${item.reservation_end }</td>
 							<td>${item.reservation_count }</td>
 							<td>${item.reservation_price }</td>
 							<td>${item.reservation_seat }</td>
@@ -184,8 +190,11 @@ table, th, td{
 									<c:when test="${item.reservation_check eq 0}">
 										<td>미승인</td>
 									</c:when>
-									<c:otherwise>
+									<c:when test="${item.reservation_check eq 1 }">
 										<td>승인</td>
+									</c:when>
+									<c:otherwise>
+										<td>거절</td>
 									</c:otherwise>
 								</c:choose>
 							</tr>
