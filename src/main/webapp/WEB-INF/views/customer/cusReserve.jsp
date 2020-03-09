@@ -61,15 +61,11 @@
 	<div class="div-relative">
 		<div id="reserve_frm_container">
 			<form name="frm" id="reserve_frm" onsubmit="return chkSubmit();" action="cusReserveOk.nmj" method="post">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
-						</div>
-					</div>
+				<div>
 						<div>
 							<c:choose>
 							<c:when test="${store_type eq 1}">
+							<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
 							
 							<select name="reservation_start" class="custom-select" style="width: 200px; height: 50px; font-size: 17px;">
 								<option selected>시작 시간</option>
@@ -130,8 +126,8 @@
 							</select>
 							</c:when>
 							<c:when test="${store_type eq 2}">
-								<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control myInput' data-language='en' />
-							<select name="reservation_start" class="custom-select" style="width: 200px; height: 50px; font-size: 17px;">
+								<input type='text' name="reservation_date" placeholder="날짜를 고르세요" id="my-element" class='datepicker-here reserve_info form-control col-md-6 myInput' data-language='en' />
+							<select name="reservation_start" class="custom-select col-md-6" style="width: 200px; height: 50px; font-size: 17px;">
 								<option selected>시작 시간</option>
 								<option value="00:00">00:00</option>
 								<option value="01:00">01:00</option>
@@ -161,11 +157,12 @@
 							</select>
 							</c:when>
 							<c:when test="${store_type eq 3}">
-								<input type="text" name="reservation_start" data-range="true" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here"/>
+								<input type="text" name="reservation_start" data-range="true" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control doubleDate col-md-6" placeholder="날짜를 입력하세요."/>
 							</c:when>
 							</c:choose>
 						</div>
 					</div>
+					<div class="clear"></div>
 					<div>인원 및 좌석선택</div>
 							<div id="spaceArea">
 								<c:forEach var="list" items="${space }">
