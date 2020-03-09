@@ -162,7 +162,6 @@ var draggcnt = 0;
 						 }
 					 });
 				 }				 
-			location.reload();
 		 	});
 	$(".spaceEmpty0").click(function(){
 		var spaceInfo = $(this).attr("class");
