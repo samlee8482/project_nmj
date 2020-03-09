@@ -41,7 +41,7 @@
 	<header>
 		<div class="container text-center">
 			<div class="fh5co-navbar-brand">
-				<a class="fh5co-logo" href="index.html"><img
+				<a class="fh5co-logo" href="${pageContext.request.contextPath}/store/storeMySpace.nmj"><img
 					src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"
 					style="width: 200px; height: 150px;" /></a>
 			</div>
@@ -107,7 +107,7 @@
 $(document).ready(function(){
 	 $("#imgInsert").click(function(){
 		
-		 window.open("storeMySpaceImgInsert.nmj?space_uid=${space_uid}" , "매장 이미지 넣기"	, "width=400, height=200, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		 window.open("storeMySpaceImgInsert.nmj?space_uid=${space_uid}" , "매장 이미지 넣기"	, "width=600, height=200, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		 
 	 }); 
  });
