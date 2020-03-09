@@ -448,10 +448,10 @@ function insertImg(jsonObj){
 	if(jsonObj.status =="OK"){
 		var list = jsonObj.list;
 		for(var i = 0 ; i < jsonObj.count; i++){
-			//result ="<img src='${pageContext.request.contextPath}/img/space/";
-			//result += list[i].space_img_sav;
-			//result +="' style='width:100px; height:100px; background-repeat: no-repeat;	background-size: 100% 100%;'>";
-			result = "<img src='${pageContext.request.contextPath}/img/space/bill_space_img1.jpeg' style='width:300px; height:300px; background-repeat: no-repeat;	background-size: 100% 100%;'>";
+			result ="<img src='${pageContext.request.contextPath}/img/space/";
+			result += list[i].space_img_sav;
+			result +="' style='width:300px; height:300px; background-repeat: no-repeat;	background-size: 100% 100%;'>";
+			//result = "<img src='${pageContext.request.contextPath}/img/space/bill_space_img1.jpeg' style='width:300px; height:300px; background-repeat: no-repeat;	background-size: 100% 100%;'>";
 			images[i] = result;
 		}
 		doNowIn();
@@ -468,7 +468,7 @@ function doNowIn() {
       data : images,
       auto : true,
       item_count : 1, 
-      cache_count : 5, 
+      cache_count : 1, 
       width:  300,
       height : 300,
       delay : 5000,

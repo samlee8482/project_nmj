@@ -24,7 +24,10 @@ var draggcnt = 0;
 				 "space_uid" : space_uid
 			 },
 			 success : function(data, status){
-				 alert("삭제에 성공했습니다.");
+				 if(status="success"){
+					 alert("삭제에 성공했습니다.");
+					 location.reload();
+				 }
 			 }
 		 });
 	 });
@@ -38,6 +41,9 @@ var draggcnt = 0;
 				 "reservation_uid" : reservUid
 			 },
 			 success : function(data, status){
+				 if(status="success"){
+					 location.reload();
+				 }
 			 }
 		 });
 	 });
@@ -51,6 +57,9 @@ var draggcnt = 0;
 				 "reservation_uid" : reservUid
 			 },
 			 success : function(data, status){
+				 if(status="success"){
+					 location.reload();
+				 }
 			 }
 		 });
 		 
@@ -119,6 +128,7 @@ var draggcnt = 0;
 			 boxListString += "<div>총 방 수 : " + cntroom + "개</div>";
 		 }
 		 $("#boxListArea").html(boxListString);
+	  });
 		 $("#confirmbtn").click(function(){
 			 var i = 0;
 			 $(".draggbox").each(function(){
@@ -149,12 +159,11 @@ var draggcnt = 0;
 						 "space_yloc" : space_yloc[j]
 					 },
 					 success : function(data, status){
-					 }
-				 });					 
-			 }
-		 });
-	});
-	
+						 }
+					 });
+				 }				 
+			location.reload();
+		 	});
 	$(".spaceEmpty0").click(function(){
 		var spaceInfo = $(this).attr("class");
 		var dospaceuid = spaceInfo.split("space_uid")[1];

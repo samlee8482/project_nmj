@@ -19,6 +19,7 @@ select * from nmj_space ns ;
 SELECT * FROM NMJ_space WHERE store_uid = 1 group by space_name ORDER BY space_uid asc;
 truncate table nmj_space ;  
 select * from nmj_spaceimage ns ;
+truncate table nmj_spaceimage ;
 SELECT * FROM nmj_review;
 select * from nmj_space ns ;
 describe nmj_space ;
