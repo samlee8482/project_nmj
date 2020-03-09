@@ -47,7 +47,7 @@ function chkSubmit(){
 	var mb_name = frm["mb_name"].value.trim();
 	var mb_tel = frm["mb_tel"].value.trim();
 	var mb_pw = frm["mb_pw"].value.trim();
-	//var mb_pwOk = frm["mb_pwOk"].value.trim();
+	var mb_pwOk = frm["mb_pwOk"].value.trim();
 	var mb_email = frm["mb_email"].value.trim();
 	
 	if(mb_name == ""){
@@ -69,14 +69,16 @@ function chkSubmit(){
 	if(mb_pw == ""){
 		 $(document ).ready( function(){
 		        $('mb_pw').removeAttr('pattern');
+		        $('mb_pwOk').removeAttr('required');
 		 });
 	}
-	//if(mb_pw != "" && mb_pw != mb_pwOk){
-		//alert("비밀번호가 일치하지 않습니다.");
-		//return false;
-	//}
+	if(mb_pw != "" && mb_pw != mb_pwOk){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	} else {
+		return true;
+	}
 	
-	return true;
 }
 </script>
 
@@ -143,7 +145,7 @@ function chkSubmit(){
 	
 	<div class="div-relative" style="width: 100%; height: auto; margin: 50px auto;">
 		<div id="update_frm_container">
-			<form name="frm" id="update_frm" method="post" enctype="Multipart/form-data" action="cusUpdateInfoOk.nmj" onsubmit="">
+			<form name="frm" id="update_frm" method="post" enctype="Multipart/form-data" action="cusUpdateInfoOk.nmj" onsubmit="return chkSubmit()">
 				<input type="hidden" name="mb_uid" value="${mb_uid }">
 				<span id="update_info_container">
 					<c:choose>
@@ -155,12 +157,12 @@ function chkSubmit(){
 						</c:otherwise>
 					</c:choose>
 				</span><br><br><br>
-				<span id="update_info_container1">이름　　　 　<input class="update_info" type="text" name="mb_name" placeholder="회원이름" value="${myPage.mb_name }" required></span><br>
-				<span id="update_info_container2">연락처　　 　<input class="update_info" type="text" name="mb_tel" placeholder="회원연락처" value="${myPage.mb_tel }" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})"></span><br>
-				<span id="update_info_container3">아이디　　 　<input class="update_info" type="text" name="mb_id" placeholder="회원아이디" value="${myPage.mb_id }" disabled></span><br>
-				<span id="update_info_container4">비밀번호　　 <input class="update_info" type="password" name="mb_pw" placeholder="회원비밀번호" value="" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$"></span><br>
-				<!-- <span id="update_info_container7">비밀번호 확인 <input class="update_info" type="password" name="mb_pwOk" placeholder="비밀번호 변경시 재확인" required id="mb_pwOk"></span><br> -->
-				<span id="update_info_container5">이메일　　 　<input class="update_info" type="text" name="mb_email" placeholder="회원이메일" value="${myPage.mb_email }" id="mb_email"></span><br>
+				<span id="update_info_container1">이름　　　 　<input class="update_info" type="text" name="mb_name" placeholder="회원이름" value="${myPage.mb_name }" required></span>
+				<span id="update_info_container2">연락처　　 　<input class="update_info" type="text" name="mb_tel" placeholder="회원연락처" value="${myPage.mb_tel }" pattern="(^02.{0}|^01.{1}|[0-9]{3})-([0-9]+)-([0-9]{4})"></span>
+				<span id="update_info_container3">아이디　　 　<input class="update_info" type="text" name="mb_id" placeholder="회원아이디" value="${myPage.mb_id }" disabled></span>
+				<span id="update_info_container4">비밀번호　　 <input class="update_info" type="password" name="mb_pw" placeholder="회원비밀번호" value="" pattern="^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$" style="height: 50px;"></span>
+				<span id="update_info_container7">비밀번호확인 <input class="update_info" type="password" name="mb_pwOk" placeholder="비밀번호 변경시 재확인" id="mb_pwOk" style="height: 50px;"></span>
+				<span id="update_info_container5">이메일　　 　<input class="update_info" type="text" name="mb_email" placeholder="회원이메일" value="${myPage.mb_email }" id="mb_email"></span>
 				<div class="check_font" id="email_check"></div>
 				<span id="update_info_container6">프로필변경 　<input id="update_info_file" class="update_info" type="file" name="upload" accept="image/*"></span><br><br><br>
 				<input type="hidden" name="mb_img_sav" value="${myPage.mb_img_sav }"/>
