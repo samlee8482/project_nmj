@@ -80,7 +80,7 @@
 				 	</div>
 				 	<div class="col-md-8">
 					 	<div class="form-group">
-						 	<img style="width: 100%; height: 100%;" alt="${result.store_img_sav}" src="${pageContext.servletContext.contextPath}/img/store/${result.store_regImg_sav}">
+						 	<img style="width: 100%; height: 100%;" alt="${result.store_regImg_sav}" src="${pageContext.servletContext.contextPath}/img/store/${result.store_regImg_sav}">
 					 	</div>
 				 	</div>
 				 	<div class="col-md-12">
