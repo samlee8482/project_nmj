@@ -27,11 +27,10 @@
 	<!-- 마이페이지 - 예약/찜 목록 보기 -->
 	<!-- 예약 목록 -->
 	<select id="selectReservationByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">
-		SELECT n4.store_uid, n4.store_type, n4.store_name, n2.reservation_start, n2.reservation_end, n2.reservation_count, n2.reservation_price, n2.reservation_seat
+		SELECT n4.store_uid, n4.store_type, n4.store_name, n2.reservation_start, n2.reservation_end, n2.reservation_count, n2.reservation_price, n2.reservation_seat, n2.reservation_check
 		FROM NMJ_reservation n2, NMJ_store n4
 		WHERE #{mb_uid} = n2.mb_uid
-		AND n4.store_uid = n2.store_uid
-		AND n2.reservation_check = 1;
+		AND n4.store_uid = n2.store_uid;
 	</select>
 	<!-- 찜 목록 -->
 	<select id="selectLikeByUid" resultType="qna.project.nmj.beans.CusMyPageDTO">

@@ -405,3 +405,8 @@ so
 #selectedSeat{
 	color:black;
 }
+
+.doubleDate{
+	margin:0px !important;
+	width: 100%;
+}

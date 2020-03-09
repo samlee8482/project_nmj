@@ -20,10 +20,12 @@ public class CusReserveOkCommand implements Command {
 			String date = dto.getReservation_start();
 			dto.setReservation_start(date.split("-")[0].trim());
 			System.out.println(dto.getReservation_start());
+			if(dto.getReservation_end() != null) {
 			dto.setReservation_end(date.split("-")[1].trim());
+			}
 			System.out.println(dto.getReservation_end());
 		}
-		if(dto.getReservation_date().length() > 0) {
+		if(dto.getReservation_date() != null && dto.getReservation_date().length() > 0) {
 			String date = dto.getReservation_date();
 			dto.setReservation_date(null);
 			dto.setReservation_start(date + " " +dto.getReservation_start());
