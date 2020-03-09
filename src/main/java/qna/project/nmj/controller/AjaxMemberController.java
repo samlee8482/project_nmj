@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import qna.project.nmj.ajax.dto.AjaxBoardQueryResult;
+import qna.project.nmj.ajax.dto.AjaxSpaceDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreDTypeDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreFindDTO;
 import qna.project.nmj.ajax.dto.AjaxStoreTypeDTO;
@@ -18,6 +19,7 @@ import qna.project.nmj.beans.FindStoreDTO;
 import qna.project.nmj.beans.NoticeDTO;
 import qna.project.nmj.beans.ReviewJoinDTO;
 import qna.project.nmj.beans.StoreDTO;
+import qna.project.nmj.beans.StoreDetailDTO;
 import qna.project.nmj.beans.StoreTypeDTO;
 import qna.project.nmj.beans.dao.AdminDAO;
 import qna.project.nmj.beans.dao.MemberDAO;
@@ -204,4 +206,49 @@ public class AjaxMemberController {
 		}
 		return qr;
 	}
+	
+	
+	@RequestMapping(value = "/roomList/{store_uid}")
+	public ArrayList<AjaxSpaceDTO> AjaxRoomList(@PathVariable("store_uid") int store_uid) {
+		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
+		ArrayList<StoreDetailDTO> dto = dao.selectRoom(store_uid);
+		ArrayList<AjaxSpaceDTO> sdto = new ArrayList<AjaxSpaceDTO>();
+		
+		int space_uid = 0;
+		int index = 0;
+		for(int i = 0; i < dto.size(); i = index) {
+			int uid = dto.get(i).getSpace_uid();
+			String name = dto.get(i).getSpace_name();
+			int price = dto.get(i).getSpace_price();
+			
+			AjaxSpaceDTO spacedto = new AjaxSpaceDTO();
+			spacedto.setSpace_uid(uid);
+			spacedto.setSpace_name(name);
+			spacedto.setSpace_price(price);
+			ArrayList<String> images = new ArrayList<String>();
+			
+			for(int j = index; j < dto.size(); j++) {
+				if(dto.get(i).getSpace_uid() == dto.get(j).getSpace_uid()) {
+					images.add(dto.get(j).getSpace_img_sav());
+					index = j + 1;
+				}
+			}
+			
+			spacedto.setSpace_images(images);
+			sdto.add(spacedto);
+		}
+		
+		return sdto;
+	}
+	
+	
+	
+	
 }
+
+
+
+
+
+
+

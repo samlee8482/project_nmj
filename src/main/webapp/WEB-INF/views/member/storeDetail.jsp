@@ -120,6 +120,56 @@
 		
 	});
 	</script>
+	<style>
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			padding-top: 100px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: scroll;
+			background-color: rgb(0, 0, 0);
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+		
+		.modal-content{
+			position: relative;
+			background-color: #fefefe;
+			margin: auto;
+			padding: 0;
+			border: 1px solid #888;
+			width: 50%;
+			height: 800px;
+			overflow: auto;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+			-webkit-animation-name: animatetop;
+			-webkit-animation-duration: 0.4s;
+			animation-name: animatetop;
+			animation-duration: 0.4s;
+		}
+		@-webkit-keyframes animatetop{
+		from {top: -300px; opacity:0}
+		to {top: 0; opacity:1}
+		}
+		
+		@keyframes animatetop {
+		from {top: -300px; opacity:0}
+		to {top: 0; opacity:1}
+		}
+		
+		
+		.roomPicList {
+			width: 100%;
+			height: 400px;
+			margin : 0px auto;
+			margin-bottom: 20px;
+		}
+		
+	</style>
+	
 	</head>
 	<body>
 
@@ -172,7 +222,7 @@
 								<li><i class="icon-map3"></i><b id="menu">메뉴판 펼치기</b></li>
 							</c:when>
 							<c:otherwise>
-								<li><i class="icon-images"></i><b id="room">방 사진 보기</b></li>
+								<li onclick="insertDetails()"><i class="icon-images"></i><b id="room">방 사진 보기</b></li>
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
@@ -216,6 +266,7 @@
 		
 	<c:choose>
 		<c:when test="${list.store_type eq 3 }">
+			<!-- 
 				<c:forEach var="room" items="${roomMenu }">
 					<div class="col-md-4 col-sm-6">
 						<div class="menuPic">
@@ -238,6 +289,7 @@
 						</div>
 					</div>	
 				</c:forEach>
+			 -->
 		
 		</c:when>
 		<c:otherwise>
@@ -380,6 +432,92 @@
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/js/storeDetailMenu.js"></script>
 
+
+<div class="modal" id="modal-showImages">
+	<div class="modal-content">
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	<c:choose>
+		<c:when test="${list.store_type eq 3 }">
+			getJackson();
+		</c:when>
+	</c:choose>
+});
+var modal = $(".modal-content");
+var showModal = document.getElementById("modal-showImages");
+var jsonObj;
+var l;
+function getJackson(){
+	$.ajax({
+		url : "${pageContext.servletContext.contextPath}/memberAjax/roomList/${param.store_uid}",
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				jsonObj = data;
+			}
+		}
+	});
+	
+}
+
+function insertDetails(){
+	jsonObj; // 배열
+	l = jsonObj.length;
+	var result = "";
+	
+	for(i = 0; i < l; i++){
+		result += "<div class='col-md-4 col-sm-6' onclick='getImages(\""+ jsonObj[i].space_uid +"\")'>";
+		result += "<div class='menuPic'>";
+		if(jsonObj[i].space_images.length == 0){
+			result += "<img src='${pageContext.request.contextPath}/img/space/spaceDefault.png'>";
+		} else{
+			result += "<img src='${pageContext.request.contextPath}/img/space/" + jsonObj[i].space_images[0] +"'>";
+		}
+		result += "</div>";
+		
+		result += "<div class='menuName'>";
+		result += "<p>" + jsonObj[i].space_name + "</p>";
+		result += "</div>";
+		
+		result += "<div class='menuPrice'>";
+		result += "<p>" + jsonObj[i].space_price + "원</p>";
+		result += "</div>";
+		
+		result += "</div>";
+	}
+	$("div.modalContainer").html(result);
+}
+
+function getImages(space_uid){
+	showModal.style.display = "block";
+	jsonObj;
+	l = jsonObj.length;
+	var images = [];
+	for(i = 0; i < l; i++){
+		if(jsonObj[i].space_uid == space_uid){
+			images = jsonObj[i].space_images;
+			break;
+		}
+	}
+	l = images.length;
+	result = "";
+	for(i = 0; i < l; i++){
+		result += "<img class='roomPicList' src='${pageContext.request.contextPath}/img/space/" + images[i] +"'>";
+		
+	}
+	
+	$(".modal-content").html(result);
+}
+
+window.onclick = function(event){
+	if(event.target == showModal){
+		showModal.style.display = "none";
+	}
+}
+</script>
 	</body>
 </html>
 
