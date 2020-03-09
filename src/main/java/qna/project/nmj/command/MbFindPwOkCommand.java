@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import qna.project.nmj.beans.C;
 import qna.project.nmj.beans.MemberDTO;
 import qna.project.nmj.beans.dao.MemberDAO;
+import qna.project.nmj.security.PasswordEncoding;
 
 public class MbFindPwOkCommand implements Command {
 
@@ -36,8 +37,8 @@ public class MbFindPwOkCommand implements Command {
 //		String mb_name = (String)model.getAttribute("mb_name");
 //		String mb_email = (String)model.getAttribute("mb_email");    
 
-		final String SMTP_USERNAME = "kpmyung@naver.com";
-		final String SMTP_PASSWORD = "mgb73005260!";
+		final String SMTP_USERNAME = "b2nyb2st77@naver.com";
+		final String SMTP_PASSWORD = "merry1125!";
 		String HOST = "smtp.naver.com";
 		//int PORT = 587;
 
@@ -71,8 +72,9 @@ public class MbFindPwOkCommand implements Command {
 				        int selectRandomPw = (int)(Math.random()*(pwCollection.length));//Math.rondom()은 0.0이상 1.0미만의 난수를 생성해 준다.
 				        ranPw += pwCollection[selectRandomPw];
 				      }
+		        	PasswordEncoding pe = new PasswordEncoding();
 		        	
-		        	cnt = dao.updatePw(ranPw, dto.getMb_id());
+		        	cnt = dao.updatePw(pe.encode(ranPw), dto.getMb_id());
 		        	
 		        	// 메일 보내기
 					String TO = dto.getMb_email();
