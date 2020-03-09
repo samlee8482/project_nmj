@@ -171,22 +171,22 @@
 									<c:choose>
 										
 										<c:when test="${list.spaceList_uid eq 1 }">
-											boximg pcspace space_uid#${list.space_uid }# space_count#1 space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#1 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="pcspaceimg spaceIsEmpty${list.space_empty}" ></div><div class="pcNum">${list.space_name }</div>
+											boximg pcspace space_uid#${list.space_uid }# space_count#1 space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#1 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc - 145}px; top:${list.space_yloc- 390}px"><div class="pcspaceimg spaceIsEmpty${list.space_empty}" ></div><div class="pcNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 2 }">
-											boximg draggablekar ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#2 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="karspaceimg spaceIsEmpty${list.space_empty}"></div><div class="karNum">${list.space_name }</div>
+											boximg draggablekar ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#2 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc - 145}px; top:${list.space_yloc - 390}px"><div class="karspaceimg spaceIsEmpty${list.space_empty}"></div><div class="karNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 3 }">
-											boximg draggablebil ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#3 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="bilspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bilNum">${list.space_name }</div>
+											boximg draggablebil ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#3 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc - 145}px; top:${list.space_yloc - 390}px"><div class="bilspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bilNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 4 }">
-											boximg draggablebowl ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#4 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc+ 100}px; top:${list.space_yloc -300}px"><div class="bowlspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bowlNum">${list.space_name }</div>
+											boximg draggablebowl ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#4 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc- 145}px; top:${list.space_yloc - 390}px"><div class="bowlspaceimg spaceIsEmpty${list.space_empty}"></div><div class="bowlNum">${list.space_name }</div>
 										</c:when>			
 										<c:when test="${list.spaceList_uid eq 5 }">
-											boximg draggableTable ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }#  spaceName#${list.space_name }# spaceList#5 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="tablespaceimg spaceIsEmpty${list.space_empty}"></div><div class="tableNum">${list.space_name }</div>
+											boximg draggableTable ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }#  spaceName#${list.space_name }# spaceList#5 spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc - 145}px; top:${list.space_yloc - 390}px"><div class="tablespaceimg spaceIsEmpty${list.space_empty}"></div><div class="tableNum">${list.space_name }</div>
 										</c:when>			
 										<c:otherwise>
-											boximg draggableRoom ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#${list.spaceList_uid } spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc + 100}px; top:${list.space_yloc - 300}px"><div class="roomspaceimg spaceIsEmpty${list.space_empty}"></div><div class="roomNum">${list.space_name }</div>
+											boximg draggableRoom ui-widget-content space_uid#${list.space_uid }# space_count#${list.space_count } space_price#${list.space_price }# spaceName#${list.space_name }# spaceList#${list.spaceList_uid } spaceEmpty${list.space_empty}" style="position:absolute; left:${list.space_xloc- 145}px; top:${list.space_yloc - 390}px"><div class="roomspaceimg spaceIsEmpty${list.space_empty}"></div><div class="roomNum">${list.space_name }</div>
 										</c:otherwise>	
 									</c:choose>
 										</div>
@@ -465,7 +465,7 @@ function doNowIn() {
       data : images,
       auto : true,
       item_count : 1, 
-      cache_count : 10, 
+      cache_count : 5, 
       width:  300,
       height : 300,
       delay : 5000,
