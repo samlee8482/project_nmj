@@ -54,7 +54,7 @@
 	
 </script>
 </head>
-<body onload="window.resizeTo(400,200)">
+<body onload="window.resizeTo(600,200)">
 	<div class="filebox">
 	<form id="frm" name="frm" action="storeMySpaceImgInsertOk.nmj" method="post" enctype="Multipart/form-data">
 		 <label for="file">업로드</label> 
