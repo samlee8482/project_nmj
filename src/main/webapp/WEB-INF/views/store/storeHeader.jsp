@@ -38,7 +38,7 @@
 				<span id="storepage">매장페이지</span>
 			</div>
 			<div class="fh5co-navbar-brand">
-				<a class="fh5co-logo" href="index.html"><img
+				<a class="fh5co-logo" href="${pageContext.request.contextPath}/store/storeMySpace.nmj"><img
 					src="${pageContext.request.contextPath}/img/logo/nmj_logo.jpg"
 					style="width: 200px; height: 150px;" /></a>
 			</div>
