@@ -31,6 +31,9 @@ public class StoreSettingsRequestOkCommand implements Command {
 		// 3. 파일 있을 때와 없을 때 처리
 		if(upload.getOriginalFilename() == "" || upload.getOriginalFilename() == null) {
 			System.out.println("no file");
+			dto.setStore_regImg_org("noImage"); //파일 원본명
+			dto.setStore_regImg_sav("noImage"); //파일 저장명
+			
 		} else {
 			// 4. 확장자 체크 image/jpg, image/jpeg, image/png, image/gif
 			String contentType = upload.getContentType();
