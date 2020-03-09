@@ -78,7 +78,7 @@ function chkSubmit(){
 			 
 			 
 			 
-		<div class="mainTextContainer">
+		<div style="text-align:left;">
 			<table>
 			<tr>
 			<td style="width:10%; background-color: white"><b>매장종류</b></td>
@@ -96,19 +96,19 @@ function chkSubmit(){
 			</tr>
 			<tr>
 				<td style="width:10%; background-color: white"><b>매장명</b></td>
-				<td style="background-color: white">${dto.store_name }</td>
+				<td style="width:70%; background-color: white">${dto.store_name }</td>
 			</tr>
 			<tr>
 				<td style="width:10%; background-color: white"><b>작성자</b></td>
-				<td style="background-color: white">${dto.mb_id }</td>
+				<td style="width:70%; background-color: white">${dto.mb_id }</td>
 			</tr>
 			<tr>
 				<td style="width:10%; background-color: white"><b>내용</b></td>
-				<td style="background-color: white">${dto.review_content }</td>
+				<td style="width:70%; background-color: white">${dto.review_content }</td>
 			</tr>
 			<tr>
 				<td style="width:10%; background-color: white"><b>평점</b></td>
-				<td style="background-color: white">
+				<td style="width:70%; background-color: white">
 				<c:forEach begin="1" end="${dto.review_rate}" step="1">
 					★ 
 				</c:forEach>
@@ -116,11 +116,11 @@ function chkSubmit(){
 			</tr>
 			<tr>
 				<td style="width:10%; background-color: white"><b>조회수</b></td>
-				<td style="background-color: white">${dto.review_viewCount }</td>
+				<td style="width:70%; background-color: white">${dto.review_viewCount }</td>
 			</tr>
 			<tr>
 				<td style="width:10%; background-color: white"><b>작성일</b></td>
-				<td style="background-color: white">${dto.review_date }</td>
+				<td style="width:70%; background-color: white">${dto.review_date }</td>
 			</tr>
 			</table>
 	
@@ -129,8 +129,11 @@ function chkSubmit(){
 	
 	
 	
-	
+		<c:choose>
+		<c:when test="${sessionScope.mb_uid != null }">	
 	    <button class="btn btn-danger btn-sm" onclick="location.href='reportReview.nmj?review_uid=${dto.review_uid}'">신고하기</button>
+	    </c:when>
+	    </c:choose>
 	    <button class="btn btn-warning btn-sm" onclick="location.href='communityList.nmj'">목록보기</button>
 	    
 		<c:choose>
@@ -182,7 +185,11 @@ function chkSubmit(){
 						<b>${reply.mb_id }</b><br>
 						${reply.reply_content }<br>
 						<p style = "text-align : right; font-size: 0.8em;">${reply.reply_date }</p>
+						<c:choose>
+		 				<c:when test="${sessionScope.mb_uid != null }">
 						<button class="btn btn-outline-danger btn-sm" onclick="location.href='reportReply.nmj?reply_uid=${reply.reply_uid}&review_uid=${dto.review_uid}'">신고하기</button>
+						</c:when>
+						</c:choose>
 						
 						<c:choose>
 		    			<c:when test="${sessionScope.mb_uid == reply.mb_uid }">
