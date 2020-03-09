@@ -465,12 +465,11 @@ function doNowIn() {
       data : images,
       auto : true,
       item_count : 1, 
-      cache_count : 1, 
+      cache_count : 10, 
       width:  300,
       height : 300,
       delay : 5000,
-      delay_frame : 0,
-      move : 'left'
+      delay_frame : 0
     });
 }; 
 </script>
