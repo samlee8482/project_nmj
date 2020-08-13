@@ -20,3 +20,5 @@
 ### DB구조   
 ![놀먹자_DB1](/nmj_DB1.png)   
 ![놀먹자_DB2](/nmj_DB2.jpg)
+   
+*[전체 포트폴리오 보기](https://github.com/samlee8482/portfolio)*
