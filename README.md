@@ -18,3 +18,5 @@
 ### 시연영상
 [YouTube 보기](https://youtu.be/tE2VE-d1tRE)   
 ### DB구조   
+![놀먹자_DB1](/nmj_DB1.png)   
+![놀먹자_DB2](/nmj_DB2.jpg)
