@@ -14,7 +14,7 @@
 * 프레임워크 : SpringFramework(5.2.1ver), MyBatis   
 * DB액션 처리 : JDBC, MariaDB(10.4ver)   
 * 개발 Tool : Eclipse(Photon), GitHub, Apache Tomcat(v8.5.49)   
-* 기타 라이브러리 : CKEditor, 데이트피커, KakaoDevelopers, JavaMailAPI
+* 기타 라이브러리 : CKEditor, 데이트피커, Kakao Developers, JavaMailAPI
 ### 시연영상
 [YouTube 보기](https://youtu.be/tE2VE-d1tRE)   
 ### DB구조   
